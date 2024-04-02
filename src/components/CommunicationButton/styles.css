@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300&display=swap');
+
+.whatsapp {
+    background: #30d64f;
+}
+
+.viber {
+    background: #7b519d;
+}
+
+.call {
+    background: #ff2241;
+}
+
+.phone {
+    background: #03a9f4;
+}
+
+.yellow {
+    background: #ffce09;
+}
+
+.multibutton {
+    position: fixed;
+    right: 23px;
+    bottom: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100px;
+    height: 100px;
+    transition: 0.2s ease;
+    z-index: 50;
+    font-family: Mulish, serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+@media(max-width: 1920px) {
+    .multibutton {
+        right: 4%;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media(max-width: 1441px) {
+    .multibutton {
+        right: 4%;
+    }
+}
+
+@media(max-width: 1041px) {
+    .multibutton {
+        right: 6%;
+    }
+}
+
+@media(max-width: 821px) {
+    .multibutton {
+        right: 30%;
+    }
+}
+
+@media(max-width: 769px) {
+    .multibutton {
+        right: 10%;
+    }
+}
+
+@media(max-width: 450px) {
+    .multibutton {
+        right: 6%;
+    }
+}
+@media(max-width: 414px) {
+    .multibutton {
+        right: 23px;
+    }
+}
+
+.multibutton:hover .multibutton__list {
+    position: relative;
+    top: auto;
+    bottom: 10px;
+    visibility: visible;
+}
+
+.multibutton:hover .multibutton__item {
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s ease;
+    transform: scaleX(1) scaleY(1) translateY(0);
+}
+
+.multibutton__list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    right: 13px;
+    top: 80px;
+    visibility: hidden;
+    transition: 0.3s ease;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.multibutton__title {
+    font-size: 18px;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(0,0,0,0.8);
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.multibutton__item {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+    transform: scaleX(0.4) scaleY(0.4) translateY(150px);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.multibutton__button {
+    width: 90px;
+    height: 90px;
+    background: #A0E312;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    animation: animation_button 3s linear infinite;
+    transition: all 200ms ease-out;
+
+}
+
+.multibutton__button > div {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.multibutton__image {
+    width: 65%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@keyframes animation_button {
+    0% {
+        box-shadow: 0 0 0 0 #aede4c, 0 0 0 0 rgba(179, 225, 143, 0.7);
+    }
+    40% {
+        box-shadow: 0 0 0 13.62667px rgba(255,186, 38, 0), 0 0 0 6.81333px rgba(169, 225, 86, 0.7);
+    }
+    80% {
+        box-shadow: 0 0 0 27.25333px rgba(255, 186, 38, 0), 0 0 0 13.62667px rgba(255,206, 9, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 34.06667px rgba(255, 186, 38, 0), 0 0 0 27.25333px rgba(255, 206, 9, 0);
+    }
+}
+
+.multibutton__button svg {
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+}
+
+.multibutton__item:nth-child(1) .multibutton__icon{
+    background: #03a9f4;
+}
+
+.multibutton__item:nth-child(2) .multibutton__icon{
+    background: #ff2241;
+}
+
+.multibutton__item:nth-child(3) .multibutton__icon{
+    background: #7b519d;
+}
+
+.multibutton__item:nth-child(4) .multibutton__icon{
+    background: #30d64f;
+}
+
+.multibutton__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.multibutton__icon svg{
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+}

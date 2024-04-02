@@ -1,0 +1,67 @@
+.video-box-play {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+  top: 50%;
+  left: 50%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.video-box-play :hover {
+  opacity: 0.6;
+}
+
+
+.play-button {
+  width: 70px;
+  display: block;
+}
+
+.pause-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.image-pause {
+  position: absolute;
+  fill: rgba(255, 255, 255, 0);
+}
+.progress-ring {
+  position: absolute;
+}
+
+.display-desktop {
+  display: block;
+}
+.hide-desktop {
+  display: none;
+}
+
+.progress-ring__circle {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.progress-ring {
+  transition: stroke-dashoffset 33ms;
+}
+
+@media screen and (max-width: 600px) {
+  .pause-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .play-button {
+    width: 60px;
+    display: block;
+  }
+  .display-desktop {
+    display: none;
+  }
+  .hide-desktop {
+    display: block;
+  }
+}

@@ -1,0 +1,107 @@
+.accordion-content {
+    overflow: hidden;
+    transition: height 300ms linear 0s;
+  }
+  
+  .accordion-border-top {
+    border-top: 2px solid #fff;
+  }
+
+
+
+  @media(max-width: 1920px) {
+    .accordion-border-top {
+        display: none;
+    }
+
+    .accordion-flex {
+        display: flex;
+        flex: 1 1 45%;
+    }
+
+    .accordion-item {
+        margin-right: 40px;
+    }
+  }
+
+  @media(max-width: 822px) {
+    .accordion-flex {
+        display: none;
+    }
+
+    .accordion-border-top {
+        display: block;
+    }
+    }
+
+  .content-box {
+    margin-top: 20px;
+      font-size: 16px;
+  }
+
+  .accordion-box {
+      background: #FAEAEA;
+  }
+
+  .accordion-wrapper {
+      padding: 0 23px 40px 23px;
+  }
+
+.accordion-title {
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+}
+.accordion-title:before {
+    content: "";
+    width: 15px;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    top: 0;
+    right: -5px;
+    bottom: 0;
+    margin: auto;
+}
+
+.accordion-title:after {
+    content: "";
+    width: 2px;
+    height: 15px;
+    background: #000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 1.5px;
+    margin: auto;
+    transition: all 0.3s ease;
+}
+
+.active:before{
+    background: #000;
+}
+
+.active:after{
+    background: #000;
+}
+
+.accordion-title.active::after{
+    display: none;
+}
+
+
+.two-storelist__item.active {
+    background: #FAEAEA;
+    color: #000;
+}
+
+@media (max-width: 415px) {
+    .accordion-title {
+        font-size: 15px;
+        padding-right: 23px;
+    }
+
+    .content-box {
+        font-size: 13px;
+    }
+}

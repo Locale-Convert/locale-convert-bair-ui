@@ -1,0 +1,18 @@
+type Order {
+  id: ID!
+  name: String!
+  surname: String!
+  email: String!
+  phone: String!
+}
+
+input OrderInput {
+  name: String!
+  surname: String!
+  email: String!
+  phone: String!
+}
+
+type Mutation {
+  createOrder(input: OrderInput): Order
+}
