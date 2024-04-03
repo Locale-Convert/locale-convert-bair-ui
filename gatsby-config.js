@@ -7,7 +7,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL:"https://converty-bair.herokuapp.com" || "http://localhost:1337",
+        apiURL:"https://locale-convert-bair-6f893e44a0f3.herokuapp.com" || "http://localhost:1337",
         availableLngs: ['en', 'uk-UA'],
         queryLimit: 1000,
         collectionTypes: [
