@@ -178,7 +178,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
                 </div>
               )}
             </div>
-            {relatedAccessories.length !== 0 && type === 'product'
+            {/* {relatedAccessories.length !== 0 && type === 'product'
               && <RelatedMittensProduct
                 products={products}
                 colorArticle={colorArticle}
@@ -187,7 +187,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
                 colorSlider={filteredColorSlider}
                 relatedAccessories={relatedAccessories}
               />
-            }
+            } */}
             {relatedAccessories.length !== 0 && type === 'accessories'
               && <RelatedMittensAccessories
                   relatedAccessories={relatedAccessories}
