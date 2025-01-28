@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useTranslation } from 'react-i18next';
 import Header from "../../components/Header/Header";
 import MainBanner from "../../components/MainBanner/MainBanner";
 import MainCatalog from "../../components/MainCatalog/MainCatalog";
@@ -17,39 +16,51 @@ import AccessoriesDesktop from "../../components/AccessoriesDesktop/AccessoriesD
 import MainBannerWithText from "../../components/MainBannerWithText/MainBannerWithText";
 import PromoTh from "../../components/PromoTh/PromoTh";
 import Accessories from "../../components/Accessories/Accessories";
-import { useCartStore } from '../../store/store';
-import '../../../i18n';
+
 
 export const query = graphql`
     query HomePage{
         allStrapiProducts(sort: { fields: priority, order: DESC }) {
             nodes {
+                stickerBlackFriday
+                stickerBlackFridayTitle
+                stickerNew
+                stickerNewTitle
+                stickerSale
+                stickerSaleTitle
                 id
+                updatedAt
+                isPriceFrom
                 colorSlider {
-                  visible
-                  color
-                  article
-                  mainImageColor {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    colorPrice
+                    colorOldPrice
+                    coloStickerSaleTitle
+                    isSale
+                    isSaleTitle
+                    visible
+                    color
+                    article
+                    mainImageColor {
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                        }
                     }
-                  }
-                  imageColor {
-                      localFile {
-                          childImageSharp {
-                              gatsbyImageData
-                          }
-                      }
-                  }
-                  characteristicsSlider {
-                      localFile {
-                          childImageSharp {
-                              gatsbyImageData
-                          }
-                      }
-                  }
+                    imageColor {
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                        }
+                    }
+                    characteristicsSlider {
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                        }
+                    }
                 }
                 title
                 price
@@ -63,30 +74,40 @@ export const query = graphql`
                     }
                 }
                 mainImg {
-                  desktopImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    desktopImage {
+                        alternativeText
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                        }
                     }
-                  }
-                  mobileImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    mobileImage {
+                        alternativeText
+                        localFile {
+                            childImageSharp {
+                                gatsbyImageData
+                            }
+                        }
                     }
-                  }
                 }
             }
         }
+
         allStrapiAccessories {
             nodes {
+                stickerBlackFriday
+                stickerBlackFridayTitle
+                stickerNew
+                stickerNewTitle
+                stickerSale
+                stickerSaleTitle
                 id
                 title
                 price
                 oldPrice
                 url
+                updatedAt
                 mainImage {
                     localFile {
                         childImageSharp {
@@ -94,7 +115,13 @@ export const query = graphql`
                         }
                     }
                 }
+                isPriceFrom
                 colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  coloStickerSaleTitle
+                  isSale
+                  isSaleTitle
                   color
                   visible
                   article
@@ -168,72 +195,73 @@ export const query = graphql`
                     }
                   }
                 }
-            }promoTwo {
-              desktopImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+            }
+            promoTwo {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-              mobileImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-          }
-          promoThree {
-              desktopImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+            }
+            promoThree {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-              mobileImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-          }
-          promoFour {
-              desktopImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+            }
+            promoFour {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-              mobileImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-          }
-          promoFive {
-              desktopImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+            }
+            promoFive {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-              mobileImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
                   }
                 }
-              }
-          }
-      }
-  }
+            }
+        }
+    }
 `
 
 
@@ -244,7 +272,6 @@ const HomePage = () => {
       nodes
     },
     strapiHomePage: {
-      videoSlider,
       videoUrl,
       mainPromo,
       promoOne,
@@ -253,11 +280,11 @@ const HomePage = () => {
       promoFour,
       promoFive
     }
-  } = useStaticQuery(query);
-  const { i18n, t } = useTranslation();
+  } = useStaticQuery(query)
+
+
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
-  const { activeLanguage } = useCartStore();
 
   useEffect(() => {
     const determineScreenSize = () => {
@@ -278,15 +305,11 @@ const HomePage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    i18n.changeLanguage(activeLanguage);
-  }, [activeLanguage]);
-
   return (
     <>
       {isMobileView ? (
         <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
           <MainBanner promo={mainPromo} />
           <MainBannerWithText />
           <MainCatalog data={allStrapiProducts} />
@@ -304,7 +327,7 @@ const HomePage = () => {
         </div>
       ) : (
         <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
           <MainBanner promo={mainPromo} />
           <div className="promo-flex">
             <Promo promo={promoOne} />
@@ -321,8 +344,16 @@ const HomePage = () => {
           <Footer link={"#top"} />
         </div>
 
-      )}</>
+      )}
+
+
+    </>
   )
 }
 
 export default HomePage
+
+
+
+
+

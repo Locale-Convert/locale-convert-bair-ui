@@ -1,9 +1,9 @@
-export const addToLocalStorage = (product, article) => {
-    const { id,title, url, price, oldPrice, colorSlider, mainImage } = product;
+export const addToLocalStorage = (product, article) => {    
+    const { id,title, url, price, oldPrice, colorSlider, mainImage, color = '', updatedAt } = product;
 
     if (typeof window !== 'undefined') {
         const existingProducts = JSON.parse(localStorage.getItem('selectedProducts')) || [];
-        const selectedColor = colorSlider.find(color => color.article === article);
+        const selectedColor = color ? product : colorSlider.find(color => color.article === article);
 
         let totalAmount = 0;
 
@@ -17,13 +17,15 @@ export const addToLocalStorage = (product, article) => {
                     id,
                     title,
                     url,
-                    price,
-                    oldPrice,
+                    price : selectedColor.colorPrice ? selectedColor.colorPrice : price,
+                    oldPrice : selectedColor.colorOldPrice ? selectedColor.colorOldPrice : oldPrice,
                     color: selectedColor.color,
                     article,
+                    updatedAt,
                     mainImage: selectedColor.imageColor,
                     count: 1
                 };
+
                 existingProducts.push(productWithSelectedColor);
             }
         } else {

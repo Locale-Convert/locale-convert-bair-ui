@@ -1,6 +1,6 @@
 import React,
   { useState,
-    useEffect 
+    useEffect
   }                        from "react"
 import Header              from "../../components/Header/Header";
 import Footer              from "../../components/Footer/Footer";
@@ -15,14 +15,6 @@ import CommunicationButton from "../../components/CommunicationButton/Communicat
 import { useLocation }     from "@reach/router";
 import relatedProductsHook from "./hooks";
 import CoveringImageComponent from "../../components/CoveringImageComponent/CoveringImageComponent";
-import { useTranslation } from 'react-i18next';
-import {getLocalizedField } from '../../hooks/localized';
-import { useCartStore } from '../../store/store';
-
-import '../../../i18n';
-
-
-
 
 const ProductPage = ({
   data,
@@ -34,20 +26,19 @@ const ProductPage = ({
   const location           = useLocation();
   const relatedProducts    = relatedProductsHook(nodes, location);
   const relatedAccessories = relatedProductsHook(also.nodes, location);
-  const { activeLanguage } = useCartStore();
 
   const {
     title,
     price,
     oldPrice,
-    description_all,
+    description,
     colorSlider,
     // metaTitle,
     // metaDescription,
     // videoSlider,
     videoUrl
   } = data;
-  const { t } = useTranslation();
+
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
   const [activeColor, setActiveColor]   = useState('');
@@ -76,16 +67,16 @@ const ProductPage = ({
 
       <div className={"wrapper-mobile"}>
         <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-        {!!colorSlider && 
+        {!!colorSlider &&
           <IconColorSlider
-            type               = 'product' 
+            type               = 'product'
             price              = {price}
             oldPrice           = {oldPrice}
-            data               = {data} 
-            colorSlider        = {colorSlider} 
-            titleRelatedProducts={'Разом з конвертом'}
-            relatedAccessories = {relatedAccessories} 
-            title              = {title} 
+            data               = {data}
+            colorSlider        = {colorSlider}
+            titleRelatedProducts={'Додайте рукавиці для мами'}
+            relatedAccessories = {also.nodes}
+            title              = {title}
             products           = {nodes}
             setIsBasketView    = {setIsBasketView}
             setActiveColor     = {setActiveColor}
@@ -94,13 +85,13 @@ const ProductPage = ({
         <div className="description-box description-box-wrapper">
           <div className="desc-characteristics">
             <Characteristics
-              description={getLocalizedField('description', activeLanguage, description_all)}
+              desription={description}
             />
           </div>
           <div className="desc-video">
             <SliderVideoProduct
               videoSlider={videoUrl}
-              title={t('product.video')}
+              title={'Відео:'}
               classTitle={'product-video-title'}
               breakpoints={{
                 1440: {
@@ -133,7 +124,7 @@ const ProductPage = ({
         </div>
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
-        <RelatedProducts data={relatedProducts} title={t('product.otherModels')} />
+        <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider}/>
         {
           isMobileView ? <Accessories data={relatedAccessories} title={"Пропонуємо разом з конвертом"} /> : null
         }

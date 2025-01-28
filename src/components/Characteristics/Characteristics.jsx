@@ -11,10 +11,10 @@ function LinkRenderer(props) {
   );
 }
 
-const Characteristics = ({description=""}) => {
+const Characteristics = ({desription=""}) => {
   return (
     <div className={"characteristics-block description-box-wrapper"}>
-      <ReactMarkdown components={{ a: LinkRenderer }}>{description}</ReactMarkdown>
+      <ReactMarkdown components={{ a: LinkRenderer }}>{desription}</ReactMarkdown>
     </div>
   )
 }

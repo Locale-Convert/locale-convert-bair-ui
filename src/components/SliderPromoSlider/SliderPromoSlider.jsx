@@ -4,16 +4,13 @@ import { Pagination, Navigation } from "swiper";
 import VideoControlWithoutPause from "../VideoContainer/VideoControlWithoutPause"
 import "swiper/css";
 import "swiper/css/pagination";
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
 
 
 const SliderPromoSlider = ({videoSlider}) => {
-  const { i18n, t } = useTranslation();
   return (
     <>
       <div className="video-slider">
-        <h2 className={"main-title slider-video-title"}>{t('homepage.video.title')}</h2>
+        <h2 className={"main-title slider-video-title"}>Вiдео</h2>
         <Swiper
           navigation={true}
           allowTouchMove={false}

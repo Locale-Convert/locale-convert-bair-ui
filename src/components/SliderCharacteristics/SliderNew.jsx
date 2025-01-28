@@ -8,6 +8,7 @@ import { getImageHelper } from "../../hooks";
 const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
     const [currentSlide, setCurrentSlide] = useState(selectedIndex);
     const [totalSlides, setTotalSlides] = useState(0);
+    const [ isAnimating, setIsAnimating ] = useState(false);
 
     useEffect(() => {
         setTotalSlides(sliderImage.length);
@@ -21,8 +22,12 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         slidesToScroll: 1,
         adaptiveHeight: true,
         beforeChange: (oldIndex, newIndex) => {
+            setIsAnimating(true);
             setCurrentSlide(newIndex);
-            changeItemSlider(newIndex);
+        },
+        afterChange: (current) => {
+            changeItemSlider(current);
+            setIsAnimating(false);
         },
         easing: "linear",
         initialSlide: selectedIndex
@@ -31,21 +36,21 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
     const sliderRef = useRef(null);
 
     useEffect(() => {
-        if (sliderRef.current) {
-            sliderRef.current.slickGoTo(selectedIndex, false); // Викликаємо метод slickGoTo з анімацією вимкненою
+        if (sliderRef.current && sliderImage.length > 0) {
+            if(!isAnimating) sliderRef.current.slickGoTo(selectedIndex, true);
             setCurrentSlide(selectedIndex);
-            setTotalSlides(sliderImage.length);
         }
-    }, [selectedIndex, sliderImage]);
+    }, [selectedIndex]);
+
     return (
         <>
-            <Slider {...settings} ref={sliderRef} initialSlide={selectedIndex} className="mySwiper" id="thumbnail_slider">
+            <Slider {...settings} ref={sliderRef} className="mySwiper" id="thumbnail_slider">
                 {sliderImage.map((item, index) => (
                     <div key={index}>
                         <GatsbyImage
                             image={getImageHelper(item)}
                             className={"main-slider-image"}
-                            alt="Main Slider Image"
+                            alt=""
                             objectFit="cover"
                         />
                     </div>

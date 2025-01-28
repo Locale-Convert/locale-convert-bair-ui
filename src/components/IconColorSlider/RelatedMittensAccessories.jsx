@@ -21,7 +21,7 @@ const RelatedMittensAccessories = ({ relatedAccessories }) => {
                                 <GatsbyImage
                                     className="related-product-image"
                                     image={getImageHelper(item.mainImage)}
-                                    alt="This is a picture of my face."
+                                    alt=""
                                     objectFit="contain"
                                     style={{ width: '95%' }}
                                 />

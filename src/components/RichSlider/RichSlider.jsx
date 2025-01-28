@@ -20,7 +20,7 @@ const RichSlider = ({ mobileRichDescription, mobileTextLayer }) => {
                         className="slider-instagram"
                     >
                         {mobileRichDescription.map((item, index) => (
-                            <SwiperSlide style={{ maxHeight: '720px' }}>
+                            <SwiperSlide style={{ maxHeight: '100%' }}>
                                 <div key={index} className="covering-image-container">
                                     <div
                                         className="main-image"
@@ -34,7 +34,7 @@ const RichSlider = ({ mobileRichDescription, mobileTextLayer }) => {
                                     <GatsbyImage
                                         image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
                                         className="covering-image"
-                                        alt="Covering Image"
+                                        alt=""
                                         objectFit='cover'
                                     />
                                 </div>

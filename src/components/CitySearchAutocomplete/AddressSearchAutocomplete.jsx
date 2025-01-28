@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
+import emailjs from "@emailjs/browser";
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
 
 function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
-    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const apiKey = "78a2519d401b035f572b0d306532c38c";
+    const apiKey = "6a2a5107ae0390d6178a329dd0d71458";
     const url = "https://api.novaposhta.ua/v2.0/json/";
 
     useEffect(() => {
@@ -26,7 +24,7 @@ function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
                     modelName: "Address",
                     calledMethod: "getWarehouses",
                     methodProperties: {
-                        "CityName": selectedCity.MainDescription,
+                        "CityRef": selectedCity.DeliveryCity
                     }
                 };
 
@@ -39,6 +37,22 @@ function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
                 });
 
                 const data = await response.json();
+
+                if (data.errors.length !== 0 && (data.errors[0] === 'API key incorrect' || data.errors[0] === 'API key expired')) {
+                    console.log('API key incorrect!!!!');
+                    
+                    const formData = {
+                        name: 'API Key Error', 
+                        message: 'The API key is incorrect. Please check the configuration.'
+                    };
+                    
+                    emailjs.send('service_wmszkiu', 'template_xt9d68p', formData, 'Dtntig-pRWw1ON0vO')
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
+                }
 
                 if (data && data.data && data.data.length > 0) {
                     const addresses = data.data.map(address => address.Description);
@@ -60,14 +74,14 @@ function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
 
     return (
         <>
-        <label className='delivery-city-label'>{t('orderPage.department')}</label>
+        <label className='delivery-city-label'>Відділення</label>
 
         <Autocomplete
             id="department-search"
             options={options}
             getOptionLabel={(option) => option}
             open={open}
-            noOptionsText={t('orderPage.noOptionsText')}
+            noOptionsText={"Немає варіантів"}
             onOpen={() => {
                 setOpen(true);
             }}

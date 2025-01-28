@@ -7,10 +7,8 @@ import RelatedProducts from "../../components/RelatedProducts/RelatedProducts";
 import IconColorSlider from "../../components/IconColorSlider/IconColorSlider";
 import SliderVideoProduct from "../../components/SliderVideoProduct/SliderVideoProduct";
 import CommunicationButton from "../../components/CommunicationButton/CommunicationButton";
-import RichDescription from "../../components/RichDescription/RichDescription";
 import { useLocation } from "@reach/router";
 import relatedProductsHook from "../ProductPage/hooks";
-import Accessories from "../../components/Accessories/Accessories";
 import CoveringImageComponent from "../../components/CoveringImageComponent/CoveringImageComponent";
 
 
@@ -27,9 +25,6 @@ const AccessoriesPage = ({
     description,
     colorSlider,
     oldPrice,
-    // metaTitle,
-    // metaDescription,
-    // videoSlider,
     videoUrl
   } = data;
   const location = useLocation();
@@ -37,7 +32,6 @@ const AccessoriesPage = ({
   const relatedAccessories = relatedProductsHook(also.nodes, location);
   const [isBasketView, setIsBasketView] = useState(false);
   const [activeColor, setActiveColor]   = useState('');
-
 
   return (
     <div className={"wrapper-mobile"}>

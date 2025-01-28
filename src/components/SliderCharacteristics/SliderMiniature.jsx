@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,6 +14,7 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         }
     }, [selectedIndex]);
 
+
     const settings = {
         dots: false,
         infinite: true,
@@ -22,17 +23,25 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         verticalSwiping: true,
         waitForAnimate: true,
         slidesToShow: sliderImage.length < 4 ? sliderImage.length : 4,
-        afterChange: index => changeItemSlider(index)
+        afterChange: index => {
+            changeItemSlider(index);
+        }
+    };
+
+    const handleClick = (index) => {
+        if (index !== selectedIndex) {
+            changeItemSlider(index);
+        }
     };
 
     return (
         <Slider {...settings} ref={thumbnailSliderRef} className='vertical-slider'>
             {sliderImage.map((item, index) => (
-                <div key={index} className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`} onClick={() => changeItemSlider(index)}>
+                <div key={index} className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`} onClick={() => handleClick(index)}>
                     <GatsbyImage
                         image={getImageHelper(item)}
                         className={"thumbnail-image"}
-                        alt="Thumbnail Image"
+                        alt="Thumbnail"
                         objectFit="cover"
                     />
                 </div>

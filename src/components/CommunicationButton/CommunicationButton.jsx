@@ -12,25 +12,25 @@ import "./styles.css"
 import close                       from "../../images/close.svg";
 import validationSchemaServiceForm from "./schema";
 import emailJsFunc                 from "../../hooks/emailJs";
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
-
-
-
 
 const CommunicationButton = () => {
-  const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen]       = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const form                      = useRef();
+  const initialValues             = { name: "", phone: "" };
 
-  const form = useRef();
-
-  const initialValues = { name: "", phone: "" };
-
-
-  const onFormSubmit = (values) => {
-    emailJsFunc('service_wmszkiu', 'template_7nfk54h', form.current, 'Dtntig-pRWw1ON0vO');
+  const onFormSubmit = (values, { resetForm }) => {
+    setIsLoading(true);
+    emailJsFunc('service_wmszkiu', 'template_7nfk54h', form.current, 'Dtntig-pRWw1ON0vO', '/request-confirmed')
+      .then(() => {
+        setIsLoading(false);
+        resetForm();
+        onRequestClose();
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
   }
-
   const onModalOpen = () => {
     document.body.style.overflow = "hidden";
     setIsOpen(true);
@@ -50,7 +50,7 @@ const CommunicationButton = () => {
     <>
       <div className="multibutton">
         <div className="multibutton__button" onClick={() => onModalOpen()}>
-          <div>{t('communicationButton.title')}</div>
+          <div>Запитати</div>
         </div>
       </div>
       <ReactModal
@@ -66,8 +66,9 @@ const CommunicationButton = () => {
           <span className="popup__close-btn" onClick={onRequestClose}>
             <img src={close} alt="button-close"/>
           </span>
-          <h2 className="popup__title title">{t('communicationButton.title')}</h2>
-          <h2 className="popup__subtitle">{t('communicationButton.numberText')}</h2>
+          <h2 className="popup__title title">Запитати</h2>
+          <h2 className="popup__subtitle">Залиште свій номер телефону і
+            ми надамо відповіді на всі ваші запитання</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchemaServiceForm}
@@ -77,7 +78,7 @@ const CommunicationButton = () => {
               return (
                 <form className={"modal_input"} onSubmit={props.handleSubmit} ref={form}>
                   <input
-                    placeholder={t('communicationButton.name')}
+                    placeholder={"Iм'я"}
                     className={"modal_input_name"}
                     name="name"
                     value={props.values.name}
@@ -95,7 +96,7 @@ const CommunicationButton = () => {
                      value={props.values.phone}
                      style={{fontSize:"14px"}}
                   />
-                  <input value={t('communicationButton.buttonSend')} className={` ${!props.errors.phone && !props.errors.name ? "modal_input_button" : " modal_input_button opacity-button"}`} type={"submit"}/>
+                  <input value={isLoading ? "Надсилаємо..." : "Надіслати повідомлення"} disabled={isLoading} className={` ${!props.errors.phone && !props.errors.name ? "modal_input_button" : " modal_input_button opacity-button"}`} type={"submit"}/>
                 </form>
               )
             }}

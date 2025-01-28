@@ -18,7 +18,7 @@ const MainBannerWithText = () => {
           <StaticImage
             src="../../images/block_2.jpg"
             className={"image_banner"}
-            alt="This is a picture of my face."
+            alt="Конверти в коляску та санчата"
             objectFit="contain"
           />
         </div>

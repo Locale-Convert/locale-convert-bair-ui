@@ -30,7 +30,7 @@ const SmallSliderChatacteristics = ({data}) => {
                         <GatsbyImage
                         image={getImageHelper(item)}
                         className={"three-itempage__max-item-img"}
-                        alt="This is a picture of my face."
+                        alt=""
                         objectFit="cover"
                         />
                     </div>

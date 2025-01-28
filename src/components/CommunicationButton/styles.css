@@ -67,7 +67,7 @@
     }
 }
 
-@media(max-width: 450px) {
+@media(max-width: 460px) {
     .multibutton {
         right: 6%;
     }
@@ -147,6 +147,15 @@
     width: 65%;
     height: 100%;
     object-fit: contain;
+}
+@media(max-width: 460px) {
+    .multibutton__button {
+          width: 70px;
+          height: 70px;
+    }
+    .multibutton__button > div {
+        font-size: 13px;
+    }
 }
 
 @keyframes animation_button {

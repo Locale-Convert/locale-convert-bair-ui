@@ -30,10 +30,6 @@ const RichDescription = ({ colorSlider, activeColor }) => {
     };
   }, []);
 
-  console.log('colorSlider', colorSlider);
-  console.log('activeColor', activeColor);
-
-
   return (
     <>
       {isMobileView ? (
@@ -45,7 +41,7 @@ const RichDescription = ({ colorSlider, activeColor }) => {
               <GatsbyImage
                 image={getImage(item?.localFile?.childrenImageSharp[0].gatsbyImageData)}
                 className={"image__promo_banner image__promo_banner-min-height"}
-                alt="This is a picture of my face."
+                alt=""
                 objectFit="contain"
               />
             </div>

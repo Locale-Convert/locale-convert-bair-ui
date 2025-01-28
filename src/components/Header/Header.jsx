@@ -2,24 +2,33 @@ import React, { useEffect, useRef, useState, useMemo } from "react";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { graphql, useStaticQuery } from "gatsby";
 import CartModal from "./CartModal";
-import logo_convert from "../../images/logo-convert.svg";
+import logo_convert from "../../images/bair-konvert-logo-2024.svg";
 import { useCartStore } from "../../store/store";
 import phone from "../../images/phone.svg";
-import LanguageSwitcher from "../LangSwitcher/LangSwitcher";
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
 
 import "../../styles/style.css";
-
 
 export const query = graphql`
   query Header {
     allStrapiAccessories(sort: { fields: priority, order: DESC }) {
       nodes {
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
         id
         title
         price
+        oldPrice
         url
+        colorSlider {
+          colorPrice
+          colorOldPrice
+          article
+        }
+        updatedAt
         mainImage {
           localFile {
             url
@@ -29,25 +38,39 @@ export const query = graphql`
     }
     allStrapiProducts {
       nodes {
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
+        colorSlider {
+          colorPrice
+          colorOldPrice
+          article
+        }
         id
         title
         price
+        oldPrice
         url
+        updatedAt
       }
     }
   }
 `;
 
 const Header = ({ isBasketView, setIsBasketView }) => {
-  const { t } = useTranslation();
+  const { allStrapiAccessories, allStrapiProducts } = useStaticQuery(query);
+
   const dropDownRef = useRef();
   const cartModalRef = useRef();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
-  const { allStrapiAccessories, allStrapiProducts } = useStaticQuery(query);
+  
 
-  const { cartItems, setCartItems } = useCartStore(); 
+  const { cartItems, setCartItems } = useCartStore();
 
   const getCartItemsFromLocalStorage = () => {
     if (typeof window !== 'undefined') {
@@ -55,6 +78,14 @@ const Header = ({ isBasketView, setIsBasketView }) => {
       return cartItems ? JSON.parse(cartItems) : [];
     }
   };
+
+  const sortedMenuConvert = allStrapiProducts.nodes.sort((a, b) => {
+    return a.title.localeCompare(b.title);
+  });
+
+  const sortedMenuAccessories = allStrapiAccessories.nodes.sort((a, b) => {
+    return a.title.localeCompare(b.title);
+  });
 
   useEffect(() => {
     setCartItems(getCartItemsFromLocalStorage());
@@ -100,10 +131,6 @@ const Header = ({ isBasketView, setIsBasketView }) => {
     setShowCartModal(false);
   };
 
-  const updateCartItems = (newCartItems) => {
-    setCartItems(newCartItems);
-  };
-
   return (
     <>
       <div id={"top"}></div>
@@ -115,7 +142,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           <img
             className="header__logo"
             src={logo_convert}
-            alt="A Gatsby astronaut"
+            alt="Конверти Bair"
           />
         </a>
         <div className="box-content-number">
@@ -129,31 +156,25 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           />
           <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
         </div>
-        <LanguageSwitcher/>
         <div className="nav-menu">
           <div className="dropdown">
-            <button className="dropbtn-link">{t('menu.convert')}</button>
+            <button className="dropbtn-link">Конверти</button>
             <div className="dropdown-content">
-              {allStrapiProducts.nodes.map((item, index) => (
-                <a key={index} href={`/${item.url}/`}>
-                  {item.title}
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="dropdown">
-            <button className="dropbtn-link">{t('menu.gloves')}</button>
-            <div className="dropdown-content">
-              {allStrapiAccessories.nodes.map((item, index) => (
-                <a key={index} href={`/${item.url}/`}>
-                  {item.title}
-                </a>
+              {sortedMenuConvert.map((item, index) => (
+                <>
+                  <a  className='dropdown-menu-item' key={index} href={`/${item.url}/`}>
+                    <div>{item.title}</div>
+                    <div className="stickers-for-accessories-descktop-navbar">
+                      {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
+                    </div>
+                  </a>
+                </>
               ))}
             </div>
           </div>
           <div>
             <a href="/#reviews" className="dropbtn">
-            {t('menu.feedback')}
+              Відгуки
             </a>
           </div>
           <div>
@@ -163,7 +184,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           </div>
           <div className="btn-margin">
             <a href="/conditions" className="dropbtn">
-            {t('menu.conditions')}
+              Умови
             </a>
           </div>
           <div className="dropbtn open-cart-btn" onClick={openCartModal}>
@@ -186,6 +207,9 @@ const Header = ({ isBasketView, setIsBasketView }) => {
                 >
                   {item.title}
                 </a>
+                <div className="stickers-for-accessories-mobile-navbar">
+                    {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
+                </div>
               </li>
             ))}
             <div className={"promo-banner-text-2"}>Рукавички</div>
@@ -197,6 +221,9 @@ const Header = ({ isBasketView, setIsBasketView }) => {
                 >
                   {item.title}
                 </a>
+                <div className="stickers-for-accessories-mobile-navbar">
+                    {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
+                </div>
               </li>
             ))}
             <div className={"menu-margin"}>
@@ -239,11 +266,10 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           </div>
         </div>
         <CartModal
+          allStrapiProducts={allStrapiProducts}
+          allStrapiAccessories={allStrapiAccessories}
           showCartModal={showCartModal}
-          setShowCartModal={setShowCartModal}
           closeCartModal={closeCartModal}
-          cartItems={cartItems}
-          updateCartItems={updateCartItems}
           isBasketView={isBasketView}
           setIsBasketView={setIsBasketView}
         />

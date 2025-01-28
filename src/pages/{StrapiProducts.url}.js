@@ -33,13 +33,14 @@ export const query = graphql`
       title
       price
       description
-      description_all {
-        description_en
-        description_ua
-        description_pl
-      }
-
       oldPrice
+      updatedAt
+      stickerBlackFriday
+      stickerBlackFridayTitle
+      stickerNew
+      stickerNewTitle
+      stickerSale
+      stickerSaleTitle
       mainImage {
         localFile {
             childImageSharp {
@@ -56,6 +57,11 @@ export const query = graphql`
             url
         }
         colorSlider {
+            colorPrice
+            colorOldPrice
+            coloStickerSaleTitle
+            isSale
+            isSaleTitle
             color
             visible
             article
@@ -63,23 +69,6 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   gatsbyImageData
-                }
-              }
-            }
-            richDescriptionTextLayer_all {
-              layer_en {
-                localFile {
-                  url
-                }
-              }
-              layer_pl {
-                localFile {
-                  url
-                }
-              }
-              layer_ua {
-                localFile {
-                  url
                 }
               }
             }
@@ -123,8 +112,21 @@ export const query = graphql`
     }
     allStrapiProducts {
         nodes {
+            stickerBlackFriday
+            stickerBlackFridayTitle
+            stickerNew
+            stickerNewTitle
+            stickerSale
+            stickerSaleTitle
             id
+            updatedAt
+            isPriceFrom
             colorSlider {
+              colorPrice
+              colorOldPrice
+              coloStickerSaleTitle
+              isSale
+              isSaleTitle
               color
               visible
               article
@@ -150,7 +152,6 @@ export const query = graphql`
                   }
               }
             }
-            id
             title
             price
             oldPrice
@@ -164,6 +165,7 @@ export const query = graphql`
             }
             mainImg {
                 desktopImage {
+                  alternativeText
                   localFile {
                     childImageSharp {
                       gatsbyImageData
@@ -171,6 +173,7 @@ export const query = graphql`
                   }
                 }
                 mobileImage {
+                  alternativeText
                   localFile {
                     childImageSharp {
                       gatsbyImageData
@@ -182,11 +185,18 @@ export const query = graphql`
     }
       allStrapiAccessories {
           nodes {
+              stickerBlackFriday
+              stickerBlackFridayTitle
+              stickerNew
+              stickerNewTitle
+              stickerSale
+              stickerSaleTitle
               id
               title
               price
               oldPrice
               url
+              updatedAt
               mainImage {
                   localFile {
                       childImageSharp {
@@ -210,7 +220,13 @@ export const query = graphql`
                   }
                 }
               }
+              isPriceFrom
               colorSlider {
+                colorPrice
+                colorOldPrice
+                coloStickerSaleTitle
+                isSale
+                isSaleTitle
                 color
                 visible
                 article

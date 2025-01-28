@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getImageHelper } from "../../hooks";
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
 
 import "../../styles/style.css"
 
 
 const PromoTwo = ({ promo }) => {
-  const { i18n, t } = useTranslation();
   const [isMobileView, setIsMobileView] = useState(null);
 
   useEffect(() => {
@@ -37,13 +34,13 @@ const PromoTwo = ({ promo }) => {
     {isMobileView !== null && (
       <div className={"main_banner_image-promo banner-padding-right banner-mobile"}>
       <div className={"banner-text-absolute"}>
-        <h2 className={"main-title main-title-desktop "}>{t('homepage.promoFirstRight.title')}</h2>
-        <p className={"promo-icon-subtext"}>{t('homepage.promoFirstRight.text')}</p>
+        <h2 className={"main-title main-title-desktop "}>Затишний капюшон</h2>
+        <p className={"promo-icon-subtext"}>Глибокий капюшон на кулісці, щільно стягується навколо голови малюка. Знімне хутро.</p>
       </div>
         <GatsbyImage
           image={getImageHelper(imageToShow)}
           className={"image_banner"}
-          alt="This is a picture of my face."
+          alt=""
           objectFit="contain"
         />
       </div>

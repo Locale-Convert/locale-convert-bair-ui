@@ -12,8 +12,7 @@ module.exports = {
         queryLimit: 1000,
         collectionTypes: [
           "products",
-          "accessories",
-          "test-locales"
+          "accessories"
         ],
         singleTypes: [
           "home-page",

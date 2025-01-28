@@ -1,7 +1,7 @@
 import React from "react";
-import { 
+import {
     Swiper,
-    SwiperSlide 
+    SwiperSlide
 }                         from "swiper/react";
 import { GatsbyImage }    from "gatsby-plugin-image";
 import { getImageHelper } from "../../hooks";
@@ -29,7 +29,7 @@ const VerticalSlider = ({ sliderImage, selectedItemForMainSlider, changeItemSlid
                             <GatsbyImage
                                 image={getImageHelper(item)}
                                 className={"three-itempage__max-item-img"}
-                                alt="This is a picture of my face."
+                                alt=""
                                 objectFit="cover"
                             />
                         </div>

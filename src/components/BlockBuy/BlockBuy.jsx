@@ -32,6 +32,8 @@ const BlockBuy = ({ data, price, oldPrice = "", setIsBasketView}) => {
   let hash = location.hash;
   const articleProduct = hash.split("").splice(1).join('');
 
+  const selectedItem = data.colorSlider.find(item => item.article === articleProduct);
+
   useEffect(() => {
     let bottomOfScreen = window?.scrollY + window?.innerHeight;
     const checkScroll = () => {
@@ -97,14 +99,14 @@ const BlockBuy = ({ data, price, oldPrice = "", setIsBasketView}) => {
   return (
     <>
       <div className={`block-buy-box ${isView ? "is-view-block-buy active" : "is-view-block-buy"}`} id={"block-buy"}>
-        {!!oldPrice ? (
+        {!!selectedItem?.colorOldPrice || oldPrice ? (
           <div className={"block-buy-price-old-box"}>
-            <div className={"block-buy-price-old"}>{oldPrice}грн</div>
-            <div className={"block-buy-price"}>{price} грн</div>
+            <div className={"block-buy-price-old"}>{selectedItem?.colorOldPrice ? selectedItem?.colorOldPrice : oldPrice}грн</div>
+            <div className={"block-buy-price"}>{selectedItem?.colorPrice ? selectedItem?.colorPrice : price} грн</div>
           </div>
         ) : (
           <div className={"block-buy-price"}>
-            {price} грн
+            {selectedItem?.colorPrice ? selectedItem?.colorPrice : price} грн
           </div>
         )
         }

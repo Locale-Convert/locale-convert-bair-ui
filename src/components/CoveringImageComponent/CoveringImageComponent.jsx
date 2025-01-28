@@ -4,15 +4,11 @@ import React, { useState } from 'react';
 
 import { getImage } from "gatsby-plugin-image";
 import RichSlider from '../RichSlider/RichSlider';
-import { useCartStore } from '../../store/store';
 
 import "../../styles/style.css";
-import { getLocalizedField } from '../../hooks/localized';
 
 const CoveringImageComponent = ({ colorSlider, activeColor },) => {
-  
   const [isMobileView, setIsMobileView] = useState(null);
-  const { activeLanguage } = useCartStore();
 
   let activeItem = colorSlider.find(item => `${item?.article}` === activeColor);
 
@@ -35,8 +31,6 @@ const CoveringImageComponent = ({ colorSlider, activeColor },) => {
     };
   }, []);
 
-  const layers = getLocalizedField('layer', activeLanguage, activeItem?.richDescriptionTextLayer_all);
-
   return (
     <>
       {isMobileView ? (
@@ -48,7 +42,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor },) => {
               <div
                 className="main-image"
                 style={{
-                  backgroundImage: `url(${layers[index]?.localFile?.url})`, // TODO
+                  backgroundImage: `url(${activeItem?.richDescriptionTextLayer[index]?.url})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: '100%'
                 }}
@@ -57,7 +51,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor },) => {
               <GatsbyImage
                 image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
                 className="covering-image"
-                alt="Covering Image"
+                alt=""
                 objectFit='cover'
               />
             </div>

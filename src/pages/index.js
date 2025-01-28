@@ -13,11 +13,15 @@ export const query = graphql`
                 price
                 oldPrice
                 url
-                mainImage {
-                    localFile {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
+                updatedAt
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
                     }
                 }
             }
@@ -29,6 +33,7 @@ export const query = graphql`
                 price
                 oldPrice
                 url
+                updatedAt
                 mainImage {
                     localFile {
                         childImageSharp {
@@ -36,7 +41,13 @@ export const query = graphql`
                         }
                     }
                 }
+                isPriceFrom
                 colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  coloStickerSaleTitle
+                  isSale
+                  isSaleTitle
                   color
                   visible
                   article

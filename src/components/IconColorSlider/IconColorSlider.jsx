@@ -1,6 +1,7 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useMemo
 }                            from "react";
 import { useLocation }       from "@reach/router";
 import { navigate }          from "gatsby";
@@ -20,29 +21,25 @@ import PriceBox from "../PriceBox/PriceBox";
 import MainSlider from "../SliderCharacteristics/SliderNew";
 import SliderMiniature from "../SliderCharacteristics/SliderMiniature";
 
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
-
 
 import "swiper/css";
 import "swiper/css/pagination";
 import RelatedMittensAccessories from "./RelatedMittensAccessories";
 
-
+let ReactPixel = null;
 
 const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, products, titleRelatedProducts, relatedAccessories = [], setIsBasketView, setActiveColor}) => {
-  const {  t } = useTranslation();
 
   const filteredColorSlider = colorSlider.filter(item => item.visible === null || item.visible === true);
 
   const [colorArticle, setColorArticle]       = useState("");
   const [colorTitle, setColorTitle]           = useState("");
+  const [currentColor, setCurrentColor]       = useState("");
+
 
   const [sliderImage, setSliderImage]         = useState([]);
   const [selectedItemForMainSlider, setSelectedItemForMainSlider] = useState(0);
   const [indexActiveItem, setIndexActiveItem] = useState();
-
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   
   const [isAdded, setIsAdded]                 = useState(false);
 
@@ -53,9 +50,8 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   const middle = 0;
 
   const location = useLocation();
-  const loc = location.hash.split("").splice(1).join('');
 
-
+  const loc = location.hash.slice(1);
 
   let activeItem = filteredColorSlider.filter(item => {
     if (`${item?.article}` === loc) {
@@ -65,17 +61,48 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   })
   activeItem = activeItem[0];
 
+  const loadReactPixel = async (article, pathname) => {
+    if(ReactPixel) {
+      ReactPixel.fbq('track', 'Change color', {
+        item_id: article,
+        page_path: pathname.href,
+      });
+    }
+
+    if (!ReactPixel) {
+      const { default: pixel } = await import('react-facebook-pixel');
+      ReactPixel = pixel;
+      ReactPixel.init(`665127785242009`);
+
+      ReactPixel.fbq('track', 'PageView', {
+        item_id: article,
+        page_path: pathname.href,
+      });
+    }
+  };
+  
+
   const changeSlider = (item) => {
-    navigate(`#${item.article}`);
-    setColorArticle(!!item?.article && item?.article); // for change article in BlockTitle
+    const currentUrl = new URL(location.href);
 
+    currentUrl.hash = item.article;
+  
+    const searchParams = new URLSearchParams(currentUrl.search);
+
+    const newUrl = `${currentUrl.pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}${currentUrl.hash}`;
+  
+    navigate(newUrl);
+
+    loadReactPixel(item.article, currentUrl);
+
+    setCurrentColor(item);
+    setColorArticle(!!item?.article && item?.article); // для зміни статті в BlockTitle
     setActiveColor(item.article);
-
-    setColorTitle(!!item?.color && item?.color); // for BlockTitle mobile
-    setSliderImage(!!item?.characteristicsSlider && item?.characteristicsSlider); // for change main Slider
-
+    setColorTitle(!!item?.color && item?.color); // для BlockTitle mobile
+    setSliderImage(!!item?.characteristicsSlider && item?.characteristicsSlider); // для зміни основного слайдера
+  
     const isInCart = !!cartItems.find(cartItem => cartItem.article === item?.article);
-    setIsAdded(isInCart); // for check product in cart
+    setIsAdded(isInCart); // для перевірки, чи продукт в кошику
   };
 
   const changeItemSlider = (index) => {
@@ -123,17 +150,47 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
   const addToBasket = (data, loc) => {
     const updatedCartItems = addToLocalStorage(data, loc);
+  
     setCartItems(updatedCartItems);
     setIsAdded(true);
     setIsBasketView(true);
   };
+
+  const hasGloves = cartItems.some(item => {
+    const foundById = relatedAccessories.some(accessory => accessory.id === item.id);
+    
+    if (!foundById) {
+        return (
+          relatedAccessories[0]?.colorSlider.some(colorItem => colorItem.article === item.article) ||
+          relatedAccessories[1]?.colorSlider.some(colorItem => colorItem.article === item.article)
+        );
+    }
+    
+    return true;
+});
+
+
+  const [accessoriesItemOne, accessoriesItemTwo] = useMemo(() => {
+    if (!relatedAccessories || relatedAccessories.length < 2) {
+        return [null, null];
+    }
+
+    const [firstAccessory, secondAccessory] = relatedAccessories;
+
+    const itemOne = firstAccessory.colorSlider?.find(access => access.color === colorTitle) || null;
+    const itemTwo = secondAccessory.colorSlider?.find(access => access.color === colorTitle) || null;
+
+    return [itemOne, itemTwo];
+  }, [relatedAccessories, colorTitle]);
 
   return (
     <>
 
         {isMobileView ? (
           <BlockTitle
+            item={data}
             title={title}
+            currentColor={currentColor}
             article={colorArticle}
             colorTitle={colorTitle}
           />
@@ -157,7 +214,9 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
           
           <div className="colors-box">
             <TitleBox
+              item={data}
               colorArticle={colorArticle}
+              currentColor={currentColor}
               title={title}
               colorTitle={colorTitle}
             />
@@ -167,31 +226,32 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
               colorTitle={colorTitle}
             />
             <div className={"product-basket"} id={"block-buy"}>
-              <PriceBox price={price} oldPrice={oldPrice}/>
+              <PriceBox price={price} oldPrice={oldPrice} currentColor={currentColor}/>
               {isAdded ? (
                 <a href="/order" className={"product-basket-button"}>
-                  {t('product.placingAnOrder')}
+                  Перейти до оформлення 
                 </a>
               ) : (
                 <div className={"product-basket-button"} onClick={() => addToBasket(data, loc)}>
-                  {t('product.addToBasket')}
+                  Додати в кошик
                 </div>
               )}
             </div>
-            {/* {relatedAccessories.length !== 0 && type === 'product'
-              && <RelatedMittensProduct
-                products={products}
-                colorArticle={colorArticle}
-                colorTitle={colorTitle}
-                title={titleRelatedProducts}
-                colorSlider={filteredColorSlider}
-                relatedAccessories={relatedAccessories}
-              />
-            } */}
+            {relatedAccessories.length !== 0 && type === 'product' && (accessoriesItemOne && accessoriesItemTwo) && !hasGloves
+              && <div className="related-accessories-box">
+                  <RelatedMittensProduct
+                    colorTitle={colorTitle}
+                    title={titleRelatedProducts}
+                    relatedAccessories={relatedAccessories}
+                    addToBasket={addToBasket}
+                  />
+              </div>
+            }
             {relatedAccessories.length !== 0 && type === 'accessories'
-              && <RelatedMittensAccessories
-                  relatedAccessories={relatedAccessories}
-              />
+              && 
+              <div className="related-accessories-box">
+                  <RelatedMittensAccessories relatedAccessories={relatedAccessories}/>
+              </div>
             }
           </div>
 

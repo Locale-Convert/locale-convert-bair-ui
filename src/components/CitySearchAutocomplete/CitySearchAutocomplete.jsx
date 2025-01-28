@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
+import emailjs from "@emailjs/browser";
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddressSearchAutocomplete from './AddressSearchAutocomplete';
-import StreetSearchAutocomplete from './StreetSearchAutocomplete';
 import { Paper } from '@mui/material';
-import { useTranslation } from 'react-i18next';
-import '../../../i18n';
 
 function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod }) {
-    const { t } = useTranslation();
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [selectedCity, setSelectedCity] = useState(null);
 
-    const apiKey = "78a2519d401b035f572b0d306532c38c";
+    const apiKey = "6a2a5107ae0390d6178a329dd0d71458";
     const url = "https://api.novaposhta.ua/v2.0/json/";
 
     const handleInputChange = async (event) => {
@@ -29,7 +26,7 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
                 modelName: "Address",
                 calledMethod: "searchSettlements",
                 methodProperties: {
-                    "CityName": cityName,
+                    "CityName": cityName
                 }
             };
 
@@ -42,6 +39,22 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
             });
 
             const data = await response.json();
+
+            if (data.errors.length !== 0 && (data.errors[0] === 'API key incorrect' || data.errors[0] === 'API key expired')) {
+                console.log('API key incorrect!!!!');
+                
+                const formData = {
+                    name: 'API Key Error', 
+                    message: 'The API key is incorrect. Please check the configuration.'
+                };
+                
+                emailjs.send('service_wmszkiu', 'template_xt9d68p', formData, 'Dtntig-pRWw1ON0vO')
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                });
+            }
 
             if (data && data.data && data.data.length > 0) {
                 
@@ -61,13 +74,13 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
 
     return (
         <>  
-            <label className='delivery-city-label'>{t('orderPage.city')}</label>
+            <label className='delivery-city-label'>Місто</label>
              <Autocomplete
                 id="city-search"
                 options={options}
                 getOptionLabel={(option) => option.Present}
                 open={open}
-                noOptionsText={t('orderPage.noOptionsText')} 
+                noOptionsText={''} 
                 onOpen={() => {
                     setOpen(true);
                 }}

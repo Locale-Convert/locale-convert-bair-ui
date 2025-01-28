@@ -1,0 +1,142 @@
+.relative {
+  position: relative;
+}
+
+.gradient-wrapper {
+  height: calc(100vh - 161px);
+  min-height: 500px;
+}
+
+.glider-prev-vector-1,
+.glider-next-vector-1 {
+  display: none;
+}
+
+
+.glider-next-vector::before,
+.glider-prev-vector::before{
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 100;
+  margin-left: -30px;
+  background: url('../../images/arrow-vector.png') no-repeat right center;
+  background-size: contain;
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .glider-next-vector::before,
+  .glider-prev-vector::before {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .glider-prev-vector::before {
+    transform: translate(0, -31px);
+  }
+}
+
+.glider-prev-vector, .glider-prev-vector{
+  left:55px;
+  transform: rotate(-180deg);
+}
+
+
+
+.glider-next-vector {
+  right: 60px;
+}
+
+.glider-next-vector.disabled, .glider-prev-vector.disabled {
+  opacity:0;
+}
+
+
+
+.glider-prev-vector::before {
+  transform: translate(0, -100%);
+}
+
+.glider-next-vector,
+.glider-prev-vector {
+  font-size: 0;
+  position: absolute;
+  z-index: 90;
+  top: 48%;
+}
+
+@media (max-width: 1920px) {
+  .glider-next-vector::before,
+  .glider-prev-vector::before {
+    width: 18px;
+    height: 30px;
+    margin-left: 10px;
+  }
+
+  .glider-prev-vector::before {
+    transform: translate(0, -31px);
+  }
+
+  .glider-prev-vector:hover,.glider-next-vector:hover {
+    cursor: pointer;
+  }
+
+  .glider-prev-vector {
+    left:35px;
+  }
+  .glider-next-vector {
+    right:35px;
+  }
+}
+
+@media (max-width: 414px){
+  .glider-next-vector::before,
+  .glider-prev-vector::before {
+    width: 14px;
+    height: 26px;
+    margin-left: 10px;
+  }
+
+  .glider-prev-vector::before {
+    transform: translate(0, -31px);
+  }
+
+  .glider-prev-vector {
+    left:30px;
+  }
+  .glider-next-vector {
+    right:30px;
+  }
+}
+
+@media (max-width: 393px) {
+  .glider-next-vector::before,
+  .glider-prev-vector::before {
+    width: 13px;
+    height: 24px;
+    margin-left: 10px;
+  }
+
+  .glider-prev-vector::before {
+    transform: translate(0, -31px);
+  }
+
+  .glider-prev-vector {
+    left:30px;
+  }
+  .glider-next-vector {
+    right:30px;
+  }
+}
+
+
+
+
+
+
+
+
