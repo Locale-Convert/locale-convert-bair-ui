@@ -1556,6 +1556,27 @@ body{
   transform: scaleX(1);
 }
 
+.slider-instagram .swiper-button-next,
+.slider-instagram .swiper-button-prev {
+  display: none !important;
+}
+
+/* Точки пагінації */
+.slider-instagram .swiper-pagination-bullet {
+  background-color: #d3d3d3; /* сірий як на скріні */
+  opacity: 1;
+  width: 10px;
+  height: 10px;
+  margin: 0 6px !important;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+/* Активна точка */
+.slider-instagram .swiper-pagination-bullet-active {
+  background-color: #9acd32; /* зелений як на скріні */
+}
+
 .modal-page {
   width: 100%;
   height: 90vh;
@@ -1873,26 +1894,10 @@ body{
 
   .dropbtn-link {
     background-color: #fff;
-    color: #000;
+    color: #625454;
     padding: 25px;
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 16px;
     border: none;
-  }
-
-  .dropbtn-link::after {
-    content: "";
-    position: absolute;
-    right: 3px;
-    top: 53%;
-    margin-left: 10px;
-    transform: translateY(-50%);
-    background-image: url('../images/arrow.png');
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s;
   }
 
   .dropbtn-link:hover::after {
@@ -1905,9 +1910,9 @@ body{
 
   .dropbtn {
     background-color: #fff;
-    color: #000;
+    color: #625454;
     padding: 16px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 200;
     border: none;
     position: relative;
@@ -1960,8 +1965,8 @@ body{
     justify-content: space-between;
     position: absolute;
     align-items: center;
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background-color: #fff;
   }
 
@@ -2138,6 +2143,38 @@ body{
   .vertical-swiper>.swiper-slide {
     width: 100px;
     height: 125px;
+  }
+
+  .wrapper-slider {
+    padding: 0 38px 60px 38px;
+  }
+
+  .slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .slider-nav .custom-prev,
+  .slider-nav .custom-next {
+    position: static;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .slider-nav .custom-prev:hover,
+  .slider-nav .custom-next:hover {
+    background: #e0e0e0;
   }
 
   /* .vertical-swiper > .swiper-button-prev,.mySwiper > .swiper-button-next {
@@ -2640,15 +2677,6 @@ body{
     object-fit: fill;
   }
 
-  .main-title {
-    color: #323238;
-    font-size: 60px;
-    margin-bottom: 40px;
-    margin-top: 45px;
-    line-height: 70px;
-    font-weight: 700;
-  }
-
   .main-title-desktop {
     color: #323238;
     font-size: 30px;
@@ -2800,12 +2828,6 @@ body{
     padding-right: 40px;
     margin-bottom: 40px;
     background-color: #fff;
-  }
-
-  .accordion-main-title {
-    padding-top: 64px;
-    padding-bottom: 40px;
-    margin-top: 0;
   }
 
   .accordion-title {
@@ -3415,12 +3437,6 @@ body{
     font-weight: 700;
   }
 
-  .footer__box-content-conditions {
-    max-width: 175px;
-    font-size: 18px;
-    font-style: normal;
-  }
-
   .footer__box-list {
     display: flex;
     flex-direction: column;
@@ -3446,10 +3462,21 @@ body{
     display: flex;
   }
 
+  .box-number-and-basket {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .box-content-number > a > img {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     margin-right: 10px;
+    margin-top: 6px;
+  }
+
+  .slider-nav {
+    display: none;
   }
 }
 
@@ -3568,17 +3595,22 @@ body{
     margin-top: 4%;
   }
 
-  .accordion-main-title {
-    padding-top: 20px;
-    padding-bottom: 0;
-  }
-
   .slider-video-title {
     padding-top: 20px;
   }
 
   .accessories-box {
     margin-bottom: 70px;
+  }
+
+  .swiper-pagination {
+    display: none !important;
+  }
+
+  .slider-nav {
+    display: flex;
+    min-width: 100px;
+    min-height: 50px;
   }
 }
 
@@ -3990,10 +4022,6 @@ body{
 
   .main_catalog-box {
     margin-top: 0;
-  }
-
-  .swiper-wrapper {
-    padding-bottom: 0;
   }
 
   .desc-video {
@@ -4868,11 +4896,6 @@ body{
     margin-top: 71px;
   }
 
-
-  .accordion-main-title {
-    padding: 10px;
-  }
-
   .popup__content {
     padding-top: 0;
   }
@@ -4902,6 +4925,7 @@ body{
   }
 
   .wrapper-slider {
+    padding: 0;
     margin-top: 10px;
   }
 
@@ -5122,22 +5146,12 @@ body{
     padding: 50px 15px;
   }
 
-  .accordion-main-title {
-    padding: 10px;
-    font-size: 26px;
-    line-height: 32px;
-  }
-
   .popup__content {
     padding-top: 0;
   }
 
   .instagram-image {
     max-height: 490px;
-  }
-
-  .accordion-main-title {
-    margin: 20px 0;
   }
 
   /*.....................*/
@@ -5264,10 +5278,6 @@ body{
 
   .back-to-top-link {
     right: 25px;
-  }
-
-  .accordion-main-title {
-    padding: 10px;
   }
 
   .delivery-grey {

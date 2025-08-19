@@ -310,7 +310,7 @@ const HomePage = () => {
       {isMobileView ? (
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-          <MainBanner promo={mainPromo} />
+          {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />
           <MainCatalog data={allStrapiProducts} />
           <Promo promo={promoOne} />
@@ -318,17 +318,17 @@ const HomePage = () => {
           <PromoTextBottom promo={promoFour} />
           <PromoWithIcon promo={promoThree} />
           <PromoTh />
-          <Accessories data={nodes} title={"Рукавички в колір конверту"} />
+          <Accessories data={nodes} title={"Рукавички в колір конверту"} /> */}
           <SliderPromoSlider videoSlider={videoUrl} />
           <SliderInstagram />
           <Accordion />
-          <CommunicationButton />
+          {/* <CommunicationButton /> */}
           <Footer link={"#top"} />
         </div>
       ) : (
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-          <MainBanner promo={mainPromo} />
+          {/* <MainBanner promo={mainPromo} />
           <div className="promo-flex">
             <Promo promo={promoOne} />
             <PromoTwo promo={promoTwo} />
@@ -336,11 +336,11 @@ const HomePage = () => {
             <PromoTextBottom promo={promoFour} />
           </div>
           <MainCatalog data={allStrapiProducts} />
-          <AccessoriesDesktop data={nodes} promo={promoFive} />
+          <AccessoriesDesktop data={nodes} promo={promoFive} /> */}
           <SliderPromoSlider videoSlider={videoUrl} />
           <SliderInstagram />
           <Accordion />
-          <CommunicationButton />
+          {/* <CommunicationButton /> */}
           <Footer link={"#top"} />
         </div>
 

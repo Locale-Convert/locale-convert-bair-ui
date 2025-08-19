@@ -4,7 +4,8 @@ import { graphql, useStaticQuery } from "gatsby";
 import CartModal from "./CartModal";
 import logo_convert from "../../images/bair-konvert-logo-2024.svg";
 import { useCartStore } from "../../store/store";
-import phone from "../../images/phone.svg";
+import phone from "../../images/icons/phone.svg";
+import basket from "../../images/icons/basket.svg";
 
 import "../../styles/style.css";
 
@@ -145,52 +146,50 @@ const Header = ({ isBasketView, setIsBasketView }) => {
             alt="Конверти Bair"
           />
         </a>
-        <div className="box-content-number">
-          <a href="tel:+380961093040"><img src={phone} alt="phone" /></a>
-          <a href="tel:+380961093040" className="footer__box-content-number">+38 (096) 109-30-40</a>
-        </div>
-        <div className="dropbtn open-cart-btn hide-basket" onClick={openCartModal}>
-          <ShoppingCartOutlinedIcon
-            fontSize="medium"
-            sx={{ color: (showCartModal && cartItems.length > 0)  ? '#A0E312' : '#000' }}
-          />
-          <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
-        </div>
         <div className="nav-menu">
           <div className="dropdown">
             <button className="dropbtn-link">Конверти</button>
-            <div className="dropdown-content">
-              {sortedMenuConvert.map((item, index) => (
-                <>
-                  <a  className='dropdown-menu-item' key={index} href={`/${item.url}/`}>
-                    <div>{item.title}</div>
-                    <div className="stickers-for-accessories-descktop-navbar">
-                      {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
-                    </div>
-                  </a>
-                </>
-              ))}
-            </div>
           </div>
           <div>
-            <a href="/#reviews" className="dropbtn">
-              Відгуки
+            <a href="/strollers" className="dropbtn">
+              Коляски
             </a>
           </div>
           <div>
-            <a href="/#faq" className="dropbtn">
-              FAQ
+            <a href="/envelopes" className="dropbtn">
+              Конверти
             </a>
           </div>
-          <div className="btn-margin">
-            <a href="/conditions" className="dropbtn">
-              Умови
+          <div>
+            <a href="/mittens" className="dropbtn">
+              Рукавиці
             </a>
+          </div>
+          <div>
+            <a href="/car-seats" className="dropbtn">
+              Автокрісла
+            </a>
+          </div>
+          <div>
+            <a href="/beds" className="dropbtn">
+              Ліжка
+            </a>
+          </div>
+          <div>
+            <a href="/accessories" className="dropbtn">
+              Аксесуари
+            </a>
+          </div>
+        </div>
+        <div className="box-number-and-basket">
+          <div className="box-content-number">
+            <a href="tel:+380961093040"><img src={phone} alt="phone" /></a>
           </div>
           <div className="dropbtn open-cart-btn" onClick={openCartModal}>
-            <ShoppingCartOutlinedIcon
-              fontSize="large"
-              sx={{ color: (showCartModal && cartItems.length > 0) ? '#A0E312' : '#000' }}
+            <img 
+              src={basket} 
+              alt="Basket" 
+              style={{ filter: (showCartModal && cartItems.length > 0) ? 'invert(66%) sepia(95%) saturate(507%) hue-rotate(75deg) brightness(100%) contrast(101%)' : 'none' }} 
             />
             <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
           </div>

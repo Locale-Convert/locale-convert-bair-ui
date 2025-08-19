@@ -33,7 +33,7 @@ const ConditionsPage = () => {
           <ReactMarkdown>{text}</ReactMarkdown>
         </div>
       </div>
-      <CommunicationButton />
+      {/* <CommunicationButton /> */}
       <Footer link={"#top"}/>
     </div>
   )

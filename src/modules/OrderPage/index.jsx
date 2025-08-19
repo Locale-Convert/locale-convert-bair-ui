@@ -407,7 +407,7 @@ const OrderPage = ({data}) => {
                         </div>
                     </div>
                 </div>
-                <CommunicationButton />
+                {/* <CommunicationButton /> */}
                 <Footer link={"#top"} />
             </div>
         </>

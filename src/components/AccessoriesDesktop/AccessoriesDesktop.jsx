@@ -28,7 +28,7 @@ const AccessoriesDesktop = ({ data, promo }) => {
     return (
         <div className={"main_catalog-box main_catalog-box-margin wrapper "}>
             <div className="accessories-box">
-                <div className={"accessories-banner"}>
+                {/* <div className={"accessories-banner"}>
                     <div >
                         <div className={"accessories-banner-text"}>
                             <h2 className={"accessories-banner-promo-text"}>Доповніть коляску теплим і стильним аксесуаром</h2>
@@ -44,7 +44,7 @@ const AccessoriesDesktop = ({ data, promo }) => {
                             style={{ height: '88%' }}
                         />
                     </div>
-                </div>
+                </div> */}
                 <div className="accessories-product">
                     {!!data && data.map((item, index) => {
 

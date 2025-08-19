@@ -6,7 +6,7 @@ import AccordionItem from "./AccordionItem";
 const Accordion = () => {
   return (
     <div className={"accordion-box accordion-wrapper"} id={"faq"}>
-      <h2 className={"main-title accordion-main-title"}>Часто запитують</h2>
+      <h2 className={"main-title"}>Часто запитують</h2>
     <div className={"accordion-border-top"}>
       {
         dataOne.map((item,index) => (

@@ -2,75 +2,90 @@ import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import ToTop from "../ToTop/ToTop";
 
+import './styles.css';
+
 export const query = graphql`
   query Footer {
     allStrapiAccessories(sort: { fields: priority, order: DESC }) {
       nodes {
         id
         title
-        price
         url
-        mainImage {
-          localFile {
-            url
-          }
-        }
-        updatedAt
       }
     }
     allStrapiProducts {
       nodes {
         id
         title
-        price
         url
-        updatedAt
       }
     }
   }
 `;
 
-const Footer = ({link}) => {
+const CATEGORIES = [
+  { label: "Коляски", url: "/strollers" },
+  { label: "Конверти", url: "/envelopes" },
+  { label: "Рукавиці", url: "/mittens" },
+  { label: "Автокрісла", url: "/car-seats" },
+  { label: "Ліжка", url: "/beds" },
+  { label: "Аксесуари", url: "/accessories" },
+  { label: "Контакти", url: "/contacts" },
+  { label: "Обслуговування клієнтів", url: "/support" },
+  { label: "Privacy Policy", url: "/privacy-policy" },
+];
+
+const Footer = () => {
   const { allStrapiAccessories, allStrapiProducts } = useStaticQuery(query);
 
-  const sortedMenuConvert = allStrapiProducts.nodes.sort((a, b) => {
-    return a.title.localeCompare(b.title);
-  });
-
-  const sortedMenuAccessories = allStrapiAccessories.nodes.sort((a, b) => {
-    return a.title.localeCompare(b.title);
-  });
-
   return (
-    <footer className="footer wrapper" id={"footer"}>
-      <div className="footer__container">
-        <div className="footer__box">
-          <div className="footer__box-title">Конверти</div>
-          <div className="footer__box-list">
-            {sortedMenuConvert.map((item, index) => (
-              <a className="footer__box-list-item" key={index} href={`/${item.url}/`}>
-                {item.title}
-              </a>
+    <footer className="footer-wrapper">
+      <div className="footer-top">
+        <div className="footer-column footer-column-categories">
+          <h4>Категорії</h4>
+          <ul className="footer-menu">
+            {CATEGORIES.map((item) => (
+              <li key={item.url}>
+                <a href={item.url}>{item.label}</a>
+              </li>
             ))}
+          </ul>
+        </div>
+
+        <div className="footer-column footer-column-socials">
+          <ul className="footer-socials">
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">facebook</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">instagram</a></li>
+            <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">youtube</a></li>
+          </ul>
+        </div>
+
+        <div className="footer-column footer-column-contact">
+          <div>ФОП Парненко Вікторія Юріївна</div>
+          <div>м. Харків</div>
+          <div className="footer-phone">
+            тел.: <a href="tel:+380961093040">+38(096) 109-30-40</a>
           </div>
         </div>
-        <div className="footer__box">
-          <div className="footer__box-title">Умови</div>
-          <div className="footer__box-content-conditions">З правилами та умовами роботи магазину можна ознайомитись <a href="/conditions" className="footer__box-content-links">тут</a>.</div>
-        </div>
-        <div className="footer__box">
-          <div className="footer__box-title">Контакти</div>
-          <div className="footer__box-content">
-            <div className="footer__box-content-address">ФОП Парненко Вікторія Юріївна</div>
-            <div className="footer__box-content-address">м. Харків</div>
-            <div className="footer__box-content-address">тел.: +38 (096) 109-30-40</div>
-          </div>
+
+        <div className="footer-column footer-column-conditions">
+          <p className="footer__box-content-conditions">
+            З правилами та умовами роботи магазину можна ознайомитись{" "}
+            <a className="footer__box-content-links" href="/conditions">тут</a>.
+          </p>
         </div>
       </div>
-      <p className="footer__copyright">Copyright ©2021 Bair</p>
-      <ToTop link={link}/>
-    </footer>
-  )
-}
 
-export default Footer
+      <div className="footer-bottom">
+        <div>Copyright ©2025 Bair</div>
+        <div className="footer-privacy">
+          <a href="/privacy-policy">Політика конфіденційності</a>
+        </div>
+      </div>
+
+      <ToTop link={'/'}/>
+    </footer>
+  );
+};
+
+export default Footer;
