@@ -41,6 +41,16 @@ const Footer = () => {
   return (
     <footer className="footer-wrapper">
       <div className="footer-top">
+        {/* ФОП */}
+        <div className="footer-column footer-column-contact desktop-only">
+          <div className="footer-phone">
+            <a href="tel:+380961093040">+38(096) 109-30-40</a>
+          </div>
+          <div>ФОП Парненко Вікторія Юріївна</div>
+          <div>м. Харків</div>
+        </div>
+
+        {/* Категорії */}
         <div className="footer-column footer-column-categories">
           <h4>Категорії</h4>
           <ul className="footer-menu">
@@ -52,15 +62,25 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="footer-column footer-column-socials">
-          <ul className="footer-socials">
-            <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">facebook</a></li>
-            <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">instagram</a></li>
-            <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">youtube</a></li>
-          </ul>
+        {/* Умови */}
+        <div className="footer-column footer-column-conditions">
+          <h4>Умови</h4>
+          <p className="footer__box-content-conditions">
+            З правилами та умовами роботи магазину можна ознайомитись{" "}
+            <a className="footer__box-content-links" href="/conditions">тут</a>.
+          </p>
+          {/* Соцмережі під умовами (для десктопа) */}
+          <div className="footer-column footer-column-socials desktop-only">
+            <ul className="footer-socials">
+              <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">facebook</a></li>
+              <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">instagram</a></li>
+              <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">youtube</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div className="footer-column footer-column-contact">
+        {/* ФОП для мобайла */}
+        <div className="footer-column footer-column-contact mobile-only">
           <div>ФОП Парненко Вікторія Юріївна</div>
           <div>м. Харків</div>
           <div className="footer-phone">
@@ -68,11 +88,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="footer-column footer-column-conditions">
-          <p className="footer__box-content-conditions">
-            З правилами та умовами роботи магазину можна ознайомитись{" "}
-            <a className="footer__box-content-links" href="/conditions">тут</a>.
-          </p>
+        {/* Соцмережі для мобайла */}
+        <div className="footer-column footer-column-socials mobile-only">
+          <ul className="footer-socials">
+            <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">facebook</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">instagram</a></li>
+            <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">youtube</a></li>
+          </ul>
         </div>
       </div>
 
