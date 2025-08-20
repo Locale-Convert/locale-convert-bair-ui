@@ -11,22 +11,21 @@
     flex-wrap: wrap;
     margin-bottom: 20px;
     align-items: flex-start;
+    justify-content: space-between;
 }
 
 .footer-column-contact {
-    font-size: 25px;
+    font-size: 18px;
 }
 
-/* Ліва група колонок: ФОП, Категорії, Умови */
-.footer-column-contact,
-.footer-column-categories,
 .footer-column-conditions {
-    margin-right: 80px; /* відстань між колонками */
+    max-width: 220px;
+    margin-right: 200px;
 }
 
-/* Блок соцмереж праворуч */
-.footer-column-socials {
-    margin-left: auto; /* штовхає в правий кут */
+/* Соцмережі під умовами */
+.footer-column-socials.desktop-only {
+    margin-top: 40px;
 }
 
 .footer-column h4 {
@@ -61,6 +60,10 @@
     margin-bottom: 10px;
 }
 
+.footer-phone {
+    margin-bottom: 20px;
+}
+
 .footer-phone a {
     font-weight: 700;
     color: inherit;
@@ -68,10 +71,8 @@
 }
 
 .footer__box-content-conditions {
-    max-width: 175px;
     font-size: 18px;
-    font-style: normal;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .footer-bottom {
@@ -88,12 +89,28 @@
     font-weight: 500;
 }
 
-/* Адаптив для мобільних */
+/* Desktop/Mobile switch */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+/* Мобільна версія */
 @media (max-width: 600px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
     .footer-top {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-auto-rows: auto;
         gap: 10px 20px;
         margin-bottom: 0;
     }
@@ -102,16 +119,33 @@
         display: none;
     }
 
-    .footer-column-categories { grid-column: 1; grid-row: 1 / span 4; }
-    .footer-column-socials { grid-column: 2; grid-row: 1; }
-    .footer-column-contact {
+    .footer-column-categories {
+        grid-column: 1;
+        grid-row: 1 / span 4;
+    }
+
+    .footer-column-socials.mobile-only {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .footer-column-contact.mobile-only {
         grid-column: 1 / span 2;
         grid-row: 5;
         font-size: 14px;
         font-weight: 600;
         margin-bottom: 10px;
     }
-    .footer-column-conditions { grid-column: 1 / span 2; grid-row: 6; }
+
+    .footer-column-conditions {
+        grid-column: 1 / span 2;
+        grid-row: 6;
+        margin-right: 0;
+    }
+
+    .footer-column-conditions h4 {
+        display: none;
+    }
 
     .footer-bottom {
         flex-direction: column;
@@ -122,9 +156,11 @@
 
     .footer-privacy {
         margin-top: 5px;
+        display: none;
     }
 
-    .footer-menu li, .footer-socials li {
+    .footer-menu li,
+    .footer-socials li {
         font-size: 14px;
     }
 
@@ -132,9 +168,5 @@
         font-size: 12px;
         max-width: 100%;
         margin-bottom: 0;
-    }
-
-    .footer-privacy {
-        display: none;
     }
 }

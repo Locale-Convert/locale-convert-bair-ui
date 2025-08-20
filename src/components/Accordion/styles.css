@@ -21,6 +21,8 @@
 .accordion-main-title.desktop {
     display: block;
     margin-bottom: 20px;
+    max-width: 100px;
+    line-height: 40px;
 }
 
 .accordion-content {

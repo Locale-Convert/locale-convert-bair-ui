@@ -1,0 +1,39 @@
+/* style.css */
+.banner-with-text {
+    position: relative;
+    width: 100%;
+    height: 600px; /* десктоп */
+    max-width: 660px; /* якщо хочеш обмежити ширину */
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-text {
+    position: absolute;
+    top: 30px; /* відступ від країв */
+    left: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    max-width: 450px;
+    line-height: 50px;
+}
+
+/* Мобільна версія */
+@media (max-width: 600px) {
+    .banner-with-text {
+        max-height: 350px;
+        height: auto;
+    }
+
+    .banner-text {
+        font-size: 28px; /* адаптивно можна зменшувати */
+        top: 20px;
+        left: 20px;
+    }
+}

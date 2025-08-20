@@ -16,7 +16,14 @@ import AccessoriesDesktop from "../../components/AccessoriesDesktop/AccessoriesD
 import MainBannerWithText from "../../components/MainBannerWithText/MainBannerWithText";
 import PromoTh from "../../components/PromoTh/PromoTh";
 import Accessories from "../../components/Accessories/Accessories";
+import SaleBanner from "../../components/SaleBanner/SaleBanner";
+import BannerWithText from "../../components/BannerWithText/BannerWithText";
+import fisrtBanner from "../../images/firstBanner.png";
+import secondBanner from "../../images/secondBanner.png";
+import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
+import example1 from "../../images/example1.png";
 
+import './style.css';
 
 export const query = graphql`
     query HomePage{
@@ -264,6 +271,53 @@ export const query = graphql`
     }
 `
 
+const productsData = [
+  {
+    title: "Alaska Thermo",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "2 889",
+    oldPrice: "3 499",
+    discount: 20,
+    isNew: true,
+    // warning: "Не сумісно з Balios S",
+    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+  },
+  {
+    title: "Bair Nordie",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "3 299",
+    oldPrice: null,
+    discount: 20,
+    isNew: false,
+    warning: null,
+    colors: ["#ffffff", "#cccccc", "#000000"],
+  },
+  {
+    title: "Urban Comfort",
+    description: "Зручний конверт для прогулянок у місті.",
+    image: example1,
+    price: "2 499",
+    oldPrice: "2 899",
+    discount: 15,
+    isNew: false,
+    warning: null,
+    colors: ["#d7ccc8", "#90caf9", "#a5d6a7"],
+  },
+  {
+    title: "Winter Pro",
+    description: "Теплий варіант для холодної погоди.",
+    image: example1,
+    price: "3 599",
+    oldPrice: null,
+    discount: null,
+    isNew: true,
+    warning: null,
+    colors: ["#212121", "#fafafa"],
+  },
+];
+
 
 const HomePage = () => {
   const {
@@ -310,6 +364,12 @@ const HomePage = () => {
       {isMobileView ? (
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
+          <SaleBanner/>
+          <div className="banner-wrapper">
+            <ProductsSlider data={productsData}/>
+            <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
+          </div>
+          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }}/>
           {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />
           <MainCatalog data={allStrapiProducts} />
@@ -328,6 +388,12 @@ const HomePage = () => {
       ) : (
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
+          <SaleBanner/>
+          <div className="banner-wrapper">
+            <ProductsSlider data={productsData}/>
+            <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
+          </div>
+          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }}/>
           {/* <MainBanner promo={mainPromo} />
           <div className="promo-flex">
             <Promo promo={promoOne} />

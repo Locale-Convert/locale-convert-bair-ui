@@ -1,0 +1,12 @@
+.banner-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 40px;
+}
+
+.banner-wrapper > * {
+  flex: 1 1 50%;
+  max-width: calc(50% - 10px);
+}

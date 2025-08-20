@@ -2,10 +2,9 @@ import React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Pagination, Navigation } from "swiper"
+import { Navigation, Pagination } from "swiper"
 
 import "swiper/css"
-import "swiper/css/pagination"
 import "swiper/css/navigation"
 
 import './styles.css';
@@ -26,10 +25,10 @@ const SliderPromoSlider = () => {
   return (
     <div className="wrapper-slider" id="reviews">
       <div className="slider-header">
-        <h2 className="main-title">Фото-відгуки</h2>
-        <div className="slider-nav">
-          <div className="swiper-button-prev custom-prev" />
-          <div className="swiper-button-next custom-next" />
+        <h2 className="slider-title">Фото-відгуки</h2>
+        <div className="slider-nav mobile-only">
+          <div className="swiper-button-prev custom-prev">‹</div>
+          <div className="swiper-button-next custom-next">›</div>
         </div>
       </div>
 
