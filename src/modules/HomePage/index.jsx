@@ -365,10 +365,8 @@ const HomePage = () => {
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
           <SaleBanner/>
-          <div className="banner-wrapper">
-            <ProductsSlider data={productsData}/>
-            <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
-          </div>
+          <ProductsSlider data={productsData} title='Коляски'/>
+          <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
           <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }}/>
           {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />
@@ -390,7 +388,7 @@ const HomePage = () => {
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
           <SaleBanner/>
           <div className="banner-wrapper">
-            <ProductsSlider data={productsData}/>
+            <ProductsSlider data={productsData} title='Коляски'/>
             <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
           </div>
           <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }}/>

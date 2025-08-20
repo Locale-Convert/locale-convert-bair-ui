@@ -105,7 +105,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <ToTop link={'/'}/>
+      {/* <ToTop link={'/'}/> */}
     </footer>
   );
 };

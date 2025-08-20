@@ -10,3 +10,25 @@
   flex: 1 1 50%;
   max-width: calc(50% - 10px);
 }
+
+/* Адаптив для мобільних */
+@media (max-width: 768px) {
+  .banner-wrapper {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .banner-wrapper > * {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  /* Міняємо порядок — банер перший */
+  .banner-wrapper > :nth-child(1) {
+    order: 1; /* BannerWithText */
+  }
+
+  .banner-wrapper > :nth-child(2) {
+    order: 2; /* ProductsSlider */
+  }
+}
