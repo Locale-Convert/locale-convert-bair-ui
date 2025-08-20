@@ -90,7 +90,7 @@ const AccessoriesPage = ({
       {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
       <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
       <RelatedProducts data={relatedProducts} title={"Пропонуємо разом з рукавичками"} />
-      <BlockBuy price={price} oldPrice={oldPrice} data={data} setIsBasketView={setIsBasketView}/>
+      {/* <BlockBuy price={price} oldPrice={oldPrice} data={data} setIsBasketView={setIsBasketView}/> */}
       {/* <CommunicationButton /> */}
       <Footer link={"#top"} />
     </div>

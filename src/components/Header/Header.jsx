@@ -11,6 +11,8 @@ import "../../styles/style.css";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
+import smallStroller from "../../images/smallStroller.png";
+
 export const query = graphql`
   query Header {
     allStrapiAccessories(sort: { fields: priority, order: DESC }) {
@@ -72,17 +74,29 @@ const Header = ({ isBasketView, setIsBasketView }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
 
-  const categories = ["Коляски", "Конверти", "Рукавиці", "Автокрісла", "Ліжка", "Аксесуари"];
+  const categories = [
+    { title: "Коляски", hasArrow: true },
+    { title: "Конверти", hasArrow: true },
+    { title: "Рукавиці", hasArrow: true },
+    { title: "Автокрісла", hasArrow: true },
+    { title: "Ліжка", hasArrow: true },
+    { title: "Аксесуари", hasArrow: false },
+  ];
 
   const subCategories = {
     "Коляски": allStrapiProducts.nodes.map(p => ({
       title: p.title,
-      image: p.mainImage?.localFile?.url,
+      image: smallStroller,
       url: `/${p.url}/`
     })),
     "Рукавиці": allStrapiAccessories.nodes.map(p => ({
       title: p.title,
-      image: p.mainImage?.localFile?.url,
+      image: smallStroller,
+      url: `/${p.url}/`
+    })),
+    "Аксесуари": allStrapiAccessories.nodes.map(p => ({
+      title: p.title,
+      image: smallStroller,
       url: `/${p.url}/`
     })),
   };
@@ -95,14 +109,6 @@ const Header = ({ isBasketView, setIsBasketView }) => {
       return cartItems ? JSON.parse(cartItems) : [];
     }
   };
-
-  const sortedMenuConvert = allStrapiProducts.nodes.sort((a, b) => {
-    return a.title.localeCompare(b.title);
-  });
-
-  const sortedMenuAccessories = allStrapiAccessories.nodes.sort((a, b) => {
-    return a.title.localeCompare(b.title);
-  });
 
   useEffect(() => {
     setCartItems(getCartItemsFromLocalStorage());
@@ -117,7 +123,6 @@ const Header = ({ isBasketView, setIsBasketView }) => {
       if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
         menuOpen && setMenuOpen(false);
       }
-
       if (cartModalRef.current && !cartModalRef.current.contains(e.target)) {
         showCartModal && setShowCartModal(false);
       }
@@ -135,18 +140,6 @@ const Header = ({ isBasketView, setIsBasketView }) => {
       document.removeEventListener("click", closeMenu);
     };
   }, [menuOpen, showCartModal]);
-
-  const openMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const openCartModal = () => {
-    if(cartItems.length > 0) setShowCartModal(true);
-  };
-
-  const closeCartModal = () => {
-    setShowCartModal(false);
-  };
 
   return (
     <>
@@ -185,21 +178,23 @@ const Header = ({ isBasketView, setIsBasketView }) => {
             <a href="/accessories" className="dropbtn">Аксесуари</a>
           </div>
         </div>
-        <div className="box-number-and-basket">
-          <div className="box-content-number">
-            <a href="tel:+380961093040"><img src={phone} alt="phone" /></a>
-          </div>
-          <div className="dropbtn open-cart-btn" onClick={openCartModal}>
-            <img 
-              src={basket} 
-              alt="Basket" 
-              style={{ filter: (showCartModal && cartItems.length > 0) ? 'invert(66%) sepia(95%) saturate(507%) hue-rotate(75deg) brightness(100%) contrast(101%)' : 'none' }} 
-            />
-            <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
-          </div>
-        </div>
 
-        {/* Burger */}
+        {!menuOpen && (
+          <div className="box-number-and-basket">
+            <div className="box-content-number">
+              <a href="tel:+380961093040"><img src={phone} alt="phone" /></a>
+            </div>
+            <div className="dropbtn open-cart-btn" onClick={() => showCartModal || setShowCartModal(true)}>
+              <img 
+                src={basket} 
+                alt="Basket" 
+                style={{ filter: (showCartModal && cartItems.length > 0) ? 'invert(66%) sepia(95%) saturate(507%) hue-rotate(75deg) brightness(100%) contrast(101%)' : 'none' }} 
+              />
+              <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
+            </div>
+          </div>
+        )}
+
         <div className="header__burger-menu-box">
           <BurgerMenu isOpen={menuOpen} toggle={() => setMenuOpen(!menuOpen)} />
         </div>
@@ -216,7 +211,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           allStrapiProducts={allStrapiProducts}
           allStrapiAccessories={allStrapiAccessories}
           showCartModal={showCartModal}
-          closeCartModal={closeCartModal}
+          closeCartModal={() => setShowCartModal(false)}
           isBasketView={isBasketView}
           setIsBasketView={setIsBasketView}
         />

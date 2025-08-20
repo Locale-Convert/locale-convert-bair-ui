@@ -128,7 +128,7 @@ const ProductPage = ({
         {
           isMobileView ? <Accessories data={relatedAccessories} title={"Пропонуємо разом з конвертом"} /> : null
         }
-        <BlockBuy data={data} price={price} oldPrice={oldPrice} setIsBasketView={setIsBasketView}/>
+        {/* <BlockBuy data={data} price={price} oldPrice={oldPrice} setIsBasketView={setIsBasketView}/> */}
         {/* <CommunicationButton /> */}
         <Footer link={"#top"} />
       </div>
