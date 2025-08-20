@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import arrowRight from "../../images/arrowRight.svg";
+
+import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "./style.css";
 
 const ProductsSlider = ({ data, title }) => {
+  const [visibleCount, setVisibleCount] = useState(4);
+
+  const handleShowMore = () => {
+    setVisibleCount(prev => prev + 4);
+  };
+
+  const hasMore = visibleCount < data.length;
+
   return (
     <div className="products-slider">
       <div className="products-header">
@@ -71,7 +81,7 @@ const ProductsSlider = ({ data, title }) => {
 
       {/* Мобільний — грід */}
       <div className="products-grid">
-        {data.map((item, index) => (
+        {data.slice(0, visibleCount).map((item, index) => (
           <div key={index} className="product-card">
             <div className="product-image">
               <div className="badges-wrapper">
@@ -106,6 +116,12 @@ const ProductsSlider = ({ data, title }) => {
             </div>
           </div>
         ))}
+
+        {hasMore && (
+          <div className="show-more-wrapper">
+            <ShowMoreButton onClick={handleShowMore} />
+          </div>
+        )}
       </div>
     </div>
   );

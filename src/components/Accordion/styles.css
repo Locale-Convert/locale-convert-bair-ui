@@ -161,6 +161,15 @@
     .accordion-main-title.desktop {
         display: none;
     }
+
+    /* Білі бордери тільки для мобіли */
+    .accordion-item {
+        border-top: 1px solid #FFFFFF;
+    }
+
+    .accordion-item:last-child {
+        border-bottom: 1px solid #FFFFFF;
+    }
 }
 
 @media (max-width: 415px) {

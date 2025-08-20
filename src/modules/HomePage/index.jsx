@@ -316,6 +316,39 @@ const productsData = [
     warning: null,
     colors: ["#212121", "#fafafa"],
   },
+    {
+    title: "Alaska Thermo",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "2 889",
+    oldPrice: "3 499",
+    discount: 20,
+    isNew: true,
+    // warning: "Не сумісно з Balios S",
+    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+  },
+  {
+    title: "Bair Nordie",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "3 299",
+    oldPrice: null,
+    discount: 20,
+    isNew: false,
+    warning: null,
+    colors: ["#ffffff", "#cccccc", "#000000"],
+  },
+  {
+    title: "Winter Pro",
+    description: "Теплий варіант для холодної погоди.",
+    image: example1,
+    price: "3 599",
+    oldPrice: null,
+    discount: null,
+    isNew: true,
+    warning: null,
+    colors: ["#212121", "#fafafa"],
+  }
 ];
 
 
