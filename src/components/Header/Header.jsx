@@ -8,6 +8,8 @@ import phone from "../../images/icons/phone.svg";
 import basket from "../../images/icons/basket.svg";
 
 import "../../styles/style.css";
+import MobileMenu from "../MobileMenu/MobileMenu";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 export const query = graphql`
   query Header {
@@ -69,7 +71,21 @@ const Header = ({ isBasketView, setIsBasketView }) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [showCartModal, setShowCartModal] = useState(false);
-  
+
+  const categories = ["Коляски", "Конверти", "Рукавиці", "Автокрісла", "Ліжка", "Аксесуари"];
+
+  const subCategories = {
+    "Коляски": allStrapiProducts.nodes.map(p => ({
+      title: p.title,
+      image: p.mainImage?.localFile?.url,
+      url: `/${p.url}/`
+    })),
+    "Рукавиці": allStrapiAccessories.nodes.map(p => ({
+      title: p.title,
+      image: p.mainImage?.localFile?.url,
+      url: `/${p.url}/`
+    })),
+  };
 
   const { cartItems, setCartItems } = useCartStore();
 
@@ -151,34 +167,22 @@ const Header = ({ isBasketView, setIsBasketView }) => {
             <button className="dropbtn-link">Конверти</button>
           </div>
           <div>
-            <a href="/strollers" className="dropbtn">
-              Коляски
-            </a>
+            <a href="/strollers" className="dropbtn">Коляски</a>
           </div>
           <div>
-            <a href="/envelopes" className="dropbtn">
-              Конверти
-            </a>
+            <a href="/envelopes" className="dropbtn">Конверти</a>
           </div>
           <div>
-            <a href="/mittens" className="dropbtn">
-              Рукавиці
-            </a>
+            <a href="/mittens" className="dropbtn">Рукавиці</a>
           </div>
           <div>
-            <a href="/car-seats" className="dropbtn">
-              Автокрісла
-            </a>
+            <a href="/car-seats" className="dropbtn">Автокрісла</a>
           </div>
           <div>
-            <a href="/beds" className="dropbtn">
-              Ліжка
-            </a>
+            <a href="/beds" className="dropbtn">Ліжка</a>
           </div>
           <div>
-            <a href="/accessories" className="dropbtn">
-              Аксесуари
-            </a>
+            <a href="/accessories" className="dropbtn">Аксесуари</a>
           </div>
         </div>
         <div className="box-number-and-basket">
@@ -194,76 +198,20 @@ const Header = ({ isBasketView, setIsBasketView }) => {
             <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
           </div>
         </div>
-        <nav className="header__menu">
-          {menuOpen ? <div className={"overlay"}></div> : ""}
-          <ul className={`header__nav-list ${menuOpen ? "active" : ""}`}>
-            <div className={"promo-banner-text"}>Конверти</div>
-            {allStrapiProducts.nodes.map((item, index) => (
-              <li key={index} className="header__nav-item">
-                <a
-                  className={"header__nav-link"}
-                  href={`/${item.url}/`}
-                >
-                  {item.title}
-                </a>
-                <div className="stickers-for-accessories-mobile-navbar">
-                    {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
-                </div>
-              </li>
-            ))}
-            <div className={"promo-banner-text-2"}>Рукавички</div>
-            {allStrapiAccessories.nodes.map((item, index) => (
-              <li key={index} className="header__nav-item">
-                <a
-                  className={"header__nav-link"}
-                  href={`/${item.url}/`}
-                >
-                  {item.title}
-                </a>
-                <div className="stickers-for-accessories-mobile-navbar">
-                    {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
-                </div>
-              </li>
-            ))}
-            <div className={"menu-margin"}>
-              <li className="header__nav-item">
-                <a
-                  className={"header__nav-link"}
-                  href="/#reviews"
-                  onClick={openMenu}
-                >
-                  Вiдгуки
-                </a>
-              </li>
-              <li className="header__nav-item">
-                <a
-                  className={"header__nav-link"}
-                  href="/#faq"
-                  onClick={openMenu}
-                >
-                  FAQ
-                </a>
-              </li>
-              <li className="header__nav-item">
-                <a
-                  className={"header__nav-link"}
-                  href="/conditions"
-                  onClick={openMenu}
-                >
-                  Умови
-                </a>
-              </li>
-            </div>
-          </ul>
-        </nav>
+
+        {/* Burger */}
         <div className="header__burger-menu-box">
-          <div
-            className={`header__burger-menu ${menuOpen ? "active" : ""}`}
-            onClick={openMenu}
-          >
-            <span></span>
-          </div>
+          <BurgerMenu isOpen={menuOpen} toggle={() => setMenuOpen(!menuOpen)} />
         </div>
+
+        {menuOpen && (
+          <MobileMenu
+            categories={categories}
+            subCategories={subCategories}
+            onClose={() => setMenuOpen(false)}
+          />
+        )}
+
         <CartModal
           allStrapiProducts={allStrapiProducts}
           allStrapiAccessories={allStrapiAccessories}
