@@ -15,8 +15,6 @@ import TitleBox              from "../TitleBox/TitleBox";
 import { addToLocalStorage } from "../../hooks/localstorage";
 import { useCartStore }      from "../../store/store";
 
-import BlockTitle            from "../BlockTitle/BlockTitle";
-
 import PriceBox from "../PriceBox/PriceBox";
 import MainSlider from "../SliderCharacteristics/SliderNew";
 import SliderMiniature from "../SliderCharacteristics/SliderMiniature";
@@ -186,7 +184,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   return (
     <>
 
-        {isMobileView ? (
+        {/* {isMobileView ? (
           <BlockTitle
             item={data}
             title={title}
@@ -194,7 +192,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
             article={colorArticle}
             colorTitle={colorTitle}
           />
-        ) : null}
+        ) : null} */}
 
         <div className="characteristics-box">
           <div className="vertical-slider-wrapper">

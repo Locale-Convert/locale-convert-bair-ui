@@ -572,12 +572,6 @@ ol {
   margin-top: 5px;
 }
 
-.cart-modal-title {
-  font-size: 20px;
-  font-weight: 400;
-  line-height: normal;
-}
-
 .basket-btn,
 .order-btn {
   text-align: center;
@@ -620,21 +614,6 @@ ol {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.modal {
-  position: absolute;
-  top: 120px;
-  right: 4%;
-  background: #fff;
-  width: 380px;
-  max-height: 600px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
 .modal.open {
   opacity: 1;
   visibility: visible;
@@ -651,7 +630,6 @@ ol {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
 }
 
 .modal-footer {
@@ -1186,10 +1164,6 @@ ol {
   letter-spacing: -0.05em;
 }
 
-.article {
-  font-size: 10px;
-  text-align: right;
-}
 
 .color-item {
   font-size: 16px;
@@ -1968,6 +1942,7 @@ body{
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #fff;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.2);
   }
 
   .header__logo {
@@ -2033,10 +2008,6 @@ body{
   .big-title {
     font-size: 26px;
     font-weight: 500;
-  }
-
-  .article {
-    font-size: 13px;
   }
 
   .titles-desktop {
@@ -2417,7 +2388,7 @@ body{
   }
 
   .characteristics-block>p {
-    font-size: 16px;
+    font-size: 14px;
     padding: 0 10px 22px 0;
     line-height: 21px;
   }
@@ -4466,10 +4437,6 @@ body{
     padding: 10px 0px 10px 0px;
   }
 
-  .modal {
-    width: 340px;
-  }
-
   .article-desktop {
     font-size: 12px;
     margin-bottom: 5px;
@@ -4694,10 +4661,6 @@ body{
     padding-top: 11px;
   }
 
-  .article {
-    font-size: 13px;
-  }
-
   .color-item {
     font-size: 18px;
   }
@@ -4917,11 +4880,6 @@ body{
     padding-top: 7px;
   }
 
-  .article {
-    font-size: 12px;
-    line-height: 10px;
-  }
-
   .color-item {
     font-size: 17px;
   }
@@ -4993,7 +4951,7 @@ body{
   .characteristics-block>h2 {
     font-weight: 700;
     margin-bottom: 20px;
-    font-size: 27px;
+    font-size: 20px;
   }
 
   .three-itempage__max-item-1 {
