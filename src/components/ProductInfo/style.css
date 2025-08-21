@@ -1,0 +1,113 @@
+.product-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.product-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 430px;
+    line-height: 35px;
+}
+
+.product-article {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.article-number {
+    font-weight: bold;
+    color: #333;
+}
+
+.product-price {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-thumbnails {
+    margin-bottom: 20px;
+}
+
+.installments {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.payment-buttons {
+    display: flex;
+    gap: 19px;
+    margin-bottom: 20px;
+}
+
+.payment-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #fff;
+    max-width: 160px;
+}
+
+.bank-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.product-actions button {
+    flex: 1;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+.add-to-cart {
+    background-color: #c0e82d;
+    color: #000;
+    max-width: 200px;
+}
+
+.buy-now {
+    background-color: #1a1a1a;
+    color: #fff;
+    max-width: 200px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

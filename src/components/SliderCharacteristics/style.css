@@ -1,0 +1,112 @@
+.main-slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.main-slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Поточний слайд */
+.current-slide {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    background: #C1C5DA26;
+    color: #736A6A;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Кастомні кнопки (Десктоп) */
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.custom-prev {
+    left: 10px;
+}
+
+.custom-next {
+    right: 10px;
+}
+
+/* Іконки всередині кнопок */
+.custom-prev > svg,
+.custom-next > svg {
+    width: 24px;
+    height: 24px;
+}
+
+.custom-arrow img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    transition: transform 0.2s;
+}
+
+.custom-arrow:hover img {
+    transform: scale(1.1);
+}
+
+/* Мобільні пристрої: зменшені кнопки */
+@media (max-width: 1023px) {
+    .custom-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .custom-prev > svg,
+    .custom-next > svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .custom-arrow img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Стрілки для вертикального слайдера */
+.vertical-arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-prev {
+    top: -30px; /* зверху */
+}
+
+.vertical-next {
+    bottom: -40px; /* знизу */
+}
+
+.vertical-arrow svg {
+    width: 25px;
+    height: 25px;
+}

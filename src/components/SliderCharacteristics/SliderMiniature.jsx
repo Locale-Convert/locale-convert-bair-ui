@@ -1,9 +1,12 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getImageHelper } from "../../hooks";
+
+import { ArrowUpward, ArrowDownward, KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
+import "./style.css";
 
 const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
     const thumbnailSliderRef = useRef(null);
@@ -14,6 +17,23 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         }
     }, [selectedIndex]);
 
+    const handleClick = (index) => {
+        if (index !== selectedIndex) {
+            changeItemSlider(index);
+        }
+    };
+
+    const NextArrow = ({ style, onClick }) => (
+        <div className="vertical-arrow vertical-next" style={{ ...style }} onClick={onClick}>
+            <KeyboardArrowDownRounded />
+        </div>
+    );
+
+    const PrevArrow = ({ style, onClick }) => (
+        <div className="vertical-arrow vertical-prev" style={{ ...style }} onClick={onClick}>
+            <KeyboardArrowUpRounded />
+        </div>
+    );
 
     const settings = {
         dots: false,
@@ -23,24 +43,22 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         verticalSwiping: true,
         waitForAnimate: true,
         slidesToShow: sliderImage.length < 4 ? sliderImage.length : 4,
-        afterChange: index => {
-            changeItemSlider(index);
-        }
-    };
-
-    const handleClick = (index) => {
-        if (index !== selectedIndex) {
-            changeItemSlider(index);
-        }
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
+        afterChange: index => changeItemSlider(index)
     };
 
     return (
-        <Slider {...settings} ref={thumbnailSliderRef} className='vertical-slider'>
+        <Slider {...settings} ref={thumbnailSliderRef} className="vertical-slider">
             {sliderImage.map((item, index) => (
-                <div key={index} className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`} onClick={() => handleClick(index)}>
+                <div
+                    key={index}
+                    className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`}
+                    onClick={() => handleClick(index)}
+                >
                     <GatsbyImage
                         image={getImageHelper(item)}
-                        className={"thumbnail-image"}
+                        className="thumbnail-image"
                         alt="Thumbnail"
                         objectFit="cover"
                     />

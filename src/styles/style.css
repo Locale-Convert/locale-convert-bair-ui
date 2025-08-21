@@ -2085,7 +2085,6 @@ body{
 
   .colors-box {
     -webkit-tap-highlight-color: transparent;
-    margin-left: 40px;
     flex: 0 0 48%;
   }
 
@@ -2433,10 +2432,6 @@ body{
     display: none;
   }
 
-  .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
-    background: url('../images/arrow-vector.svg') no-repeat right center !important;
-  }
-
   .slick-arrow:hover {
     margin: 0;
   }
@@ -2463,7 +2458,6 @@ body{
   height: 30px;
   margin-left: 10px;
   content: "";
-  background: url('../images/arrow-vector.svg') no-repeat right center;
   background-size: contain;
 }
 
@@ -2477,7 +2471,6 @@ body{
   background-color: black; /* Чорний фон */
   border-radius: 50%; /* Кругла форма */
   transform: translateY(-50%);
-  background: url('../images/arrow-vector.svg') no-repeat center center; /* Додайте ваше зображення */
   background-size: 60%; /* Розмір зображення */
   cursor: pointer;
 }
@@ -2522,7 +2515,6 @@ body{
   height: 30px;
   margin-left: 10px;
   content: "";
-  background: url('../images/arrow-vector.svg') no-repeat right center;
   background-size: contain;
 }
 
@@ -2540,7 +2532,6 @@ body{
   background-color: black; /* Чорний фон */
   border-radius: 50%; /* Кругла форма */
   transform: translateY(-50%);
-  background: url('../images/arrow-vector.svg') no-repeat center center; /* Додайте ваше зображення */
   background-size: 60%; /* Розмір зображення */
   cursor: pointer;
 }
@@ -4246,10 +4237,6 @@ body{
   .related-product-image-box > .sale-icon {
     font-size: 10px;
     padding: 3px 9px;
-  }
-
-  .main-slider-wrapper {
-    margin-top: -1px;
   }
 
   .related-products-title {

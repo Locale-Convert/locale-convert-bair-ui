@@ -82,13 +82,12 @@ const ProductPage = ({
             setActiveColor     = {setActiveColor}
           />
         }
-        <div className="description-box description-box-wrapper">
           <div className="desc-characteristics">
             <Characteristics
               desription={description}
             />
           </div>
-          <div className="desc-video">
+          {/* <div className="desc-video">
             <SliderVideoProduct
               videoSlider={videoUrl}
               title={'Відео:'}
@@ -120,8 +119,7 @@ const ProductPage = ({
                 },
               }}
             />
-          </div>
-        </div>
+          </div> */}
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
         <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider}/>
