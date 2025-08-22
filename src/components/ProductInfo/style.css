@@ -34,9 +34,24 @@
 }
 
 .product-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 15px;
+}
+
+.current-price {
+    color: #000;
+    font-weight: 700;
+}
+
+.old-price {
+    font-size: 18px;
+    color: #AFA1A1;
+    text-decoration: line-through;
+    font-weight: normal;
 }
 
 .product-thumbnails {
@@ -46,5 +61,18 @@
 @media (max-width: 768px) {
     .back-button {
         display: none;
+    }
+
+    .product-title {
+        font-size: 24px;
+    }
+
+    .product-price {
+        font-size: 23px;
+        font-weight: 900;
+    }
+
+    .old-price {
+        font-size: 14px;
     }
 }

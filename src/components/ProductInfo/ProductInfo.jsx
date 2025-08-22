@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./style.css";
 import ColorSlider from "../IconColorSlider/ColorSlider";
 import CreditModal from "../CreditModal/CreditModal";
@@ -52,10 +52,14 @@ const ProductInfo = ({
     addToBasket,
     isAdded,
     currentColor,
-    price
+    price,
+    oldPrice
 }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalData, setModalData] = useState({});
+    const [showMobilePrice, setShowMobilePrice] = useState(false);
+
+    const priceRef = useRef(null);
 
     const openModal = (bank) => {
         setModalData(creditModalData[bank]);
@@ -63,6 +67,25 @@ const ProductInfo = ({
     };
 
     const closeModal = () => setIsModalOpen(false);
+
+    // IntersectionObserver для основної ціни
+    useEffect(() => {
+        if (!priceRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                setShowMobilePrice(!entry.isIntersecting);
+            },
+            {
+                root: null,
+                threshold: 0.1
+            }
+        );
+
+        observer.observe(priceRef.current);
+
+        return () => observer.disconnect();
+    }, []);
 
     return (
         <div className="product-card">
@@ -75,7 +98,10 @@ const ProductInfo = ({
             <div className="product-article">
                 Артикул: 680693 / <span className="article-number">78 нефрит</span>
             </div>
-            <div className="product-price">{price} ₴</div>
+            <div id="product-price" ref={priceRef} className="product-price">
+                <span className="current-price">{price} грн</span>
+                {oldPrice && <span className="old-price">{oldPrice} грн</span>}
+            </div>
             <div className="product-thumbnails">
                 <ColorSlider data={data} changeSlider={changeSlider} colorTitle={colorTitle} />
             </div>
@@ -84,7 +110,14 @@ const ProductInfo = ({
 
             <CreditButtons openModal={openModal} />
 
-            <ProductActions addToBasket={addToBasket} currentColor={currentColor} isAdded={isAdded} />
+            <ProductActions
+                addToBasket={addToBasket}
+                currentColor={currentColor}
+                isAdded={isAdded}
+                price={price}
+                oldPrice={oldPrice}
+                showPrice={showMobilePrice}
+            />
 
             <CreditModal
                 isOpen={isModalOpen}

@@ -1224,7 +1224,6 @@ ol {
 }
 
 .icon-slider {
-  min-height: 80px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(77px, 62px));
   gap: 4px;
@@ -1278,7 +1277,6 @@ ol {
 }
 
 .icons-box {
-  padding-left: 0.3rem;
   margin-top: 1rem;
 }
 
