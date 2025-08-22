@@ -231,6 +231,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
               addToBasket={addToBasket}
               isAdded={isAdded}
               currentColor={currentColor}
+              price={price}
           />
           {/* <div className={"product-basket"} id={"block-buy"}>
               <PriceBox price={price} oldPrice={oldPrice} currentColor={currentColor}/>

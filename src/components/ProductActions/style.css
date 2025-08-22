@@ -1,0 +1,112 @@
+.product-actions-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.product-actions button {
+    flex: 1;
+    padding: 15px 0;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}
+
+.add-to-cart {
+    background-color: #c0e82d;
+    color: #000;
+    max-width: 200px;
+}
+
+.buy-now {
+    background-color: #1a1a1a;
+    color: #fff;
+    max-width: 200px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.product-actions-added {
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 0;
+}
+
+.product-actions-mobile {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+}
+
+.mobile-price-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 35px;
+    background-color: #fff;
+    border-top: 1px solid #ddd; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.mobile-price {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.mobile-old-price {
+    font-size: 10px;
+    color: #AFA1A1;
+    text-decoration: line-through;
+}
+
+/* Мобільні стилі до 768px */
+@media (max-width: 768px) {
+    .product-actions-mobile {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        z-index: 1000;
+    }
+
+    .product-actions {
+        flex-direction: row;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .product-actions button {
+        width: 50%;
+        max-width: 50%;
+        border-radius: 0;
+        font-size: 15px;
+        padding: 15px 0;
+    }
+
+    .product-actions-added {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        font-weight: bold;
+        background-color: #fff;
+        z-index: 1000;
+        font-size: 15px;
+    }
+}

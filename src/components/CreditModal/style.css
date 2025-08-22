@@ -92,3 +92,9 @@
     cursor: pointer;
     width: 100%;
 }
+
+@media (max-width: 480px) {
+    .cm-title {
+        font-size: 14px;
+    }
+}
