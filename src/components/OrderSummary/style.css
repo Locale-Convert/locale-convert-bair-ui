@@ -3,6 +3,7 @@
   position: sticky;
   top: 20px;
   align-self: flex-start;
+  margin-top: 55px;
 }
 
 .order-steps {
@@ -23,30 +24,46 @@
 }
 
 .step-circle {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: #ccc;
-  color: #fff;
+  background: #fff;
+  border: 2px solid #A0E312;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
   z-index: 2;
 }
 
 .step-circle.active {
+  background: #A0E312;
+  border: none;
+}
+
+.step-circle img {
+  width: 16px;
+  height: 16px;
+}
+
+.step-dot {
+  width: 9px;
+  height: 9px;
   background: #7ecb20;
+  border-radius: 50%;
 }
 
 .step-line {
   position: absolute;
-  top: 16px;
+  top: 15px;
   left: 50%;
   right: -50%;
   height: 2px;
-  background: #ccc;
+  background: #D6D6D6;
   z-index: 1;
+}
+
+.step-line.active-line {
+  background: #A0E312;
 }
 
 .step-label {
@@ -56,13 +73,13 @@
   width: max-content;
 }
 
-/* Залишаємо попередні стилі для summary */
+/* Деталі замовлення */
 .order-summary {
   background: #fff;
   padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* більш конкретна тінь */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
-  z-index: 2; /* щоб тінь була поверх інших елементів */
+  z-index: 2;
 }
 
 .order-summary h3 {
@@ -113,6 +130,7 @@
   color: #555;
 }
 
+/* Мобільні стилі */
 @media (max-width: 768px) {
   .order-right {
     width: 100%;

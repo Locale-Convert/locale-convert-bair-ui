@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import checkmarkSteps from "../../images/checkmarkSteps.svg";
 
 const OrderSummary = ({ cartItems, totalAmount, currentStep = 1 }) => {
   const steps = ["Контакти", "Доставка", "Оплата", "Оформлення"];
@@ -8,19 +9,36 @@ const OrderSummary = ({ cartItems, totalAmount, currentStep = 1 }) => {
     <div className="order-right">
       {/* Кроки оформлення */}
       <div className="order-steps">
-        {steps.map((step, index) => (
-          <div className="step-wrapper" key={index}>
-            <div
-              className={`step-circle ${index + 1 === currentStep ? "active" : ""}`}
-            >
-              {index + 1}
+        {steps.map((step, index) => {
+          const isActive = index + 1 === currentStep;
+          const isCompleted = index + 1 < currentStep;
+          const hasActiveLineAfter = index + 1 === currentStep;
+
+          return (
+            <div className="step-wrapper" key={index}>
+              <div
+                className={`step-circle ${isActive ? "active" : ""} ${isCompleted ? "completed" : ""} ${!isActive && !isCompleted && !hasActiveLineAfter ? "inactive" : ""}`}
+              >
+                {isActive ? (
+                  <img src={checkmarkSteps} alt="check" />
+                ) : (
+                  <div className="step-dot"></div>
+                )}
+              </div>
+
+              {index < steps.length - 1 && (
+                <div
+                  className={`step-line ${hasActiveLineAfter ? "active-line" : ""}`}
+                ></div>
+              )}
+
+              <div className="step-label">{step}</div>
             </div>
-            {index < steps.length - 1 && <div className="step-line"></div>}
-            <div className="step-label">{step}</div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
+      {/* Деталі замовлення */}
       <div className="order-summary">
         <h3>Деталі замовлення</h3>
 
