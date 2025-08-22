@@ -225,9 +225,12 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
             colorTitle={colorTitle}
           /> */}
           <ProductInfo
-            data={filteredColorSlider}
-            changeSlider={changeSlider}
-            colorTitle={colorTitle}
+              data={filteredColorSlider}
+              changeSlider={changeSlider}
+              colorTitle={colorTitle}
+              addToBasket={addToBasket}
+              isAdded={isAdded}
+              currentColor={currentColor}
           />
           {/* <div className={"product-basket"} id={"block-buy"}>
               <PriceBox price={price} oldPrice={oldPrice} currentColor={currentColor}/>

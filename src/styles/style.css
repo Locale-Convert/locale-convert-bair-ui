@@ -47,11 +47,6 @@ a:active {
   top: 0;
 }
 
-ol,
-ul {
-  list-style: none;
-}
-
 a {
   text-decoration: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -1240,23 +1235,9 @@ ol {
   cursor: pointer;
 }
 
-.icon-item {
-  display: flex !important;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  height: 75px;
-  background: #F6F6FA;
-}
-
 .icon-select-item {
   border: 1px solid #c1c5da;
   background: #ECEEF4;
-}
-
-.icon-select-item>.icon-title {
-  color: #232429;
-  font-weight: 600;
 }
 
 .icon-select-item>.icon-image>.border-image {
@@ -1295,16 +1276,6 @@ ol {
   align-items: flex-start;
   justify-content: center;
 }
-
-.icon-title {
-  color: #736A6A;
-  text-align: center;
-  font-size: 10px;
-  padding: 0 3px;
-  margin-bottom: 5px;
-}
-
-
 
 .icons-box {
   padding-left: 0.3rem;
@@ -2159,10 +2130,6 @@ body{
     margin-top: 80px;
   }
 
-  .icon-item {
-    min-height: 112px;
-  }
-
   .glider-slide {
     min-width: 0;
     padding: 3px;
@@ -2344,16 +2311,7 @@ body{
     display: flex;
   }
 
-  .icon-image {
-    width: 54px;
-    height: 54px;
-    margin: 4px 0;
-  }
 
-  .icon-title {
-    font-size: 14px;
-    padding: 0px 11px;
-  }
 
   .desc-video {
     flex: 0 0 50%;
@@ -4500,9 +4458,6 @@ body{
     gap: 3px;
   }
 
-  .icon-item {
-    min-height: 120px;
-  }
   .wrapper {
       padding: 20px 23px 20px;
   }
@@ -4571,10 +4526,6 @@ body{
     gap: 3px;
   }
 
-  .icon-item {
-    min-height: 120px;
-  }
-
 }
 
 @media (max-width: 460px) {
@@ -4583,9 +4534,6 @@ body{
     gap: 3px;
   }
 
-  .icon-item {
-    min-height: 103px;
-  }
   .multibutton__button {
         height: 70px;
         width: 70px;
@@ -4672,10 +4620,6 @@ body{
     gap: 3px;
   }
 
-  .icon-item {
-    min-height: 100px;
-  }
-
   .glider-slide {
     min-width: 0;
     padding: 3px;
@@ -4692,17 +4636,6 @@ body{
 
   .accessories-block-box-item {
     height: 162px;
-  }
-
-  .icon-image {
-    width: 54px;
-    height: 54px;
-    margin: 4px 0;
-  }
-
-  .icon-title {
-    font-size: 12px;
-    padding: 0px 11px;
   }
 
   .characteristics-block {
@@ -4882,10 +4815,6 @@ body{
     gap: 3px;
   }
 
-  .icon-item {
-    min-height: 92px;
-  }
-
   .glider-slide {
     min-width: 0;
   }
@@ -4907,12 +4836,6 @@ body{
     width: 50px;
     height: 50px;
     margin: 4px 0;
-  }
-
-  .icon-title {
-    font-size: 11px;
-    line-height: 12px;
-    padding: 0px 11px;
   }
 
   .characteristics-block>ul {

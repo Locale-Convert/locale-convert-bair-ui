@@ -1,0 +1,14 @@
+.icon-item {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: #F6F6FA;
+}
+
+.icon-image {
+    width: 58px;
+    height: 58px;
+}
