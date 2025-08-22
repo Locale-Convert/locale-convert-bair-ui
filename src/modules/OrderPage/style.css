@@ -1,0 +1,271 @@
+.order-page {
+  background: #f9f9f9;
+}
+
+.order-form > form {
+    border-radius: 10px;
+}
+
+.order-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  margin-top: 100px;
+}
+
+.order-left {
+  flex: 1;
+}
+
+.order-right {
+  width: 360px;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+}
+
+.order-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.order-products {
+  background: #fff;
+}
+
+.order-product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+}
+
+.order-product:last-child {
+  border-bottom: none;
+}
+
+.order-product-info {
+  display: flex;
+  gap: 12px;
+}
+
+.order-product-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.order-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+}
+
+.order-counter {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.order-counter button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.order-block {
+  background: #fff;
+  padding: 25px;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.order-block-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* === Order inputs === */
+.order-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.order-input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-input-label {
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #00000080;
+}
+
+.order-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd; /* додано бордер */
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.order-input.comment {
+    height: 80px;       /* бажана висота */
+    padding: 8px 12px;  /* внутрішні відступи */
+    font-size: 14px;
+    font-family: Mulish, serif;
+    box-sizing: border-box; /* щоб padding не збільшував зовнішній розмір */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;   /* якщо хочеш, щоб можна було тягнути textarea */
+}
+
+/* === Radios === */
+.order-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.order-radios-horizontal {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+}
+
+/* === Custom radio button styling === */
+.order-radios-horizontal label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.order-radios-horizontal input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+  background-color: #ccc;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+}
+
+.order-radios-horizontal input[type="radio"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.order-radios-horizontal input[type="radio"]:checked {
+  border-color: #1e90ff;
+  background-color: #1e90ff;
+}
+
+/* === Location row === */
+.order-location-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.order-location-row .order-input-wrapper {
+  flex: 1 1 50%; /* по 50% */
+  min-width: 120px;
+}
+
+.order-location-row .order-input,
+.order-location-row .city-autocomplete {
+  width: 100%;
+  border: 1px solid #ddd; /* додано бордер */
+  border-radius: 6px;
+  padding: 12px;
+}
+
+/* === Order summary === */
+
+
+.discount {
+  color: red;
+}
+
+.free {
+  color: green;
+}
+
+.btn-submit {
+  display: inline-block;
+  background: #7ecb20;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  margin-top: 12px;
+}
+
+.btn-submit.full {
+  width: 100%;
+}
+
+.order-summary-info {
+  font-size: 13px;
+  margin-top: 12px;
+  color: #555;
+}
+
+/* === Адаптив === */
+@media (max-width: 768px) {
+  .order-container {
+    flex-direction: column;
+    margin-top: 60px;
+    padding: 0;
+  }
+
+  .order-title {
+    font-size: 24px;
+  }
+
+  .order-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .order-radios-horizontal {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .order-location-row {
+    flex-direction: column;
+  }
+
+  .order-location-row .order-input-wrapper {
+    flex: 1 1 100%;
+  }
+}

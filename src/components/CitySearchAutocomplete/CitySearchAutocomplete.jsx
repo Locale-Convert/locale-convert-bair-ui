@@ -4,7 +4,8 @@ import emailjs from "@emailjs/browser";
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddressSearchAutocomplete from './AddressSearchAutocomplete';
-import { Paper } from '@mui/material';
+import './style.css';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
 function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod }) {
     const [open, setOpen] = useState(false);
@@ -42,22 +43,21 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
 
             if (data.errors.length !== 0 && (data.errors[0] === 'API key incorrect' || data.errors[0] === 'API key expired')) {
                 console.log('API key incorrect!!!!');
-                
+
                 const formData = {
-                    name: 'API Key Error', 
+                    name: 'API Key Error',
                     message: 'The API key is incorrect. Please check the configuration.'
                 };
-                
+
                 emailjs.send('service_wmszkiu', 'template_xt9d68p', formData, 'Dtntig-pRWw1ON0vO')
-                .then((result) => {
-                    console.log(result.text);
-                }, (error) => {
-                    console.log(error.text);
-                });
+                    .then((result) => {
+                        console.log(result.text);
+                    }, (error) => {
+                        console.log(error.text);
+                    });
             }
 
             if (data && data.data && data.data.length > 0) {
-                
                 const cities = data.data[0].Addresses.map(city => city);
                 setOptions(cities);
             } else {
@@ -73,77 +73,76 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
     };
 
     return (
-        <>  
-            <label className='delivery-city-label'>Місто</label>
-             <Autocomplete
-                id="city-search"
-                options={options}
-                getOptionLabel={(option) => option.Present}
-                open={open}
-                noOptionsText={''} 
-                onOpen={() => {
-                    setOpen(true);
-                }}
-                onClose={() => {
-                    setOpen(false);
-                }}
-                sx={{
-                    "& .MuiAutocomplete-input": {
-                        fontFamily: "Mulish, serif",
-                        fontSize: '14px',
-                        fontWeight: '300'
-                    },
-                }}
-                onInputChange={handleInputChange}
-                onChange={(event, value) => {
-                    setSelectedCity(value);
-                    setCity('city', value?.Present);
-                }}
-                loading={loading}
-                renderOption={(props, option) => (
-                    <li {...props} style={{ fontFamily: "Mulish, serif", fontSize: '14px', padding: '8px', cursor: 'pointer' }}>
-                        {option.Present}
-                    </li>
-                )}
-                renderInput={(params) => (
-                    <TextField
-                        name="city"
-                        autoComplete={true}
-                        {...params}
-                        sx={{
-                            background: '#fff',
-                            '.MuiOutlinedInput-notchedOutline': {
-                                borderWidth: 0,
-                                fontSize: 14,
-                            },
+        <div className="city-search-container">
+            <div>
+                <label className="order-input-label">Місто</label>
+                <Autocomplete
+                    id="city-search"
+                    options={options}
+                    getOptionLabel={(option) => option.Present}
+                    open={open}
+                    noOptionsText={''}
+                    onOpen={() => setOpen(true)}
+                    onClose={() => setOpen(false)}
+                    popupIcon={<KeyboardArrowDownRoundedIcon style={{ color: '#000000', fontSize: 30 }} />}
+                    disableClearable
+                    sx={{
+                        "& .MuiAutocomplete-input": {
                             fontFamily: "Mulish, serif",
-                            '.MuiOutlinedInput-notchedOutline > legend': {
-                                fontFamily: "Mulish, serif",
-                                fontSize: 14,
-                            },
-                        }}
-                        InputProps={{
-                            ...params.InputProps,
-                            endAdornment: (
-                                <>
-                                    {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                                    {params.InputProps.endAdornment}
-                                </>
-                            ),
-                        }}
-                    />
-                )}
-                MenuProps={{
-                    anchorOrigin: {
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    },
-                    getContentAnchorEl: null,
-                }}
-            />
-            {(selectedCity && selectedDeliveryMethod === 'Нова Пошта') && <AddressSearchAutocomplete selectedCity={selectedCity} setDepartment={setDepartment}/>}
-            {/* {(selectedCity && selectedDeliveryMethod === 'courier') && <StreetSearchAutocomplete selectedCity={selectedCity}/>} */}
-        </>
+                            fontSize: '14px',
+                            fontWeight: '300'
+                        },
+                    }}
+                    onInputChange={handleInputChange}
+                    onChange={(event, value) => {
+                        setSelectedCity(value);
+                        setCity('city', value?.Present);
+                    }}
+                    loading={loading}
+                    renderOption={(props, option) => (
+                        <li {...props} style={{ fontFamily: "Mulish, serif", fontSize: '14px', padding: '8px', cursor: 'pointer' }}>
+                            {option.Present}
+                        </li>
+                    )}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            name="city"
+                            sx={{
+                                background: '#fff',
+                                '& .MuiOutlinedInput-root': {
+                                    fontFamily: "Mulish, serif",
+                                    fontSize: 14,
+                                    border: '1px solid #ccc',
+                                    borderRadius: '4px',
+                                    '&.Mui-focused': {
+                                        borderColor: '#1976d2',
+                                    },
+                                },
+                                '& .MuiOutlinedInput-notchedOutline': {
+                                    border: 'none',
+                                },
+                            }}
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <>
+                                        {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                                        {params.InputProps.endAdornment}
+                                    </>
+                                ),
+                            }}
+                        />
+                    )}
+                />
+            </div>
+            {(selectedCity && selectedDeliveryMethod === 'Нова Пошта') && (
+                <AddressSearchAutocomplete
+                    selectedCity={selectedCity}
+                    setDepartment={setDepartment}
+                />
+            )}
+        </div>
     );
 }
 

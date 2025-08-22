@@ -1,0 +1,136 @@
+.order-right {
+  width: 360px;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+}
+
+.order-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 16px;
+  position: relative;
+}
+
+.step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ccc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.step-circle.active {
+  background: #7ecb20;
+}
+
+.step-line {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: #ccc;
+  z-index: 1;
+}
+
+.step-label {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: center;
+  width: max-content;
+}
+
+/* Залишаємо попередні стилі для summary */
+.order-summary {
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* більш конкретна тінь */
+  position: relative;
+  z-index: 2; /* щоб тінь була поверх інших елементів */
+}
+
+.order-summary h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.order-summary-item,
+.order-summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.order-summary-total {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.discount {
+  color: red;
+}
+
+.free {
+  color: green;
+}
+
+.btn-submit {
+  display: inline-block;
+  background: #7ecb20;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  margin-top: 12px;
+}
+
+.btn-submit.full {
+  width: 100%;
+}
+
+.order-summary-info {
+  font-size: 13px;
+  margin-top: 12px;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .order-right {
+    width: 100%;
+    position: relative;
+    top: auto;
+  }
+
+  .order-steps {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .step-wrapper {
+    flex-direction: row;
+    margin-bottom: 8px;
+  }
+
+  .step-line {
+    display: none;
+  }
+}
