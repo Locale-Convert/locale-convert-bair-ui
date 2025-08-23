@@ -24,6 +24,7 @@ import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 import example1 from "../../images/example1.png";
 
 import './style.css';
+import SliderVideo from "../../components/SliderVideo/SliderVideo";
 
 export const query = graphql`
     query HomePage{
@@ -410,7 +411,8 @@ const HomePage = () => {
           <PromoWithIcon promo={promoThree} />
           <PromoTh />
           <Accessories data={nodes} title={"Рукавички в колір конверту"} /> */}
-          <SliderPromoSlider videoSlider={videoUrl} />
+          {/* <SliderPromoSlider videoSlider={videoUrl} /> */}
+          {/* <SliderVideo videoSlider={videoUrl}/> */}
           <SliderInstagram />
           <Accordion />
           {/* <CommunicationButton /> */}
@@ -434,7 +436,7 @@ const HomePage = () => {
           </div>
           <MainCatalog data={allStrapiProducts} />
           <AccessoriesDesktop data={nodes} promo={promoFive} /> */}
-          <SliderPromoSlider videoSlider={videoUrl} />
+          {/* <SliderPromoSlider videoSlider={videoUrl} /> */}
           <SliderInstagram />
           <Accordion />
           {/* <CommunicationButton /> */}

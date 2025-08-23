@@ -1,0 +1,116 @@
+.wrapper-video-slider {
+  padding: 0 38px 60px 38px;
+  margin-bottom: 20px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 20px 10px;
+  min-height: 75px;
+}
+
+.slider-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+/* Навігаційні кнопки */
+.slider-nav {
+  display: flex;
+  gap: 20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider-nav.mobile-only {
+  display: none;
+}
+
+.slider-nav button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.slider-nav img {
+  width: 16px;
+  height: 16px;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+/* Стилі для слайдів */
+.video-slide-wrapper {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.swiper-slide {
+  opacity: 0.6;
+  transform: scale(0.85);
+  z-index: 1;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+}
+
+.swiper-slide-prev,
+.swiper-slide-next {
+  transform: scale(0.9);
+  opacity: 0.8;
+  z-index: 5;
+}
+
+@media (max-width: 1024px) {
+  .slider-title {
+    text-align: left;
+    font-size: 30px;
+  }
+
+  .slider-nav.mobile-only {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper-video-slider {
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+
+  .slider-header {
+    justify-content: space-between;
+  }
+
+  .swiper-pagination {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .swiper-slide-active {
+    transform: scale(1);
+  }
+
+  .swiper-slide-prev,
+  .swiper-slide-next {
+    transform: scale(0.9);
+  }
+}

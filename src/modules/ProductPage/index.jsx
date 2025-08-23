@@ -21,6 +21,89 @@ import ProductSpecs from "../../components/ProductSpecs/ProductSpecs";
 import './style.css';
 import DownloadLinks from "../../components/DownloadLinks/DownloadLinks";
 import Accordion from "../../components/Accordion/Accordion";
+import SliderVideo from "../../components/SliderVideo/SliderVideo";
+import example1 from "../../images/example1.png";
+import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
+
+const productsData = [
+  {
+    title: "Alaska Thermo",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "2 889",
+    oldPrice: "3 499",
+    discount: 20,
+    isNew: true,
+    // warning: "Не сумісно з Balios S",
+    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+  },
+  {
+    title: "Bair Nordie",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "3 299",
+    oldPrice: null,
+    discount: 20,
+    isNew: false,
+    warning: null,
+    colors: ["#ffffff", "#cccccc", "#000000"],
+  },
+  {
+    title: "Urban Comfort",
+    description: "Зручний конверт для прогулянок у місті.",
+    image: example1,
+    price: "2 499",
+    oldPrice: "2 899",
+    discount: 15,
+    isNew: false,
+    warning: null,
+    colors: ["#d7ccc8", "#90caf9", "#a5d6a7"],
+  },
+  {
+    title: "Winter Pro",
+    description: "Теплий варіант для холодної погоди.",
+    image: example1,
+    price: "3 599",
+    oldPrice: null,
+    discount: null,
+    isNew: true,
+    warning: null,
+    colors: ["#212121", "#fafafa"],
+  },
+    {
+    title: "Alaska Thermo",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "2 889",
+    oldPrice: "3 499",
+    discount: 20,
+    isNew: true,
+    // warning: "Не сумісно з Balios S",
+    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+  },
+  {
+    title: "Bair Nordie",
+    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
+    image: example1,
+    price: "3 299",
+    oldPrice: null,
+    discount: 20,
+    isNew: false,
+    warning: null,
+    colors: ["#ffffff", "#cccccc", "#000000"],
+  },
+  {
+    title: "Winter Pro",
+    description: "Теплий варіант для холодної погоди.",
+    image: example1,
+    price: "3 599",
+    oldPrice: null,
+    discount: null,
+    isNew: true,
+    warning: null,
+    colors: ["#212121", "#fafafa"],
+  }
+];
 
 const productSpecsFromApi = [
   { name: "Процесор", value: "Intel i7" },
@@ -40,6 +123,29 @@ const productSpecsFromApi = [
   { name: "Диск", value: "512 ГБ SSD" },
   { name: "Операційна система", value: "Windows 11" }
 ]
+
+const mockVideoSlider = [
+  {
+    url: "https://player.vimeo.com/video/1017799800",
+    title: "Відео 1: Демонстрація продукту"
+  },
+  {
+    url: "https://player.vimeo.com/video/1017799800",
+    title: "Відео 2: Огляд функцій"
+  },
+  {
+    url: "https://player.vimeo.com/video/1017799800",
+    title: "Відео 3: Відео-відгук клієнта"
+  },
+  {
+    url: "https://player.vimeo.com/video/1017799800",
+    title: "Відео 4: Інструкція по використанню"
+  },
+  {
+    url: "https://player.vimeo.com/video/1017799800",
+    title: "Відео 5: Презентація продукту"
+  }
+];
 
 const ProductPage = ({
   data,
@@ -86,6 +192,8 @@ const ProductPage = ({
       window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
+
+  console.log('videoUrl', videoUrl);
 
   return (
     <>
@@ -149,6 +257,10 @@ const ProductPage = ({
           </div> */}
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
+        <SliderVideo videoSlider={mockVideoSlider}/>
+        <div className="order-wrapper">
+          <ProductsSlider data={productsData} title='Коляски'/>
+        </div>
         <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider} />
         {
           isMobileView ? <Accessories data={relatedAccessories} title={"Пропонуємо разом з конвертом"} /> : null

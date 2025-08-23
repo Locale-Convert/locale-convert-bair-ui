@@ -40,7 +40,7 @@
     gap: 40px;
     overflow: hidden;
     transition: height 300ms linear 0s;
-    min-width: 75%;
+    min-width: 70%;
 }
 
 .accordion-categories {

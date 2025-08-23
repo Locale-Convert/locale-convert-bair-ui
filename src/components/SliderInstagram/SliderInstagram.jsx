@@ -18,7 +18,7 @@ const breakpoints = {
   1300: { slidesPerView: 4, spaceBetween: 0 },
 }
 
-const SliderPromoSlider = () => {
+const SliderInstagram = () => {
   return (
     <div className="wrapper-slider" id="reviews">
       <div className="slider-header">
@@ -103,4 +103,4 @@ const SliderPromoSlider = () => {
   )
 }
 
-export default SliderPromoSlider
+export default SliderInstagram
