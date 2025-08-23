@@ -15,6 +15,29 @@ import CommunicationButton from "../../components/CommunicationButton/Communicat
 import { useLocation }     from "@reach/router";
 import relatedProductsHook from "./hooks";
 import CoveringImageComponent from "../../components/CoveringImageComponent/CoveringImageComponent";
+import ProductSpecs from "../../components/ProductSpecs/ProductSpecs";
+
+import './style.css';
+import DownloadLinks from "../../components/DownloadLinks/DownloadLinks";
+
+const productSpecsFromApi = [
+  { name: "Процесор", value: "Intel i7" },
+  { name: "ОЗП", value: "16 ГБ" },
+  { name: "Диск", value: "512 ГБ SSD" },
+  { name: "Операційна система", value: "Windows 11" },
+    { name: "Процесор", value: "Intel i7" },
+  { name: "ОЗП", value: "16 ГБ" },
+  { name: "Диск", value: "512 ГБ SSD" },
+  { name: "Операційна система", value: "Windows 11" },
+    { name: "Процесор", value: "Intel i7" },
+  { name: "ОЗП", value: "16 ГБ" },
+  { name: "Диск", value: "512 ГБ SSD" },
+  { name: "Операційна система", value: "Windows 11" },
+    { name: "Процесор", value: "Intel i7" },
+  { name: "ОЗП", value: "16 ГБ" },
+  { name: "Диск", value: "512 ГБ SSD" },
+  { name: "Операційна система", value: "Windows 11" }
+]
 
 const ProductPage = ({
   data,
@@ -82,11 +105,13 @@ const ProductPage = ({
             setActiveColor     = {setActiveColor}
           />
         }
-          <div className="desc-characteristics">
-            <Characteristics
-              desription={description}
-            />
-          </div>
+        <div className="desc-characteristics">
+          <Characteristics description={description} />
+          <ProductSpecs specs={productSpecsFromApi} />
+        </div>
+        <div className="order-wrapper">
+          <DownloadLinks/>
+        </div>
           {/* <div className="desc-video">
             <SliderVideoProduct
               videoSlider={videoUrl}

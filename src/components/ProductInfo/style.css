@@ -59,6 +59,10 @@
 }
 
 @media (max-width: 768px) {
+    .product-card {
+        padding: 0 20px;
+    }
+
     .back-button {
         display: none;
     }

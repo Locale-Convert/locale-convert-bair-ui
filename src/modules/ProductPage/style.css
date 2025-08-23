@@ -1,0 +1,21 @@
+.desc-characteristics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.order-wrapper {
+    padding: 10px 0 0 50px;
+}
+
+@media (max-width: 768px) {
+  .desc-characteristics {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .order-wrapper {
+    padding: 0 16px;
+  }
+}

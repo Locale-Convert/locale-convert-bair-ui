@@ -1,0 +1,28 @@
+.download-links {
+  display: flex;
+  gap: 20px;
+}
+
+.download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 207px;
+  height: 50px;
+  background-color: #e6e1e1;
+  color: #000;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 8px;
+  gap: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #d8d5d5;
+}
+
+.download-icon {
+  font-size: 24px;
+}
