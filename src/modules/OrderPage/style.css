@@ -142,7 +142,8 @@
 
 .order-radios-horizontal {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 12px;
 }
 

@@ -1,62 +1,164 @@
-.order-block {
+.payment-method-wrapper {
+  display: flex;
+  flex-direction: column;
   background: #fff;
-  padding: 25px;
-  border-bottom: 1px solid #EDEDED;
 }
 
-.order-block-title {
+.payment-method-title {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 12px;
+  padding: 20px 25px 0 25px;
 }
 
-/* Радіо кнопки */
-.order-radios-horizontal {
+.payment-method-container {
   display: flex;
-  gap: 24px;
-  margin-bottom: 12px;
+  flex-direction: column;
+  padding: 0 25px;
 }
 
-.order-radios-horizontal label {
+.payment-block {
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.payment-block.active {
+  border: 1px solid #D7D6D6;
+}
+
+.payment-subblock-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.payment-subblock-wrapper.open {
+  max-height: 500px;
+}
+
+.payment-subblock {
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-subblock label {
   display: flex;
   align-items: center;
-  gap: 3px;
-  cursor: pointer;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+}
+
+.icons-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.icon-block {
+  padding: 5px 5px 1px 5px;
+  border: 1px solid #D7D6D6;
+  border-radius: 7px;
+}
+
+.payment-icons-wrapper {
+  display: flex;
+  gap: 6px;
+  border: 1px solid #D7D6D6;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-left: auto; /* прижимає до правого краю */
+  flex-shrink: 0;
+}
+
+.order-radios-horizontal > .radio-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-radios-horizontal {
+  margin-bottom: 4px;
+}
+
+.payment-block-subtext {
+  margin-left: 23px;
+  font-size: 12px;
+  color: #00000080;
+}
+
+.cash-info {
+  color: #FF3B30;
+  font-size: 13px;
+}
+
+.cash-info>.bold {
+  display: contents;
+  font-weight: 700;
+}
+
+.credit-info {
+  color: #888;
+  font-size: 13px;
+}
+
+.credit-details {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.credit-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.credit-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 230px;
+}
+
+.credit-row.small-text {
+  color: #888;
+  font-size: 12px;
+}
+
+.bold-text {
+  font-weight: 700;
+}
+
+.credit-input {
+  border: 1px solid #D7D6D6;
+  border-radius: 4px;
+  padding: 6px 8px;
+  width: 100%;
   font-size: 14px;
 }
 
-.order-radios-horizontal input[type="radio"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 12px;
-  height: 12px;
-  border: 3px solid #ccc;
-  border-radius: 50%;
-  background-color: #ccc;
-  position: relative;
-  cursor: pointer;
-  outline: none;
+/* === Payment icons styling === */
+.payment-icons-wrapper {
+  display: flex;
+  gap: 6px;
+  border: 1px solid #D7D6D6;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-left: auto; /* прижимає до правого краю */
+  flex-shrink: 0;
 }
 
-.order-radios-horizontal input[type="radio"]::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 6px;
-  height: 6px;
-  background-color: #fff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.order-radios-horizontal input[type="radio"]:checked {
-  border-color: #1e90ff;
-  background-color: #1e90ff;
-}
-
-.payment-fee {
-  font-size: 13px;
-  color: #888;
+.payment-icon {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
 }
