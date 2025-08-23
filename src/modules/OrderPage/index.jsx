@@ -17,6 +17,7 @@ import { formatData } from "./utils";
 import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import "./style.css";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
+import PaymentMethod from "../../components/PaymentMethod/PaymentMethod";
 
 const OrderPage = ({ data }) => {
     const { allStrapiProducts, allStrapiAccessories: { nodes } } = data;
@@ -316,37 +317,12 @@ const OrderPage = ({ data }) => {
 
 
                                     {/* Оплата */}
-                                    <div className="order-block">
-                                        <h2 className="order-block-title">Спосіб оплати</h2>
-                                        <div className="order-radios-horizontal">
-                                            <label>
-                                                <Field
-                                                    type="radio"
-                                                    name="paymentMethod"
-                                                    value="Wayforpay"
-                                                    checked={selectedPaymentMethod === "Wayforpay"}
-                                                    onChange={() => {
-                                                        props.setFieldValue("paymentMethod", "Wayforpay");
-                                                        setSelectedPaymentMethod("Wayforpay");
-                                                    }}
-                                                />
-                                                Visa / Mastercard
-                                            </label>
-                                            <label>
-                                                <Field
-                                                    type="radio"
-                                                    name="paymentMethod"
-                                                    value="CashOnDelivery"
-                                                    checked={selectedPaymentMethod === "CashOnDelivery"}
-                                                    onChange={() => {
-                                                        props.setFieldValue("paymentMethod", "CashOnDelivery");
-                                                        setSelectedPaymentMethod("CashOnDelivery");
-                                                    }}
-                                                />
-                                                Накладеним платежем (2% комісії)
-                                            </label>
-                                        </div>
-                                    </div>
+
+                                    <PaymentMethod
+                                        selectedPaymentMethod={selectedPaymentMethod}
+                                        setSelectedPaymentMethod={setSelectedPaymentMethod}
+                                        setFieldValue={props.setFieldValue}
+                                    />
 
                                     <div className="order-block">
                                         <label htmlFor="comment" className="order-input-label">Коментар</label>
@@ -358,7 +334,7 @@ const OrderPage = ({ data }) => {
 
 
                                     {/* Кнопка */}
-                                    <div className="order-submit">
+                                    {/* <div className="order-submit">
                                         {selectedPaymentMethod === "CashOnDelivery" ? (
                                             <button type="submit" className="btn-submit" disabled={isSubmit || cartItems.length === 0}>
                                                 {isSubmit ? "Відправка..." : "Надіслати замовлення"}
@@ -371,7 +347,7 @@ const OrderPage = ({ data }) => {
                                                 {error && <div className="order-error">При створенні рахунку виникла помилка</div>}
                                             </>
                                         )}
-                                    </div>
+                                    </div> */}
                                 </Form>
                             )}
                         </Formik>

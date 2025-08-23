@@ -1,5 +1,5 @@
 .order-right {
-  width: 360px;
+  width: 430px;
   position: sticky;
   top: 20px;
   align-self: flex-start;
@@ -95,11 +95,10 @@
 /* Деталі замовлення */
 .order-summary {
   background: #fff;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 2;
-  border-radius: 12px;
 }
 
 .order-summary h3 {
@@ -111,23 +110,33 @@
 .order-items-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   padding: 12px 0;
-  border-bottom: 1px solid #eee;
-  font-weight: 500;
   transition: color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  position: relative; /* щоб ::after було прив’язане */
 }
 
-.order-items-header:hover {
-  color: #4caf50;
+.order-items-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -20px;   /* вихід за паддінг батька */
+  right: -20px;
+  height: 1px;
+  background: #eee;
 }
+
+.order-items-header>span {
+  font-size: 16px;
+  font-weight: 700;
+}
+
 
 .arrow {
   transition: transform 0.3s ease;
-}
-
-.order-items-header.expanded .arrow {
-  transform: rotate(180deg);
 }
 
 .order-items-list {
@@ -140,9 +149,19 @@
   align-items: center;
   margin-bottom: 12px;
   padding: 6px 0;
-  border-bottom: 1px solid #f0f0f0;
   transition: background 0.3s ease;
   border-radius: 8px;
+}
+
+.order-items-header::after {
+  display: none;
+}
+
+/* Новий divider під товарами */
+.order-items-divider {
+  height: 1px;
+  background: #eee;
+  margin: 0 -20px; /* щоб вийшов за padding контейнера */
 }
 
 .order-item:hover {
@@ -182,8 +201,8 @@
 
 .old-price {
   text-decoration: line-through;
-  color: #aaa;
-  font-size: 13px;
+  color: #AFA1A1;
+  font-size: 14px;
 }
 
 .item-quantity {
@@ -199,21 +218,73 @@
 }
 
 .order-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
   font-weight: 700;
+  padding: 20px 0;
+  position: relative;
+  margin: 20px 0;
+}
+
+.order-summary-total > div:nth-child(2) {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.order-summary-total::before,
+.order-summary-total::after {
+  content: "";
+  position: absolute;
+  left: -20px;  /* щоб вийшло за padding контейнера */
+  right: -20px;
+  height: 1px;
+  background-color: #eee;
+}
+
+.order-summary-total::before {
+  top: 0;
+}
+
+.order-summary-total::after {
+  bottom: 0;
+}
+
+.order-summary-options > .option > span:nth-child(2) {
+  font-weight: 700;
+}
+
+.order-summary-item {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.order-summary-item span:nth-child(2) {
+  font-weight: 700;
+}
+
+.order-summary-total {
+  font-size: 14px;
+}
+
+.btn-submit.full {
   font-size: 16px;
 }
 
 .discount {
-  color: red;
+  color: #FF3B30;
 }
 
 .free {
-  color: green;
+  color: #000000;
+  font-weight: 700;
   text-transform: lowercase;
 }
 
 .order-summary-options {
   margin: 16px 0;
+
 }
 
 .option {
@@ -228,8 +299,7 @@
   background: #A0E312;
   color: #000;
   border: none;
-  padding: 5px 20px;
-  border-radius: 8px;
+  padding: 10px 20px;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
@@ -244,14 +314,22 @@
 }
 
 .order-summary-info {
-  font-size: 13px;
-  margin-top: 12px;
+  font-size: 12px;
+  margin-top: 20px;
   color: #555;
 }
 
 .order-summary-info a {
-  color: #1565c0;
+  color: #0040DD;
   text-decoration: underline;
+}
+
+.order-summary-info > p {
+  margin-bottom: 20px;
+}
+
+.order-summary-info > p:last-child {
+  margin-bottom: 0px;
 }
 
 /* Мобільні стилі */
