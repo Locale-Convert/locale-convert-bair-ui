@@ -5,14 +5,19 @@ import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
 
 import "./styles.css";
 
-const Accordion = () => {
+const Accordion = ({
+  title = "Часто запитують",
+  showCategories = true,
+  category = null
+}) => {
   const categories = Object.keys(FAQ_DATA);
-  const [activeCategory, setActiveCategory] = useState(categories[0]);
+  const [activeCategory, setActiveCategory] = useState(category || categories[0]);
 
   const [isMobile, setIsMobile] = useState(false);
   const [visibleCount, setVisibleCount] = useState(8);
 
-  // визначаємо моб/десктоп
+  const isProductPage = Boolean(category);
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
@@ -20,7 +25,6 @@ const Accordion = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // оновлюємо кількість при зміні категорії або брейкпоінта
   useEffect(() => {
     setVisibleCount(isMobile ? 5 : 8);
   }, [isMobile, activeCategory]);
@@ -34,35 +38,37 @@ const Accordion = () => {
   const hasMore = visibleCount < questionsForActive.length;
 
   const handleShowMore = () => {
-    setVisibleCount((prev) => prev + (isMobile ? 5 : 8));
+    setVisibleCount(prev => prev + (isMobile ? 5 : 8));
   };
 
+  // формуємо заголовок для сторінки продукту
+  const computedTitle = isProductPage ? (
+    <div className="title">
+      <div>{questionsForActive.length} питань</div>
+      <div>про {activeCategory.toLowerCase()}</div>
+    </div>
+  ) : title;
+
   return (
-    <div className="accordion-wrapper">
-      {/* Мобільний заголовок */}
-      <h2 className="accordion-main-title mobile">Часто запитують</h2>
+    <div className={`accordion-wrapper ${isProductPage ? "product-page" : ""}`}>
+      <h2 className="accordion-main-title">{computedTitle}</h2>
 
       <div className="accordion-content">
-        {/* Ліва панель з категоріями */}
-        <div className="accordion-categories">
-          {/* Десктопний заголовок */}
-          <h2 className="accordion-main-title desktop">Часто запитують</h2>
+        {showCategories && !isProductPage && (
+          <div className="accordion-categories">
+            {categories.map((cat) => (
+              <div
+                key={cat}
+                className={`accordion-category ${cat === activeCategory ? "active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                <span className="category-text">{cat}</span>
+                <span className="category-count">{FAQ_DATA[cat].length}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
-          {categories.map((cat) => (
-            <div
-              key={cat}
-              className={`accordion-category ${
-                cat === activeCategory ? "active" : ""
-              }`}
-              onClick={() => setActiveCategory(cat)}
-            >
-              <span className="category-text">{cat}</span>
-              <span className="category-count">{FAQ_DATA[cat].length}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Права панель з питаннями */}
         <div className="accordion-questions">
           {visibleQuestions.map((q, idx) => (
             <AccordionItem

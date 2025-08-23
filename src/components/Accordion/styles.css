@@ -6,12 +6,21 @@
     background-color: #FAFAFA;
 }
 
+.accordion-wrapper.product-page {
+    flex-direction: row;
+    padding-left: 160px;
+    gap: 86px;
+}
+
 .accordion-main-title {
     color: #000;
-    font-size: 26px;
-    line-height: 34px;
-    font-weight: 700;
+    line-height: 46px;
     margin: 20px 0;
+}
+
+.accordion-main-title .title > div {
+    font-size: 40px;
+    font-weight: 700;
 }
 
 .accordion-main-title.mobile {
@@ -31,6 +40,7 @@
     gap: 40px;
     overflow: hidden;
     transition: height 300ms linear 0s;
+    min-width: 75%;
 }
 
 .accordion-categories {
@@ -47,8 +57,6 @@
     margin-bottom: 8px;
     transition: color 0.2s;
     color: #00000088;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
 }
 
 .accordion-category:hover {
@@ -81,8 +89,6 @@
 .accordion-questions {
     margin-top: 20px;
     flex: 1;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
 }
 
 .accordion-item {
@@ -100,11 +106,6 @@
     display: flex;
     align-items: center;
     font-size: 16px;
-    font-weight: normal;
-    transition: color 0.2s;
-}
-
-.accordion-title.active {
     font-weight: 700;
 }
 
@@ -113,12 +114,6 @@
     font-size: 40px;
     font-weight: 500;
     line-height: 1;
-}
-
-.accordion-content {
-    overflow: hidden;
-    transition: height 0.3s ease;
-    color: #000;
 }
 
 .content-box {
@@ -141,12 +136,11 @@
         flex-direction: row;
         overflow-x: auto;
         margin-right: 0;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE/Edge */
+        scrollbar-width: none;
     }
 
     .accordion-categories::-webkit-scrollbar {
-        display: none; /* Chrome/Safari/Opera */
+        display: none;
     }
 
     .accordion-category {
@@ -162,7 +156,6 @@
         display: none;
     }
 
-    /* Білі бордери тільки для мобіли */
     .accordion-item {
         border-top: 1px solid #FFFFFF;
     }

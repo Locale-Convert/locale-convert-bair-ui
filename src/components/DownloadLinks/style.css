@@ -11,7 +11,7 @@
   height: 50px;
   background-color: #e6e1e1;
   color: #000;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 16px;
   text-decoration: none;
   border-radius: 8px;
@@ -20,6 +20,7 @@
 }
 
 .download-btn:hover {
+  cursor: pointer;
   background-color: #d8d5d5;
 }
 

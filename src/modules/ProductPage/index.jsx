@@ -1,39 +1,41 @@
 import React,
-  { useState,
-    useEffect
-  }                        from "react"
-import Header              from "../../components/Header/Header";
-import Footer              from "../../components/Footer/Footer";
-import BlockBuy            from "../../components/BlockBuy/BlockBuy";
-import Characteristics     from "../../components/Characteristics/Characteristics";
-import Accessories         from "../../components/Accessories/Accessories";
-import RelatedProducts     from "../../components/RelatedProducts/RelatedProducts";
-import IconColorSlider     from "../../components/IconColorSlider/IconColorSlider";
-import SliderVideoProduct  from "../../components/SliderVideoProduct/SliderVideoProduct";
+{
+  useState,
+  useEffect
+} from "react"
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+import BlockBuy from "../../components/BlockBuy/BlockBuy";
+import Characteristics from "../../components/Characteristics/Characteristics";
+import Accessories from "../../components/Accessories/Accessories";
+import RelatedProducts from "../../components/RelatedProducts/RelatedProducts";
+import IconColorSlider from "../../components/IconColorSlider/IconColorSlider";
+import SliderVideoProduct from "../../components/SliderVideoProduct/SliderVideoProduct";
 import CommunicationButton from "../../components/CommunicationButton/CommunicationButton";
 
-import { useLocation }     from "@reach/router";
+import { useLocation } from "@reach/router";
 import relatedProductsHook from "./hooks";
 import CoveringImageComponent from "../../components/CoveringImageComponent/CoveringImageComponent";
 import ProductSpecs from "../../components/ProductSpecs/ProductSpecs";
 
 import './style.css';
 import DownloadLinks from "../../components/DownloadLinks/DownloadLinks";
+import Accordion from "../../components/Accordion/Accordion";
 
 const productSpecsFromApi = [
   { name: "Процесор", value: "Intel i7" },
   { name: "ОЗП", value: "16 ГБ" },
   { name: "Диск", value: "512 ГБ SSD" },
   { name: "Операційна система", value: "Windows 11" },
-    { name: "Процесор", value: "Intel i7" },
+  { name: "Процесор", value: "Intel i7" },
   { name: "ОЗП", value: "16 ГБ" },
   { name: "Диск", value: "512 ГБ SSD" },
   { name: "Операційна система", value: "Windows 11" },
-    { name: "Процесор", value: "Intel i7" },
+  { name: "Процесор", value: "Intel i7" },
   { name: "ОЗП", value: "16 ГБ" },
   { name: "Диск", value: "512 ГБ SSD" },
   { name: "Операційна система", value: "Windows 11" },
-    { name: "Процесор", value: "Intel i7" },
+  { name: "Процесор", value: "Intel i7" },
   { name: "ОЗП", value: "16 ГБ" },
   { name: "Диск", value: "512 ГБ SSD" },
   { name: "Операційна система", value: "Windows 11" }
@@ -46,8 +48,8 @@ const ProductPage = ({
   },
   also
 }) => {
-  const location           = useLocation();
-  const relatedProducts    = relatedProductsHook(nodes, location);
+  const location = useLocation();
+  const relatedProducts = relatedProductsHook(nodes, location);
   const relatedAccessories = relatedProductsHook(also.nodes, location);
 
   const {
@@ -64,7 +66,7 @@ const ProductPage = ({
 
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
-  const [activeColor, setActiveColor]   = useState('');
+  const [activeColor, setActiveColor] = useState('');
 
   useEffect(() => {
     const determineScreenSize = () => {
@@ -89,20 +91,20 @@ const ProductPage = ({
     <>
 
       <div className={"wrapper-mobile"}>
-        <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
+        <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
         {!!colorSlider &&
           <IconColorSlider
-            type               = 'product'
-            price              = {price}
-            oldPrice           = {oldPrice}
-            data               = {data}
-            colorSlider        = {colorSlider}
+            type='product'
+            price={price}
+            oldPrice={oldPrice}
+            data={data}
+            colorSlider={colorSlider}
             titleRelatedProducts={'Додайте рукавиці для мами'}
-            relatedAccessories = {also.nodes}
-            title              = {title}
-            products           = {nodes}
-            setIsBasketView    = {setIsBasketView}
-            setActiveColor     = {setActiveColor}
+            relatedAccessories={also.nodes}
+            title={title}
+            products={nodes}
+            setIsBasketView={setIsBasketView}
+            setActiveColor={setActiveColor}
           />
         }
         <div className="desc-characteristics">
@@ -110,9 +112,9 @@ const ProductPage = ({
           <ProductSpecs specs={productSpecsFromApi} />
         </div>
         <div className="order-wrapper">
-          <DownloadLinks/>
+          <DownloadLinks />
         </div>
-          {/* <div className="desc-video">
+        {/* <div className="desc-video">
             <SliderVideoProduct
               videoSlider={videoUrl}
               title={'Відео:'}
@@ -147,12 +149,17 @@ const ProductPage = ({
           </div> */}
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
-        <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider}/>
+        <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider} />
         {
           isMobileView ? <Accessories data={relatedAccessories} title={"Пропонуємо разом з конвертом"} /> : null
         }
         {/* <BlockBuy data={data} price={price} oldPrice={oldPrice} setIsBasketView={setIsBasketView}/> */}
         {/* <CommunicationButton /> */}
+        <Accordion
+          showCategories={false}
+          category={'Коляски'}
+        />
+
         <Footer link={"#top"} />
       </div>
 
