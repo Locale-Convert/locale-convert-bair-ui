@@ -4,37 +4,36 @@ import "./style.css";
 const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, showPrice }) => {
     const [showMobileActions, setShowMobileActions] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
-    const handleScroll = () => {
-        if (!isMobile) return; // скрол тільки для мобайла
-
-        const currentScrollY = window.scrollY;
-
-        if (currentScrollY === 0) {
-            setShowMobileActions(false);
-        } else if (currentScrollY < lastScrollY) {
-            setShowMobileActions(true);
-        } else {
-            setShowMobileActions(false);
-        }
-
-        setLastScrollY(currentScrollY);
-    };
-
-    const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-    };
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        window.addEventListener("resize", handleResize);
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        handleResize();
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("resize", handleResize);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (!isMobile) return;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY === 0) {
+                setShowMobileActions(false);
+            } else if (currentScrollY < lastScrollY) {
+                setShowMobileActions(true);
+            } else {
+                setShowMobileActions(false);
+            }
+
+            setLastScrollY(currentScrollY);
         };
-    }, [lastScrollY, isMobile]);
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [isMobile, lastScrollY]);
 
     if (isAdded) {
         return (
@@ -46,7 +45,6 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
 
     return (
         <div className="product-actions-wrapper">
-            {/* --- Десктоп версія --- */}
             {!isMobile && (
                 <div className="product-actions-desktop">
                     <button className="add-to-cart" onClick={() => addToBasket(currentColor)}>
@@ -56,7 +54,6 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
                 </div>
             )}
 
-            {/* --- Мобільна версія --- */}
             {isMobile && (
                 <div className={`product-actions-mobile ${showMobileActions ? "visible" : ""}`}>
                     {showPrice && (

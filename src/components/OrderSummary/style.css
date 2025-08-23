@@ -4,6 +4,8 @@
   top: 20px;
   align-self: flex-start;
   margin-top: 55px;
+  font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
 }
 
 .order-steps {
@@ -21,6 +23,11 @@
   align-items: center;
   flex: 1;
   position: relative;
+  transition: transform 0.3s ease;
+}
+
+.step-wrapper:hover {
+  transform: scale(1.05);
 }
 
 .step-circle {
@@ -28,16 +35,22 @@
   height: 30px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #A0E312;
+  border: 2px solid #D6D6D6;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
+  transition: all 0.3s ease;
 }
 
-.step-circle.active {
+.step-circle.active,
+.step-circle.completed {
   background: #A0E312;
   border: none;
+}
+
+.step-circle.next {
+  border-color: #A0E312;
 }
 
 .step-circle img {
@@ -48,8 +61,13 @@
 .step-dot {
   width: 9px;
   height: 9px;
-  background: #7ecb20;
+  background: #D6D6D6;
   border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.step-circle.next .step-dot {
+  background: #A0E312;
 }
 
 .step-line {
@@ -60,6 +78,7 @@
   height: 2px;
   background: #D6D6D6;
   z-index: 1;
+  transition: background 0.3s ease;
 }
 
 .step-line.active-line {
@@ -80,11 +99,96 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 2;
+  border-radius: 12px;
 }
 
 .order-summary h3 {
   font-size: 18px;
   margin-bottom: 16px;
+}
+
+/* Акордіон */
+.order-items-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.order-items-header:hover {
+  color: #4caf50;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.order-items-header.expanded .arrow {
+  transform: rotate(180deg);
+}
+
+.order-items-list {
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.3s ease;
+  border-radius: 8px;
+}
+
+.order-item:hover {
+  background: #f9fff0;
+}
+
+.order-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+
+.order-item:hover img {
+  transform: scale(1.05);
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-name {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.item-price {
+  font-size: 14px;
+}
+
+.current-price {
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.item-quantity {
+  font-size: 14px;
+  color: #333;
 }
 
 .order-summary-item,
@@ -105,29 +209,49 @@
 
 .free {
   color: green;
+  text-transform: lowercase;
+}
+
+.order-summary-options {
+  margin: 16px 0;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
 }
 
 .btn-submit {
   display: inline-block;
-  background: #7ecb20;
-  color: #fff;
+  background: #A0E312;
+  color: #000;
   border: none;
-  padding: 14px 20px;
+  padding: 5px 20px;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
-  width: auto;
+  width: 100%;
+  text-transform: uppercase;
   margin-top: 12px;
+  transition: background 0.3s ease;
 }
 
-.btn-submit.full {
-  width: 100%;
+.btn-submit:hover {
+  background: #a0d50f;
 }
 
 .order-summary-info {
   font-size: 13px;
   margin-top: 12px;
   color: #555;
+}
+
+.order-summary-info a {
+  color: #1565c0;
+  text-decoration: underline;
 }
 
 /* Мобільні стилі */
