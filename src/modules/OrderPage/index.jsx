@@ -20,6 +20,7 @@ import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import PaymentMethod from "../../components/PaymentMethod/PaymentMethod";
 import CheckboxCallConfirmation from "../../components/CheckboxCallInformation/CheckboxCallInformation";
 import OrderSteps from "../../components/OrderSteps/OrderSteps";
+import { TextField } from "@mui/material";
 
 const OrderPage = ({ data }) => {
     const { allStrapiProducts, allStrapiAccessories: { nodes } } = data;
@@ -28,7 +29,7 @@ const OrderPage = ({ data }) => {
     const [isSubmit, setIsSubmitting] = useState(false);
     const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState("Нова Пошта");
     const [isBasketView, setIsBasketView] = useState(false);
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("WayForPay");
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("Оплатити зараз");
     const [colorTitle, setColorTitle] = useState("");
     const [error, setError] = useState(false);
     const { isCybex } = useCartStore();
@@ -188,7 +189,8 @@ const OrderPage = ({ data }) => {
                                 deliveryMethod: "Нова Пошта",
                                 address: "",
                                 comment: "",
-                                paymentMethod: "Wayforpay",
+                                paymentMethod: "Оплатити зараз",
+                                onlineMethod: "card",
                             }}
                             validationSchema={validationSchemaOrderForm}
                             onSubmit={(values) => handlerOrderSubmit(values)}
@@ -295,7 +297,11 @@ const OrderPage = ({ data }) => {
                                         <label htmlFor="comment" className="order-input-label">Коментар</label>
                                        <Field
                                             name="comment"
-                                            className="order-input comment"
+                                            as={TextField}
+                                            multiline
+                                            minRows={2.5}
+                                            variant="outlined"
+                                            className="contacts-input-comment"
                                         />
                                         <CheckboxCallConfirmation/>
                                     </div>

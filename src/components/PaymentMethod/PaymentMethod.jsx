@@ -133,17 +133,19 @@ const PaymentMethod = ({ selectedPaymentMethod, setSelectedPaymentMethod, setFie
 
                             {selectedPaymentMethod === "Кредит" && (
                                 <div className="credit-details">
-                                    <div className="credit-row">
+                                    <div className="credit-row credit-row-bank">
                                         <img src={creditIcon} alt="Кредит" className="payment-icon" />
                                         Оплата частинами від ПриватБанк
                                     </div>
-                                    <div className="credit-row small-text">7 платежів / 6 місяців</div>
-                                    <div className="credit-row">
-                                        <span className="bold-text">5 100 грн</span> / місяць
-                                    </div>
-                                    <div className="credit-row credit-field">
-                                        <label>Фінансовий номер</label>
-                                        <input type="text" className="credit-input" />
+                                    <div className="credit-conditions">
+                                        <div className="credit-row small-text">7 платежів / 6 місяців</div>
+                                        <div className="credit-row">
+                                            <span className="bold-text">5 100 грн</span> / місяць
+                                        </div>
+                                        <div className="credit-row credit-field">
+                                            <label>Фінансовий номер</label>
+                                            <input type="text" className="credit-input" />
+                                        </div>
                                     </div>
                                 </div>
                             )}

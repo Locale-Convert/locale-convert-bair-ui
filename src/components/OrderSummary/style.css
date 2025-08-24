@@ -239,4 +239,16 @@
   }
 
   .order-steps-wrapper { display: none;}
+
+  .order-summary-item {
+    font-size: 12px;
+  }
+
+  .order-summary-total {
+    font-size: 12px;
+  }
+
+  .option {
+    font-size: 12px;
+  }
 }

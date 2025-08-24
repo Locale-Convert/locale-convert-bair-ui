@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import emailjs from "@emailjs/browser";
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import ArrowBackIosNewRoundedIcon from '@mui/icons-material/ArrowBackIosNewRounded';
 
 function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
     const [open, setOpen] = useState(false);
@@ -63,7 +63,7 @@ function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
                 }
 
                 setLoading(false);
-                setOpen(true);
+                setOpen(false);
             } catch (error) {
                 setLoading(false);
             }
@@ -82,7 +82,15 @@ function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
                 getOptionLabel={(option) => option}
                 open={open}
                 noOptionsText={"Немає варіантів"}
-                popupIcon={<KeyboardArrowDownRoundedIcon style={{ color: '#000000', fontSize: 30 }} />}
+                popupIcon={
+                <ArrowBackIosNewRoundedIcon 
+                    style={{ 
+                    color: '#000000', 
+                    fontSize: 24, 
+                    transform: 'rotate(-90deg)' 
+                    }} 
+                />
+                }
                 disableClearable
                 onOpen={() => {
                     setOpen(true);
@@ -117,6 +125,8 @@ function AddressSearchAutocomplete({ selectedCity, setDepartment }) {
                                 fontSize: 14,
                                 border: '1px solid #ccc', // бордер
                                 borderRadius: '4px',
+                                height: 43.5,
+                                padding: '2px 9px', 
                                 '&.Mui-focused': {
                                     borderColor: '#1976d2', // коли фокус
                                 },

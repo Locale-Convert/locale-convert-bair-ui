@@ -87,6 +87,9 @@
 .cash-info {
   color: #FF3B30;
   font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }
 
 .cash-info>.bold {
@@ -95,7 +98,7 @@
 }
 
 .credit-info {
-  color: #888;
+  color: #000000;
   font-size: 13px;
 }
 
@@ -112,20 +115,37 @@
   gap: 6px;
 }
 
+.credit-row-bank {
+  color: #000000;
+  font-weight: 500;
+}
+
 .credit-field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   max-width: 230px;
+  margin-top: 10px;
+}
+
+.credit-field > label {
+  color: #00000080;
 }
 
 .credit-row.small-text {
-  color: #888;
+  color: #00000080;
   font-size: 12px;
 }
 
-.bold-text {
-  font-weight: 700;
+.credit-conditions {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.credit-conditions .bold-text {
+  font-weight: 900;
 }
 
 .credit-input {
@@ -157,16 +177,6 @@
 @media (max-width: 768px) {
   .payment-method-container {
     padding: 0 15px;
-  }
-
-  .payment-subblock {
-    margin-left: 0;
-  }
-
-  .payment-subblock label {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
   }
 
   .icons-block {

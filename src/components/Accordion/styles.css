@@ -93,6 +93,7 @@
 
 .accordion-item {
     border-top: 1px solid #DAD9D9;
+    padding: 10px 0;
 }
 
 .accordion-item:last-child {
@@ -128,6 +129,29 @@
         margin-bottom: 40px;
     }
 
+    .accordion-wrapper.product-page {
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+    }
+
+    .accordion-main-title {
+        margin: 0;
+    }
+
+    .accordion-main-title .title > div {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .accordion-main-title > .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+
     .accordion-content {
         flex-direction: column;
     }
@@ -158,10 +182,23 @@
 
     .accordion-item {
         border-top: 1px solid #FFFFFF;
+        padding: 8px 0;
     }
 
     .accordion-item:last-child {
         border-bottom: 1px solid #FFFFFF;
+    }
+
+    .accordion-questions {
+        margin-top: 15px;
+    }
+
+    .accordion-title {
+        font-size: 15px;
+    }
+
+    .content-box {
+        font-size: 13px;
     }
 }
 
@@ -179,6 +216,18 @@
     }
 
     .accordion-questions {
-        margin-top: 0;
+        margin-top: 10px;
+    }
+
+    .accordion-item {
+        padding: 6px 0;
+    }
+
+    .accordion-title {
+        font-size: 14px;
+    }
+
+    .content-box {
+        font-size: 12px;
     }
 }

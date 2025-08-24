@@ -10,7 +10,7 @@
 .custom-checkbox {
   width: 30px;
   height: 30px;
-  border: 2px solid #ccc;
+  border: 1px solid #D7D6D6;
   border-radius: 6px;
   appearance: none;
   outline: none;
@@ -40,4 +40,10 @@
 .custom-checkbox-label {
   font-size: 14px;
   color: #000;
+}
+
+@media (max-width: 768px) {
+  .custom-checkbox-label {
+    font-size: 12px;
+  }
 }

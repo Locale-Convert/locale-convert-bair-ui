@@ -1,6 +1,5 @@
 .product-card {
     max-width: 600px;
-    margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
 }
@@ -44,11 +43,11 @@
 
 .current-price {
     color: #000;
-    font-weight: 700;
+    font-weight: 900;
 }
 
 .old-price {
-    font-size: 18px;
+    font-size: 14px;
     color: #AFA1A1;
     text-decoration: line-through;
     font-weight: normal;

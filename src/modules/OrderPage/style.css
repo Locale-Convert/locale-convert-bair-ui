@@ -10,7 +10,6 @@
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 40px;
   margin-top: 100px;
@@ -113,8 +112,9 @@
 .order-input-label {
   font-size: 12px;
   font-weight: 500;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   color: #00000080;
+  display: block;
 }
 
 .order-input {
@@ -126,19 +126,17 @@
   font-size: 14px;
 }
 
-.order-input.comment {
-  height: 80px;
-  /* бажана висота */
-  padding: 8px 12px;
-  /* внутрішні відступи */
+.contacts-input-comment {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
   font-size: 14px;
-  font-family: Mulish, serif;
-  box-sizing: border-box;
-  /* щоб padding не збільшував зовнішній розмір */
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  /* якщо хочеш, щоб можна було тягнути textarea */
+  min-height: 80px;
+  margin-top: 10px;
+  padding: 0;
+  box-sizing: border-box; /* щоб padding не збільшував висоту */
+  vertical-align: top; /* переконуємося, що текст зверху */
+  resize: vertical; /* якщо хочеш, щоб користувач міг змінювати розмір */
 }
 
 /* === Radios === */
@@ -192,8 +190,8 @@
 }
 
 .order-radios-horizontal input[type="radio"]:checked {
-  border-color: #1e90ff;
-  background-color: #1e90ff;
+  border-color: #0040DD;
+  background-color: #0040DD;
 }
 
 /* === Location row === */
@@ -279,11 +277,6 @@
 
   .order-inputs {
     grid-template-columns: 1fr;
-  }
-
-  .order-radios-horizontal {
-    flex-direction: column;
-    gap: 8px;
   }
 
   .order-location-row {
