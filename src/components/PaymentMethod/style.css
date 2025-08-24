@@ -68,16 +68,6 @@
   border-radius: 7px;
 }
 
-.payment-icons-wrapper {
-  display: flex;
-  gap: 6px;
-  border: 1px solid #D7D6D6;
-  padding: 4px 6px;
-  border-radius: 4px;
-  margin-left: auto; /* прижимає до правого краю */
-  flex-shrink: 0;
-}
-
 .order-radios-horizontal > .radio-input {
   display: flex;
   align-items: center;
@@ -161,4 +151,34 @@
   width: 24px;
   height: 16px;
   object-fit: contain;
+}
+
+/* === Адаптивність === */
+@media (max-width: 768px) {
+  .payment-method-container {
+    padding: 0 15px;
+  }
+
+  .payment-subblock {
+    margin-left: 0;
+  }
+
+  .payment-subblock label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .icons-block {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .icon-block {
+    margin-top: 4px;
+  }
+
+  .payment-block-subtext {
+    margin-left: 0;
+  }
 }

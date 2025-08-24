@@ -18,6 +18,7 @@ import ToggleSwitch from "../../components/ToggleSwitch/ToggleSwitch";
 import "./style.css";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import PaymentMethod from "../../components/PaymentMethod/PaymentMethod";
+import CheckboxCallConfirmation from "../../components/CheckboxCallInformation/CheckboxCallInformation";
 
 const OrderPage = ({ data }) => {
     const { allStrapiProducts, allStrapiAccessories: { nodes } } = data;
@@ -324,12 +325,13 @@ const OrderPage = ({ data }) => {
                                         setFieldValue={props.setFieldValue}
                                     />
 
-                                    <div className="order-block">
+                                    <div className="order-block without-border">
                                         <label htmlFor="comment" className="order-input-label">Коментар</label>
                                        <Field
                                             name="comment"
                                             className="order-input comment"
                                         />
+                                        <CheckboxCallConfirmation/>
                                     </div>
 
 
@@ -357,7 +359,7 @@ const OrderPage = ({ data }) => {
                 {/* === Правий блок === */}
                 <OrderSummary cartItems={cartItems} totalAmount={totalAmount} />
             </div>
-            <Footer link={"#top"} />
+            {/* <Footer link={"#top"} /> */}
         </div>
     );
 };

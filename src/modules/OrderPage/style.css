@@ -88,6 +88,10 @@
   border-bottom: 1px solid #EDEDED;
 }
 
+.order-block.without-border {
+  border: none;
+}
+
 .order-block-title {
   font-size: 18px;
   font-weight: 600;
@@ -247,10 +251,19 @@
     flex-direction: column;
     margin-top: 60px;
     padding: 0;
+    gap: 0;
+  }
+
+  .order-block {
+    padding: 20px;
   }
 
   .order-title {
     font-size: 24px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    margin-bottom: 0;
   }
 
   .order-inputs {

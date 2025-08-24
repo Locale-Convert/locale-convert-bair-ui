@@ -156,9 +156,6 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           />
         </a>
         <div className="nav-menu">
-          <div className="dropdown">
-            <button className="dropbtn-link">Конверти</button>
-          </div>
           <div>
             <a href="/strollers" className="dropbtn">Коляски</a>
           </div>
@@ -188,9 +185,9 @@ const Header = ({ isBasketView, setIsBasketView }) => {
               <img 
                 src={basket} 
                 alt="Basket" 
-                style={{ filter: (showCartModal && cartItems.length > 0) ? 'invert(66%) sepia(95%) saturate(507%) hue-rotate(75deg) brightness(100%) contrast(101%)' : 'none' }} 
+                style={{ filter: (showCartModal && cartItems.length > 0) ? '' : 'none' }} 
               />
-              <div>{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
+              <div className="cart-total">{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
             </div>
           </div>
         )}

@@ -639,6 +639,7 @@ ol {
 .open-cart-btn {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .product-in-cart {
@@ -3311,6 +3312,21 @@ body{
     display: flex;
   }
 
+  .cart-total {
+    position: absolute;
+    right: 11px;
+    bottom: 15px;
+    width: 16px;
+    height: 16px;
+    background-color: #000;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+
   .box-number-and-basket {
     display: flex;
     align-items: center;
@@ -4124,6 +4140,11 @@ body{
 @media (max-width: 769px) {
   .ReactModal__Content {
     margin: 200px auto;
+  }
+
+  .cart-total {
+    right: -5px;
+    bottom: 0;
   }
 }
 
