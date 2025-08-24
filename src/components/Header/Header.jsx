@@ -187,7 +187,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
                 alt="Basket" 
                 style={{ filter: (showCartModal && cartItems.length > 0) ? '' : 'none' }} 
               />
-              <div className="cart-total">{getTotalItemCount !== 0 ? getTotalItemCount : null}</div>
+              {getTotalItemCount !== 0 ? <div className="cart-total">{getTotalItemCount}</div> : null}
             </div>
           </div>
         )}

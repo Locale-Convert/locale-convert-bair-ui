@@ -1,9 +1,11 @@
-.wrapper-video-slider {
+/* style.css */
+
+.slider-video-wrapper {
   padding: 0 38px 60px 38px;
   margin-bottom: 20px;
 }
 
-.slider-header {
+.slider-header-video {
   display: flex;
   justify-content: center;
   position: relative;
@@ -11,14 +13,19 @@
   min-height: 75px;
 }
 
-.slider-title {
+.slider-title-video {
   text-align: center;
   font-size: 40px;
   font-weight: 700;
 }
 
+.slider-video .swiper-pagination {
+  bottom: 0 !important;
+  position: absolute;
+}
+
 /* Навігаційні кнопки */
-.slider-nav {
+.slider-nav-video {
   display: flex;
   gap: 20px;
   position: absolute;
@@ -27,83 +34,123 @@
   transform: translateY(-50%);
 }
 
-.slider-nav.mobile-only {
+.slider-nav-video.mobile-only {
   display: none;
 }
 
-.slider-nav button {
+.slider-nav-video button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: none;
   background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #ddd;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
 }
 
-.slider-nav img {
+.custom-prev-video,
+.custom-next-video {
+  width: 40px;
+  height: 40px;
+
+
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider-nav-video img {
   width: 16px;
   height: 16px;
 }
 
-.rotate {
+.rotate-video {
   transform: rotate(180deg);
 }
 
-/* Стилі для слайдів */
-.video-slide-wrapper {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+/* Слайди */
+.video-slide-wrapper-video {
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.swiper-slide {
+/* Базові стилі для слайдів */
+.slider-video .swiper-slide {
   opacity: 0.6;
   transform: scale(0.85);
   z-index: 1;
+  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
-.swiper-slide-active {
+/* Ефект збільшення тільки на десктопі */
+.slider-video .active-slide {
   opacity: 1;
   transform: scale(1);
   z-index: 10;
 }
 
+.video-slide-wrapper-video.active iframe {
+  pointer-events: auto;
+}
+
+.swiper-pagination-bullet {
+  background-color: #d3d3d3;
+  opacity: 1;
+  width: 13px;
+  height: 13px;
+  margin: 0 6px !important;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  width: 13px;
+  height: 13px;
+  background: #8bc34a;
+  margin: 0 6.5px;
+}
+
+/* Медіа-запити */
 @media (max-width: 1024px) {
-  .slider-title {
+  .slider-title-video {
     text-align: left;
     font-size: 30px;
   }
 
-  .slider-nav.mobile-only {
+  .slider-nav-video.mobile-only {
     display: flex;
   }
 }
 
 @media (max-width: 768px) {
-  .wrapper-video-slider {
-    padding: 0 10px;
+  .slider-video-wrapper {
+    padding: 0;
     margin-top: 10px;
   }
 
-  .slider-header {
+  .slider-header-video {
+    padding-left: 20px;
     justify-content: space-between;
   }
 
-  .swiper-pagination {
+  .slider-video .swiper-slide {
+    transform: scale(1);
+  }
+
+  .slider-video .swiper-pagination {
     display: none;
   }
 }
 
 @media (max-width: 420px) {
-  .swiper-slide-active {
+  .slider-video {
     transform: scale(1);
   }
 
-  .swiper-slide-prev,
-  .swiper-slide-next {
-    transform: scale(0.9);
-  }
 }

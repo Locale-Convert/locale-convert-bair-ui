@@ -1,0 +1,65 @@
+/* style.css */
+.rich-description-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.rich-description-box.full .gradient-overlay {
+  display: none; /* ховаємо градієнт після розгортання */
+}
+
+.rich-description-item {
+  width: 100%;
+  position: relative;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.rich-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(255,255,255,0.95), rgba(255,255,255,0));
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.show-full-btn {
+  padding: 10px 20px;
+  background-color: #8bc34a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.show-full-btn:hover {
+  background-color: #7cb342;
+}
+
+/* Адаптивність */
+@media (max-width: 1024px) {
+  .gradient-overlay {
+    padding: 15px;
+  }
+
+  .show-full-btn {
+    padding: 8px 16px;
+  }
+}

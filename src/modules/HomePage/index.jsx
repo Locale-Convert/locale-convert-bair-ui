@@ -430,9 +430,7 @@ const HomePage = () => {
           <PromoTextBottom promo={promoFour} />
           <PromoWithIcon promo={promoThree} />
           <PromoTh />
-          <Accessories data={nodes} title={"Рукавички в колір конверту"} /> */}
-          {/* <SliderPromoSlider videoSlider={videoUrl} /> */}
-          {/* <SliderVideo videoSlider={videoUrl}/> */}
+          <SliderVideo videoSlider={videoUrl}/>
           <SliderInstagram />
           <Accordion />
           {/* <CommunicationButton /> */}
@@ -477,6 +475,7 @@ const HomePage = () => {
           <MainCatalog data={allStrapiProducts} />
           <AccessoriesDesktop data={nodes} promo={promoFive} /> */}
           {/* <SliderPromoSlider videoSlider={videoUrl} /> */}
+          <SliderVideo videoSlider={videoUrl}/>
           <SliderInstagram />
           <Accordion />
           {/* <CommunicationButton /> */}

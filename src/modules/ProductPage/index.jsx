@@ -261,7 +261,7 @@ const ProductPage = ({
         <div className="order-wrapper">
         <ProductsSlider
           data={productsData}
-          title="Коляски"
+          title="Купляють разом"
           sliderSettings={{
             initialCount: 4,        // скільки продуктів показувати спочатку в мобільному списку
             loadMoreCount: 4,       // скільки додаткових продуктів показувати при натисканні "Показати ще"
