@@ -19,6 +19,7 @@ import "./style.css";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import PaymentMethod from "../../components/PaymentMethod/PaymentMethod";
 import CheckboxCallConfirmation from "../../components/CheckboxCallInformation/CheckboxCallInformation";
+import OrderSteps from "../../components/OrderSteps/OrderSteps";
 
 const OrderPage = ({ data }) => {
     const { allStrapiProducts, allStrapiAccessories: { nodes } } = data;
@@ -157,44 +158,10 @@ const OrderPage = ({ data }) => {
             <div className="order-container">
                 <div className="order-left">
                     <h1 className="order-title">Оформлення замовлення</h1>
-
-                    <div className="order-products">
-                        {isLoading ? (
-                            <div className="order-empty">Почекайте, будь ласка...</div>
-                        ) : (
-                            cartItems.length === 0 && <div className="order-empty">У вашому кошику немає товарів.</div>
-                        )}
-
-                        {/* {cartItems?.length > 0 &&
-              cartItems.map((item, index) => (
-                <div key={index} className="order-product">
-                  <div className="order-product-info">
-                    <GatsbyImage
-                      image={getImageHelper(item.mainImage)}
-                      alt=""
-                      objectFit="contain"
-                      className="order-product-image"
-                    />
-                    <div>
-                      <div className="order-article">Aртикул: {item.article}</div>
-                      <div className="order-name">{item.title}</div>
-                      <div className="order-color">Колір: {item.color}</div>
-                      <div className="order-price">{item.price} грн</div>
+                    <div className="mobile-only">
+                        <OrderSteps stepStates={["completed", "active", "inactive", "inactive"]} />
                     </div>
-                  </div>
-                  <div className="order-product-actions">
-                    <button className="order-remove" onClick={() => removeItem(index)}>
-                      <DeleteOutlineOutlinedIcon />
-                    </button>
-                    <div className="order-counter">
-                      <button onClick={() => handleCountChange(index, -1)}>-</button>
-                      <span>{item.count}</span>
-                      <button onClick={() => handleCountChange(index, 1)}>+</button>
-                    </div>
-                  </div>
-                </div>
-              ))} */}
-
+                    {/* <div className="order-products">
                         {!hasGloves && (
                             <div className="related-accessories-in-order">
                                 <RelatedMittensProduct
@@ -206,8 +173,7 @@ const OrderPage = ({ data }) => {
                                 />
                             </div>
                         )}
-                        {/* {cartItems && cartItems?.length !== 0 ? <ToggleSwitch /> : null} */}
-                    </div>
+                    </div> */}
 
                     {/* === FORM === */}
                     <div className="order-form">

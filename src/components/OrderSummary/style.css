@@ -8,90 +8,6 @@
   transition: all 0.3s ease;
 }
 
-.order-steps {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #ffffff;
-  padding: 16px;
-  position: relative;
-}
-
-.step-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  position: relative;
-  transition: transform 0.3s ease;
-}
-
-.step-wrapper:hover {
-  transform: scale(1.05);
-}
-
-.step-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid #D6D6D6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-  transition: all 0.3s ease;
-}
-
-.step-circle.active,
-.step-circle.completed {
-  background: #A0E312;
-  border: none;
-}
-
-.step-circle.next {
-  border-color: #A0E312;
-}
-
-.step-circle img {
-  width: 16px;
-  height: 16px;
-}
-
-.step-dot {
-  width: 9px;
-  height: 9px;
-  background: #D6D6D6;
-  border-radius: 50%;
-  transition: background 0.3s ease;
-}
-
-.step-circle.next .step-dot {
-  background: #A0E312;
-}
-
-.step-line {
-  position: absolute;
-  top: 15px;
-  left: 50%;
-  right: -50%;
-  height: 2px;
-  background: #D6D6D6;
-  z-index: 1;
-  transition: background 0.3s ease;
-}
-
-.step-line.active-line {
-  background: #A0E312;
-}
-
-.step-label {
-  margin-top: 8px;
-  font-size: 12px;
-  text-align: center;
-  width: max-content;
-}
-
 /* Деталі замовлення */
 .order-summary {
   background: #fff;
@@ -116,24 +32,13 @@
   transition: color 0.3s ease;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
-  position: relative; /* щоб ::after було прив’язане */
-}
-
-.order-items-header::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: -20px;   /* вихід за паддінг батька */
-  right: -20px;
-  height: 1px;
-  background: #eee;
+  position: relative;
 }
 
 .order-items-header>span {
   font-size: 16px;
   font-weight: 700;
 }
-
 
 .arrow {
   transition: transform 0.3s ease;
@@ -153,15 +58,11 @@
   border-radius: 8px;
 }
 
-.order-items-header::after {
-  display: none;
-}
-
 /* Новий divider під товарами */
 .order-items-divider {
   height: 1px;
   background: #eee;
-  margin: 0 -20px; /* щоб вийшов за padding контейнера */
+  margin: 0 -20px;
 }
 
 .order-item:hover {
@@ -218,8 +119,6 @@
 }
 
 .order-summary-total {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   font-size: 14px;
   font-weight: 700;
@@ -237,7 +136,7 @@
 .order-summary-total::after {
   content: "";
   position: absolute;
-  left: -20px;  /* щоб вийшло за padding контейнера */
+  left: -20px;
   right: -20px;
   height: 1px;
   background-color: #eee;
@@ -284,7 +183,6 @@
 
 .order-summary-options {
   margin: 16px 0;
-
 }
 
 .option {
@@ -332,7 +230,6 @@
   margin-bottom: 0px;
 }
 
-/* Мобільні стилі */
 @media (max-width: 768px) {
   .order-right {
     width: 100%;
@@ -341,19 +238,5 @@
     margin-top: 0;
   }
 
-  
-
-  .order-steps {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .step-wrapper {
-    flex-direction: row;
-    margin-bottom: 8px;
-  }
-
-  .step-line {
-    display: none;
-  }
+  .order-steps-wrapper { display: none;}
 }

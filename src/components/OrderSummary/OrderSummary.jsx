@@ -2,11 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import "./style.css";
-import checkmarkSteps from "../../images/checkmarkSteps.svg";
+import OrderSteps from "../OrderSteps/OrderSteps";
 
-const steps = ["Контакти", "Доставка", "Оплата", "Оформлення"];
-
-const OrderSummary = ({ cartItems, totalAmount, currentStep = 1 }) => {
+const OrderSummary = ({ cartItems, totalAmount }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
@@ -15,43 +13,11 @@ const OrderSummary = ({ cartItems, totalAmount, currentStep = 1 }) => {
     setHeight(isExpanded ? contentRef.current.scrollHeight : 0);
   }, [isExpanded]);
 
-  console.log('cartItems', cartItems)
-
   return (
     <div className="order-right">
       {/* Кроки оформлення */}
-      <div className="order-steps">
-        {steps.map((step, index) => {
-          const isActive = index + 1 === currentStep;
-          const isCompleted = index + 1 < currentStep;
-          const isNextAfterActive = index === currentStep;
-
-          return (
-            <div className="step-wrapper" key={index}>
-              <div
-                className={`step-circle 
-                  ${isActive ? "active" : ""} 
-                  ${isCompleted ? "completed" : ""} 
-                  ${isNextAfterActive ? "next" : ""} 
-                  ${!isActive && !isCompleted && !isNextAfterActive ? "inactive" : ""}`}
-              >
-                {isCompleted ? (
-                  <img src={checkmarkSteps} alt="check" />
-                ) : (
-                  <div className="step-dot"></div>
-                )}
-              </div>
-
-              {index < steps.length - 1 && (
-                <div
-                  className={`step-line ${isActive || isNextAfterActive ? "active-line" : ""}`}
-                ></div>
-              )}
-
-              <div className="step-label">{step}</div>
-            </div>
-          );
-        })}
+      <div className="order-steps-wrapper">
+        <OrderSteps stepStates={["completed", "active", "inactive", "inactive"]} />
       </div>
 
       {/* Деталі замовлення */}
@@ -97,7 +63,6 @@ const OrderSummary = ({ cartItems, totalAmount, currentStep = 1 }) => {
           <div className="order-items-divider"></div>
         </div>
 
-
         {/* Підсумки */}
         <div>
           <div className="order-summary-item">
@@ -134,11 +99,20 @@ const OrderSummary = ({ cartItems, totalAmount, currentStep = 1 }) => {
 
         <button className="btn-submit full">НАДІСЛАТИ ЗАМОВЛЕННЯ</button>
 
-        <p className="order-summary-info">
-          <p>Про умови повернення, доставки та відшкодування дивіться <a href="/conditions">тут</a>.<br /></p>
-          <p>Потрібна допомога?<br /> Телефонуйте до <a href="tel:+380961093040">служби підтримки клієнтів</a>.<br /></p>
-          <p>Ми обробляємо ваші особисті дані для керування вашим замовленням відповідно до Політики конфіденційності.</p>
-        </p>
+        <div className="order-summary-info">
+          <p>
+            Про умови повернення, доставки та відшкодування дивіться{" "}
+            <a href="/conditions">тут</a>.
+          </p>
+          <p>
+            Потрібна допомога? Телефонуйте до{" "}
+            <a href="tel:+380961093040">служби підтримки клієнтів</a>.
+          </p>
+          <p>
+            Ми обробляємо ваші особисті дані для керування вашим замовленням
+            відповідно до Політики конфіденційності.
+          </p>
+        </div>
       </div>
     </div>
   );

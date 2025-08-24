@@ -1,0 +1,93 @@
+.order-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 16px;
+  position: relative;
+}
+
+.step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.step-wrapper:hover {
+  transform: scale(1.05);
+}
+
+/* коло */
+.step-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #D6D6D6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* стани точки */
+.step-circle.inactive {
+  border-color: #D6D6D6;
+}
+
+.step-circle.active {
+  border-color: #A0E312;
+}
+
+.step-circle.completed {
+  background: #A0E312;
+  border: none;
+}
+
+.step-circle img {
+  width: 16px;
+  height: 16px;
+}
+
+.step-dot {
+  width: 9px;
+  height: 9px;
+  background: #D6D6D6;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.step-circle.active .step-dot {
+  background: #A0E312;
+}
+
+/* лінія */
+.step-line {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  right: -50%;
+  height: 2px;
+  background: #D6D6D6;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.step-line.active-line {
+  background: #A0E312;
+}
+
+.step-line.inactive-line {
+  background: #D6D6D6;
+}
+
+.step-label {
+  margin-top: 8px;
+  font-size: 12px;
+  text-align: center;
+  width: max-content;
+}

@@ -2,8 +2,8 @@
   background: #f9f9f9;
 }
 
-.order-form > form {
-    border-radius: 10px;
+.order-form>form {
+  border-radius: 10px;
 }
 
 .order-container {
@@ -94,7 +94,7 @@
 
 .order-block-title {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 12px;
 }
 
@@ -120,20 +120,25 @@
 .order-input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd; /* додано бордер */
+  border: 1px solid #ddd;
+  /* додано бордер */
   border-radius: 6px;
   font-size: 14px;
 }
 
 .order-input.comment {
-    height: 80px;       /* бажана висота */
-    padding: 8px 12px;  /* внутрішні відступи */
-    font-size: 14px;
-    font-family: Mulish, serif;
-    box-sizing: border-box; /* щоб padding не збільшував зовнішній розмір */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;   /* якщо хочеш, щоб можна було тягнути textarea */
+  height: 80px;
+  /* бажана висота */
+  padding: 8px 12px;
+  /* внутрішні відступи */
+  font-size: 14px;
+  font-family: Mulish, serif;
+  box-sizing: border-box;
+  /* щоб padding не збільшував зовнішній розмір */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  /* якщо хочеш, щоб можна було тягнути textarea */
 }
 
 /* === Radios === */
@@ -199,14 +204,16 @@
 }
 
 .order-location-row .order-input-wrapper {
-  flex: 1 1 50%; /* по 50% */
+  flex: 1 1 50%;
+  /* по 50% */
   min-width: 120px;
 }
 
 .order-location-row .order-input,
 .order-location-row .city-autocomplete {
   width: 100%;
-  border: 1px solid #ddd; /* додано бордер */
+  border: 1px solid #ddd;
+  /* додано бордер */
   border-radius: 6px;
   padding: 12px;
 }
@@ -245,6 +252,10 @@
   color: #555;
 }
 
+.mobile-only {
+  display: none;
+}
+
 /* === Адаптив === */
 @media (max-width: 768px) {
   .order-container {
@@ -281,5 +292,9 @@
 
   .order-location-row .order-input-wrapper {
     flex: 1 1 100%;
+  }
+
+  .mobile-only {
+    display: block;
   }
 }
