@@ -70,7 +70,7 @@ const productsData = [
     warning: null,
     colors: ["#212121", "#fafafa"],
   },
-    {
+  {
     title: "Alaska Thermo",
     description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
     image: example1,
@@ -257,14 +257,32 @@ const ProductPage = ({
           </div> */}
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
-        <SliderVideo videoSlider={mockVideoSlider}/>
+        <SliderVideo videoSlider={mockVideoSlider} />
         <div className="order-wrapper">
-          <ProductsSlider data={productsData} title='Коляски'/>
+        <ProductsSlider
+          data={productsData}
+          title="Коляски"
+          sliderSettings={{
+            initialCount: 4,        // скільки продуктів показувати спочатку в мобільному списку
+            loadMoreCount: 4,       // скільки додаткових продуктів показувати при натисканні "Показати ще"
+            breakpoints: {
+              320:  { slidesPerView: 1.2, spaceBetween: 15 },
+              768:  { slidesPerView: 2,   spaceBetween: 20 },
+              1024: { slidesPerView: 3,   spaceBetween: 20 },
+              1440: { slidesPerView: 4,   spaceBetween: 20 }, // на 1440px показуємо 4 товари
+            },
+            catalogLink: null, // посилання на каталог відключене
+          }}
+          showPagination={true}   // точки пагінації не показуються
+          showNavigation={false}    // показуємо тільки стрілки
+        />
+
+
         </div>
-        <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider} />
-        {
+        {/* <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider} /> */}
+        {/* {
           isMobileView ? <Accessories data={relatedAccessories} title={"Пропонуємо разом з конвертом"} /> : null
-        }
+        } */}
         {/* <BlockBuy data={data} price={price} oldPrice={oldPrice} setIsBasketView={setIsBasketView}/> */}
         {/* <CommunicationButton /> */}
         <Accordion

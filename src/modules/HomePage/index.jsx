@@ -317,7 +317,7 @@ const productsData = [
     warning: null,
     colors: ["#212121", "#fafafa"],
   },
-    {
+  {
     title: "Alaska Thermo",
     description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
     image: example1,
@@ -397,11 +397,31 @@ const HomePage = () => {
     <>
       {isMobileView ? (
         <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-          <SaleBanner/>
-          <ProductsSlider data={productsData} title='Коляски'/>
-          <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
-          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }}/>
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <SaleBanner />
+          <ProductsSlider
+            data={productsData}
+            title="Коляски"
+            sliderSettings={{
+              initialCount: 4,        // скільки показувати спочатку у гріді
+              loadMoreCount: 4,       // кількість при "Показати ще"
+              breakpoints: {
+                320: { slidesPerView: 1.2, spaceBetween: 15 },
+                768: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 2, spaceBetween: 20 },
+                1440: { slidesPerView: 2, spaceBetween: 20 },
+              },
+              catalogLink: "/catalog",
+              showPagination: true,
+              showNavigation: false,
+              mobileAsSlider: false,
+              mobileAsGrid: true,       // мобільний як грід
+            }}
+            navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
+          />
+
+          <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
+          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
           {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />
           <MainCatalog data={allStrapiProducts} />
@@ -420,13 +440,33 @@ const HomePage = () => {
         </div>
       ) : (
         <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-          <SaleBanner/>
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <SaleBanner />
           <div className="banner-wrapper">
-            <ProductsSlider data={productsData} title='Коляски'/>
-            <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску"/>
+            <ProductsSlider
+              data={productsData}
+              title="Коляски"
+              sliderSettings={{
+                initialCount: 4,        // скільки показувати спочатку у гріді
+                loadMoreCount: 4,       // кількість при "Показати ще"
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/catalog",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsSlider: false,
+                mobileAsGrid: true,       // мобільний як грід
+              }}
+              navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
+            />
+
+            <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
           </div>
-          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }}/>
+          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
           {/* <MainBanner promo={mainPromo} />
           <div className="promo-flex">
             <Promo promo={promoOne} />
