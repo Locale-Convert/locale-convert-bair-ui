@@ -11,6 +11,10 @@
   max-width: calc(50% - 10px);
 }
 
+.padding-top-bottom {
+  padding: 20px 0;
+}
+
 /* Адаптив для мобільних */
 @media (max-width: 768px) {
   .banner-wrapper {

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import basket from "../../images/icons/basket.svg";
 import "./style.css";
+import { useCartStore } from "../../store/store";
 
 const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, showPrice }) => {
     const [showMobileActions, setShowMobileActions] = useState(false);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
+
+    const { cartItems } = useCartStore();
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -35,10 +39,31 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isMobile, lastScrollY]);
 
+    const getTotalItemCount = useMemo(() => {
+        return cartItems && cartItems.reduce((total, item) => total + (item.count || 1), 0);
+    }, [cartItems]);
+
+    if (currentColor && currentColor.available === false) {
+        return (
+            <div className="product-actions-unavailable">
+                <button className="notify-btn" disabled>
+                    ПОВІДОМИТИ, КОЛИ БУДЕ
+                </button>
+            </div>
+        );
+    }
+
+    // Якщо товар доданий у кошик
     if (isAdded) {
         return (
             <div className="product-actions-added">
-                ДОДАНО В КОШИК
+                ПЕРЕЙТИ ДО ОФОРМЛЕННЯ
+                <div className="dropbtn open-cart-btn">
+                    <img src={basket} alt="Basket" />
+                    {getTotalItemCount !== 0 ? (
+                        <div className="cart-total">{getTotalItemCount}</div>
+                    ) : null}
+                </div>
             </div>
         );
     }
@@ -47,7 +72,10 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
         <div className="product-actions-wrapper">
             {!isMobile && (
                 <div className="product-actions-desktop">
-                    <button className="add-to-cart" onClick={() => addToBasket(currentColor)}>
+                    <button
+                        className="add-to-cart"
+                        onClick={() => addToBasket(currentColor, currentColor.article)}
+                    >
                         ДОДАТИ В КОШИК
                     </button>
                     <button className="buy-now">КУПИТИ ЗАРАЗ</button>
@@ -63,7 +91,10 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
                         </div>
                     )}
                     <div className="product-actions">
-                        <button className="add-to-cart" onClick={() => addToBasket(currentColor)}>
+                        <button
+                            className="add-to-cart"
+                            onClick={() => addToBasket(currentColor, currentColor.article)}
+                        >
                             ДОДАТИ В КОШИК
                         </button>
                         <button className="buy-now">КУПИТИ ЗАРАЗ</button>

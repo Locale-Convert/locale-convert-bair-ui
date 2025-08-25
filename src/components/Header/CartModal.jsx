@@ -130,6 +130,8 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
         // { title: "Bair Northmuff", price: 999, image: close },
     ] : [];
 
+    console.log('cartItems', cartItems);
+
     return (
         <div className={((showCartModal || isBasketView) && cartItems?.length > 0) ? "modal-overlay open" : "modal-overlay"}>
             <div className={((showCartModal || isBasketView) && cartItems?.length > 0) ? 'modal open' : 'modal'}>

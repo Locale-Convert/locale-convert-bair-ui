@@ -9,7 +9,6 @@
     gap: 0;
     border-radius: 6px;
     overflow: hidden;
-    margin-top: 20px;
 }
 
 .product-actions-desktop button {
@@ -44,6 +43,24 @@
     max-width: 200px;
 }
 
+.product-actions-unavailable {
+  display: flex;
+  margin-top: 20px;
+  min-width: 375px;
+}
+
+.notify-btn {
+  background: #D8D8DC;
+  color: #000000;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 6px;
+  cursor: not-allowed;
+  font-weight: 600;
+  width: 100%;
+  font-size: 16px;
+}
+
 .buy-now {
     background-color: #1a1a1a;
     color: #fff;
@@ -57,7 +74,20 @@
 .product-actions-added {
     font-weight: bold;
     text-align: center;
-    padding: 15px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #A0E312;
+    max-width: 350px;
+}
+
+.product-actions-added > .cart-total {
+    background-color: #A0E312;
+}
+
+.product-actions-added>.dropbtn {
+    background-color: #A0E312;
 }
 
 /* ===== Мобільна версія ===== */
@@ -123,6 +153,16 @@
 
 /* ===== Мобільні стилі до 768px ===== */
 @media (max-width: 768px) {
+    .product-actions-added {
+        max-width: 100%;
+    }
+
+    .product-actions-unavailable {
+        min-width: 300px;
+        display: flex;
+        justify-content: center;
+    }
+
     .product-actions-mobile {
         display: flex;
         position: fixed;
@@ -154,7 +194,7 @@
         text-align: center;
         padding: 15px 0;
         font-weight: bold;
-        background-color: #fff;
+        background-color: #A0E312;
         z-index: 1000;
         font-size: 15px;
     }

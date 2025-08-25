@@ -399,6 +399,7 @@ const HomePage = () => {
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
+          <div className="padding-top-bottom">
           <ProductsSlider
             data={productsData}
             title="Коляски"
@@ -419,9 +420,10 @@ const HomePage = () => {
             }}
             navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
           />
-
+        </div>
           <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
           <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
+          <SliderVideo videoSlider={videoUrl}/>
           {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />
           <MainCatalog data={allStrapiProducts} />
@@ -430,7 +432,7 @@ const HomePage = () => {
           <PromoTextBottom promo={promoFour} />
           <PromoWithIcon promo={promoThree} />
           <PromoTh />
-          <SliderVideo videoSlider={videoUrl}/>
+          <SliderVideo videoSlider={videoUrl}/> */}
           <SliderInstagram />
           <Accordion />
           {/* <CommunicationButton /> */}
@@ -441,6 +443,7 @@ const HomePage = () => {
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
           <div className="banner-wrapper">
+            <div className="padding-top-bottom">
             <ProductsSlider
               data={productsData}
               title="Коляски"
@@ -461,7 +464,7 @@ const HomePage = () => {
               }}
               navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
             />
-
+          </div>
             <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
           </div>
           <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />

@@ -87,6 +87,12 @@ const ProductInfo = ({
         return () => observer.disconnect();
     }, []);
 
+    const isAvailable = currentColor?.available !== false;
+
+    console.log('currentColor', currentColor);
+    console.log('data', data);
+
+
     return (
         <div className="product-card">
             <button className="back-button" onClick={() => window.history.back()}>
@@ -96,26 +102,35 @@ const ProductInfo = ({
                 Коляска 2 в 1 Bair Kiwi Plus ECO BKP-26 нефрит
             </h1>
             <div className="product-article">
-                Артикул: 680693 / <span className="article-number">78 нефрит</span>
+                Артикул: {currentColor.article} / <span className="article-number">78 нефрит</span>
             </div>
-            <div id="product-price" ref={priceRef} className="product-price">
-                <span className="current-price">{price} грн</span>
-                {oldPrice && <span className="old-price">{oldPrice} грн</span>}
-            </div>
+
+            {/* Блок ціни або повідомлення "Немає в наявності" */}
+            {isAvailable ? (
+                <div id="product-price" ref={priceRef} className="product-price">
+                    <span className="current-price">{currentColor.colorPrice} грн</span>
+                    {oldPrice && <span className="old-price">{currentColor.colorOldPrice} грн</span>}
+                </div>
+            ) : (
+                <div className="product-unavailable" style={{ color: "#EA1206" }}>
+                    Немає в наявності
+                </div>
+            )}
+
             <div className="product-thumbnails">
                 <ColorSlider data={data} changeSlider={changeSlider} colorTitle={colorTitle} />
             </div>
 
-            <Installments price={price} />
-
-            <CreditButtons openModal={openModal} />
+            {/* Блок кредиту показуємо лише якщо товар доступний */}
+            {isAvailable && <Installments price={currentColor.colorPrice} />}
+            {isAvailable && <CreditButtons openModal={openModal} />}
 
             <ProductActions
                 addToBasket={addToBasket}
                 currentColor={currentColor}
                 isAdded={isAdded}
-                price={price}
-                oldPrice={oldPrice}
+                price={currentColor.colorPrice}
+                oldPrice={currentColor.colorOldPrice}
                 showPrice={showMobilePrice}
             />
 

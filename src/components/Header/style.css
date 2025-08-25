@@ -95,6 +95,10 @@
     margin: 4px 0;
 }
 
+.color {
+    font-size: 12px;
+}
+
 .color-label {
     font-size: 12px;
     color: #AFA1A1;

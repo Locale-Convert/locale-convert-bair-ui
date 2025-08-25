@@ -50,7 +50,12 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
   const location = useLocation();
 
+  console.log('loc',location);
+
   const loc = location.hash.slice(1);
+
+  console.log('loc',loc);
+
 
   let activeItem = filteredColorSlider.filter(item => {
     if (`${item?.article}` === loc) {
@@ -148,6 +153,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   }, []);
 
   const addToBasket = (data, loc) => {
+    console.log(data, loc);
     const updatedCartItems = addToLocalStorage(data, loc);
 
     setCartItems(updatedCartItems);

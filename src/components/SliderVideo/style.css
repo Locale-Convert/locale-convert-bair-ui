@@ -27,7 +27,7 @@
 /* Навігаційні кнопки */
 .slider-nav-video {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   position: absolute;
   right: 10px;
   top: 50%;

@@ -15,7 +15,8 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
   const nextRef = useRef(null);
   const swiperRef = useRef(null);
 
-  const handleShowMore = () => setVisibleCount(prev => prev + (sliderSettings.loadMoreCount || 4));
+  const handleShowMore = () =>
+    setVisibleCount((prev) => prev + (sliderSettings.loadMoreCount || 4));
   const hasMore = visibleCount < data.length;
 
   const defaultBreakpoints = {
@@ -61,8 +62,10 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     </div>
   );
 
+  const isMobileGrid = sliderSettings.mobileAsGrid;
+
   return (
-    <div className="products-slider">
+    <div className={`products-slider ${isMobileGrid ? "mobile-grid-active" : ""}`}>
       <div className="products-header">
         <h2 className="products-title">{title}</h2>
         {sliderSettings.catalogLink && (
@@ -78,27 +81,28 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         )}
       </div>
 
-      {/* Desktop slider з точками пагінації */}
-
-        <div className="slider-desktop">
-          <Swiper
-            modules={[Navigation, Pagination]}
-            spaceBetween={20}
-            breakpoints={breakpoints}
-            navigation={sliderSettings.catalogLink ? false : { prevEl: prevRef.current, nextEl: nextRef.current }}
-            pagination={{ clickable: true }}
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-          >
-            {data.map((item, idx) => (
-              <SwiperSlide key={idx}>{renderProductCard(item)}</SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
-
+      {/* Desktop slider */}
+      <div className="slider-desktop">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          breakpoints={breakpoints}
+          navigation={
+            sliderSettings.catalogLink
+              ? false
+              : { prevEl: prevRef.current, nextEl: nextRef.current }
+          }
+          pagination={{ clickable: true }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+        >
+          {data.map((item, idx) => (
+            <SwiperSlide key={idx}>{renderProductCard(item)}</SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
       {/* Mobile grid */}
-      {sliderSettings.mobileAsGrid && (
+      {isMobileGrid && (
         <div className="products-grid">
           {data.slice(0, visibleCount).map((item, idx) => (
             <div key={idx}>{renderProductCard(item)}</div>
@@ -106,7 +110,7 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         </div>
       )}
 
-      {hasMore && sliderSettings.mobileAsGrid && (
+      {hasMore && isMobileGrid && (
         <div className="show-more-wrapper">
           <ShowMoreButton onClick={handleShowMore} />
         </div>
