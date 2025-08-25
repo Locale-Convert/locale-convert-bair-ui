@@ -9,8 +9,6 @@ const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
 
-  console.log('cartItems', cartItems);
-
   useEffect(() => {
     setHeight(isExpanded ? contentRef.current.scrollHeight : 0);
   }, [isExpanded]);

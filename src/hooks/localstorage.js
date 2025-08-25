@@ -1,9 +1,13 @@
-export const addToLocalStorage = (product, article) => {    
-    const { id,title, url, price, oldPrice, colorSlider, mainImage, color = '', updatedAt } = product;
+export const addToLocalStorage = (product, article) => { 
+    const { id, title, url, price, oldPrice, colorSlider, mainImage, color = '', updatedAt } = product;
 
     if (typeof window !== 'undefined') {
         const existingProducts = JSON.parse(localStorage.getItem('selectedProducts')) || [];
         const selectedColor = color ? product : colorSlider.find(color => color.article === article);
+
+        console.log('existingProducts', existingProducts);
+        console.log('selectedColor', selectedColor);
+
 
         let totalAmount = 0;
 

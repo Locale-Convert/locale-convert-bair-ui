@@ -50,11 +50,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
   const location = useLocation();
 
-  console.log('loc',location);
-
   const loc = location.hash.slice(1);
-
-  console.log('loc',loc);
 
 
   let activeItem = filteredColorSlider.filter(item => {
@@ -153,7 +149,6 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   }, []);
 
   const addToBasket = (data, loc) => {
-    console.log(data, loc);
     const updatedCartItems = addToLocalStorage(data, loc);
 
     setCartItems(updatedCartItems);
@@ -231,7 +226,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
             colorTitle={colorTitle}
           /> */}
           <ProductInfo
-              data={filteredColorSlider}
+              data={data}
               changeSlider={changeSlider}
               colorTitle={colorTitle}
               addToBasket={addToBasket}
@@ -251,7 +246,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
                 </div>
               )}
             </div> */}
-          {relatedAccessories.length !== 0 && type === 'product' && (accessoriesItemOne && accessoriesItemTwo) && !hasGloves
+          {/* {relatedAccessories.length !== 0 && type === 'product' && (accessoriesItemOne && accessoriesItemTwo) && !hasGloves
             && <div className="related-accessories-box">
               <RelatedMittensProduct
                 colorTitle={colorTitle}
@@ -260,13 +255,13 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
                 addToBasket={addToBasket}
               />
             </div>
-          }
-          {relatedAccessories.length !== 0 && type === 'accessories'
+          } */}
+          {/* {relatedAccessories.length !== 0 && type === 'accessories'
             &&
             <div className="related-accessories-box">
               <RelatedMittensAccessories relatedAccessories={relatedAccessories} />
             </div>
-          }
+          } */}
         </div>
 
       </div>

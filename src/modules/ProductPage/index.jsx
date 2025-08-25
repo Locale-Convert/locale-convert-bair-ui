@@ -193,8 +193,6 @@ const ProductPage = ({
     };
   }, []);
 
-  console.log('videoUrl', videoUrl);
-
   return (
     <>
 

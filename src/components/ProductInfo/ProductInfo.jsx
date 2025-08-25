@@ -46,105 +46,88 @@ export const creditModalData = {
 };
 
 const ProductInfo = ({
-    data,
-    changeSlider,
-    colorTitle,
-    addToBasket,
-    isAdded,
-    currentColor,
-    price,
-    oldPrice
+  data,
+  changeSlider,
+  colorTitle,
+  addToBasket,
+  isAdded,
+  currentColor,
 }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalData, setModalData] = useState({});
-    const [showMobilePrice, setShowMobilePrice] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
+  const [showMobilePrice, setShowMobilePrice] = useState(false);
 
-    const priceRef = useRef(null);
+  const priceRef = useRef(null);
 
-    const openModal = (bank) => {
-        setModalData(creditModalData[bank]);
-        setIsModalOpen(true);
-    };
+  const openModal = (bank) => {
+    setModalData(creditModalData[bank]);
+    setIsModalOpen(true);
+  };
 
-    const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => setIsModalOpen(false);
 
-    // IntersectionObserver для основної ціни
-    useEffect(() => {
-        if (!priceRef.current) return;
+  const isAvailable = currentColor?.available !== false;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                setShowMobilePrice(!entry.isIntersecting);
-            },
-            {
-                root: null,
-                threshold: 0.1
-            }
-        );
-
-        observer.observe(priceRef.current);
-
-        return () => observer.disconnect();
-    }, []);
-
-    const isAvailable = currentColor?.available !== false;
-
-    console.log('currentColor', currentColor);
-    console.log('data', data);
-
-
-    return (
-        <div className="product-card">
-            <button className="back-button" onClick={() => window.history.back()}>
-                ← Назад
-            </button>
-            <h1 className="product-title">
-                Коляска 2 в 1 Bair Kiwi Plus ECO BKP-26 нефрит
-            </h1>
-            <div className="product-article">
-                Артикул: {currentColor.article} / <span className="article-number">78 нефрит</span>
-            </div>
-
-            {/* Блок ціни або повідомлення "Немає в наявності" */}
-            {isAvailable ? (
-                <div id="product-price" ref={priceRef} className="product-price">
-                    <span className="current-price">{currentColor.colorPrice} грн</span>
-                    {oldPrice && <span className="old-price">{currentColor.colorOldPrice} грн</span>}
-                </div>
-            ) : (
-                <div className="product-unavailable" style={{ color: "#EA1206" }}>
-                    Немає в наявності
-                </div>
-            )}
-
-            <div className="product-thumbnails">
-                <ColorSlider data={data} changeSlider={changeSlider} colorTitle={colorTitle} />
-            </div>
-
-            {/* Блок кредиту показуємо лише якщо товар доступний */}
-            {isAvailable && <Installments price={currentColor.colorPrice} />}
-            {isAvailable && <CreditButtons openModal={openModal} />}
-
-            <ProductActions
-                addToBasket={addToBasket}
-                currentColor={currentColor}
-                isAdded={isAdded}
-                price={currentColor.colorPrice}
-                oldPrice={currentColor.colorOldPrice}
-                showPrice={showMobilePrice}
-            />
-
-            <CreditModal
-                isOpen={isModalOpen}
-                onClose={closeModal}
-                title={modalData.title}
-                icon={modalData.icon}
-                description={modalData.description}
-                buttonText={modalData.buttonText}
-                onButtonClick={modalData.onButtonClick}
-            />
-        </div>
+  // IntersectionObserver для мобільної ціни
+  useEffect(() => {
+    if (!priceRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowMobilePrice(!entry.isIntersecting),
+      { root: null, threshold: 0.1 }
     );
+    observer.observe(priceRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="product-card">
+      <button className="back-button" onClick={() => window.history.back()}>← Назад</button>
+
+      <h1 className="product-title">{data.title}</h1>
+      <div className="product-article">
+        Артикул: {currentColor.article}
+      </div>
+
+      {isAvailable ? (
+        <div id="product-price" ref={priceRef} className="product-price">
+          {currentColor.colorPrice ? <span className="current-price">{currentColor.colorPrice} грн</span> : null}
+          {currentColor.colorOldPrice && (
+            <span className="old-price">{currentColor.colorOldPrice} грн</span>
+          )}
+        </div>
+      ) : (
+        <div className="product-unavailable" style={{ color: "#EA1206" }}>
+          Немає в наявності
+        </div>
+      )}
+
+      <div className="product-thumbnails">
+        <ColorSlider data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
+      </div>
+
+      {isAvailable && <Installments price={currentColor.colorPrice} />}
+      {isAvailable && <CreditButtons openModal={openModal} />}
+
+      <ProductActions
+        addToBasket={() => addToBasket({ ...data, selectedColor: currentColor }, currentColor.article)}
+        currentColor={currentColor}
+        isAdded={isAdded}
+        price={currentColor.colorPrice}
+        oldPrice={currentColor.colorOldPrice}
+        showPrice={showMobilePrice}
+      />
+
+      <CreditModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalData.title}
+        icon={modalData.icon}
+        description={modalData.description}
+        buttonText={modalData.buttonText}
+        onButtonClick={modalData.onButtonClick}
+      />
+    </div>
+  );
 };
 
 export default ProductInfo;
