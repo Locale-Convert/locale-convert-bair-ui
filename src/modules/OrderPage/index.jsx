@@ -40,10 +40,12 @@ const OrderPage = ({ data }) => {
   const { cartItems, setCartItems } = useCartStore();
   const form = useRef();
 
-  let totalAmount = 0;
-  if (typeof window !== "undefined") {
-    totalAmount = localStorage.getItem("totalAmount");
-  }
+  let totalAmount = cartItems.reduce(
+    (sum, item) => sum + Number(item.price) * (item.count || 1),
+    0
+  );
+
+  console.log('totalAmount', totalAmount);
 
   const filteredCartItems = cartItems.map((item) => ({
     id: item.id,

@@ -3,6 +3,8 @@ import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRound
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import "./style.css";
 import OrderSteps from "../OrderSteps/OrderSteps";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { getImageHelper } from "../../hooks";
 
 const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -80,7 +82,9 @@ const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
           >
             {cartItems.map((item, index) => (
               <div className="order-item" key={index}>
-                <img src={item.image} alt={item.name} />
+                <div className="order-item-image">
+                  <GatsbyImage image={getImageHelper(item.mainImage)} alt={item.title} objectFit="cover" />
+                </div>
                 <div className="item-info">
                   <div className="item-name">{item.title}</div>
                   <div className="item-price">
@@ -98,27 +102,27 @@ const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
         </div>
 
         {/* Підсумки */}
-        <div>
-          <div className="order-summary-item">
-            <span>Товар ({cartItems.length})</span>
-            <span>{totalAmount ? totalAmount : 0} грн</span>
-          </div>
-          {discountAmount > 0 && (
-            <div className="order-summary-item">
-              <span>Знижка</span>
-              <span className="discount">- {discountAmount} грн</span>
-            </div>
-          )}
-          <div className="order-summary-item">
-            <span>Вартість доставки</span>
-            <span className="free">безкоштовно</span>
-          </div>
+      <div>
+        <div className="order-summary-item">
+          <span>Товар ({cartItems.length})</span>
+          <span>{totalAmount ? totalAmount + " грн" : "—"}</span>
         </div>
+        {discountAmount > 0 ? (
+          <div className="order-summary-item">
+            <span>Знижка</span>
+            <span className="discount">- {discountAmount} грн</span>
+          </div>
+        ) : null}
+        <div className="order-summary-item">
+          <span>Вартість доставки</span>
+          <span className="free">безкоштовно</span>
+        </div>
+      </div>
 
         {/* Виділення "До сплати" */}
         <div className="order-summary-total">
           <div>До сплати</div>
-          <div>{totalAmount ? totalAmount : 0} грн</div>
+          <div>{totalAmount ? totalAmount + " грн" : "—"}</div>
         </div>
 
         {/* Опції отримання та оплати */}
