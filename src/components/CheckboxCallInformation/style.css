@@ -21,20 +21,19 @@
 }
 
 .custom-checkbox:checked {
-  background-color: #1e90ff;
-  border-color: #1e90ff;
+  background-color: #fff; /* зелена точка */
+  border-color: #A0E312;
 }
 
 .custom-checkbox:checked::after {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 9px;
-  width: 8px;
-  height: 14px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  top: 5px; /* центрування */
+  left: 5px; /* центрування */
+  width: 18px;
+  height: 18px;
+  background-color: #A0E312;
+  border-radius: 4px; /* невелике скруглення */
 }
 
 .custom-checkbox-label {

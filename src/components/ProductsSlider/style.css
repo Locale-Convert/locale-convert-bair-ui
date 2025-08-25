@@ -236,8 +236,8 @@
   }
   }
 
-  .products-header {
-    padding: 20px;
+  .products-slider .products-header {
+    padding: 0 20px;
   }
 
   .catalog-link {
@@ -253,7 +253,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    padding: 0 20px;
+    padding: 0 12px;
   }
 
   /* адаптив для карточок */

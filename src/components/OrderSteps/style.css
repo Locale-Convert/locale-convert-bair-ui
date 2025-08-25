@@ -16,10 +16,6 @@
   transition: transform 0.3s ease;
 }
 
-.step-wrapper:hover {
-  transform: scale(1.05);
-}
-
 /* коло */
 .step-circle {
   width: 30px;

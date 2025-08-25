@@ -10,13 +10,6 @@ import "./style.css";
 const PaymentMethod = ({ selectedPaymentMethod, setSelectedPaymentMethod, setFieldValue }) => {
     const [selectedOnline, setSelectedOnline] = useState("card");
 
-    useEffect(() => {
-        if (!selectedPaymentMethod) {
-            setSelectedPaymentMethod("Оплатити зараз");
-            setFieldValue("paymentMethod", "Оплатити зараз");
-        }
-    }, [selectedPaymentMethod, setSelectedPaymentMethod, setFieldValue]);
-
     const handleMainChange = (method) => {
         setSelectedPaymentMethod(method);
         setFieldValue("paymentMethod", method);

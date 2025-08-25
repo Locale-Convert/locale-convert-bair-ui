@@ -4,20 +4,62 @@ import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownR
 import "./style.css";
 import OrderSteps from "../OrderSteps/OrderSteps";
 
-const OrderSummary = ({ cartItems, totalAmount }) => {
+const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
+
+  console.log('cartItems', cartItems);
 
   useEffect(() => {
     setHeight(isExpanded ? contentRef.current.scrollHeight : 0);
   }, [isExpanded]);
 
+  // === Доставка ===
+  const deliveryMethod = formValues?.deliveryMethod || "—";
+  let deliveryText = "—";
+  if (deliveryMethod === "Нова Пошта") {
+    deliveryText = "У відділенні Нової Пошти";
+  } else if (deliveryMethod === "courier") {
+    deliveryText = "Привезе кур'єр";
+  }
+
+  // === Оплата ===
+  const paymentMethod = formValues?.paymentMethod || "—";
+  let paymentText = "—";
+
+  if (paymentMethod === "Оплатити зараз") {
+    switch (formValues?.onlineMethod) {
+      case "card":
+        paymentText = "Карткою онлайн";
+        break;
+      case "apple":
+        paymentText = "Apple Pay";
+        break;
+      case "google":
+        paymentText = "Google Pay";
+        break;
+      default:
+        paymentText = "Оплатити зараз";
+    }
+  } else if (paymentMethod === "При одержанні") {
+    paymentText = "При отриманні";
+  } else if (paymentMethod === "Кредит") {
+    paymentText = "Кредит";
+  }
+
+  const discountAmount = cartItems.reduce((acc, item) => {
+    if (item.oldPrice && item.price) {
+      return acc + (item.oldPrice - item.price);
+    }
+    return acc;
+  }, 0);
+
   return (
     <div className="order-right">
       {/* Кроки оформлення */}
       <div className="order-steps-wrapper">
-        <OrderSteps stepStates={["completed", "active", "inactive", "inactive"]} />
+        <OrderSteps stepStates={stepStates} />
       </div>
 
       {/* Деталі замовлення */}
@@ -30,11 +72,7 @@ const OrderSummary = ({ cartItems, totalAmount }) => {
           >
             <span>Деталі замовлення</span>
             <span className="arrow">
-              {isExpanded ? (
-                <KeyboardArrowUpRoundedIcon />
-              ) : (
-                <KeyboardArrowDownRoundedIcon />
-              )}
+              {isExpanded ? <KeyboardArrowUpRoundedIcon /> : <KeyboardArrowDownRoundedIcon />}
             </span>
           </div>
           <div
@@ -46,15 +84,13 @@ const OrderSummary = ({ cartItems, totalAmount }) => {
               <div className="order-item" key={index}>
                 <img src={item.image} alt={item.name} />
                 <div className="item-info">
-                  <div className="item-name">Bair City ECO</div>
+                  <div className="item-name">{item.title}</div>
                   <div className="item-price">
                     <span className="current-price">{item.price} грн</span>
-                    {item.oldPrice && (
-                      <span className="old-price">{item.oldPrice} грн</span>
-                    )}
+                    {item.oldPrice && <span className="old-price">{item.oldPrice} грн</span>}
                   </div>
                 </div>
-                <div className="item-quantity">1 шт.</div>
+                <div className="item-quantity">{item.count} шт.</div>
               </div>
             ))}
           </div>
@@ -69,10 +105,12 @@ const OrderSummary = ({ cartItems, totalAmount }) => {
             <span>Товар ({cartItems.length})</span>
             <span>{totalAmount ? totalAmount : 0} грн</span>
           </div>
-          <div className="order-summary-item">
-            <span>Знижка</span>
-            <span className="discount">- 2 000 грн</span>
-          </div>
+          {discountAmount > 0 && (
+            <div className="order-summary-item">
+              <span>Знижка</span>
+              <span className="discount">- {discountAmount} грн</span>
+            </div>
+          )}
           <div className="order-summary-item">
             <span>Вартість доставки</span>
             <span className="free">безкоштовно</span>
@@ -89,11 +127,11 @@ const OrderSummary = ({ cartItems, totalAmount }) => {
         <div className="order-summary-options">
           <div className="option">
             <span>Спосіб отримання</span>
-            <span>У відділенні Нової Пошти</span>
+            <span>{deliveryText}</span>
           </div>
           <div className="option">
             <span>Спосіб оплати</span>
-            <span>Apple Pay</span>
+            <span>{paymentText}</span>
           </div>
         </div>
 

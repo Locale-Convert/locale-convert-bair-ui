@@ -230,9 +230,9 @@
 .btn-submit {
   display: inline-block;
   background: #A0E312;
-  color: #fff;
+  color: #000000;
   border: none;
-  padding: 14px 20px;
+  padding: 10px 20px;
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;

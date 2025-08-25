@@ -76,9 +76,13 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
                     onOpen={() => { if (options.length > 0) setOpen(true); }}
                     onClose={() => setOpen(false)}
                     popupIcon={
-                        <ArrowBackIosNewRoundedIcon
-                            style={{ color: '#000000', fontSize: 24, transform: 'rotate(-90deg)' }}
-                        />
+                    <ArrowBackIosNewRoundedIcon 
+                        style={{ 
+                        color: '#000000', 
+                        fontSize: 24, 
+                        transform: 'rotate(-90deg)' 
+                        }} 
+                    />
                     }
                     disableClearable
                     sx={{
@@ -108,16 +112,16 @@ function CitySearchAutocomplete({ setCity, setDepartment, selectedDeliveryMethod
                                 '& .MuiOutlinedInput-root': {
                                     fontFamily: "Mulish, serif",
                                     fontSize: 14,
-                                    border: '1px solid #ccc',
-                                    height: 43.5,
-                                    padding: '2px 9px',
+                                    border: '1px solid #ccc', // бордер
                                     borderRadius: '4px',
+                                    height: 43.5,
+                                    padding: '2px 9px', 
                                     '&.Mui-focused': {
-                                        borderColor: '#1976d2',
+                                        borderColor: '#1976d2', // коли фокус
                                     },
                                 },
                                 '& .MuiOutlinedInput-notchedOutline': {
-                                    border: 'none',
+                                    border: 'none', // якщо хочеш прибрати дефолтний
                                 },
                             }}
                             InputProps={{
