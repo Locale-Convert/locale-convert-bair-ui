@@ -99,7 +99,7 @@
   gap: 15px;
 }
 
-.mobile-submenu__item {
+.mobile-submenu__item a {
   display: flex;
   align-items: center;
   gap: 20px;

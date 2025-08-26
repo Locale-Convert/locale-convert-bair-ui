@@ -2,6 +2,8 @@ import React, { useState } from "react"
 
 import ReactMarkdown from "react-markdown"
 
+import './style.css';
+
 import { graphql, useStaticQuery } from "gatsby";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";

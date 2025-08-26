@@ -60,14 +60,16 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
             </span>
           </button>
 
-          <ul className="mobile-submenu__list">
-            {subCategories[activeCategory]?.map((item, i) => (
-              <li key={i} className="mobile-submenu__item">
+        <ul className="mobile-submenu__list">
+          {subCategories[activeCategory]?.map((item, i) => (
+            <li key={i} className="mobile-submenu__item">
+              <a href={item.url} className="mobile-submenu__link">
                 <img src={item.image} alt={item.title} />
                 {item.title}
-              </li>
-            ))}
-          </ul>
+              </a>
+            </li>
+          ))}
+        </ul>
         </div>
       )}
     </div>
