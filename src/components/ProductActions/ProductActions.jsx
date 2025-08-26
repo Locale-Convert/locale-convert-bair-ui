@@ -50,13 +50,15 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
 
     if (isAdded) {
         return (
-            <div className="product-actions-added">
+            <a href="/order" className="product-actions-added">
                 ПЕРЕЙТИ ДО ОФОРМЛЕННЯ
                 <div className="dropbtn open-cart-btn">
                     <img src={basket} alt="Basket" />
-                    {getTotalItemCount !== 0 && <div className="cart-total">{getTotalItemCount}</div>}
+                    {getTotalItemCount !== 0 && (
+                        <div className="cart-total">{getTotalItemCount}</div>
+                    )}
                 </div>
-            </div>
+            </a>
         );
     }
 

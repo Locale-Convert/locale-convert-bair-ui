@@ -8,8 +8,7 @@ import { getImageHelper } from "../../hooks";
 
 import "./style.css";
 
-
-const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
+const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor }) => {
     const [currentSlide, setCurrentSlide] = useState(selectedIndex);
     const [totalSlides, setTotalSlides] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -63,9 +62,27 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
 
     return (
         <div className="main-slider-container">
+            {/* === Лейбли поверх слайдера === */}
+            <div className="labels-overlay">
+                <div className="labels-top">
+                    {currentColor?.isSale && currentColor?.coloStickerSaleTitle && (
+                        <span className="label-sale">{currentColor.coloStickerSaleTitle}</span>
+                    )}
+                    {currentColor?.isNew && (
+                        <span className="label-new">Новинка</span>
+                    )}
+                </div>
+
+                {currentColor?.isNotCompatible && (
+                    <div className="label-bottom">
+                        Не сумісно з Balios S
+                    </div>
+                )}
+            </div>
+
             <Slider {...settings} ref={sliderRef} className="mySwiper" id="thumbnail_slider">
                 {sliderImage.map((item, index) => (
-                    <div key={index}>
+                    <div key={index} className="main-slider-item">
                         <GatsbyImage
                             image={getImageHelper(item)}
                             className="main-slider-image"
@@ -75,6 +92,7 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
                     </div>
                 ))}
             </Slider>
+
             <div className="current-slide">{currentSlide + 1} / {totalSlides}</div>
         </div>
     );

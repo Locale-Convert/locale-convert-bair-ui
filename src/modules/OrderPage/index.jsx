@@ -45,8 +45,6 @@ const OrderPage = ({ data }) => {
     0
   );
 
-  console.log('totalAmount', totalAmount);
-
   const filteredCartItems = cartItems.map((item) => ({
     id: item.id,
     title: item.title,

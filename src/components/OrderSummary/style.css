@@ -63,15 +63,10 @@
   border-radius: 8px;
 }
 
-/* Новий divider під товарами */
 .order-items-divider {
   height: 1px;
   background: #eee;
   margin: 0 -20px;
-}
-
-.order-item:hover {
-  background: #f9fff0;
 }
 
 .order-item img {
@@ -81,10 +76,6 @@
   border-radius: 6px;
   margin-right: 12px;
   transition: transform 0.3s ease;
-}
-
-.order-item:hover img {
-  transform: scale(1.05);
 }
 
 .item-info {

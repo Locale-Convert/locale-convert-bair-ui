@@ -206,6 +206,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
         </div>
         <div className="main-slider-wrapper">
           <MainSlider
+            currentColor={currentColor}
             sliderImage={sliderImage}
             selectedIndex={selectedItemForMainSlider}
             changeItemSlider={changeItemSlider}

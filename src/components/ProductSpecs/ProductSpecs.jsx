@@ -24,7 +24,7 @@ const ProductSpecs = ({ specs = [] }) => {
       >
         {specs.map((item, index) => (
           <div className="spec-item" key={index}>
-            <span className="spec-name">{item.name}</span>
+            <span className="spec-name">{item.attribute}</span>
             <span className="spec-value">{item.value}</span>
           </div>
         ))}

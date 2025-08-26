@@ -5,10 +5,6 @@ export const addToLocalStorage = (product, article) => {
         const existingProducts = JSON.parse(localStorage.getItem('selectedProducts')) || [];
         const selectedColor = color ? product : colorSlider.find(color => color.article === article);
 
-        console.log('existingProducts', existingProducts);
-        console.log('selectedColor', selectedColor);
-
-
         let totalAmount = 0;
 
         if (selectedColor) {

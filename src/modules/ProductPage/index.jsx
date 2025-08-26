@@ -35,7 +35,13 @@ const productsData = [
     discount: 20,
     isNew: true,
     // warning: "Не сумісно з Balios S",
-    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Bair Nordie",
@@ -46,7 +52,13 @@ const productsData = [
     discount: 20,
     isNew: false,
     warning: null,
-    colors: ["#ffffff", "#cccccc", "#000000"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Urban Comfort",
@@ -57,7 +69,13 @@ const productsData = [
     discount: 15,
     isNew: false,
     warning: null,
-    colors: ["#d7ccc8", "#90caf9", "#a5d6a7"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Winter Pro",
@@ -68,7 +86,13 @@ const productsData = [
     discount: null,
     isNew: true,
     warning: null,
-    colors: ["#212121", "#fafafa"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Alaska Thermo",
@@ -79,7 +103,13 @@ const productsData = [
     discount: 20,
     isNew: true,
     // warning: "Не сумісно з Balios S",
-    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Bair Nordie",
@@ -90,7 +120,13 @@ const productsData = [
     discount: 20,
     isNew: false,
     warning: null,
-    colors: ["#ffffff", "#cccccc", "#000000"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Winter Pro",
@@ -101,27 +137,33 @@ const productsData = [
     discount: null,
     isNew: true,
     warning: null,
-    colors: ["#212121", "#fafafa"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   }
 ];
 
 const productSpecsFromApi = [
-  { name: "Процесор", value: "Intel i7" },
-  { name: "ОЗП", value: "16 ГБ" },
-  { name: "Диск", value: "512 ГБ SSD" },
-  { name: "Операційна система", value: "Windows 11" },
-  { name: "Процесор", value: "Intel i7" },
-  { name: "ОЗП", value: "16 ГБ" },
-  { name: "Диск", value: "512 ГБ SSD" },
-  { name: "Операційна система", value: "Windows 11" },
-  { name: "Процесор", value: "Intel i7" },
-  { name: "ОЗП", value: "16 ГБ" },
-  { name: "Диск", value: "512 ГБ SSD" },
-  { name: "Операційна система", value: "Windows 11" },
-  { name: "Процесор", value: "Intel i7" },
-  { name: "ОЗП", value: "16 ГБ" },
-  { name: "Диск", value: "512 ГБ SSD" },
-  { name: "Операційна система", value: "Windows 11" }
+  { attribute: "Процесор", value: "Intel i7" },
+  { attribute: "ОЗП", value: "16 ГБ" },
+  { attribute: "Диск", value: "512 ГБ SSD" },
+  { attribute: "Операційна система", value: "Windows 11" },
+  { attribute: "Процесор", value: "Intel i7" },
+  { attribute: "ОЗП", value: "16 ГБ" },
+  { attribute: "Диск", value: "512 ГБ SSD" },
+  { attribute: "Операційна система", value: "Windows 11" },
+  { attribute: "Процесор", value: "Intel i7" },
+  { attribute: "ОЗП", value: "16 ГБ" },
+  { attribute: "Диск", value: "512 ГБ SSD" },
+  { attribute: "Операційна система", value: "Windows 11" },
+  { attribute: "Процесор", value: "Intel i7" },
+  { attribute: "ОЗП", value: "16 ГБ" },
+  { attribute: "Диск", value: "512 ГБ SSD" },
+  { attribute: "Операційна система", value: "Windows 11" }
 ]
 
 const mockVideoSlider = [
@@ -257,23 +299,23 @@ const ProductPage = ({
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
         <SliderVideo videoSlider={mockVideoSlider} />
         <div className="order-wrapper">
-        <ProductsSlider
-          data={productsData}
-          title="Купляють разом"
-          sliderSettings={{
-            initialCount: 4,        // скільки продуктів показувати спочатку в мобільному списку
-            loadMoreCount: 4,       // скільки додаткових продуктів показувати при натисканні "Показати ще"
-            breakpoints: {
-              320:  { slidesPerView: 1.2, spaceBetween: 15 },
-              768:  { slidesPerView: 2,   spaceBetween: 20 },
-              1024: { slidesPerView: 3,   spaceBetween: 20 },
-              1440: { slidesPerView: 4,   spaceBetween: 20 }, // на 1440px показуємо 4 товари
-            },
-            catalogLink: null, // посилання на каталог відключене
-          }}
-          showPagination={true}   // точки пагінації не показуються
-          showNavigation={false}    // показуємо тільки стрілки
-        />
+          <ProductsSlider
+            data={productsData}
+            title="Купляють разом"
+            sliderSettings={{
+              initialCount: 4,        // скільки продуктів показувати спочатку в мобільному списку
+              loadMoreCount: 4,       // скільки додаткових продуктів показувати при натисканні "Показати ще"
+              breakpoints: {
+                320: { slidesPerView: 1.2, spaceBetween: 15 },
+                768: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 20 },
+                1440: { slidesPerView: 4, spaceBetween: 20 }, // на 1440px показуємо 4 товари
+              },
+              catalogLink: null, // посилання на каталог відключене
+            }}
+            showPagination={true}   // точки пагінації не показуються
+            showNavigation={false}    // показуємо тільки стрілки
+          />
 
 
         </div>

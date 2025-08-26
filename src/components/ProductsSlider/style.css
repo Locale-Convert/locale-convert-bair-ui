@@ -222,6 +222,20 @@
   display: none;
 }
 
+.color-dot.more-colors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  color: #333;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+}
+
 /* Адаптив */
 @media (max-width: 768px) {
   .products-slider .products-title {

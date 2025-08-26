@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper";
 import arrowRight from "../../images/arrowRight.svg";
 import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
+import ProductColors from "./ProductColors";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -49,12 +50,9 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
       <div className="product-info">
         <h3 className="product-title">{item.title}</h3>
         <p className="product-desc">{item.description}</p>
-        <div className="product-colors">
-          {item.colors.map((c, i) => (
-            <span key={i} className="color-dot" style={{ backgroundColor: c }}></span>
-          ))}
-        </div>
-        <div className="product-price">
+        <ProductColors colors={item.colorsHashes} maxVisible={5} />
+
+        <div className="home-product-price">
           <span className="price-new">{item.price} грн</span>
           {item.oldPrice && <span className="price-old">{item.oldPrice} грн</span>}
         </div>

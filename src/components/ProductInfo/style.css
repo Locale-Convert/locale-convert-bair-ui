@@ -42,9 +42,18 @@
     min-height: 50px;
 }
 
+.home-product-price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 32px;
+    font-weight: bold;
+    min-height: 50px;
+}
+
 .current-price {
     color: #000;
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .old-price {
@@ -61,6 +70,7 @@
 @media (max-width: 768px) {
     .product-card {
         padding: 0 20px;
+        margin-left: 0;
     }
 
     .back-button {

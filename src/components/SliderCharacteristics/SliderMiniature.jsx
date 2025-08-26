@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getImageHelper } from "../../hooks";
 
-import { ArrowUpward, ArrowDownward, KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
+import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import "./style.css";
 
 const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
@@ -42,7 +42,8 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         vertical: true,
         verticalSwiping: true,
         waitForAnimate: true,
-        slidesToShow: sliderImage.length < 4 ? sliderImage.length : 4,
+        slidesToShow: 5, // завжди 5 слайдів
+        slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
         afterChange: index => changeItemSlider(index)

@@ -282,7 +282,13 @@ const productsData = [
     discount: 20,
     isNew: true,
     // warning: "Не сумісно з Balios S",
-    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Bair Nordie",
@@ -293,7 +299,13 @@ const productsData = [
     discount: 20,
     isNew: false,
     warning: null,
-    colors: ["#ffffff", "#cccccc", "#000000"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Urban Comfort",
@@ -304,7 +316,13 @@ const productsData = [
     discount: 15,
     isNew: false,
     warning: null,
-    colors: ["#d7ccc8", "#90caf9", "#a5d6a7"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Winter Pro",
@@ -315,7 +333,13 @@ const productsData = [
     discount: null,
     isNew: true,
     warning: null,
-    colors: ["#212121", "#fafafa"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Alaska Thermo",
@@ -326,7 +350,13 @@ const productsData = [
     discount: 20,
     isNew: true,
     // warning: "Не сумісно з Balios S",
-    colors: ["#f5f5f5", "#e1bee7", "#c8e6c9", "#ffccbc", "#a1887f"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Bair Nordie",
@@ -337,7 +367,13 @@ const productsData = [
     discount: 20,
     isNew: false,
     warning: null,
-    colors: ["#ffffff", "#cccccc", "#000000"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   },
   {
     title: "Winter Pro",
@@ -348,7 +384,13 @@ const productsData = [
     discount: null,
     isNew: true,
     warning: null,
-    colors: ["#212121", "#fafafa"],
+    colorsHashes: [
+      { hash: "#f5f5f5" },
+      { hash: "#e1bee7" },
+      { hash: "#c8e6c9" },
+      { hash: "#ffccbc" },
+      { hash: "#a1887f" },
+    ],
   }
 ];
 
@@ -400,50 +442,6 @@ const HomePage = () => {
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
           <div className="padding-top-bottom">
-          <ProductsSlider
-            data={productsData}
-            title="Коляски"
-            sliderSettings={{
-              initialCount: 4,        // скільки показувати спочатку у гріді
-              loadMoreCount: 4,       // кількість при "Показати ще"
-              breakpoints: {
-                320: { slidesPerView: 1.2, spaceBetween: 15 },
-                768: { slidesPerView: 2, spaceBetween: 20 },
-                1024: { slidesPerView: 2, spaceBetween: 20 },
-                1440: { slidesPerView: 2, spaceBetween: 20 },
-              },
-              catalogLink: "/catalog",
-              showPagination: true,
-              showNavigation: false,
-              mobileAsSlider: false,
-              mobileAsGrid: true,       // мобільний як грід
-            }}
-            navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
-          />
-        </div>
-          <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
-          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
-          <SliderVideo videoSlider={videoUrl}/>
-          {/* <MainBanner promo={mainPromo} />
-          <MainBannerWithText />
-          <MainCatalog data={allStrapiProducts} />
-          <Promo promo={promoOne} />
-          <PromoTwo promo={promoTwo} />
-          <PromoTextBottom promo={promoFour} />
-          <PromoWithIcon promo={promoThree} />
-          <PromoTh />
-          <SliderVideo videoSlider={videoUrl}/> */}
-          <SliderInstagram />
-          <Accordion />
-          {/* <CommunicationButton /> */}
-          <Footer link={"#top"} />
-        </div>
-      ) : (
-        <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
-          <SaleBanner />
-          <div className="banner-wrapper">
-            <div className="padding-top-bottom">
             <ProductsSlider
               data={productsData}
               title="Коляски"
@@ -465,6 +463,50 @@ const HomePage = () => {
               navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
             />
           </div>
+          <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
+          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
+          <SliderVideo videoSlider={videoUrl} />
+          {/* <MainBanner promo={mainPromo} />
+          <MainBannerWithText />
+          <MainCatalog data={allStrapiProducts} />
+          <Promo promo={promoOne} />
+          <PromoTwo promo={promoTwo} />
+          <PromoTextBottom promo={promoFour} />
+          <PromoWithIcon promo={promoThree} />
+          <PromoTh />
+          <SliderVideo videoSlider={videoUrl}/> */}
+          <SliderInstagram />
+          <Accordion />
+          {/* <CommunicationButton /> */}
+          <Footer link={"#top"} />
+        </div>
+      ) : (
+        <div className={"wrapper-mobile"}>
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <SaleBanner />
+          <div className="banner-wrapper">
+            <div className="padding-top-bottom">
+              <ProductsSlider
+                data={productsData}
+                title="Коляски"
+                sliderSettings={{
+                  initialCount: 4,        // скільки показувати спочатку у гріді
+                  loadMoreCount: 4,       // кількість при "Показати ще"
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/catalog",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsSlider: false,
+                  mobileAsGrid: true,       // мобільний як грід
+                }}
+                navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
+              />
+            </div>
             <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
           </div>
           <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
@@ -478,7 +520,7 @@ const HomePage = () => {
           <MainCatalog data={allStrapiProducts} />
           <AccessoriesDesktop data={nodes} promo={promoFive} /> */}
           {/* <SliderPromoSlider videoSlider={videoUrl} /> */}
-          <SliderVideo videoSlider={videoUrl}/>
+          <SliderVideo videoSlider={videoUrl} />
           <SliderInstagram />
           <Accordion />
           {/* <CommunicationButton /> */}
