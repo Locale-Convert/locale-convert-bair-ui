@@ -25,7 +25,7 @@ const BlockTitle = ({ item, title, article, colorTitle, currentColor }) => {
                 <div className="stickers stickers-flex">
                     {activeStickers.map((color, index) => (
                         <div key={index} className={`sticker ${color}`} style={{ width: stickerWidth }}>
-                            {color === 'green' ? (item.stickerNewTitle || 'НОВИНКА 2025') :
+                            {color === 'green' ? (item.stickerNewTitle || 'НОВИНКА') :
                              color === 'black' ? (item.stickerBlackFridayTitle || 'ЧОРНА П\'ЯТНИЦЯ') :
                              color === 'yellow' ? (currentColor.coloStickerSaleTitle ? currentColor.coloStickerSaleTitle : item.stickerSaleTitle) : null}
                         </div>
@@ -33,12 +33,12 @@ const BlockTitle = ({ item, title, article, colorTitle, currentColor }) => {
                     {stickerCount === 1 && (
                         <>
                             <div className={`sticker ${activeStickers[0]}`} style={{ width: stickerWidth }}>
-                                {activeStickers[0] === 'green' ? (item.stickerNewTitle || 'НОВИНКА 2025') :
+                                {activeStickers[0] === 'green' ? (item.stickerNewTitle || 'НОВИНКА') :
                                  activeStickers[0] === 'black' ? (item.stickerBlackFridayTitle || 'ЧОРНА П\'ЯТНИЦЯ') :
                                  activeStickers[0] === 'yellow' ? (currentColor.coloStickerSaleTitle ? currentColor.coloStickerSaleTitle : item.stickerSaleTitle) : null}
                             </div>
                             <div className={`sticker ${activeStickers[0]}`} style={{ width: stickerWidth }}>
-                                {activeStickers[0] === 'green' ? (item.stickerNewTitle || 'НОВИНКА 2025') :
+                                {activeStickers[0] === 'green' ? (item.stickerNewTitle || 'НОВИНКА') :
                                  activeStickers[0] === 'black' ? (item.stickerBlackFridayTitle || 'ЧОРНА П\'ЯТНИЦЯ') :
                                  activeStickers[0] === 'yellow' ? (currentColor.coloStickerSaleTitle ? currentColor.coloStickerSaleTitle : item.stickerSaleTitle) : null}
                             </div>

@@ -55,7 +55,7 @@ const AccessoriesDesktop = ({ data, promo }) => {
                         return (
                             <a href={`/${item.url}/`} key={index} className={"accessories-product-box-item"}>
                             <div className="stickers-for-accessories-desktop">
-                                {item?.stickerNew ? <div className="sticker green">{item.stickerNewTitle ? item.stickerNewTitle : 'НОВИНКА 2025'}</div> : null}
+                                {item?.stickerNew ? <div className="sticker green">{item.stickerNewTitle ? item.stickerNewTitle : 'НОВИНКА'}</div> : null}
                                 {item?.stickerBlackFriday ? <div className="sticker black">{item.stickerBlackFridayTitle ? item.stickerBlackFridayTitle : 'ЧОРНА П\'ЯТНИЦЯ'}</div> : null}
                                 {item?.stickerSale ? <div className="sticker yellow">{item.stickerSaleTitle ? item.stickerSaleTitle : 'ЗНИЖКА'}</div> : null}
                             </div>

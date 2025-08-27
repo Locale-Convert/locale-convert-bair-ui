@@ -3,44 +3,51 @@ import { graphql } from "gatsby";
 import StrollersPage from "../modules/StrollersPage";
 
 export const query = graphql`
-    query strollers{
-        allStrapiProducts(sort: { fields: priority, order: DESC }) {
-            nodes {
-                id
-                title
-                price
-                oldPrice
-                url
-                updatedAt
-                mainImage {
-                    localFile {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-                mainImg {
-                    mobileImage {
-                        alternativeText
-                        url
-                    }
-                    desktopImage {
-                        alternativeText
-                        url
-                    }
-                }
-            }
+  query strollers {
+    allStrapiProducts(sort: { fields: priority, order: DESC }) {
+      nodes {
+        id
+        title
+        price
+        oldPrice
+        smallDescription
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
+        colorsHashes {
+          hash
         }
+        url
+        updatedAt
+        mainImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        mainImg {
+          mobileImage {
+            alternativeText
+            url
+          }
+          desktopImage {
+            alternativeText
+            url
+          }
+        }
+      }
     }
+  }
 `
 
-const Conditions = () => {
+const Strollers = ({ data }) => {
   return (
-      <StrollersPage />
+    <StrollersPage nodes={data.allStrapiProducts.nodes} />
   )
 }
 
-export default Conditions;
-
-
-
+export default Strollers

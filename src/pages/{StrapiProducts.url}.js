@@ -60,6 +60,10 @@ export const query = graphql`
             color
             visible
             article
+            specifications {
+              attribute
+              value
+            }
             mainImageColor {
               localFile {
                 childImageSharp {

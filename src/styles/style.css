@@ -2910,13 +2910,6 @@ body{
     margin-bottom: 40px;
   }
 
-  .product-image {
-    display: flex;
-    align-items: center;
-    height: 100px;
-    margin-right: 10px;
-    width: 100px;
-  }
   .product-titles {
     display: flex;
     flex-direction: column;

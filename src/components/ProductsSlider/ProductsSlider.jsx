@@ -29,14 +29,23 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
   };
   const breakpoints = sliderSettings.breakpoints || defaultBreakpoints;
 
+  // ✅ Сумісність зі старим і новим API налаштувань
+  const isMobileGrid = !!sliderSettings.mobileAsGrid;     // мобільний грід
+  const isDesktopGrid = !!sliderSettings.desktopAsGrid;   // десктопний грід
+
+  const showNavigation = !!sliderSettings.showNavigation; // показувати стрілки
+  const showPagination = sliderSettings.showPagination !== false; // пагінація (за замовчуванням true)
+  const catalogLink = sliderSettings.catalogLink || null; // лінк у хедері
+
   useEffect(() => {
-    if (swiperRef.current && !sliderSettings.catalogLink) {
+    // ініціалізація стрілок лише коли вони увімкнені і є слайдер (тобто НЕ десктопний грід)
+    if (swiperRef.current && showNavigation && !isDesktopGrid) {
       swiperRef.current.params.navigation.prevEl = prevRef.current;
       swiperRef.current.params.navigation.nextEl = nextRef.current;
       swiperRef.current.navigation.init();
       swiperRef.current.navigation.update();
     }
-  }, []);
+  }, [showNavigation, isDesktopGrid]);
 
   const renderProductCard = (item) => {
     const imageData = getImage(item.mainImage?.localFile);
@@ -73,32 +82,31 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     );
   };
 
-  // Налаштування гріду
-  const isMobileGrid = sliderSettings.mobileAsGrid;
-  const isDesktopGrid = sliderSettings.desktopAsGrid;
-
   return (
     <div
-      className={`products-slider ${
-        (isMobileGrid || isDesktopGrid) ? "force-grid" : ""
-      }`}
+      className={`products-slider 
+        ${isMobileGrid ? "mobile-grid-active" : ""} 
+        ${isDesktopGrid ? "desktop-grid-active" : ""}`}
     >
       <div className="products-header">
         <h2 className="products-title">{title}</h2>
-        {sliderSettings.catalogLink && (
-          <a href={sliderSettings.catalogLink} className="catalog-link">
+
+        {catalogLink && (
+          <a href={catalogLink} className="catalog-link" aria-label="Перейти в каталог">
             <img src={arrowRight} alt="Перейти в каталог" />
           </a>
         )}
-        {!sliderSettings.catalogLink && !isDesktopGrid && (
+
+        {/* Показуємо стрілки лише коли вони увімкнені та є слайдер (не desktop grid) */}
+        {showNavigation && !isDesktopGrid && (
           <div className="slider-nav-desktop">
-            <div ref={prevRef} className="ps-swiper-prev"></div>
-            <div ref={nextRef} className="ps-swiper-next"></div>
+            <div ref={prevRef} className="ps-swiper-prev" />
+            <div ref={nextRef} className="ps-swiper-next" />
           </div>
         )}
       </div>
 
-      {/* Desktop slider */}
+      {/* Desktop slider (поки НЕ десктопний грід) */}
       {!isDesktopGrid && (
         <div className="slider-desktop">
           <Swiper
@@ -106,11 +114,9 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
             spaceBetween={20}
             breakpoints={breakpoints}
             navigation={
-              sliderSettings.catalogLink
-                ? false
-                : { prevEl: prevRef.current, nextEl: nextRef.current }
+              showNavigation ? { prevEl: prevRef.current, nextEl: nextRef.current } : false
             }
-            pagination={{ clickable: true }}
+            pagination={showPagination ? { clickable: true } : false}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
             {data.map((item, idx) => (
@@ -120,7 +126,7 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         </div>
       )}
 
-      {/* Mobile / Desktop grid */}
+      {/* Grid: рендеримо, якщо потрібен на мобільному або на десктопі */}
       {(isMobileGrid || isDesktopGrid) && (
         <div className="products-grid">
           {data.slice(0, visibleCount).map((item, idx) => (
@@ -129,6 +135,7 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         </div>
       )}
 
+      {/* Кнопка "Показати ще" — активна лише в мобільному гріді */}
       {hasMore && isMobileGrid && (
         <div className="show-more-wrapper">
           <ShowMoreButton onClick={handleShowMore} />
@@ -137,6 +144,5 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     </div>
   );
 };
-
 
 export default ProductsSlider;

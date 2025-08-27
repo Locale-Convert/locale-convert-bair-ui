@@ -202,6 +202,7 @@ export const query = graphql`
                     }
                   }
                 }
+                text
             }
             promoTwo {
                 desktopImage {
@@ -218,6 +219,7 @@ export const query = graphql`
                     }
                   }
                 }
+                text
             }
             promoThree {
                 desktopImage {
@@ -271,129 +273,6 @@ export const query = graphql`
     }
 `
 
-const productsData = [
-  {
-    title: "Alaska Thermo",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "2 889",
-    oldPrice: "3 499",
-    discount: 20,
-    isNew: true,
-    // warning: "Не сумісно з Balios S",
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Bair Nordie",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "3 299",
-    oldPrice: null,
-    discount: 20,
-    isNew: false,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Urban Comfort",
-    description: "Зручний конверт для прогулянок у місті.",
-    image: example1,
-    price: "2 499",
-    oldPrice: "2 899",
-    discount: 15,
-    isNew: false,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Winter Pro",
-    description: "Теплий варіант для холодної погоди.",
-    image: example1,
-    price: "3 599",
-    oldPrice: null,
-    discount: null,
-    isNew: true,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Alaska Thermo",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "2 889",
-    oldPrice: "3 499",
-    discount: 20,
-    isNew: true,
-    // warning: "Не сумісно з Balios S",
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Bair Nordie",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "3 299",
-    oldPrice: null,
-    discount: 20,
-    isNew: false,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Winter Pro",
-    description: "Теплий варіант для холодної погоди.",
-    image: example1,
-    price: "3 599",
-    oldPrice: null,
-    discount: null,
-    isNew: true,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  }
-];
-
-
 const HomePage = () => {
   const {
     allStrapiProducts,
@@ -403,16 +282,13 @@ const HomePage = () => {
     strapiHomePage: {
       videoUrl,
       // mainPromo,
-      // promoOne,
-      // promoTwo,
+      promoOne,
+      promoTwo,
       // promoThree,
       // promoFour,
       // promoFive
     }
   } = useStaticQuery(query)
-
-  console.log('allStrapiProducts', allStrapiProducts);
-
 
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
@@ -443,29 +319,47 @@ const HomePage = () => {
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
           <div className="padding-top-bottom">
-              <ProductsSlider
-                data={allStrapiProducts.nodes}
-                title="Коляски"
-                sliderSettings={{
-                  initialCount: 4,
-                  loadMoreCount: 4,
-                  breakpoints: {
-                    320: { slidesPerView: 1.2, spaceBetween: 15 },
-                    768: { slidesPerView: 2, spaceBetween: 20 },
-                    1024: { slidesPerView: 2, spaceBetween: 20 },
-                    1440: { slidesPerView: 2, spaceBetween: 20 },
-                  },
-                  catalogLink: "/strollers",
-                  showPagination: true,
-                  showNavigation: false,
-                  mobileAsGrid: true,
-                  desktopAsGrid: false,
-                }}
-                navigationOnDesktop={false}
-              />
+            <ProductsSlider
+              data={allStrapiProducts.nodes}
+              title="Коляски"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
           </div>
-          <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
-          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
+            <BannerWithText data={promoOne} />
+            <div className="padding-top-bottom">
+            <ProductsSlider
+              data={allStrapiProducts.nodes}
+              title="Конверти"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            </div>
+            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
           <SliderVideo videoSlider={videoUrl} />
           {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />
@@ -486,31 +380,47 @@ const HomePage = () => {
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
           <div className="banner-wrapper">
-            <div className="padding-top-bottom">
-              <ProductsSlider
-                data={allStrapiProducts.nodes}
-                title="Коляски"
-                sliderSettings={{
-                  initialCount: 4,
-                  loadMoreCount: 4,
-                  breakpoints: {
-                    320: { slidesPerView: 1.2, spaceBetween: 15 },
-                    768: { slidesPerView: 2, spaceBetween: 20 },
-                    1024: { slidesPerView: 2, spaceBetween: 20 },
-                    1440: { slidesPerView: 2, spaceBetween: 20 },
-                  },
-                  catalogLink: "/strollers",
-                  showPagination: true,
-                  showNavigation: false,
-                  mobileAsGrid: true,
-                  desktopAsGrid: false,
-                }}
-                navigationOnDesktop={false}
-              />
-            </div>
-            <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
+            <ProductsSlider
+              data={allStrapiProducts.nodes}
+              title="Коляски"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            <BannerWithText data={promoOne} />
           </div>
-          <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
+          <div className="banner-wrapper">
+            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+            <ProductsSlider
+              data={allStrapiProducts.nodes}
+              title="Конверти"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
           {/* <MainBanner promo={mainPromo} />
           <div className="promo-flex">
             <Promo promo={promoOne} />

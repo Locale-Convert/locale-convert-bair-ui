@@ -53,7 +53,7 @@ const RelatedProducts = ({ data, title, colorSlider }) => {
           return (
             <a key={index} href={`/${item.url}/`} className="main_catalog-box-item">
               <div className="stickers">
-                {item?.stickerNew ? <div className="sticker green">{item.stickerNewTitle ? item.stickerNewTitle : 'НОВИНКА 2025'}</div> : null}
+                {item?.stickerNew ? <div className="sticker green">{item.stickerNewTitle ? item.stickerNewTitle : 'НОВИНКА'}</div> : null}
                 {item?.stickerBlackFriday ? <div className="sticker black">{item.stickerBlackFridayTitle ? item.stickerBlackFridayTitle : 'ЧОРНА П\'ЯТНИЦЯ'}</div> : null}
                 {item?.stickerSale ? <div className="sticker yellow">{item.coloStickerSaleTitle ? item.coloStickerSaleTitle : item.stickerSaleTitle}</div> : null}
               </div>

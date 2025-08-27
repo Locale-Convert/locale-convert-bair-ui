@@ -1,13 +1,37 @@
 // BannerWithText.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import './style.css';
 
-const BannerWithText = ({ imageSrc, text, textStyle = {} }) => {
+const BannerWithText = ({ data, textStyle = {} }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const desktopImage = getImage(data?.desktopImage?.localFile);
+  const mobileImage = getImage(data?.mobileImage?.localFile);
+  const imageToShow = isMobile ? mobileImage : desktopImage;
+
   return (
     <section className="banner-with-text">
-      <img src={imageSrc} alt="Banner" className="banner-image" />
+      {imageToShow && (
+        <GatsbyImage
+          image={imageToShow}
+          alt={data.text || "Banner"}
+          className="banner-image"
+        />
+      )}
       <div className="banner-text" style={textStyle}>
-        {text}
+        {data?.text}
       </div>
     </section>
   );

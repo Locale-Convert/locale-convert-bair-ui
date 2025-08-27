@@ -257,7 +257,7 @@ const ProductPage = ({
         }
         <div className="desc-characteristics">
           <Characteristics description={description} />
-          <ProductSpecs specs={productSpecsFromApi} />
+          <ProductSpecs specs={activeColor.specifications} />
         </div>
         <div className="order-wrapper">
           <DownloadLinks />
