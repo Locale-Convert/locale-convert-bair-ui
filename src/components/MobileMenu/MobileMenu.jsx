@@ -53,23 +53,26 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
             Усі категорії
           </div>
 
-          <button className="mobile-submenu__all">
+          <a
+            href={categories.find(cat => cat.title === activeCategory)?.url || "#"}
+            className="mobile-submenu__all"
+          >
             ВСІ {activeCategory.toUpperCase()}
             <span className="mobile-submenu__icon">
               <ArrowForwardIosRounded />
             </span>
-          </button>
+          </a>
 
-        <ul className="mobile-submenu__list">
-          {subCategories[activeCategory]?.map((item, i) => (
-            <li key={i} className="mobile-submenu__item">
-              <a href={item.url} className="mobile-submenu__link">
-                <img src={item.image} alt={item.title} />
-                {item.title}
-              </a>
-            </li>
-          ))}
-        </ul>
+          <ul className="mobile-submenu__list">
+            {subCategories[activeCategory]?.map((item, i) => (
+              <li key={i} className="mobile-submenu__item">
+                <a href={item.url} className="mobile-submenu__link">
+                  <img src={item.image} alt={item.title} />
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>

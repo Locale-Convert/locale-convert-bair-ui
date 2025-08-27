@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Navigation, Pagination } from "swiper";
 import arrowRight from "../../images/arrowRight.svg";
 import ShowMoreButton from "../ShowMoreButton/ShowMoreButton";
@@ -37,33 +38,51 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     }
   }, []);
 
-  const renderProductCard = (item) => (
-    <div className="product-card">
-      <div className="product-image">
-        <div className="badges-wrapper">
-          {item.isNew && <span className="badge new">НОВИНКА</span>}
-          {item.discount && <span className="badge discount">-{item.discount}%</span>}
-        </div>
-        {item.warning && <span className="badge warning">{item.warning}</span>}
-        <img src={item.image} alt={item.title} />
-      </div>
-      <div className="product-info">
-        <h3 className="product-title">{item.title}</h3>
-        <p className="product-desc">{item.description}</p>
-        <ProductColors colors={item.colorsHashes} maxVisible={5} />
+  const renderProductCard = (item) => {
+    const imageData = getImage(item.mainImage?.localFile);
 
-        <div className="home-product-price">
-          <span className="price-new">{item.price} грн</span>
-          {item.oldPrice && <span className="price-old">{item.oldPrice} грн</span>}
+    return (
+      <a href={`/${item.url}`} className="product-card-link">
+        <div className="product-card">
+          <div className="product-image">
+            <div className="badges-wrapper">
+              {item.stickerNew && <span className="badge new">{item.stickerNewTitle}</span>}
+              {item.stickerSale && <span className="badge discount">{item.stickerSaleTitle}</span>}
+            </div>
+            {item.warning && <span className="badge warning">{item.warning}</span>}
+            {imageData && (
+              <GatsbyImage
+                image={imageData}
+                alt={item.title}
+                objectFit="contain"
+                style={{ width: "100%", height: "100%" }}
+              />
+            )}
+          </div>
+          <div className="product-info">
+            <h3 className="product-title">{item.title}</h3>
+            <p className="product-desc">{item.smallDescription}</p>
+            {item.colorsHashes && <ProductColors colors={item.colorsHashes} maxVisible={5} />}
+            <div className="home-product-price">
+              <span className="price-new">{item.price} грн</span>
+              {item.oldPrice && <span className="price-old">{item.oldPrice} грн</span>}
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  );
+      </a>
+    );
+  };
 
+  // Налаштування гріду
   const isMobileGrid = sliderSettings.mobileAsGrid;
+  const isDesktopGrid = sliderSettings.desktopAsGrid;
 
   return (
-    <div className={`products-slider ${isMobileGrid ? "mobile-grid-active" : ""}`}>
+    <div
+      className={`products-slider ${
+        (isMobileGrid || isDesktopGrid) ? "force-grid" : ""
+      }`}
+    >
       <div className="products-header">
         <h2 className="products-title">{title}</h2>
         {sliderSettings.catalogLink && (
@@ -71,7 +90,7 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
             <img src={arrowRight} alt="Перейти в каталог" />
           </a>
         )}
-        {!sliderSettings.catalogLink && (
+        {!sliderSettings.catalogLink && !isDesktopGrid && (
           <div className="slider-nav-desktop">
             <div ref={prevRef} className="ps-swiper-prev"></div>
             <div ref={nextRef} className="ps-swiper-next"></div>
@@ -80,27 +99,29 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
       </div>
 
       {/* Desktop slider */}
-      <div className="slider-desktop">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={20}
-          breakpoints={breakpoints}
-          navigation={
-            sliderSettings.catalogLink
-              ? false
-              : { prevEl: prevRef.current, nextEl: nextRef.current }
-          }
-          pagination={{ clickable: true }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-        >
-          {data.map((item, idx) => (
-            <SwiperSlide key={idx}>{renderProductCard(item)}</SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+      {!isDesktopGrid && (
+        <div className="slider-desktop">
+          <Swiper
+            modules={[Navigation, Pagination]}
+            spaceBetween={20}
+            breakpoints={breakpoints}
+            navigation={
+              sliderSettings.catalogLink
+                ? false
+                : { prevEl: prevRef.current, nextEl: nextRef.current }
+            }
+            pagination={{ clickable: true }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+          >
+            {data.map((item, idx) => (
+              <SwiperSlide key={idx}>{renderProductCard(item)}</SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      )}
 
-      {/* Mobile grid */}
-      {isMobileGrid && (
+      {/* Mobile / Desktop grid */}
+      {(isMobileGrid || isDesktopGrid) && (
         <div className="products-grid">
           {data.slice(0, visibleCount).map((item, idx) => (
             <div key={idx}>{renderProductCard(item)}</div>
@@ -116,5 +137,6 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     </div>
   );
 };
+
 
 export default ProductsSlider;

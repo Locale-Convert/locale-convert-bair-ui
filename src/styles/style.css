@@ -2500,6 +2500,12 @@ body{
   gap: 5px
 }
 
+.vertical-slider .thumbnail-item > .gatsby-image-wrapper [data-main-image] {
+  border-radius: 6px;
+}
+
+
+
 .vertical-slider .selected {
   border: 2px solid #8DADD2;
 }

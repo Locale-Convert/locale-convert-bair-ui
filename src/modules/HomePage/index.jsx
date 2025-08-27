@@ -36,6 +36,10 @@ export const query = graphql`
                 stickerNewTitle
                 stickerSale
                 stickerSaleTitle
+                smallDescription
+                colorsHashes {
+                  hash
+                }
                 id
                 updatedAt
                 isPriceFrom
@@ -164,11 +168,6 @@ export const query = graphql`
             metaTitle
         }
         strapiHomePage {
-            videoSlider {
-                localFile {
-                    url
-                }
-            }
             videoUrl {
                 url
             }
@@ -403,14 +402,16 @@ const HomePage = () => {
     },
     strapiHomePage: {
       videoUrl,
-      mainPromo,
-      promoOne,
-      promoTwo,
-      promoThree,
-      promoFour,
-      promoFive
+      // mainPromo,
+      // promoOne,
+      // promoTwo,
+      // promoThree,
+      // promoFour,
+      // promoFive
     }
   } = useStaticQuery(query)
+
+  console.log('allStrapiProducts', allStrapiProducts);
 
 
   const [isMobileView, setIsMobileView] = useState(null);
@@ -442,26 +443,26 @@ const HomePage = () => {
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
           <div className="padding-top-bottom">
-            <ProductsSlider
-              data={productsData}
-              title="Коляски"
-              sliderSettings={{
-                initialCount: 4,        // скільки показувати спочатку у гріді
-                loadMoreCount: 4,       // кількість при "Показати ще"
-                breakpoints: {
-                  320: { slidesPerView: 1.2, spaceBetween: 15 },
-                  768: { slidesPerView: 2, spaceBetween: 20 },
-                  1024: { slidesPerView: 2, spaceBetween: 20 },
-                  1440: { slidesPerView: 2, spaceBetween: 20 },
-                },
-                catalogLink: "/catalog",
-                showPagination: true,
-                showNavigation: false,
-                mobileAsSlider: false,
-                mobileAsGrid: true,       // мобільний як грід
-              }}
-              navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
-            />
+              <ProductsSlider
+                data={allStrapiProducts.nodes}
+                title="Коляски"
+                sliderSettings={{
+                  initialCount: 4,
+                  loadMoreCount: 4,
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/strollers",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
           </div>
           <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />
           <BannerWithText imageSrc={secondBanner} text="Конверти в коляску автокрісло або санчата" textStyle={{ maxWidth: '250px' }} />
@@ -487,24 +488,24 @@ const HomePage = () => {
           <div className="banner-wrapper">
             <div className="padding-top-bottom">
               <ProductsSlider
-                data={productsData}
+                data={allStrapiProducts.nodes}
                 title="Коляски"
                 sliderSettings={{
-                  initialCount: 4,        // скільки показувати спочатку у гріді
-                  loadMoreCount: 4,       // кількість при "Показати ще"
+                  initialCount: 4,
+                  loadMoreCount: 4,
                   breakpoints: {
                     320: { slidesPerView: 1.2, spaceBetween: 15 },
                     768: { slidesPerView: 2, spaceBetween: 20 },
                     1024: { slidesPerView: 2, spaceBetween: 20 },
                     1440: { slidesPerView: 2, spaceBetween: 20 },
                   },
-                  catalogLink: "/catalog",
+                  catalogLink: "/strollers",
                   showPagination: true,
                   showNavigation: false,
-                  mobileAsSlider: false,
-                  mobileAsGrid: true,       // мобільний як грід
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
                 }}
-                navigationOnDesktop={false} // на десктопі нема Swiper-стрілок
+                navigationOnDesktop={false}
               />
             </div>
             <BannerWithText imageSrc={fisrtBanner} text="Знайди свою ідеальну коляску" />

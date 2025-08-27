@@ -75,14 +75,14 @@ const Header = ({ isBasketView, setIsBasketView }) => {
   const [showCartModal, setShowCartModal] = useState(false);
 
   const categories = [
-    { title: "Коляски", hasArrow: true },
-    { title: "Конверти", hasArrow: true },
-    { title: "Рукавиці", hasArrow: true },
-    { title: "Автокрісла", hasArrow: true },
-    { title: "Ліжка", hasArrow: true },
-    { title: "Аксесуари", hasArrow: false },
+    { title: "Коляски", hasArrow: true, url: "/strollers" },
+    { title: "Конверти", hasArrow: true, url: "/envelopes" },
+    { title: "Рукавиці", hasArrow: true, url: "/gloves" },
+    { title: "Автокрісла", hasArrow: true, url: "/car-seats" },
+    { title: "Ліжка", hasArrow: true, url: "/beds" },
+    { title: "Аксесуари", hasArrow: false, url: "/accessories" },
   ];
-
+  
   const subCategories = {
     "Коляски": allStrapiProducts.nodes.map(p => ({
       title: p.title,
@@ -112,7 +112,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
 
   useEffect(() => {
     setCartItems(getCartItemsFromLocalStorage());
-  },[])
+  }, [])
 
   const getTotalItemCount = useMemo(() => {
     return cartItems && cartItems.reduce((total, item) => total + (item.count || 1), 0);
@@ -182,10 +182,10 @@ const Header = ({ isBasketView, setIsBasketView }) => {
               <a href="tel:+380961093040"><img src={phone} alt="phone" /></a>
             </div>
             <div className="dropbtn open-cart-btn" onClick={() => showCartModal || setShowCartModal(true)}>
-              <img 
-                src={basket} 
-                alt="Basket" 
-                style={{ filter: (showCartModal && cartItems.length > 0) ? '' : 'none' }} 
+              <img
+                src={basket}
+                alt="Basket"
+                style={{ filter: (showCartModal && cartItems.length > 0) ? '' : 'none' }}
               />
               {getTotalItemCount !== 0 ? <div className="cart-total">{getTotalItemCount}</div> : null}
             </div>

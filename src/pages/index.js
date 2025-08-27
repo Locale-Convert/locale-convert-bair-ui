@@ -12,6 +12,10 @@ export const query = graphql`
                 title
                 price
                 oldPrice
+                smallDescription
+                colorsHashes {
+                  hash
+                }
                 url
                 updatedAt
                 mainImg {
@@ -96,11 +100,6 @@ export const query = graphql`
             metaTitle
         }
         strapiHomePage {
-            videoSlider {
-                localFile {
-                    url
-                }
-            }
             videoUrl {
                 url
             }

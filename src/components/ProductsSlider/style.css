@@ -27,6 +27,16 @@
   display: none;
 }
 
+.products-slider.force-grid .slider-desktop {
+  display: none !important;
+}
+
+.products-slider.force-grid .products-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
 /* Навігаційні кнопки */
 .slider-nav-desktop {
   display: flex;
@@ -81,12 +91,14 @@
 .products-slider .product-card {
   background: #fff;
   border-radius: 4px;
-  padding: 24px;
+  padding: 24px 24px 18px 24px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   min-height: 100%;
   transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Зображення продукту */
@@ -97,15 +109,7 @@
   align-items: center;
   width: 100%;
   min-height: 270px;
-  margin-bottom: 16px;
   position: relative;
-}
-
-.products-slider .product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
 }
 
 /* Бейджі */
@@ -115,6 +119,7 @@
   left: 0;
   display: flex;
   gap: 15px;
+  z-index: 70;
 }
 
 .products-slider .badge {
@@ -164,13 +169,13 @@
 .products-slider .product-desc {
   font-size: 12px;
   color: #908888;
-  margin-bottom: 12px;
 }
 
 .products-slider .product-colors {
   display: flex;
   gap: 8px;
-  margin-bottom: 12px;
+  align-items: center;
+  margin: 8px 0;
 }
 
 .products-slider .color-dot {
@@ -226,12 +231,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f2f2f2;
   color: #333;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
-  border: 1px solid #ccc;
-  border-radius: 50%;
   width: 22px;
   height: 22px;
 }
@@ -242,12 +244,15 @@
     font-size: 24px;
   }
 
-  @media (max-width: 768px) {
+  .products-slider.force-grid .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
   .show-more-wrapper {
     display: block;
     text-align: center;
     margin: 20px 0;
-  }
   }
 
   .products-slider .products-header {
@@ -258,7 +263,6 @@
     display: block;
   }
 
-  /* якщо мобільний грід – ховаємо слайдер */
   .products-slider.mobile-grid-active .slider-desktop {
     display: none;
   }
@@ -270,7 +274,6 @@
     padding: 0 12px;
   }
 
-  /* адаптив для карточок */
   .products-slider .product-card {
     padding: 14px;
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.05);
@@ -279,17 +282,14 @@
 
   .products-slider .product-image {
     min-height: 180px;
-    margin-bottom: 10px;
   }
 
   .products-slider .product-title {
     font-size: 14px;
-    margin-bottom: 4px;
   }
 
   .products-slider .product-desc {
     font-size: 11px;
-    margin-bottom: 8px;
   }
 
   .products-slider .color-dot {

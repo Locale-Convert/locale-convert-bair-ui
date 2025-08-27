@@ -48,11 +48,6 @@ export const query = graphql`
             }
         }
       }
-      videoSlider {
-          localFile {
-              url
-          }
-      }
         videoUrl {
             url
         }
@@ -79,18 +74,12 @@ export const query = graphql`
                 }
               }
             }
-            richDescriptionTextLayer {
-              url
-            }
             mobileRichDescription {
               localFile {
                 childrenImageSharp {
                   gatsbyImageData
                 }
               }
-            }
-            mobileRichDescriptionTextLayer {
-              url
             }
             imageColor {
                 localFile {

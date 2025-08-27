@@ -42,7 +42,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor },) => {
               <div
                 className="main-image"
                 style={{
-                  backgroundImage: `url(${activeItem?.richDescriptionTextLayer[index]?.url})`,
+                  backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: '100%'
                 }}

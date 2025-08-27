@@ -14,7 +14,7 @@ const ProductColors = ({ colors = [], maxVisible = 5 }) => {
         ></span>
       ))}
       {hiddenCount > 0 && (
-        <span className="color-dot more-colors">+{hiddenCount}</span>
+        <span className="more-colors">+{hiddenCount}</span>
       )}
     </div>
   );
