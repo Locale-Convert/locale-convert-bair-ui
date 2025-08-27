@@ -195,7 +195,7 @@
         padding: 15px 0;
         font-weight: bold;
         background-color: #A0E312;
-        z-index: 1000;
+        z-index: 99;
         font-size: 15px;
     }
 }

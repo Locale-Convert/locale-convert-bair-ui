@@ -37,6 +37,7 @@ export const query = graphql`
                 stickerSale
                 stickerSaleTitle
                 smallDescription
+                productTabTitle
                 colorsHashes {
                   hash
                 }
@@ -318,7 +319,7 @@ const HomePage = () => {
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner />
-          <div className="padding-top-bottom">
+          <div className="padding-top-bottom home-product-wrapper">
             <ProductsSlider
               data={allStrapiProducts.nodes}
               title="Коляски"
@@ -338,8 +339,8 @@ const HomePage = () => {
               navigationOnDesktop={false}
             />
           </div>
-            <BannerWithText data={promoOne} />
-            <div className="padding-top-bottom">
+          <BannerWithText data={promoOne} />
+          <div className="padding-top-bottom home-product-wrapper">
             <ProductsSlider
               data={allStrapiProducts.nodes}
               title="Конверти"
@@ -358,8 +359,8 @@ const HomePage = () => {
               }}
               navigationOnDesktop={false}
             />
-            </div>
-            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+          </div>
+          <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
           <SliderVideo videoSlider={videoUrl} />
           {/* <MainBanner promo={mainPromo} />
           <MainBannerWithText />

@@ -13,6 +13,7 @@ export const query = graphql`
                 price
                 oldPrice
                 smallDescription
+                productTabTitle
                 colorsHashes {
                   hash
                 }

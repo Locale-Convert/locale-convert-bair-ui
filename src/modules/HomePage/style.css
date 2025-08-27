@@ -35,4 +35,8 @@
   .banner-wrapper > :nth-child(2) {
     order: 2; /* ProductsSlider */
   }
+
+  .home-product-wrapper {
+    padding: 20px;
+  }
 }
