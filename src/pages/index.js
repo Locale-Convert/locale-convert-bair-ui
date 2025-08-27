@@ -1,7 +1,6 @@
-import * as React from "react"
+import * as React from "react";
 import HomePage from "../modules/HomePage";
-import {graphql,useStaticQuery} from "gatsby";
-
+import { graphql } from "gatsby";
 import Seo from "../components/Seo/Seo";
 
 export const query = graphql`
@@ -19,6 +18,13 @@ export const query = graphql`
                 }
                 url
                 updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
                 mainImg {
                     mobileImage {
                         alternativeText
@@ -120,6 +126,23 @@ export const query = graphql`
                   }
                 }
             }
+            promoOne {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                text
+            }
             promoTwo {
                 desktopImage {
                   localFile {
@@ -135,6 +158,7 @@ export const query = graphql`
                     }
                   }
                 }
+                text
             }
             promoThree {
                 desktopImage {
@@ -188,24 +212,14 @@ export const query = graphql`
     }
 `
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const { strapiHomePageMeta } = data;
   return (
-      <HomePage />
-  )
-}
+    <>
+      <Seo title={strapiHomePageMeta.metaTitle} description={strapiHomePageMeta.metaDescription} />
+      <HomePage data={data} />
+    </>
+  );
+};
 
-export default IndexPage
-
-export const Head = () => {
-    const {
-        strapiHomePageMeta: {
-            metaDescription,
-            metaTitle
-        }
-    } = useStaticQuery(query)
-  return (
-    <Seo title={metaTitle} description={metaDescription} />
-)}
-
-
-
+export default IndexPage;
