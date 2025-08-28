@@ -7,7 +7,7 @@ import Accordion from "../../components/Accordion/Accordion";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 import Tabs from "../../components/Tabs/Tabs";
 
-const StrollersPage = ({ nodes }) => {
+const CatalogPage = ({ nodes, categoryTitle }) => {
     const [isBasketView, setIsBasketView] = useState(false);
     const [activeTab, setActiveTab] = useState("Всі");
 
@@ -22,32 +22,32 @@ const StrollersPage = ({ nodes }) => {
     }, [activeTab, nodes]);
 
     const sliderTitle = useMemo(() => {
-        return activeTab === "Всі" ? "Коляски" : `${activeTab}`;
-    }, [activeTab]);
+        return activeTab === "Всі" ? categoryTitle : `${activeTab}`;
+    }, [activeTab, categoryTitle]);
 
     return (
-        <div className="strollers-wrapper">
+        <>
             <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
-
             <div className="catalog-wrapper">
-                <div className="catalog-title">{sliderTitle}</div>
-                <Tabs items={tabList} onChange={setActiveTab} defaultActive="Всі" />
-                <ProductsSlider
-                    data={filteredNodes}
-                    sliderSettings={{
-                        mobileAsGrid: true,
-                        desktopAsGrid: true, 
-                        initialCount: 8,
-                        loadMoreCount: 4  
-                    }}
-                />
+
+                <div className="catalog-content">
+                    <div className="catalog-title">{sliderTitle}</div>
+                    <Tabs items={tabList} onChange={setActiveTab} defaultActive="Всі" />
+                    <ProductsSlider
+                        data={filteredNodes}
+                        sliderSettings={{
+                            mobileAsGrid: true,
+                            desktopAsGrid: true,
+                            initialCount: 8,
+                            loadMoreCount: 4
+                        }}
+                    />
+                </div>
             </div>
-
-            <Accordion showCategories={false} category="Коляски" />
-
+            <Accordion showCategories={false} category={categoryTitle} />
             <Footer link="#top" />
-        </div>
-    )
-}
+        </>
+    );
+};
 
-export default StrollersPage;
+export default CatalogPage;

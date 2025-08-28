@@ -4,31 +4,31 @@ import {graphql} from "gatsby";
 import Seo from "../components/Seo/Seo";
 
 
-const StrapiProductUrl = ({ data }) => {
+const StrapiBedsUrl = ({ data }) => {
 
   return (
     <ProductPage
-      data={data.strapiProducts}
+      data={data.strapiBeds}
       relatedProducts={data.allStrapiProducts}
       also={data.allStrapiAccessories}
-      category={'Коляски'}
+      category={'Ліжка'}
     />
   )
 }
 
-export default StrapiProductUrl
+export default StrapiBedsUrl;
 
 
-export const Head = ({data}) => {
-  const metaTitle = data.strapiProducts.metaTitle;
-  const metaDescription = data.strapiProducts.metaDescription;
+export const Head = ({ data }) => {
+  const metaTitle = data.strapiBeds.metaTitle;
+  const metaDescription = data.strapiBeds.metaDescription;
   return (
     <Seo title={metaTitle} description={metaDescription} />
   )}
 
 export const query = graphql`
-  query ProductPage($url: String!) {
-    strapiProducts(url: { eq: $url }) {
+  query BedsPage($url: String!) {
+    strapiBeds(url: { eq: $url }) {
       id
       url
       title

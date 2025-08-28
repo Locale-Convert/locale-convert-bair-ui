@@ -3,8 +3,8 @@ import { graphql } from "gatsby";
 import CatalogPage from "../modules/CatalogPage";
 
 export const query = graphql`
-  query strollers {
-    allStrapiProducts(
+  query mittens {
+    allStrapiMittens(
       sort: { fields: priority, order: DESC }
     ) {
       nodes {
@@ -30,13 +30,13 @@ export const query = graphql`
   }
 `
 
-const Strollers = ({ data }) => {
+const Mittens = ({ data }) => {
   return (
     <CatalogPage
-      nodes={data.allStrapiProducts.nodes} 
-      categoryTitle="Коляски"
+      nodes={data.allStrapiMittens.nodes} 
+      categoryTitle="Рукавички"
     />
   )
 }
 
-export default Strollers;
+export default Mittens;

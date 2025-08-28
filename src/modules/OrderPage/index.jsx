@@ -56,9 +56,6 @@ const OrderPage = ({ data }) => {
   }));
 
   const handlerOrderSubmit = async (values) => {
-    console.log("=== SUBMIT VALUES ===", values);   // 👉 перевірка
-    console.log("Selected payment method:", selectedPaymentMethod);
-    console.log("Cart items:", filteredCartItems);
     if (selectedPaymentMethod === "При одержанні") {
       try {
         setIsSubmitting(true);

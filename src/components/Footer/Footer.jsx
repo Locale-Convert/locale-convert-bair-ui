@@ -25,7 +25,7 @@ export const query = graphql`
 
 const CATEGORIES = [
   { label: "Коляски", url: "/strollers" },
-  { label: "Конверти", url: "/envelopes" },
+  { label: "Конверти", url: "/footmuffs" },
   { label: "Рукавиці", url: "/mittens" },
   { label: "Автокрісла", url: "/car-seats" },
   { label: "Ліжка", url: "/beds" },

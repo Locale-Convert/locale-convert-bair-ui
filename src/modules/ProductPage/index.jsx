@@ -147,25 +147,6 @@ const productsData = [
   }
 ];
 
-const productSpecsFromApi = [
-  { attribute: "Процесор", value: "Intel i7" },
-  { attribute: "ОЗП", value: "16 ГБ" },
-  { attribute: "Диск", value: "512 ГБ SSD" },
-  { attribute: "Операційна система", value: "Windows 11" },
-  { attribute: "Процесор", value: "Intel i7" },
-  { attribute: "ОЗП", value: "16 ГБ" },
-  { attribute: "Диск", value: "512 ГБ SSD" },
-  { attribute: "Операційна система", value: "Windows 11" },
-  { attribute: "Процесор", value: "Intel i7" },
-  { attribute: "ОЗП", value: "16 ГБ" },
-  { attribute: "Диск", value: "512 ГБ SSD" },
-  { attribute: "Операційна система", value: "Windows 11" },
-  { attribute: "Процесор", value: "Intel i7" },
-  { attribute: "ОЗП", value: "16 ГБ" },
-  { attribute: "Диск", value: "512 ГБ SSD" },
-  { attribute: "Операційна система", value: "Windows 11" }
-]
-
 const mockVideoSlider = [
   {
     url: "https://player.vimeo.com/video/1017799800",
@@ -194,7 +175,8 @@ const ProductPage = ({
   relatedProducts: {
     nodes
   },
-  also
+  also,
+  category
 }) => {
   const location = useLocation();
   const relatedProducts = relatedProductsHook(nodes, location);
@@ -327,7 +309,7 @@ const ProductPage = ({
         {/* <CommunicationButton /> */}
         <Accordion
           showCategories={false}
-          category={'Коляски'}
+          category={category}
         />
 
         <Footer link={"#top"} />

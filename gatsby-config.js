@@ -12,7 +12,11 @@ module.exports = {
         queryLimit: 1000,
         collectionTypes: [
           "products",
-          "accessories"
+          "accessories",
+          "beds",
+          "car-seats",
+          "footmuffs",
+          "mittens"
         ],
         singleTypes: [
           "home-page",

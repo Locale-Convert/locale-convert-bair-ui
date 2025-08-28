@@ -76,7 +76,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
 
   const categories = [
     { title: "Коляски", hasArrow: true, url: "/strollers" },
-    { title: "Конверти", hasArrow: true, url: "/envelopes" },
+    { title: "Конверти", hasArrow: true, url: "/footmuffs" },
     { title: "Рукавиці", hasArrow: true, url: "/gloves" },
     { title: "Автокрісла", hasArrow: true, url: "/car-seats" },
     { title: "Ліжка", hasArrow: true, url: "/beds" },
@@ -160,7 +160,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
             <a href="/strollers" className="dropbtn">Коляски</a>
           </div>
           <div>
-            <a href="/envelopes" className="dropbtn">Конверти</a>
+            <a href="/footmuffs" className="dropbtn">Конверти</a>
           </div>
           <div>
             <a href="/mittens" className="dropbtn">Рукавиці</a>
