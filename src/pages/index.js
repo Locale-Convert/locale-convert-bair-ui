@@ -69,12 +69,17 @@ export const query = graphql`
                 }
             }
         }
-        allStrapiAccessories {
+        allStrapiAccessories(sort: { fields: priority, order: DESC }) {
             nodes {
                 id
                 title
                 price
                 oldPrice
+                smallDescription
+                productTabTitle
+                colorsHashes {
+                  hash
+                }
                 url
                 updatedAt
                 mainImage {
@@ -84,53 +89,111 @@ export const query = graphql`
                         }
                     }
                 }
-                isPriceFrom
-                colorSlider {
-                  colorPrice
-                  colorOldPrice
-                  coloStickerSaleTitle
-                  isSale
-                  isSaleTitle
-                  color
-                  visible
-                  article
-                  mainImageColor {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                  imageColor {
-                      localFile {
-                          childImageSharp {
-                              gatsbyImageData
-                          }
-                      }
-                  }
-                  characteristicsSlider {
-                      localFile {
-                          childImageSharp {
-                              gatsbyImageData
-                          }
-                      }
-                  }
-              }
                 mainImg {
-                  desktopImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    mobileImage {
+                        alternativeText
+                        url
                     }
-                  }
-                  mobileImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    desktopImage {
+                        alternativeText
+                        url
                     }
-                  }
+                }
+            }
+        }
+        allStrapiCarSeats(sort: { fields: priority, order: DESC }) {
+            nodes {
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                colorsHashes {
+                  hash
+                }
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
+                }
+            }
+        }
+        allStrapiFootmuffs(sort: { fields: priority, order: DESC }) {
+            nodes {
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                colorsHashes {
+                  hash
+                }
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
+                }
+            }
+        }
+        allStrapiMittens(sort: { fields: priority, order: DESC }) {
+            nodes {
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                colorsHashes {
+                  hash
+                }
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
                 }
             }
         }

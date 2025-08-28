@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { GatsbyImage } from "gatsby-plugin-image";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import { isAfter } from 'date-fns';
 import { getImageHelper } from "../../hooks";
 import close from "../../images/close-grey.svg";
-
 
 import { useCartStore } from "../../store/store";
 
@@ -13,98 +17,59 @@ import './style.css';
 
 const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, closeCartModal, isBasketView, setIsBasketView }) => {
     const { cartItems, setCartItems } = useCartStore();
-    const displayedItems = cartItems?.slice(0, 2);
+    const [isMobileView, setIsMobileView] = useState(null);
 
     useEffect(() => {
-        checkForUpdates();
-    },[showCartModal])
+        const determineScreenSize = () => setIsMobileView(window.innerWidth < 600);
+        determineScreenSize();
+        const handleResize = () => setIsMobileView(window.innerWidth < 600);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => { checkForUpdates(); }, [showCartModal]);
 
     const removeItem = (index) => {
         const updatedCartItems = [...cartItems];
-        const removedItem = updatedCartItems.splice(index, 1)[0];
+        updatedCartItems.splice(index, 1);
         setCartItems(updatedCartItems);
-
         localStorage.setItem('selectedProducts', JSON.stringify(updatedCartItems));
-
-        let newTotalAmount = 0;
-        updatedCartItems.forEach((item) => {
-            newTotalAmount += Number(item.price) * (item.count || 1);
-        });
-
-        localStorage.setItem('totalAmount', newTotalAmount);
+        const total = updatedCartItems.reduce((sum, i) => sum + Number(i.price) * (i.count || 1), 0);
+        localStorage.setItem('totalAmount', total);
     };
 
     const checkForUpdates = () => {
         const updatedCartItems = cartItems.map((item) => {
-            const updatedProduct = allStrapiProducts?.nodes.find((product) => product.id === item.id) || 
-                                   allStrapiAccessories?.nodes.find((accessory) => accessory.id === item.id);
-        
-            if (updatedProduct) {
-                const currentUpdatedAt = new Date(updatedProduct.updatedAt);
-                const cartUpdatedAt = new Date(item.updatedAt);
+            const updatedProduct = allStrapiProducts?.nodes.find(p => p.id === item.id) ||
+                                   allStrapiAccessories?.nodes.find(a => a.id === item.id);
+            if (!updatedProduct) return item;
 
-                const isProductUpdated = isAfter(currentUpdatedAt, cartUpdatedAt);
-    
-                const isPriceUpdated = updatedProduct.price !== item.price;
-    
-                if (isProductUpdated || isPriceUpdated) {
-                    let updatedPrice = updatedProduct.price;
-        
-                    if (updatedProduct.colorSlider && updatedProduct.colorSlider.length > 0) {
-                        const selectedColor = updatedProduct.colorSlider.find(color => color.article === item.article);
-                        
-                        if (selectedColor) {
-                            updatedPrice = selectedColor.colorPrice || updatedProduct.price;
-                        }
-                    }
-        
-                    if (updatedProduct.colorSlider && updatedProduct.colorSlider.length === 0) {
-                        updatedPrice = updatedProduct.price || updatedPrice;
-                    }
-        
-                    return {
-                        ...item,
-                        price: updatedPrice,
-                        oldPrice: updatedProduct.oldPrice,
-                        updatedAt: updatedProduct.updatedAt,
-                    };
+            const isProductUpdated = isAfter(new Date(updatedProduct.updatedAt), new Date(item.updatedAt));
+            const isPriceUpdated = updatedProduct.price !== item.price;
+
+            if (isProductUpdated || isPriceUpdated) {
+                let updatedPrice = updatedProduct.price;
+
+                if (updatedProduct.colorSlider?.length) {
+                    const selectedColor = updatedProduct.colorSlider.find(c => c.article === item.article);
+                    if (selectedColor) updatedPrice = selectedColor.colorPrice || updatedProduct.price;
                 }
+
+                return {
+                    ...item,
+                    price: updatedPrice,
+                    oldPrice: updatedProduct.oldPrice,
+                    updatedAt: updatedProduct.updatedAt
+                };
             }
-        
             return item;
         });
 
         setCartItems(updatedCartItems);
-        if(updatedCartItems.length !== 0) {
-            localStorage.setItem('selectedProducts', JSON.stringify(updatedCartItems));
-        }
+        if(updatedCartItems.length !== 0) localStorage.setItem('selectedProducts', JSON.stringify(updatedCartItems));
 
-        let newTotalAmount = 0;
-        updatedCartItems.forEach((item) => {
-            newTotalAmount += Number(item.price) * (item.count || 1);
-        });
-        
-        localStorage.setItem('totalAmount', newTotalAmount);
-    };
-    
-    const handleCountChange = (index, change) => {
-        const updatedCartItems = [...cartItems];
-        const updatedItem = { ...updatedCartItems[index] };
-
-        updatedItem.count += change;
-        if (updatedItem.count < 1) updatedItem.count = 1;
-
-        updatedCartItems[index] = updatedItem;
-
-        setCartItems(updatedCartItems);
-        localStorage.setItem('selectedProducts', JSON.stringify(updatedCartItems));
-
-        let newTotalAmount = 0;
-        updatedCartItems.forEach((item) => {
-            newTotalAmount += Number(item.price) * (item.count || 1);
-        });
-
-        localStorage.setItem('totalAmount', newTotalAmount);
+        const total = updatedCartItems.reduce((sum, i) => sum + Number(i.price) * (i.count || 1), 0);
+        localStorage.setItem('totalAmount', total);
     };
 
     const closeBasket = () => setIsBasketView(false);
@@ -112,10 +77,8 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
     useEffect(() => {
         const handleKeyPress = (e) => { if (e.key === 'Escape') { closeBasket(); closeCartModal(); } };
         const handleClickOutside = (e) => { if (showCartModal && !e.target.closest('.modal')) { closeBasket(); closeCartModal(); } };
-
         document.addEventListener('keydown', handleKeyPress);
         document.addEventListener('click', handleClickOutside);
-
         return () => {
             document.removeEventListener('keydown', handleKeyPress);
             document.removeEventListener('click', handleClickOutside);
@@ -124,11 +87,75 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
 
     const totalAmount = cartItems.reduce((sum, item) => sum + Number(item.price) * (item.count || 1), 0);
 
-    // Товари «З цим товаром купують» – можна тут просто як приклад
     const suggestedItems = cartItems.length > 0 ? [
-        // { title: "Alaska Thermo", price: 2889, image: close },
-        // { title: "Bair Northmuff", price: 999, image: close },
+        { title: "Alaska Thermo", price: 2889, image: close },
+        { title: "Bair Northmuff", price: 999, image: close },
+        { title: "Alaska Thermo", price: 2889, image: close },
+        { title: "Bair Northmuff", price: 999, image: close },
+        { title: "Alaska Thermo", price: 2889, image: close },
+        { title: "Bair Northmuff", price: 999, image: close },
     ] : [];
+
+    const renderSuggestionsSlider = () => {
+        if (!suggestedItems.length || isMobileView) return null;
+
+        return (
+            <div className={`cart-suggestions ${isMobileView ? 'mobile' : 'desktop'}`}>
+                <div className="suggestions-title">З цим товаром купляють</div>
+                <div className="suggestions-sliders">
+                    <Swiper
+                        direction="horizontal"
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        pagination={{ clickable: true }}
+                        navigation
+                        modules={[Pagination, Navigation]}
+                        className="suggestions-swiper"
+                    >
+                        {suggestedItems.map((item, i) => (
+                            <SwiperSlide key={`left-${i}`}>
+                                <div className="suggestion-item">
+                                    <div className="suggestion-image">
+                                        <img src={item.image} alt={item.title} />
+                                    </div>
+                                    <div className="suggestion-info">
+                                        <div className="suggestion-title">{item.title}</div>
+                                        <div className="suggestion-price">{item.price} грн</div>
+                                        <button className="suggestion-add-btn">ДОДАТИ</button>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+
+                    <Swiper
+                        direction="horizontal"
+                        slidesPerView={1}
+                        spaceBetween={10}
+                        pagination={{ clickable: true }}
+                        navigation
+                        modules={[Pagination, Navigation]}
+                        className="suggestions-swiper"
+                    >
+                        {suggestedItems.map((item, i) => (
+                            <SwiperSlide key={`right-${i}`}>
+                                <div className="suggestion-item">
+                                    <div className="suggestion-image">
+                                        <img src={item.image} alt={item.title} />
+                                    </div>
+                                    <div className="suggestion-info">
+                                        <div className="suggestion-title">{item.title}</div>
+                                        <div className="suggestion-price">{item.price} грн</div>
+                                        <button className="suggestion-add-btn">ДОДАТИ</button>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <div className={((showCartModal || isBasketView) && cartItems?.length > 0) ? "modal-overlay open" : "modal-overlay"}>
@@ -170,25 +197,7 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
                     </div>
                 )}
 
-                {suggestedItems.length > 0 && (
-                    <div className="cart-suggestions">
-                        <div className="suggestions-title">З цим товаром купляють</div>
-                        <div className="suggestions-list">
-                            {suggestedItems.map((item, i) => (
-                                <div className="suggestion-item" key={i}>
-                                    <div className="suggestion-image">
-                                        <img src={item.image} alt={item.title} />
-                                    </div>
-                                    <div className="suggestion-info">
-                                        <div className="suggestion-title">{item.title}</div>
-                                        <div className="suggestion-price">{item.price} грн</div>
-                                        <button className="suggestion-add-btn">ДОДАТИ</button>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                {renderSuggestionsSlider()}
 
             </div>
         </div>

@@ -29,16 +29,14 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
   };
   const breakpoints = sliderSettings.breakpoints || defaultBreakpoints;
 
-  // ✅ Сумісність зі старим і новим API налаштувань
-  const isMobileGrid = !!sliderSettings.mobileAsGrid;     // мобільний грід
-  const isDesktopGrid = !!sliderSettings.desktopAsGrid;   // десктопний грід
+  const isMobileGrid = !!sliderSettings.mobileAsGrid;
+  const isDesktopGrid = !!sliderSettings.desktopAsGrid;
 
-  const showNavigation = !!sliderSettings.showNavigation; // показувати стрілки
-  const showPagination = sliderSettings.showPagination !== false; // пагінація (за замовчуванням true)
-  const catalogLink = sliderSettings.catalogLink || null; // лінк у хедері
+  const showNavigation = !!sliderSettings.showNavigation;
+  const showPagination = sliderSettings.showPagination !== false;
+  const catalogLink = sliderSettings.catalogLink || null;
 
   useEffect(() => {
-    // ініціалізація стрілок лише коли вони увімкнені і є слайдер (тобто НЕ десктопний грід)
     if (swiperRef.current && showNavigation && !isDesktopGrid) {
       swiperRef.current.params.navigation.prevEl = prevRef.current;
       swiperRef.current.params.navigation.nextEl = nextRef.current;
