@@ -1,5 +1,3 @@
-/* style.css */
-
 .slider-video-wrapper {
   padding: 0 38px 60px 38px;
   margin-bottom: 20px;
@@ -23,8 +21,7 @@
   bottom: 0 !important;
   position: absolute;
 }
-
-/* Навігаційні кнопки */
+/* Кнопки */
 .slider-nav-video {
   display: flex;
   gap: 10px;
@@ -42,10 +39,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: none;
-  background-color: #fff;
-  border-radius: 50%;
   border: 1px solid #ddd;
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,30 +70,23 @@
   transform: rotate(180deg);
 }
 
-/* Слайди */
-.video-slide-wrapper-video {
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-/* Базові стилі для слайдів */
+/* Базові слайди */
 .slider-video .swiper-slide {
   opacity: 0.6;
   transform: scale(0.85);
   z-index: 1;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  /* забезпечити, що слайд не буде стискатись */
+  flex: 0 0 auto;
 }
 
-/* Ефект збільшення тільки на десктопі */
 .slider-video .active-slide {
   opacity: 1;
   transform: scale(1);
   z-index: 10;
 }
 
-.video-slide-wrapper-video.active iframe {
-  pointer-events: auto;
-}
-
+/* Пагінація */
 .swiper-pagination-bullet {
   background-color: #d3d3d3;
   opacity: 1;
@@ -110,13 +98,8 @@
 }
 
 .swiper-pagination-bullet-active {
-  width: 13px;
-  height: 13px;
   background: #8bc34a;
-  margin: 0 6.5px;
 }
-
-/* Медіа-запити */
 @media (max-width: 1024px) {
   .slider-title-video {
     text-align: left;
@@ -135,7 +118,7 @@
   }
 
   .slider-header-video {
-    padding-left: 20px;
+    padding-left: 10px;
     justify-content: space-between;
   }
 
@@ -146,11 +129,27 @@
   .slider-video .swiper-pagination {
     display: none;
   }
-}
 
-@media (max-width: 420px) {
-  .slider-video {
-    transform: scale(1);
+  /* ключове: прижати wrapper вліво, щоб перший слайд був прижатий */
+  .slider-video .swiper-wrapper {
+    justify-content: flex-start !important;
   }
 
+  /* щоб слайд мав "peek" наступного слайда — даємо auto width + мінімальну ширину
+     (регулюй value для бажаного вигляду) */
+  .slider-video .swiper-slide {
+    width: calc(100% - 56px) !important; /* підганяй: 56px — це "підсумок" пробілу для peek */
+    max-width: calc(100% - 56px) !important;
+  }
+
+  /* якщо потрібно точніше прижати iframe всередині слайда */
+  .video-slide-wrapper-video {
+    margin-left: 0;
+  }
+}
+
+/* Додатково можна стиль зробити менш різким */
+.video-slide-wrapper-video {
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  will-change: transform, opacity;
 }
