@@ -106,6 +106,9 @@ export const query = graphql`
     }
     allStrapiProducts {
         nodes {
+            colorsHashes {
+              hash
+            }
             stickerBlackFriday
             stickerBlackFridayTitle
             stickerNew

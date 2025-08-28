@@ -12,11 +12,12 @@ import './style.css';
 import SliderVideo from "../../components/SliderVideo/SliderVideo";
 
 const HomePage = ({ data }) => {
-    const { 
-        allStrapiProducts, 
-        allStrapiAccessories: { nodes }, 
-        strapiHomePage: { videoUrl, promoOne, promoTwo } 
-    } = data;
+  const {
+    allStrapiProducts,
+    allStrapiAccessories: { nodes },
+    allStrapiBeds,
+    strapiHomePage: { videoUrl, promoOne, promoTwo }
+  } = data;
 
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
@@ -88,6 +89,27 @@ const HomePage = ({ data }) => {
             />
           </div>
           <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+          <div className="padding-top-bottom home-product-wrapper">
+            <ProductsSlider
+              data={allStrapiBeds.nodes}
+              title="Ліжка"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
           <SliderVideo videoSlider={videoUrl} />
           <SliderInstagram />
           <Accordion />
@@ -139,6 +161,27 @@ const HomePage = ({ data }) => {
               }}
               navigationOnDesktop={false}
             />
+          </div>
+          <div className="banner-wrapper">
+            <ProductsSlider
+              data={allStrapiBeds.nodes}
+              title="Ліжка"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
           </div>
           <SliderVideo videoSlider={videoUrl} />
           <SliderInstagram />

@@ -37,6 +37,38 @@ export const query = graphql`
                 }
             }
         }
+        allStrapiBeds(sort: { fields: priority, order: DESC }) {
+            nodes {
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                colorsHashes {
+                  hash
+                }
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
+                }
+            }
+        }
         allStrapiAccessories {
             nodes {
                 id

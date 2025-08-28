@@ -112,6 +112,9 @@ export const query = graphql`
             stickerNewTitle
             stickerSale
             stickerSaleTitle
+            colorsHashes {
+              hash
+            }
             id
             updatedAt
             isPriceFrom

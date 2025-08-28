@@ -25,128 +25,6 @@ import SliderVideo from "../../components/SliderVideo/SliderVideo";
 import example1 from "../../images/example1.png";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 
-const productsData = [
-  {
-    title: "Alaska Thermo",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "2 889",
-    oldPrice: "3 499",
-    discount: 20,
-    isNew: true,
-    // warning: "Не сумісно з Balios S",
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Bair Nordie",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "3 299",
-    oldPrice: null,
-    discount: 20,
-    isNew: false,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Urban Comfort",
-    description: "Зручний конверт для прогулянок у місті.",
-    image: example1,
-    price: "2 499",
-    oldPrice: "2 899",
-    discount: 15,
-    isNew: false,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Winter Pro",
-    description: "Теплий варіант для холодної погоди.",
-    image: example1,
-    price: "3 599",
-    oldPrice: null,
-    discount: null,
-    isNew: true,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Alaska Thermo",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "2 889",
-    oldPrice: "3 499",
-    discount: 20,
-    isNew: true,
-    // warning: "Не сумісно з Balios S",
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Bair Nordie",
-    description: "Найкомпактніша і найлегша в лінійці. Ідеальна для міста.",
-    image: example1,
-    price: "3 299",
-    oldPrice: null,
-    discount: 20,
-    isNew: false,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  },
-  {
-    title: "Winter Pro",
-    description: "Теплий варіант для холодної погоди.",
-    image: example1,
-    price: "3 599",
-    oldPrice: null,
-    discount: null,
-    isNew: true,
-    warning: null,
-    colorsHashes: [
-      { hash: "#f5f5f5" },
-      { hash: "#e1bee7" },
-      { hash: "#c8e6c9" },
-      { hash: "#ffccbc" },
-      { hash: "#a1887f" },
-    ],
-  }
-];
-
 const mockVideoSlider = [
   {
     url: "https://player.vimeo.com/video/1017799800",
@@ -282,7 +160,7 @@ const ProductPage = ({
         <SliderVideo videoSlider={mockVideoSlider} />
         <div className="order-wrapper">
           <ProductsSlider
-            data={productsData}
+            data={nodes}
             title="Купляють разом"
             sliderSettings={{
               initialCount: 4,        // скільки продуктів показувати спочатку в мобільному списку
