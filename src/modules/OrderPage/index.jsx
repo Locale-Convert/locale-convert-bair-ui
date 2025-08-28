@@ -56,7 +56,10 @@ const OrderPage = ({ data }) => {
   }));
 
   const handlerOrderSubmit = async (values) => {
-    if (selectedPaymentMethod === "CashOnDelivery") {
+    console.log("=== SUBMIT VALUES ===", values);   // 👉 перевірка
+    console.log("Selected payment method:", selectedPaymentMethod);
+    console.log("Cart items:", filteredCartItems);
+    if (selectedPaymentMethod === "При одержанні") {
       try {
         setIsSubmitting(true);
         onFormSubmit("service_mwsw4n4", "template_493nfyk", form.current, "Dtntig-pRWw1ON0vO");
@@ -65,7 +68,7 @@ const OrderPage = ({ data }) => {
       } finally {
         setCartItems([]);
       }
-    } else if (selectedPaymentMethod === "Wayforpay") {
+    } else if (selectedPaymentMethod === "Оплатити зараз") {
       setIsSubmitting(true);
       try {
         const merch = {
@@ -85,12 +88,10 @@ const OrderPage = ({ data }) => {
     }
   };
 
-  // 🔑 тут керуємо кроками
   useEffect(() => {
     if (!formValues) return;
     const newSteps = ["inactive", "inactive", "inactive", "inactive"];
 
-    // Step 1: Контакти
     if (formValues.name && formValues.surname && formValues.email && formValues.phone) {
       newSteps[0] = "completed";
       newSteps[1] = "active";
@@ -98,7 +99,6 @@ const OrderPage = ({ data }) => {
       newSteps[0] = "active";
     }
 
-    // Step 2: Доставка
     if (formValues.deliveryMethod === "Нова Пошта" && formValues.city && formValues.department) {
       newSteps[1] = "completed";
       newSteps[2] = "active";
@@ -107,7 +107,6 @@ const OrderPage = ({ data }) => {
       newSteps[2] = "active";
     }
 
-    // Step 3: Оплата
     if (formValues.paymentMethod) {
       newSteps[2] = "completed";
       newSteps[3] = "active";
@@ -141,11 +140,9 @@ const OrderPage = ({ data }) => {
             onSubmit={(values) => handlerOrderSubmit(values)}
           >
             {(props) => (
-              <Form ref={form}>
-                {/* 👇 спостерігаємо за Formik values */}
+              <Form ref={form} id="order-form">
                 <FormikObserver onChange={setFormValues} />
 
-                {/* Контакти */}
                 <div className="order-block">
                   <h2 className="order-block-title">Ваші контактні дані</h2>
                   <div className="order-inputs">
@@ -180,7 +177,6 @@ const OrderPage = ({ data }) => {
                   </div>
                 </div>
 
-                {/* Доставка */}
                 <div className="order-block">
                   <h2 className="order-block-title">Виберіть спосіб доставки</h2>
                   <div className="order-radios-horizontal">
@@ -231,7 +227,6 @@ const OrderPage = ({ data }) => {
                   </div>
                 </div>
 
-                {/* Оплата */}
                 <PaymentMethod
                   selectedPaymentMethod={selectedPaymentMethod}
                   setSelectedPaymentMethod={setSelectedPaymentMethod}
@@ -255,7 +250,6 @@ const OrderPage = ({ data }) => {
           </Formik>
         </div>
 
-        {/* === Правий блок === */}
         <OrderSummary 
             cartItems={cartItems} 
             totalAmount={totalAmount} 

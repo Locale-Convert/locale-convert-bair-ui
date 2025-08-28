@@ -102,22 +102,22 @@ const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
         </div>
 
         {/* Підсумки */}
-      <div>
-        <div className="order-summary-item">
-          <span>Товар ({cartItems.length})</span>
-          <span>{totalAmount ? totalAmount + " грн" : "—"}</span>
-        </div>
-        {discountAmount > 0 ? (
+        <div>
           <div className="order-summary-item">
-            <span>Знижка</span>
-            <span className="discount">- {discountAmount} грн</span>
+            <span>Товар ({cartItems.length})</span>
+            <span>{totalAmount ? totalAmount + " грн" : "—"}</span>
           </div>
-        ) : null}
-        <div className="order-summary-item">
-          <span>Вартість доставки</span>
-          <span className="free">безкоштовно</span>
+          {discountAmount > 0 ? (
+            <div className="order-summary-item">
+              <span>Знижка</span>
+              <span className="discount">- {discountAmount} грн</span>
+            </div>
+          ) : null}
+          <div className="order-summary-item">
+            <span>Вартість доставки</span>
+            <span className="free">безкоштовно</span>
+          </div>
         </div>
-      </div>
 
         {/* Виділення "До сплати" */}
         <div className="order-summary-total">
@@ -137,7 +137,14 @@ const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
           </div>
         </div>
 
-        <button className="btn-submit full">НАДІСЛАТИ ЗАМОВЛЕННЯ</button>
+        {/* 🔑 кнопка тепер відправляє форму */}
+        <button
+          className="btn-submit full"
+          form="order-form"
+          type="submit"
+        >
+          НАДІСЛАТИ ЗАМОВЛЕННЯ
+        </button>
 
         <div className="order-summary-info">
           <p>
