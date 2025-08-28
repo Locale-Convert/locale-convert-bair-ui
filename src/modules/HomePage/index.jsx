@@ -18,8 +18,6 @@ const HomePage = ({ data }) => {
         strapiHomePage: { videoUrl, promoOne, promoTwo } 
     } = data;
 
-    console.log('data', data);
-
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
 

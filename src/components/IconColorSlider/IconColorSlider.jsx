@@ -97,7 +97,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
     setCurrentColor(item);
     setColorArticle(!!item?.article && item?.article); // для зміни статті в BlockTitle
-    setActiveColor(item.article);
+    setActiveColor(item);
     setColorTitle(!!item?.color && item?.color); // для BlockTitle mobile
     setSliderImage(!!item?.characteristicsSlider && item?.characteristicsSlider); // для зміни основного слайдера
 

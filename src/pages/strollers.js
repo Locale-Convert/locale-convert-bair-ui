@@ -11,6 +11,7 @@ export const query = graphql`
         price
         oldPrice
         smallDescription
+        productTabTitle
         stickerBlackFriday
         stickerBlackFridayTitle
         stickerNew

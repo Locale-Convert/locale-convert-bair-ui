@@ -10,8 +10,6 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
 
     const { cartItems } = useCartStore();
 
-    console.log('currentColor', currentColor);
-
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
         handleResize();
