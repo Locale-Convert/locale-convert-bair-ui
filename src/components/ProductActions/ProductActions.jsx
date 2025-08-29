@@ -5,7 +5,6 @@ import { useCartStore } from "../../store/store";
 
 const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, showPrice }) => {
     const [showMobileActions, setShowMobileActions] = useState(false);
-    const [lastScrollY, setLastScrollY] = useState(0);
     const [isMobile, setIsMobile] = useState(false);
 
     const { cartItems } = useCartStore();
@@ -21,14 +20,20 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
         if (!isMobile) return;
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            if (currentScrollY === 0) setShowMobileActions(false);
-            else if (currentScrollY < lastScrollY) setShowMobileActions(true);
-            else setShowMobileActions(false);
-            setLastScrollY(currentScrollY);
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            if (currentScrollY === 0 || currentScrollY + windowHeight >= docHeight) {
+                setShowMobileActions(false);
+            } else {
+                setShowMobileActions(true);
+            }
         };
+
+        handleScroll();
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [isMobile, lastScrollY]);
+    }, [isMobile]);
 
     const getTotalItemCount = useMemo(() => {
         return cartItems && cartItems.reduce((total, item) => total + (item.count || 1), 0);
@@ -79,7 +84,10 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
                         </div>
                     )}
                     <div className="product-actions">
-                        <button className="add-to-cart" onClick={() => addToBasket(currentColor, currentColor.article)}>
+                        <button
+                            className="add-to-cart"
+                            onClick={() => addToBasket(currentColor, currentColor.article)}
+                        >
                             ДОДАТИ В КОШИК
                         </button>
                         <button className="buy-now">КУПИТИ ЗАРАЗ</button>
