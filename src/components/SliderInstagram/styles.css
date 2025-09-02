@@ -5,8 +5,9 @@
 .wrapper-slider {
   max-width: 100%;
   margin: 0 auto 20px auto;
-  padding: 0 38px 60px 38px;
-  position: relative; /* додано, щоб кнопки були відносно цього контейнера */
+  padding: 0 38px 80px 38px; /* запас для пагінації */
+  position: relative;
+  overflow: visible; /* щоб не обрізало */
 }
 
 .slider-header {
@@ -21,6 +22,14 @@
   text-align: center;
   font-size: 40px;
   font-weight: 700;
+}
+
+.slider-instagram .swiper-pagination {
+  position: absolute;
+  bottom: 20px !important; /* замість -26px */
+  left: 0;
+  width: 100%;
+  z-index: 90;
 }
 
 /* Кнопки навігації */
@@ -78,11 +87,17 @@
 
 @media (max-width: 768px) {
   .wrapper-slider {
-    padding: 0;
+    padding: 0 0 60px 0; /* лишив запас знизу для пагінації */
     margin-top: 10px;
   }
 
   .slider-header {
     justify-content: space-between;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper-slider {
+    padding-bottom: 100px;
   }
 }

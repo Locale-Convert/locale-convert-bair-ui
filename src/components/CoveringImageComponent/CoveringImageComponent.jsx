@@ -9,7 +9,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
   const [isMobileView, setIsMobileView] = useState(null);
   const [isFullModalOpen, setIsFullModalOpen] = useState(false);
 
-  let activeItem = colorSlider.find(item => `${item?.article}` === activeColor);
+  let activeItem = colorSlider[0];
 
   useEffect(() => {
     const determineScreenSize = () => {
@@ -62,22 +62,40 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
           </div>
           <div className="full-modal-content">
             {activeItem?.richDescription?.map((item, index) => (
-              <div key={index} className="full-modal-banner-layer">
-                <div
-                  className="full-modal-text-layer"
-                  style={{
-                    backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                  }}
-                />
-                <GatsbyImage
-                  image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
-                  className="full-modal-covering-image"
-                  alt=""
-                  objectFit="cover"
-                />
-              </div>
+              <>
+                <div key={index} className="full-modal-banner-layer">
+                  <div
+                    className="full-modal-text-layer"
+                    style={{
+                      backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                    }}
+                  />
+                  <GatsbyImage
+                    image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
+                    className="full-modal-covering-image"
+                    alt=""
+                    objectFit="cover"
+                  />
+                </div>
+                <div key={index} className="full-modal-banner-layer">
+                  <div
+                    className="full-modal-text-layer"
+                    style={{
+                      backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundSize: 'cover',
+                    }}
+                  />
+                  <GatsbyImage
+                    image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
+                    className="full-modal-covering-image"
+                    alt=""
+                    objectFit="cover"
+                  />
+                </div>
+              </>
             ))}
           </div>
         </div>

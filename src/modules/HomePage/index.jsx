@@ -14,9 +14,12 @@ import SliderVideo from "../../components/SliderVideo/SliderVideo";
 const HomePage = ({ data }) => {
   const {
     allStrapiProducts,
+    allStrapiFootmuffs,
+    allStrapiMittens,
+    allStrapiCarSeats,
     allStrapiAccessories: { nodes },
     allStrapiBeds,
-    strapiHomePage: { videoUrl, promoOne, promoTwo }
+    strapiHomePage: { videoUrl, promoOne, promoTwo, promoThree, promoFour, promoFive }
   } = data;
 
   const [isMobileView, setIsMobileView] = useState(null);
@@ -70,7 +73,7 @@ const HomePage = ({ data }) => {
           <BannerWithText data={promoOne} />
           <div className="padding-top-bottom home-product-wrapper">
             <ProductsSlider
-              data={allStrapiProducts.nodes}
+              data={allStrapiFootmuffs.nodes}
               title="Конверти"
               sliderSettings={{
                 breakpoints: {
@@ -79,7 +82,7 @@ const HomePage = ({ data }) => {
                   1024: { slidesPerView: 2, spaceBetween: 20 },
                   1440: { slidesPerView: 2, spaceBetween: 20 },
                 },
-                catalogLink: "/strollers",
+                catalogLink: "/footmuffs",
                 showPagination: true,
                 showNavigation: false,
                 mobileAsGrid: true,   // грід тільки на мобайлі
@@ -91,6 +94,48 @@ const HomePage = ({ data }) => {
           <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
           <div className="padding-top-bottom home-product-wrapper">
             <ProductsSlider
+              data={allStrapiMittens.nodes}
+              title="Рукавиці"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/mittens",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <BannerWithText data={promoThree} textStyle={{ maxWidth: '250px' }} />
+          <div className="padding-top-bottom home-product-wrapper">
+            <ProductsSlider
+              data={allStrapiCarSeats.nodes}
+              title="Автокрісла"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/car-seats",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <BannerWithText data={promoFour} textStyle={{ maxWidth: '250px' }} />
+          <div className="padding-top-bottom home-product-wrapper">
+            <ProductsSlider
               data={allStrapiBeds.nodes}
               title="Ліжка"
               sliderSettings={{
@@ -100,7 +145,7 @@ const HomePage = ({ data }) => {
                   1024: { slidesPerView: 2, spaceBetween: 20 },
                   1440: { slidesPerView: 2, spaceBetween: 20 },
                 },
-                catalogLink: "/strollers",
+                catalogLink: "/beds",
                 showPagination: true,
                 showNavigation: false,
                 mobileAsGrid: true,   // грід тільки на мобайлі
@@ -109,7 +154,7 @@ const HomePage = ({ data }) => {
               navigationOnDesktop={false}
             />
           </div>
-          <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+          <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
           <SliderVideo videoSlider={videoUrl} />
           <SliderInstagram />
           <Accordion />
@@ -144,7 +189,7 @@ const HomePage = ({ data }) => {
           <div className="banner-wrapper">
             <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
             <ProductsSlider
-              data={allStrapiProducts.nodes}
+              data={allStrapiFootmuffs.nodes}
               title="Конверти"
               sliderSettings={{
                 breakpoints: {
@@ -153,7 +198,49 @@ const HomePage = ({ data }) => {
                   1024: { slidesPerView: 2, spaceBetween: 20 },
                   1440: { slidesPerView: 2, spaceBetween: 20 },
                 },
-                catalogLink: "/strollers",
+                catalogLink: "/footmuffs",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <div className="banner-wrapper">
+            <ProductsSlider
+              data={allStrapiMittens.nodes}
+              title="Рукавиці"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/mittens",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            <BannerWithText data={promoThree} textStyle={{ maxWidth: '250px' }} />
+          </div>
+          <div className="banner-wrapper">
+             <BannerWithText data={promoFour} textStyle={{ maxWidth: '250px' }} />
+            <ProductsSlider
+              data={allStrapiCarSeats.nodes}
+              title="Автокрісла"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/car-seats",
                 showPagination: true,
                 showNavigation: false,
                 mobileAsGrid: true,   // грід тільки на мобайлі
@@ -181,7 +268,7 @@ const HomePage = ({ data }) => {
               }}
               navigationOnDesktop={false}
             />
-            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+            <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
           </div>
           <SliderVideo videoSlider={videoUrl} />
           <SliderInstagram />

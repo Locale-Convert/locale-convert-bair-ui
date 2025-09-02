@@ -270,6 +270,7 @@ export const query = graphql`
                     }
                   }
                 }
+                text
             }
             promoFour {
                 desktopImage {
@@ -286,6 +287,7 @@ export const query = graphql`
                     }
                   }
                 }
+                text
             }
             promoFive {
                 desktopImage {
@@ -302,6 +304,7 @@ export const query = graphql`
                     }
                   }
                 }
+                text
             }
         }
     }
