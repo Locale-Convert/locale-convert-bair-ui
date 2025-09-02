@@ -47,10 +47,11 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
 
   const renderProductCard = (item) => {
     const imageData = getImage(item.mainImage?.localFile);
+    const isAvailable = true;
 
     return (
       <a href={`/${item.url}`} className="product-card-link">
-        <div className="product-card">
+        <div className={`product-card ${!isAvailable ? "unavailable" : ""}`}>
           <div className="product-image">
             <div className="badges-wrapper">
               {item.stickerNew && <span className="badge new">{item.stickerNewTitle}</span>}
@@ -71,10 +72,17 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
             <p className="product-desc">{item.smallDescription}</p>
             {item.colorsHashes && <ProductColors colors={item.colorsHashes} maxVisible={5} />}
             <div className="home-product-price">
-              <span className="price-new">{item.price} грн</span>
-              {item.oldPrice && <span className="price-old">{item.oldPrice} грн</span>}
+              {isAvailable ? (
+                <>
+                  <span className="price-new">{item.price} грн</span>
+                  {item.oldPrice && <span className="price-old">{item.oldPrice} грн</span>}
+                </>
+              ) : (
+                <span className="out-of-stock">Немає в наявності</span>
+              )}
             </div>
           </div>
+          {!isAvailable && <div className="overlay-product-card" />}
         </div>
       </a>
     );
@@ -95,7 +103,6 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
           </a>
         )}
 
-        {/* Показуємо стрілки лише коли вони увімкнені та є слайдер (не desktop grid) */}
         {showNavigation && !isDesktopGrid && (
           <div className="slider-nav-desktop">
             <div ref={prevRef} className="ps-swiper-prev" />
@@ -104,7 +111,6 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         )}
       </div>
 
-      {/* Desktop slider (поки НЕ десктопний грід) */}
       {!isDesktopGrid && (
         <div className="slider-desktop">
           <Swiper
@@ -124,7 +130,6 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         </div>
       )}
 
-      {/* Grid: рендеримо, якщо потрібен на мобільному або на десктопі */}
       {(isMobileGrid || isDesktopGrid) && (
         <div className="products-grid">
           {data.slice(0, visibleCount).map((item, idx) => (
@@ -133,7 +138,6 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
         </div>
       )}
 
-      {/* Кнопка "Показати ще" — активна лише в мобільному гріді */}
       {hasMore && isMobileGrid && (
         <div className="show-more-wrapper">
           <ShowMoreButton onClick={handleShowMore} />

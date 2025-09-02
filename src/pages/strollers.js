@@ -27,6 +27,26 @@ export const query = graphql`
         }
       }
     }
+      strapiHomePage {
+            promoOne {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                text
+            }
+          
+        }
   }
 `
 
@@ -35,6 +55,7 @@ const Strollers = ({ data }) => {
     <CatalogPage
       nodes={data.allStrapiProducts.nodes} 
       categoryTitle="Коляски"
+      banner={data.strapiHomePage.promoOne}
     />
   )
 }

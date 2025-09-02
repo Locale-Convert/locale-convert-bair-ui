@@ -107,6 +107,8 @@
     align-items: center;
     font-size: 16px;
     font-weight: 700;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 .accordion-symbol {

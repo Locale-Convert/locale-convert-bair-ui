@@ -6,8 +6,9 @@ import Footer from "../../components/Footer/Footer";
 import Accordion from "../../components/Accordion/Accordion";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 import Tabs from "../../components/Tabs/Tabs";
+import FullWidthBanner from "../../components/FullWidthBanner/FullWidthBanner";
 
-const CatalogPage = ({ nodes, categoryTitle }) => {
+const CatalogPage = ({ nodes, categoryTitle, banner }) => {
     const [isBasketView, setIsBasketView] = useState(false);
     const [activeTab, setActiveTab] = useState("Всі");
 
@@ -28,6 +29,7 @@ const CatalogPage = ({ nodes, categoryTitle }) => {
     return (
         <>
             <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+            <FullWidthBanner data={banner}/>
             <div className="catalog-wrapper">
 
                 <div className="catalog-content">

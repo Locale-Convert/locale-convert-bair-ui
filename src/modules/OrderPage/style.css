@@ -20,7 +20,6 @@
 }
 
 .order-right {
-  width: 360px;
   position: sticky;
   top: 20px;
   align-self: flex-start;
