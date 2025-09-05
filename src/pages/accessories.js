@@ -32,22 +32,22 @@ export const query = graphql`
       MetaTitleAccessories {
         metaDescription
         metaTitle
-        catalogBanner {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
+catalogBanner {
+        desktopImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
             }
+          }
+        }
+        mobileImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+    }
       }
     }
   }
@@ -56,7 +56,7 @@ export const query = graphql`
 
 const Accessories = ({ data }) => {
   const { strapiCatalogPageMeta, allStrapiAccessories } = data;
-  const meta = strapiCatalogPageMeta?.MetaInfoAccessories;
+  const meta = strapiCatalogPageMeta?.MetaTitleAccessories;
 
   return (
     <>
@@ -67,7 +67,7 @@ const Accessories = ({ data }) => {
       <CatalogPage
         nodes={allStrapiAccessories.nodes}
         categoryTitle="Аксесуари"
-        banner={meta.catalogBanner}
+        banner={meta?.catalogBanner}
       />
     </>
   );
