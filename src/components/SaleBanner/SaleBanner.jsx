@@ -15,8 +15,6 @@ const SaleBanner = ({ data }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  console.log('data', data);
-
   const desktopImage = getImage(data?.desktopImage?.localFile);
   const mobileImage = getImage(data?.mobileImage?.localFile);
   const imageToShow = isMobile ? mobileImage : desktopImage;

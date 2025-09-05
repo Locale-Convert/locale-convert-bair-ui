@@ -1,6 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby";
 import CatalogPage from "../modules/CatalogPage";
+import Seo from "../components/Seo/Seo";
 
 export const query = graphql`
   query beds {
@@ -27,16 +28,49 @@ export const query = graphql`
         }
       }
     }
+    strapiCatalogPageMeta {
+      MetaInfoBeds {
+        metaDescription
+        metaTitle
+        catalogBanner {
+        desktopImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        mobileImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+    }
+      }
+    }
   }
 `
 
+
 const Beds = ({ data }) => {
+  const { strapiCatalogPageMeta, allStrapiBeds } = data;
+  const meta = strapiCatalogPageMeta?.MetaInfoBeds;
+
   return (
-    <CatalogPage
-      nodes={data.allStrapiBeds.nodes} 
-      categoryTitle="Ліжка"
-    />
-  )
-}
+    <>
+      <Seo
+        title={meta?.metaTitle}
+        description={meta?.metaDescription}
+      />
+      <CatalogPage
+        nodes={allStrapiBeds.nodes}
+        categoryTitle="Ліжка"
+        banner={meta.catalogBanner}
+      />
+    </>
+  );
+};
 
 export default Beds;

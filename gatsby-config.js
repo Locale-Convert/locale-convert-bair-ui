@@ -21,7 +21,8 @@ module.exports = {
         singleTypes: [
           "home-page",
           "home-page-meta",
-          "conditions"
+          "conditions",
+          "catalog-page-meta"
         ]
       },
     },

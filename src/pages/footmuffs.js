@@ -1,6 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby";
 import CatalogPage from "../modules/CatalogPage";
+import Seo from "../components/Seo/Seo";
 
 export const query = graphql`
   query footmuffs{
@@ -27,16 +28,48 @@ export const query = graphql`
         }
       }
     }
+    strapiCatalogPageMeta {
+      MetaTitleFootmufs {
+        metaDescription
+        metaTitle
+        catalogBanner {
+        desktopImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        mobileImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+    }
+      }
+    }
   }
 `
 
 const CarSeats = ({ data }) => {
+  const { strapiCatalogPageMeta, allStrapiFootmuffs } = data;
+  const meta = strapiCatalogPageMeta?.MetaTitleFootmufs;
+
   return (
-    <CatalogPage
-      nodes={data.allStrapiFootmuffs.nodes} 
-      categoryTitle="Конверти"
-    />
-  )
-}
+    <>
+      <Seo
+        title={meta?.metaTitle}
+        description={meta?.metaDescription}
+      />
+      <CatalogPage
+        nodes={allStrapiFootmuffs.nodes}
+        categoryTitle="Конверти"
+        banner={meta.catalogBanner}
+      />
+    </>
+  );
+};
 
 export default CarSeats;

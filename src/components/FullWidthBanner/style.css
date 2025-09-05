@@ -34,7 +34,6 @@
 /* Мобільний: 375px ширина → 340px висота (aspect ratio 375:340 ≈ 1.1) */
 @media (max-width: 768px) {
   .fullwidth-banner {
-    aspect-ratio: 375 / 340;
     margin-top: 60px;
   }
 }

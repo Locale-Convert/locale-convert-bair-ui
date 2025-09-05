@@ -1,6 +1,7 @@
 import * as React from "react"
 import { graphql } from "gatsby";
 import CatalogPage from "../modules/CatalogPage";
+import Seo from "../components/Seo/Seo";
 
 export const query = graphql`
   query strollers {
@@ -27,7 +28,29 @@ export const query = graphql`
         }
       }
     }
-      strapiHomePage {
+    strapiCatalogPageMeta {
+      MetaInfoStrollers {
+        metaDescription
+        metaTitle
+        catalogBanner {
+        desktopImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        mobileImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+    }
+      }
+    }
+    strapiHomePage {
             promoOne {
                 desktopImage {
                   localFile {
@@ -51,13 +74,22 @@ export const query = graphql`
 `
 
 const Strollers = ({ data }) => {
+  const { strapiCatalogPageMeta, allStrapiProducts, strapiHomePage } = data;
+  const meta = strapiCatalogPageMeta?.MetaInfoStrollers;
+
   return (
-    <CatalogPage
-      nodes={data.allStrapiProducts.nodes} 
-      categoryTitle="Коляски"
-      banner={data.strapiHomePage.promoOne}
-    />
-  )
-}
+    <>
+      <Seo
+        title={meta?.metaTitle}
+        description={meta?.metaDescription}
+      />
+      <CatalogPage
+        nodes={allStrapiProducts.nodes}
+        categoryTitle="Коляски"
+        banner={meta.catalogBanner}
+      />
+    </>
+  );
+};
 
 export default Strollers;
