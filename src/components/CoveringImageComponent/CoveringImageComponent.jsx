@@ -27,29 +27,32 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
 
   return (
     <>
-      <div className="covering-banner">
-        {activeItem?.richDescription?.map((item, index) => (
-          <div key={index} className="covering-layer">
-            <div
-              className="covering-text-layer"
-              style={{
-                backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-              }}
-            />
-            <GatsbyImage
-              image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
-              className="covering-image"
-              alt=""
-              objectFit="cover"
-            />
+      <h2 className="covering-block-title">Презентація</h2>
+      <div className="covering-block">
+        <div className="covering-banner">
+          {activeItem?.richDescription?.map((item, index) => (
+            <div key={index} className="covering-layer">
+              <div
+                className="covering-text-layer"
+                style={{
+                  backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                }}
+              />
+              <GatsbyImage
+                image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
+                className="covering-image"
+                alt=""
+                objectFit="cover"
+              />
+            </div>
+          ))}
+          <div className="covering-gradient-overlay">
+            <button className="show-full-btn" onClick={() => setIsFullModalOpen(true)}>
+              Показати повністю
+            </button>
           </div>
-        ))}
-        <div className="covering-gradient-overlay">
-          <button className="show-full-btn" onClick={() => setIsFullModalOpen(true)}>
-            Показати повністю
-          </button>
         </div>
       </div>
 

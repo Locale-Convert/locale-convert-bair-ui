@@ -117,7 +117,9 @@ const ProductPage = ({
         }
         <div className="desc-characteristics">
           <Characteristics description={description} />
-          <ProductSpecs specs={activeColor.specifications} />
+          {activeColor && activeColor.specifications?.length > 0 && (
+              <ProductSpecs specs={activeColor.specifications} />
+          )}
         </div>
         <div className="order-wrapper">
           <DownloadLinks />

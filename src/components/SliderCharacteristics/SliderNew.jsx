@@ -62,7 +62,6 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor
 
     return (
         <div className="main-slider-container">
-            {/* === Лейбли поверх слайдера === */}
             <div className="labels-overlay">
                 <div className="labels-top">
                     {currentColor?.isSale && currentColor?.coloStickerSaleTitle && (
@@ -84,10 +83,10 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor
                 {sliderImage.map((item, index) => (
                     <div key={index} className="main-slider-item">
                         <GatsbyImage
-                            image={getImageHelper(item)}
-                            className="main-slider-image"
-                            alt=""
-                            objectFit="cover"
+                        image={getImageHelper(item)}
+                        alt=""
+                        style={{ width: "100%" }}
+                        imgStyle={{ objectFit: "contain" }}
                         />
                     </div>
                 ))}

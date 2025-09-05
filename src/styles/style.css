@@ -2347,10 +2347,10 @@ body{
     max-height: 800px;
     display: flex;
     flex-direction: row;
-    margin-top: 120px;
-    margin-bottom: 30px;
     gap: 10px;
-    padding: 0 50px;
+    padding: 0 0 70px 0;
+    margin: 120px 40px 0 40px;
+    border-bottom: 1px solid #DDDDDD;
   }
 
 
@@ -4168,7 +4168,7 @@ body{
 
   .characteristics-box {
     margin-top: 60px;
-    margin-bottom: 0;
+    margin: 60px 0 20px 0;
   }
 
   .swiper-slide {

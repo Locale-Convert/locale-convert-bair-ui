@@ -22,13 +22,19 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
               <li
                 key={i}
                 className="mobile-menu__item"
-                onClick={() => setActiveCategory(cat.title)}
+                onClick={() => cat.hasArrow ? setActiveCategory(cat.title) : null}
               >
-                {cat.title}
-                {cat.hasArrow && (
-                  <span className="mobile-menu__arrow">
-                    <ArrowForwardIosRounded />
-                  </span>
+                {cat.hasArrow ? (
+                  <>
+                    {cat.title}
+                    <span className="mobile-menu__arrow">
+                      <ArrowForwardIosRounded />
+                    </span>
+                  </>
+                ) : (
+                  <a href={cat.url} className="mobile-menu__link" onClick={onClose}>
+                    {cat.title}
+                  </a>
                 )}
               </li>
             ))}
@@ -78,5 +84,6 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
     </div>
   );
 };
+
 
 export default MobileMenu;

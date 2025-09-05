@@ -19,7 +19,7 @@ const HomePage = ({ data }) => {
     allStrapiCarSeats,
     allStrapiAccessories: { nodes },
     allStrapiBeds,
-    strapiHomePage: { videoUrl, promoOne, promoTwo, promoThree, promoFour, promoFive }
+    strapiHomePage: { mainPromo, videoUrl, promoOne, promoTwo, promoThree, promoFour, promoFive }
   } = data;
 
   const [isMobileView, setIsMobileView] = useState(null);
@@ -49,7 +49,7 @@ const HomePage = ({ data }) => {
       {isMobileView ? (
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
-          <SaleBanner />
+          <SaleBanner data={mainPromo}/>
           <div className="padding-top-bottom home-product-wrapper">
             <ProductsSlider
               data={allStrapiProducts.nodes}
@@ -164,7 +164,7 @@ const HomePage = ({ data }) => {
       ) : (
         <div className={"wrapper-mobile"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
-          <SaleBanner />
+          <SaleBanner data={mainPromo}/>
           <div className="banner-wrapper">
             <ProductsSlider
               data={allStrapiProducts.nodes}

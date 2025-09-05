@@ -7,6 +7,18 @@
     position: relative;
 }
 
+.main-slider-item > .gatsby-image-wrapper  {
+    max-height: 586px;
+}
+
+.main-slider-item > .gatsby-image-wrapper > img {
+    max-height: 570px;
+}
+
+.slick-slide img {
+    max-height: 590px;
+}
+
 .main-slider-image {
     width: 100%;
     height: 100%;
@@ -17,7 +29,7 @@
 .current-slide {
     position: absolute;
     bottom: 10px;
-    right: 15px;
+    right: 0;
     background: #C1C5DA26;
     color: #736A6A;
     padding: 3px 8px;

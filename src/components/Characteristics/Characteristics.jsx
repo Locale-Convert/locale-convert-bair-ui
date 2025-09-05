@@ -26,6 +26,7 @@ const Characteristics = ({ description = "" }) => {
 
   return (
     <div className="characteristics-block description-box-wrapper">
+      <h3 className="specs-title">Опис</h3>
       <div
         className={`characteristics-content ${expanded ? "expanded" : ""}`}
         ref={contentRef}

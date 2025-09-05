@@ -62,11 +62,102 @@ export const query = graphql`
         updatedAt
       }
     }
+    allStrapiMittens {
+      nodes {
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
+        colorSlider {
+          colorPrice
+          colorOldPrice
+          article
+        }
+        id
+        title
+        price
+        oldPrice
+        url
+        updatedAt
+      }
+    }
+    allStrapiFootmuffs {
+      nodes {
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
+        colorSlider {
+          colorPrice
+          colorOldPrice
+          article
+        }
+        id
+        title
+        price
+        oldPrice
+        url
+        updatedAt
+      }
+    }
+    allStrapiCarSeats {
+      nodes {
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
+        colorSlider {
+          colorPrice
+          colorOldPrice
+          article
+        }
+        id
+        title
+        price
+        oldPrice
+        url
+        updatedAt
+      }
+    }
+    allStrapiBeds {
+      nodes {
+        stickerBlackFriday
+        stickerBlackFridayTitle
+        stickerNew
+        stickerNewTitle
+        stickerSale
+        stickerSaleTitle
+        colorSlider {
+          colorPrice
+          colorOldPrice
+          article
+        }
+        id
+        title
+        price
+        oldPrice
+        url
+        updatedAt
+      }
+    }
   }
 `;
 
 const Header = ({ isBasketView, setIsBasketView }) => {
-  const { allStrapiAccessories, allStrapiProducts } = useStaticQuery(query);
+  const {
+    allStrapiAccessories,
+    allStrapiProducts,
+    allStrapiFootmuffs,
+    allStrapiMittens,
+    allStrapiCarSeats,
+    allStrapiBeds
+  } = useStaticQuery(query);
 
   const dropDownRef = useRef();
   const cartModalRef = useRef();
@@ -89,17 +180,28 @@ const Header = ({ isBasketView, setIsBasketView }) => {
       image: smallStroller,
       url: `/${p.url}/`
     })),
-    "Рукавиці": allStrapiAccessories.nodes.map(p => ({
+    "Конверти": allStrapiFootmuffs.nodes.map(p => ({
       title: p.title,
       image: smallStroller,
       url: `/${p.url}/`
     })),
-    "Аксесуари": allStrapiAccessories.nodes.map(p => ({
+    "Рукавиці": allStrapiMittens.nodes.map(p => ({
       title: p.title,
       image: smallStroller,
       url: `/${p.url}/`
     })),
+    "Автокрісла": allStrapiCarSeats.nodes.map(p => ({
+      title: p.title,
+      image: smallStroller,
+      url: `/${p.url}/`
+    })),
+    "Ліжка": allStrapiBeds.nodes.map(p => ({
+      title: p.title,
+      image: smallStroller,
+      url: `/${p.url}/`
+    }))
   };
+
 
   const { cartItems, setCartItems } = useCartStore();
 

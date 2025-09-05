@@ -3,6 +3,7 @@
   grid-template-columns: 715px 1fr;
   gap: 64px;
   align-items: start;
+  margin-top: 50px;
 }
 
 .order-wrapper {
