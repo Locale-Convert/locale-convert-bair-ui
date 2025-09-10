@@ -4,7 +4,8 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import "./style.css";
 
 const FullWidthBanner = ({ data, textStyle = {} }) => {
-  const [isMobile, setIsMobile] = useState(false);
+  // Початково ми не знаємо ширину екрану
+  const [isMobile, setIsMobile] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,6 +17,9 @@ const FullWidthBanner = ({ data, textStyle = {} }) => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Якщо ширина ще не визначена, нічого не рендеримо
+  if (isMobile === null) return null;
 
   const desktopImage = getImage(data?.desktopImage?.localFile);
   const mobileImage = getImage(data?.mobileImage?.localFile);

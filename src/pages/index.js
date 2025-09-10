@@ -7,6 +7,10 @@ export const query = graphql`
     query IndexPage{
         allStrapiProducts(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                }
                 id
                 title
                 price
@@ -39,6 +43,10 @@ export const query = graphql`
         }
         allStrapiBeds(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                }
                 id
                 title
                 price
@@ -71,6 +79,10 @@ export const query = graphql`
         }
         allStrapiAccessories(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                }
                 id
                 title
                 price
@@ -103,6 +115,10 @@ export const query = graphql`
         }
         allStrapiCarSeats(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                }
                 id
                 title
                 price
@@ -135,6 +151,10 @@ export const query = graphql`
         }
         allStrapiFootmuffs(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                }
                 id
                 title
                 price
@@ -167,6 +187,10 @@ export const query = graphql`
         }
         allStrapiMittens(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                }
                 id
                 title
                 price

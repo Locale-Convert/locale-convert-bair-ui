@@ -84,6 +84,25 @@
   color: #000;
 }
 
+.mobile-submenu__img-wrapper {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  border-radius: 6px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-submenu__img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 .mobile-submenu__icon {
   display: flex;
@@ -112,9 +131,9 @@
 }
 
 .mobile-submenu__item img {
-  width: 80px;
-  max-height: 80px;
-  height: auto;
+  width: 90%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  display: block;
 }

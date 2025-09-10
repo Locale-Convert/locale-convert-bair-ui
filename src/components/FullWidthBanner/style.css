@@ -3,6 +3,7 @@
   width: 100%;
   overflow: hidden;
   margin-top: 88px;
+  min-height: 340px; /* приблизно мобільна висота */
 }
 
 .fullwidth-banner__image {
@@ -21,13 +22,13 @@
   text-align: center;
   z-index: 2;
 }
-
 /* --- Висота банера --- */
 
 /* Десктоп: 1440px ширина → 400px висота (aspect ratio 1440:400 = 3.6) */
 @media (min-width: 769px) {
   .fullwidth-banner {
     aspect-ratio: 1440 / 400;
+    min-height: 400px; /* щоб висота не зменшувалась при aspect-ratio */
   }
 }
 
@@ -35,5 +36,7 @@
 @media (max-width: 768px) {
   .fullwidth-banner {
     margin-top: 60px;
+    aspect-ratio: 375 / 340;
+    min-height: 340px;
   }
 }

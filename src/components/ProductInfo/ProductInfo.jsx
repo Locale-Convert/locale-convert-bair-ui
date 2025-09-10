@@ -7,42 +7,43 @@ import Installments from "../Installments/Installments";
 import ProductActions from "../ProductActions/ProductActions";
 import monobankIcon from "../../images/monobank.svg";
 import privatbankIcon from "../../images/privatbank.svg";
+import { formatNumberWithSpaces } from "../../hooks/price";
 
 export const creditModalData = {
-    monobank: {
-        title: "Оплата частинами від Monobank",
-        icon: monobankIcon,
-        description: (
-            <>
-                <p>Опис продукту:</p>
-                <ol className="cm-list">
-                    <li>Наявність картки Монобанку</li>
-                    <li>Доступний кредитний ліміт за сервісом “Оплата частинами”</li>
-                    <li>Перший платіж буде списаний у день оформлення</li>
-                </ol>
-                <p>Подарунки не надаються при купівлі товару в 0,01% кредит чи оплату частинами.</p>
-            </>
-        ),
-        buttonText: null,
-        onButtonClick: null
-    },
-    privatbank: {
-        title: "Оплата частинами від Приватбанк",
-        icon: privatbankIcon,
-        description: (
-            <>
-                <p>Опис продукту:</p>
-                <ol className="cm-list">
-                    <li>Наявність картки "Універсальна"</li>
-                    <li>Доступний кредитний ліміт за сервісом “Оплата частинами”</li>
-                    <li>Перший платіж буде списаний у день оформлення</li>
-                </ol>
-                <p>Подарунки не надаються при купівлі товару в 0,01% кредит чи оплату частинами.</p>
-            </>
-        ),
-        buttonText: null,
-        onButtonClick: null
-    }
+  monobank: {
+    title: "Оплата частинами від Monobank",
+    icon: monobankIcon,
+    description: (
+      <>
+        <p>Опис продукту:</p>
+        <ol className="cm-list">
+          <li>Наявність картки Монобанку</li>
+          <li>Доступний кредитний ліміт за сервісом “Оплата частинами”</li>
+          <li>Перший платіж буде списаний у день оформлення</li>
+        </ol>
+        <p>Подарунки не надаються при купівлі товару в 0,01% кредит чи оплату частинами.</p>
+      </>
+    ),
+    buttonText: null,
+    onButtonClick: null
+  },
+  privatbank: {
+    title: "Оплата частинами від Приватбанк",
+    icon: privatbankIcon,
+    description: (
+      <>
+        <p>Опис продукту:</p>
+        <ol className="cm-list">
+          <li>Наявність картки "Універсальна"</li>
+          <li>Доступний кредитний ліміт за сервісом “Оплата частинами”</li>
+          <li>Перший платіж буде списаний у день оформлення</li>
+        </ol>
+        <p>Подарунки не надаються при купівлі товару в 0,01% кредит чи оплату частинами.</p>
+      </>
+    ),
+    buttonText: null,
+    onButtonClick: null
+  }
 };
 
 const ProductInfo = ({
@@ -90,9 +91,14 @@ const ProductInfo = ({
 
       {isAvailable ? (
         <div id="product-price" ref={priceRef} className="product-price">
-          {currentColor.colorPrice ? <span className="current-price">{currentColor.colorPrice} грн</span> : null}
-          {currentColor.colorOldPrice && (
-            <span className="old-price">{currentColor.colorOldPrice} грн</span>
+          {currentColor.colorPrice || data.price ? <span className="current-price">{currentColor.colorPrice ? formatNumberWithSpaces(currentColor.colorPrice) : formatNumberWithSpaces(data.price)} грн</span> : null}
+          {(currentColor.colorOldPrice || data.oldPrice) && (
+            <span className="old-price">
+              {currentColor.colorOldPrice
+                ? formatNumberWithSpaces(currentColor.colorOldPrice)
+                : formatNumberWithSpaces(data.oldPrice)
+              } грн
+            </span>
           )}
         </div>
       ) : (
@@ -105,7 +111,7 @@ const ProductInfo = ({
         <ColorSlider data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
       </div>
 
-      {isAvailable && <Installments price={currentColor.colorPrice} />}
+      {isAvailable && <Installments price={currentColor.colorPrice ?? data.price} />}
       {isAvailable && <CreditButtons openModal={openModal} />}
 
       <ProductActions

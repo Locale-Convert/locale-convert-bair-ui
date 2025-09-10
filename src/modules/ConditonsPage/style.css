@@ -18,44 +18,58 @@
   box-sizing: border-box;
 }
 
-.condition-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: left;
-}
-
 .condition-content p {
   line-height: 1.6;
   margin-bottom: 16px;
   font-size: 16px;
 }
 
+.condition-content h2:nth-child(1) {
+  font-size: 30px;
+  font-weight: 700;
+}
+
 .condition-content h2,
 .condition-content h3 {
-  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 35px;
   margin-bottom: 16px;
 }
 
 .condition-content a {
-  color: #007bff;
+  color: #0040DD;
   text-decoration: underline;
 }
 
-.condition-content ul,
-.condition-content ol {
-  padding-left: 20px;
-  margin-bottom: 16px;
+.condition-content ul li {
+  list-style-type: disc; 
+  color: #000;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  text-indent: -10px;
+}
+
+.condition-content ul li::marker {
+  color: #000;
+}
+
+.condition-content ol li {
+  list-style-type: decimal; /* цифри */
+  color: #000;
+  margin-bottom: 12px;
+  padding-left: 20px; /* більше, щоб цифра не накладалась на текст */
+  text-indent: 0; /* для нумерації text-indent не потрібен */
+}
+
+.condition-content ol li::marker {
+  color: #000; /* чорні цифри */
 }
 
 @media (max-width: 768px) {
   .condition-box {
     padding: 20px 16px;
     margin-top: 60px;
-  }
-
-  .condition-title {
-    font-size: 24px;
   }
 
   .condition-content p {

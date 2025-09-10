@@ -4,6 +4,7 @@
     font-family: Arial, sans-serif;
     font-size: 13px;
     color: #000;
+    position: relative;
 }
 
 .footer-top {
@@ -97,6 +98,31 @@
 .mobile-only {
     display: none;
 }
+
+.to-top-button {
+  position: absolute;
+  top: -24px; /* половина висоти, щоб кнопка була "перерізана" */
+  right: 20px;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #0A0A0A;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.arrow-up {
+  transform: rotate(90deg);
+  color: white;
+}
+
 
 /* Мобільна версія */
 @media (max-width: 600px) {

@@ -80,6 +80,29 @@
   flex: 0 0 auto;
 }
 
+.slider-video .swiper-slide {
+  opacity: 0.6;
+  filter: blur(2px);
+  transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+}
+
+.slider-video .swiper-slide {
+  opacity: 0.6;
+  filter: blur(2px);
+  transform: scale(0.65);
+  z-index: 1;
+  transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+  flex: 0 0 auto;
+}
+
+/* Активний слайд через Swiper клас */
+.slider-video .swiper-slide.swiper-slide-active {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(0.9);
+  z-index: 10;
+}
+
 .slider-video .active-slide {
   opacity: 1;
   transform: scale(0.9);
@@ -145,6 +168,21 @@
   /* якщо потрібно точніше прижати iframe всередині слайда */
   .video-slide-wrapper-video {
     margin-left: 0;
+  }
+
+    .slider-video .swiper-slide {
+    opacity: 0.5 !important;
+    filter: blur(0) !important;
+    transform: scale(1) !important;
+    z-index: 1 !important;
+  }
+
+  /* Активний слайд нічим не відрізняється */
+  .slider-video .swiper-slide.swiper-slide-active {
+    opacity: 1 !important;
+    filter: blur(0) !important;
+    transform: scale(1) !important;
+    z-index: 1 !important;
   }
 }
 

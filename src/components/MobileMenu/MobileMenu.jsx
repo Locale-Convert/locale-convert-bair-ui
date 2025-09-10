@@ -13,6 +13,8 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
     };
   }, []);
 
+  console.log('subCategories[activeCategory]', subCategories[activeCategory]);
+
   return (
     <div className="mobile-menu">
       {!activeCategory ? (
@@ -73,7 +75,11 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
             {subCategories[activeCategory]?.map((item, i) => (
               <li key={i} className="mobile-submenu__item">
                 <a href={item.url} className="mobile-submenu__link">
-                  <img src={item.image} alt={item.title} />
+                  <div className="mobile-submenu__img-wrapper">
+                    {item?.image?.localFile?.url ? (
+                      <img src={item.image.localFile.url} alt={item.title} />
+                    ) : null}
+                  </div>
                   {item.title}
                 </a>
               </li>

@@ -1,7 +1,8 @@
 .covering-banner {
   position: relative;
   width: 100%;
-  height: 743px;
+  min-height: 743px; /* мінімальна висота, щоб не було стрибка */
+  height: auto; 
   overflow: hidden;
   display: flex;
   align-items: flex-end;
@@ -107,15 +108,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 5px;
   padding: 10px 0;
 }
 
 .full-modal-banner-layer {
   position: relative;
   width: 90%;
+  height: auto;
   max-width: 1200px;
-  height: 60vh;
   overflow: hidden;
 }
 
@@ -139,7 +140,6 @@
 @media (max-width: 600px) {
   .covering-block {
     margin: 0 10px;
-    height: 304px;
   }
 
   .covering-gradient-overlay {
@@ -151,15 +151,15 @@
     font-size: 14px;
   }
 
-  .full-modal-banner-layer {
-    height: 50vh;
-  }
-
   .covering-block-title {
     font-size: 20px;
     text-align: left;
     padding-left: 13px;
     padding-bottom: 20px;
     margin-top: 40px;
+  }
+
+  .covering-banner {
+    min-height: 350px;
   }
 }

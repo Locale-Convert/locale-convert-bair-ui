@@ -9,7 +9,7 @@ const StrapiBedsUrl = ({ data }) => {
   return (
     <ProductPage
       data={data.strapiBeds}
-      relatedProducts={data.allStrapiProducts}
+      relatedProducts={data.allStrapiBeds}
       also={data.allStrapiAccessories}
       category={'Ліжка'}
     />
@@ -104,7 +104,7 @@ export const query = graphql`
         metaTitle
         metaDescription
     }
-    allStrapiProducts {
+    allStrapiBeds {
         nodes {
             stickerBlackFriday
             stickerBlackFridayTitle

@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import ToTop from "../ToTop/ToTop";
 
 import './styles.css';
+import { ArrowBack } from "@mui/icons-material";
 
 export const query = graphql`
   query Footer {
@@ -38,8 +39,18 @@ const CATEGORIES = [
 const Footer = () => {
   const { allStrapiAccessories, allStrapiProducts } = useStaticQuery(query);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="footer-wrapper">
+      <button className="to-top-button" onClick={scrollToTop}>
+        <ArrowBack className="arrow-up" />
+      </button>
       <div className="footer-top">
         {/* ФОП */}
         <div className="footer-column footer-column-contact desktop-only">

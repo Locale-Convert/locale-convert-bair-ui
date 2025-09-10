@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 const PlayIcon = () => (
-    // <svg width="80" height="80" viewBox="0 0 24 24" fill="rgba(255, 255, 255, 0.8)">
-    //     <path d="M8 5v14l11-7z" />
-    // </svg>
     <svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" clipRule="evenodd" d="M33.3281 66.1025C51.5104 66.1025 66.25 51.3629 66.25 33.1807C66.25 14.9984 51.5104 0.258789 33.3281 0.258789C15.1459 0.258789 0.40625 14.9984 0.40625 33.1807C0.40625 51.3629 15.1459 66.1025 33.3281 66.1025ZM25.2656 46.6534L47.4375 33.8525L25.2656 21.0516L25.2656 46.6534Z" fill="white" />
     </svg>
 );
 
-const VideoControlWithoutPause = ({ videoUrl }) => {
+const VideoControlWithoutPause = ({ videoUrl, isActive = true }) => {
     const [showVideo, setShowVideo] = useState(false);
     const [thumbnailUrl, setThumbnailUrl] = useState('');
 
@@ -21,9 +18,6 @@ const VideoControlWithoutPause = ({ videoUrl }) => {
                 const data = await response.json();
 
                 if (data.thumbnail_url) {
-                    // --- НАШ ТРЮК ---
-                    // Так как Vimeo отдает маленькое превью, мы "очищаем" URL,
-                    // чтобы загрузить оригинальное, полноразмерное изображение.
                     const highQualityUrl = data.thumbnail_url.replace(/_(\d+)x(\d+)/, '');
                     setThumbnailUrl(highQualityUrl);
                 }
@@ -38,6 +32,7 @@ const VideoControlWithoutPause = ({ videoUrl }) => {
     }, [videoUrl]);
 
     const handlePlayClick = () => {
+        if (!isActive) return; // неактивне відео не можна увімкнути
         setShowVideo(true);
     };
 
@@ -57,15 +52,14 @@ const VideoControlWithoutPause = ({ videoUrl }) => {
 
     return (
         <div
-            className="video-facade"
+            className={`video-facade ${!isActive ? 'inactive-video' : ''}`}
             onClick={handlePlayClick}
-            style={{
-                '--background-image': `url(${thumbnailUrl})`
-            }}
+            style={{ '--background-image': `url(${thumbnailUrl})` }}
         >
             <div className="play-button">
                 <PlayIcon />
             </div>
+            {!isActive && <div className="video-overlay" />}
         </div>
     );
 };

@@ -14,6 +14,7 @@ import close from "../../images/close-grey.svg";
 import { useCartStore } from "../../store/store";
 
 import './style.css';
+import { formatNumberWithSpaces } from '../../hooks/price';
 
 const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, closeCartModal, isBasketView, setIsBasketView }) => {
     const { cartItems, setCartItems } = useCartStore();
@@ -177,8 +178,8 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
                                 <div className="article">Артикул: {item.article}</div>
                                 <div className="title">{item.title}</div>
                                 <div className="price">
-                                    {item.price} грн
-                                    {item.oldPrice && <span className="old-price">{item.oldPrice} грн</span>}
+                                    {formatNumberWithSpaces(item.price)} грн
+                                    {item.oldPrice && <span className="old-price">{formatNumberWithSpaces(item.oldPrice)} грн</span>}
                                 </div>
                                 <div className="color">Колір: <span className="color-value">{item.color}</span></div>
                             </div>
@@ -197,7 +198,7 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
                     </div>
                 )}
 
-                {renderSuggestionsSlider()}
+                {/* {renderSuggestionsSlider()} */}
 
             </div>
         </div>

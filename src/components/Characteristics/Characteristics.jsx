@@ -18,19 +18,30 @@ const Characteristics = ({ description = "" }) => {
   const [isOverflowing, setIsOverflowing] = useState(false);
   const contentRef = useRef(null);
 
+  const initialMaxHeight = 400; // початкова висота блоку
+
   useEffect(() => {
-    if (contentRef.current) {
-      setIsOverflowing(contentRef.current.scrollHeight > 500);
-    }
+    if (!contentRef.current) return;
+
+    const observer = new ResizeObserver(() => {
+      const scrollHeight = contentRef.current.scrollHeight;
+      setIsOverflowing(scrollHeight > initialMaxHeight);
+    });
+
+    observer.observe(contentRef.current);
+
+    return () => observer.disconnect();
   }, [description]);
 
   return (
     <div className="characteristics-block description-box-wrapper">
       <h3 className="specs-title">Опис</h3>
       <div
-        className={`characteristics-content ${expanded ? "expanded" : ""}`}
+        className={`characteristics-content ${expanded ? "expanded" : ""} ${
+          !expanded && isOverflowing ? "blur-bottom" : ""
+        }`}
         ref={contentRef}
-        style={{ maxHeight: expanded ? contentRef.current?.scrollHeight : 455 }}
+        style={{ maxHeight: expanded ? contentRef.current?.scrollHeight : initialMaxHeight }}
       >
         <ReactMarkdown components={{ a: LinkRenderer }}>
           {description}

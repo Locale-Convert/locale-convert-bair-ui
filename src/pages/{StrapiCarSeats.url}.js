@@ -9,7 +9,7 @@ const StrapiCarSeatsUrl = ({ data }) => {
   return (
     <ProductPage
       data={data.strapiCarSeats}
-      relatedProducts={data.allStrapiProducts}
+      relatedProducts={data.allStrapiCarSeats}
       also={data.allStrapiAccessories}
       category={'Автокрісла'}
     />
@@ -104,7 +104,7 @@ export const query = graphql`
         metaTitle
         metaDescription
     }
-    allStrapiProducts {
+    allStrapiCarSeats {
         nodes {
             colorsHashes {
               hash

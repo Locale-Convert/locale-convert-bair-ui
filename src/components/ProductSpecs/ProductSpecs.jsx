@@ -7,10 +7,19 @@ const ProductSpecs = ({ specs = [] }) => {
   const [isOverflowing, setIsOverflowing] = useState(false);
   const contentRef = useRef(null);
 
+  const initialMaxHeight = 400; // початкова висота блоку
+
   useEffect(() => {
-    if (contentRef.current) {
-      setIsOverflowing(contentRef.current.scrollHeight > 200);
-    }
+    if (!contentRef.current) return;
+
+    const observer = new ResizeObserver(() => {
+      const scrollHeight = contentRef.current.scrollHeight;
+      setIsOverflowing(scrollHeight > initialMaxHeight);
+    });
+
+    observer.observe(contentRef.current);
+
+    return () => observer.disconnect();
   }, [specs]);
 
   return (
@@ -18,9 +27,11 @@ const ProductSpecs = ({ specs = [] }) => {
       <h3 className="specs-title">Характеристика</h3>
 
       <div
-        className={`specs-content ${expanded ? "expanded" : ""}`}
+        className={`specs-content ${expanded ? "expanded" : ""} ${
+          !expanded && isOverflowing ? "blur-bottom" : ""
+        }`}
         ref={contentRef}
-        style={{ maxHeight: expanded ? contentRef.current?.scrollHeight : 400 }}
+        style={{ maxHeight: expanded ? contentRef.current?.scrollHeight : initialMaxHeight }}
       >
         {specs.map((item, index) => (
           <div className="spec-item" key={index}>
@@ -32,13 +43,13 @@ const ProductSpecs = ({ specs = [] }) => {
 
       {isOverflowing && (
         <button
-        className="show-more-btn"
-        onClick={() => setExpanded(!expanded)}
+          className="show-more-btn"
+          onClick={() => setExpanded(!expanded)}
         >
-        <span className="show-more-text">
+          <span className="show-more-text">
             {expanded ? "Показати менше" : "Показати більше"}
-        </span>
-        <ArrowDownwardIcon className={`arrow-icon ${expanded ? "rotated" : ""}`} />
+          </span>
+          <ArrowDownwardIcon className={`arrow-icon ${expanded ? "rotated" : ""}`} />
         </button>
       )}
     </div>

@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./style.css";
+import { formatNumberWithSpaces } from "../../hooks/price";
 
 const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
   const [visibleCount, setVisibleCount] = useState(sliderSettings.initialCount || 4);
@@ -45,9 +46,30 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     }
   }, [showNavigation, isDesktopGrid]);
 
+  // --------------------- Зміни для ціни "від" ---------------------
+  const getLowestPrice = (item) => {
+    // отримуємо всі ціни з colorSlider
+    const colorPrices =
+      item.colorSlider?.map((c) => parseFloat(c.colorPrice)).filter((p) => !isNaN(p)) || [];
+
+    const basePrice = parseFloat(item.price);
+
+    const allPrices = [...colorPrices, basePrice];
+    if (!allPrices.length) return { price: basePrice, showFrom: false };
+
+    const lowest = Math.min(...allPrices);
+    const showFrom = lowest < basePrice;
+    return { price: lowest, showFrom };
+  };
+  // ------------------------------------------------------------------
+
   const renderProductCard = (item) => {
     const imageData = getImage(item.mainImage?.localFile);
     const isAvailable = true;
+
+    // --------------------- Визначаємо фінальну ціну ---------------------
+    const { price: finalPrice, showFrom: showPriceFrom } = getLowestPrice(item);
+    // ------------------------------------------------------------------
 
     return (
       <a href={`/${item.url}`} className="product-card-link">
@@ -74,8 +96,13 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
             <div className="home-product-price">
               {isAvailable ? (
                 <>
-                  <span className="price-new">{item.price} грн</span>
-                  {item.oldPrice && <span className="price-old">{item.oldPrice} грн</span>}
+                  <span className="price-new">
+                    {showPriceFrom ? "від " : ""}
+                    {formatNumberWithSpaces(finalPrice)} грн
+                  </span>
+                  {!showPriceFrom && item.oldPrice && (
+                    <span className="price-old">{formatNumberWithSpaces(item.oldPrice)} грн</span>
+                  )}
                 </>
               ) : (
                 <span className="out-of-stock">Немає в наявності</span>

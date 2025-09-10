@@ -11,8 +11,6 @@ import "../../styles/style.css";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
-import smallStroller from "../../images/smallStroller.png";
-
 export const query = graphql`
   query Header {
     allStrapiAccessories(sort: { fields: priority, order: DESC }) {
@@ -60,6 +58,11 @@ export const query = graphql`
         oldPrice
         url
         updatedAt
+        mainImage {
+          localFile {
+            url
+          }
+        }
       }
     }
     allStrapiMittens {
@@ -81,6 +84,11 @@ export const query = graphql`
         oldPrice
         url
         updatedAt
+        mainImage {
+          localFile {
+            url
+          }
+        }
       }
     }
     allStrapiFootmuffs {
@@ -102,6 +110,11 @@ export const query = graphql`
         oldPrice
         url
         updatedAt
+        mainImage {
+          localFile {
+            url
+          }
+        }
       }
     }
     allStrapiCarSeats {
@@ -123,6 +136,11 @@ export const query = graphql`
         oldPrice
         url
         updatedAt
+        mainImage {
+          localFile {
+            url
+          }
+        }
       }
     }
     allStrapiBeds {
@@ -144,6 +162,11 @@ export const query = graphql`
         oldPrice
         url
         updatedAt
+        mainImage {
+          localFile {
+            url
+          }
+        }
       }
     }
   }
@@ -177,27 +200,27 @@ const Header = ({ isBasketView, setIsBasketView }) => {
   const subCategories = {
     "Коляски": allStrapiProducts.nodes.map(p => ({
       title: p.title,
-      image: smallStroller,
+      image: p.mainImage,
       url: `/${p.url}/`
     })),
     "Конверти": allStrapiFootmuffs.nodes.map(p => ({
       title: p.title,
-      image: smallStroller,
+      image: p.mainImage,
       url: `/${p.url}/`
     })),
     "Рукавиці": allStrapiMittens.nodes.map(p => ({
       title: p.title,
-      image: smallStroller,
+      image: p.mainImage,
       url: `/${p.url}/`
     })),
     "Автокрісла": allStrapiCarSeats.nodes.map(p => ({
       title: p.title,
-      image: smallStroller,
+      image: p.mainImage,
       url: `/${p.url}/`
     })),
     "Ліжка": allStrapiBeds.nodes.map(p => ({
       title: p.title,
-      image: smallStroller,
+      image: p.mainImage,
       url: `/${p.url}/`
     }))
   };

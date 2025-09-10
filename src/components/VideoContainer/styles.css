@@ -41,6 +41,10 @@
     transition: opacity 0.3s ease; /* Add transition for smooth fade */
 }
 
+.video-facade.inactive-video .play-button {
+    opacity: 0 !important;
+}
+
 /* Desktop-only hover effect */
 @media (min-width: 1025px) {
     .play-button {
@@ -49,5 +53,13 @@
 
     .video-facade:hover .play-button {
         opacity: 1; /* Show on hover */
+    }
+        .video-facade:not(.inactive-video) .play-button {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .video-facade:not(.inactive-video):hover .play-button {
+        opacity: 1;
     }
 }

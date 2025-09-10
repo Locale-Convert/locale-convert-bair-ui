@@ -25,6 +25,8 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
     };
   }, []);
 
+    if (!activeItem?.richDescription || activeItem.richDescription.length === 0) return null;
+
   return (
     <>
       <h2 className="covering-block-title">Презентація</h2>

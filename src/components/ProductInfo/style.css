@@ -45,7 +45,7 @@
 .home-product-price {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     font-size: 32px;
     font-weight: bold;
 }
@@ -70,6 +70,10 @@
     .product-card {
         padding: 0 20px;
         margin-left: 0;
+    }
+
+    .home-product-price {
+        gap: 3px;
     }
 
     .back-button {

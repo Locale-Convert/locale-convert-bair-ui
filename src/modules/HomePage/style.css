@@ -15,6 +15,17 @@
   padding: 20px 0;
 }
 
+
+.for-order-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.for-order-wrapper > * {
+  flex: 1 1 50%;
+}
+
 /* Адаптив для мобільних */
 @media (max-width: 768px) {
   .banner-wrapper {
@@ -27,13 +38,17 @@
     max-width: 100%;
   }
 
-  /* Міняємо порядок — банер перший */
-  .banner-wrapper > :nth-child(1) {
-    order: 1; /* BannerWithText */
+  .for-order-wrapper {
+    flex-direction: column;
   }
 
-  .banner-wrapper > :nth-child(2) {
+  .for-order-wrapper > :nth-child(1) {
     order: 2; /* ProductsSlider */
+  }
+
+  .for-order-wrapper > :nth-child(2) {
+    margin-top: 30px;
+    order: 1; /* BannerWithText */
   }
 
   .home-product-wrapper {

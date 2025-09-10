@@ -58,6 +58,7 @@
   line-height: 1.6;
   margin-bottom: 12px;
   color: #333;
+  font-weight: 400;
 }
 
 .characteristics-content a {
@@ -78,6 +79,7 @@
 .characteristics-content ul li {
   list-style-type: disc;
   margin-bottom: 6px;
+  font-size: 14px;
 }
 
 .characteristics-content ol li {

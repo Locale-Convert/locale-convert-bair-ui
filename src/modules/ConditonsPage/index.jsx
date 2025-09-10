@@ -31,7 +31,6 @@ const ConditionsPage = () => {
       <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
       <div className="condition-box">
         <div className="condition-content">
-          <div className="condition-title">Умови</div>
           <ReactMarkdown>{text}</ReactMarkdown>
         </div>
       </div>

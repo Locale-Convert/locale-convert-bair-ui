@@ -101,7 +101,7 @@ const SliderVideo = ({ videoSlider = [] }) => {
             className={!isMobile && index === activeIndex ? "active-slide" : ""}
           >
             <div className="video-slide-wrapper-video">
-              <VideoControlWithoutPause videoUrl={item.url} />
+              <VideoControlWithoutPause videoUrl={item.url} isActive={index === activeIndex} />
             </div>
           </SwiperSlide>
         ))}
