@@ -13,8 +13,6 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
     };
   }, []);
 
-  console.log('subCategories[activeCategory]', subCategories[activeCategory]);
-
   return (
     <div className="mobile-menu">
       {!activeCategory ? (

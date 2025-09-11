@@ -34,6 +34,8 @@ export const query = graphql`
       title
       price
       description
+      certificateUrl
+      instructionsUrl
       oldPrice
       updatedAt
       stickerBlackFriday
@@ -106,9 +108,6 @@ export const query = graphql`
     }
     allStrapiProducts {
         nodes {
-            colorsHashes {
-              hash
-            }
             stickerBlackFriday
             stickerBlackFridayTitle
             stickerNew
@@ -119,6 +118,7 @@ export const query = graphql`
             updatedAt
             isPriceFrom
             colorSlider {
+              hash
               colorPrice
               colorOldPrice
               coloStickerSaleTitle

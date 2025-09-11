@@ -19,7 +19,7 @@ const HomePage = ({ data }) => {
     allStrapiCarSeats,
     allStrapiAccessories: { nodes },
     allStrapiBeds,
-    strapiHomePage: { mainPromo, videoUrl, promoOne, promoTwo, promoThree, promoFour, promoFive }
+    strapiHomePage: { mainPromo, videoUrl, promoOne, promoTwo, promoThree, promoFour, promoFive, promoSix }
   } = data;
 
   const [isMobileView, setIsMobileView] = useState(null);
@@ -192,7 +192,7 @@ const HomePage = ({ data }) => {
                 navigationOnDesktop={false}
               />
             </div>
-            <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
+            <BannerWithText data={promoSix} textStyle={{ maxWidth: '250px' }} />
           </div>
 
           <SliderVideo videoSlider={videoUrl} />
@@ -311,7 +311,7 @@ const HomePage = ({ data }) => {
             <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
           </div>
           <div className="banner-wrapper">
-            <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
+            <BannerWithText data={promoSix} textStyle={{ maxWidth: '250px' }} />
             <ProductsSlider
               data={nodes}
               title="Аксесуари"

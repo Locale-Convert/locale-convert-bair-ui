@@ -51,23 +51,25 @@ const Accordion = ({
 
   return (
     <div className={`accordion-wrapper ${isProductPage ? "product-page" : ""}`}>
-      <h2 className="accordion-main-title">{computedTitle}</h2>
+      <div className="accordion-header-row">
+        <div className="accordion-left">
+          <h2 className="accordion-main-title">{computedTitle}</h2>
 
-      <div className="accordion-content">
-        {showCategories && !isProductPage && (
-          <div className="accordion-categories">
-            {categories.map((cat) => (
-              <div
-                key={cat}
-                className={`accordion-category ${cat === activeCategory ? "active" : ""}`}
-                onClick={() => setActiveCategory(cat)}
-              >
-                <span className="category-text">{cat}</span>
-                <span className="category-count">{FAQ_DATA[cat].length}</span>
-              </div>
-            ))}
-          </div>
-        )}
+          {showCategories && !isProductPage && (
+            <div className="accordion-categories">
+              {categories.map((cat) => (
+                <div
+                  key={cat}
+                  className={`accordion-category ${cat === activeCategory ? "active" : ""}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  <span className="category-text">{cat}</span>
+                  <span className="category-count">{FAQ_DATA[cat].length}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         <div className="accordion-questions">
           {visibleQuestions.map((q, idx) => (

@@ -1,8 +1,6 @@
 .sale-banner {
     position: relative;
     width: 100%;
-    min-height: 500px;
-    height: 100vh;
     overflow: hidden;
     margin-top: 88px;
 }

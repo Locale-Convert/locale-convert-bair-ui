@@ -16,9 +16,6 @@ export const query = graphql`
         smallDescription
         productTabTitle
         url
-        colorsHashes {
-          hash
-        }
         mainImage {
           localFile {
             childImageSharp {

@@ -3262,6 +3262,7 @@ body{
   .footer__box-content-links {
     text-decoration: underline;
     font-weight: 700;
+    color: #0040DD;
   }
 
   .footer__box-list {
@@ -3521,12 +3522,7 @@ body{
   .circle {
     display: none;
   }
-
-  .main_banner_video-promo {
-    display: block;
-    height: 400px;
-  }
-
+  
   .main_catalog-box-items {
     grid-template-columns: repeat(auto-fill, minmax(30%, 30%));
   }

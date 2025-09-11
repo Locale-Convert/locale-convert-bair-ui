@@ -10,7 +10,7 @@ const ProductColors = ({ colors = [], maxVisible = 5 }) => {
         <span
           key={i}
           className="color-dot"
-          style={{ backgroundColor: c.hash }}
+          style={{ backgroundColor: c }}
         ></span>
       ))}
       {hiddenCount > 0 && (

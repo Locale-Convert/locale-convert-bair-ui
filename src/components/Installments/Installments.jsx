@@ -2,9 +2,9 @@ import React from "react";
 import "./style.css";
 
 const Installments = ({ price }) => {
-    if(!price) return null;
-    
-    const installment = Math.min((price / 4).toFixed(2));
+    if (!price) return null;
+
+    const installment = Math.round(price / 4);
 
     return (
         <div className="installments">
@@ -14,3 +14,4 @@ const Installments = ({ price }) => {
 };
 
 export default Installments;
+

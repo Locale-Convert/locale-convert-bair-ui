@@ -1,6 +1,6 @@
 .footer-wrapper {
-    background: #FAFAFA;
-    padding: 30px 20px 20px;
+    background: #E9EAEB;
+    padding: 56px 51px 20px 50px;
     font-family: Arial, sans-serif;
     font-size: 13px;
     color: #000;
@@ -20,8 +20,12 @@
 }
 
 .footer-column-conditions {
-    max-width: 220px;
+    max-width: 225px;
     margin-right: 200px;
+}
+
+.footer-fop {
+    font-weight: 400;
 }
 
 /* Соцмережі під умовами */
@@ -32,7 +36,7 @@
 .footer-column h4 {
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
 .footer-menu {
@@ -42,7 +46,7 @@
 }
 
 .footer-menu li {
-    margin-bottom: 10px;
+    margin-bottom: 16px;
 }
 
 .footer-menu li a {
@@ -58,7 +62,7 @@
 }
 
 .footer-socials li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .footer-phone {
@@ -74,6 +78,7 @@
 .footer__box-content-conditions {
     font-size: 18px;
     margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .footer-bottom {

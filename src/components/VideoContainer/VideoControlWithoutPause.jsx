@@ -42,7 +42,7 @@ const VideoControlWithoutPause = ({ videoUrl, isActive = true }) => {
                 src={`${videoUrl}?autoplay=1&chromecast=0`}
                 id="myVideo"
                 width="100%"
-                height="667px"
+                height="100%"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 className="main_banner_video-promo"

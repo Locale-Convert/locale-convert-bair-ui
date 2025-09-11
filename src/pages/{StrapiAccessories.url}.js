@@ -42,6 +42,8 @@ export const query = graphql`
       stickerNewTitle
       stickerSale
       stickerSaleTitle
+      certificateUrl
+      instructionsUrl
       mainImage {
         localFile {
             childImageSharp {
@@ -53,6 +55,7 @@ export const query = graphql`
             url
         }
         colorSlider {
+            hash
             colorPrice
             colorOldPrice
             coloStickerSaleTitle
@@ -106,9 +109,6 @@ export const query = graphql`
     }
     allStrapiAccessories {
         nodes {
-            colorsHashes {
-              hash
-            }
             stickerBlackFriday
             stickerBlackFridayTitle
             stickerNew
@@ -119,6 +119,7 @@ export const query = graphql`
             updatedAt
             isPriceFrom
             colorSlider {
+              hash
               colorPrice
               colorOldPrice
               coloStickerSaleTitle

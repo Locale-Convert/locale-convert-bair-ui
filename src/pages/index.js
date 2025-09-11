@@ -10,6 +10,7 @@ export const query = graphql`
                 colorSlider {
                   colorPrice
                   colorOldPrice
+                  hash
                 }
                 id
                 title
@@ -17,9 +18,6 @@ export const query = graphql`
                 oldPrice
                 smallDescription
                 productTabTitle
-                colorsHashes {
-                  hash
-                }
                 url
                 updatedAt
                 mainImage {
@@ -46,6 +44,7 @@ export const query = graphql`
                 colorSlider {
                   colorPrice
                   colorOldPrice
+                  hash
                 }
                 id
                 title
@@ -53,9 +52,6 @@ export const query = graphql`
                 oldPrice
                 smallDescription
                 productTabTitle
-                colorsHashes {
-                  hash
-                }
                 url
                 updatedAt
                 mainImage {
@@ -82,6 +78,7 @@ export const query = graphql`
                 colorSlider {
                   colorPrice
                   colorOldPrice
+                  hash
                 }
                 id
                 title
@@ -89,9 +86,6 @@ export const query = graphql`
                 oldPrice
                 smallDescription
                 productTabTitle
-                colorsHashes {
-                  hash
-                }
                 url
                 updatedAt
                 mainImage {
@@ -118,6 +112,7 @@ export const query = graphql`
                 colorSlider {
                   colorPrice
                   colorOldPrice
+                  hash
                 }
                 id
                 title
@@ -125,9 +120,6 @@ export const query = graphql`
                 oldPrice
                 smallDescription
                 productTabTitle
-                colorsHashes {
-                  hash
-                }
                 url
                 updatedAt
                 mainImage {
@@ -154,6 +146,7 @@ export const query = graphql`
                 colorSlider {
                   colorPrice
                   colorOldPrice
+                  hash
                 }
                 id
                 title
@@ -161,9 +154,6 @@ export const query = graphql`
                 oldPrice
                 smallDescription
                 productTabTitle
-                colorsHashes {
-                  hash
-                }
                 url
                 updatedAt
                 mainImage {
@@ -190,6 +180,7 @@ export const query = graphql`
                 colorSlider {
                   colorPrice
                   colorOldPrice
+                  hash
                 }
                 id
                 title
@@ -197,9 +188,6 @@ export const query = graphql`
                 oldPrice
                 smallDescription
                 productTabTitle
-                colorsHashes {
-                  hash
-                }
                 url
                 updatedAt
                 mainImage {
@@ -314,6 +302,23 @@ export const query = graphql`
                 text
             }
             promoFive {
+                desktopImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                mobileImage {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                text
+            }
+            promoSix {
                 desktopImage {
                   localFile {
                     childImageSharp {

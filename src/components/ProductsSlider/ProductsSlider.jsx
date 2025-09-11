@@ -92,7 +92,13 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
           <div className="product-info">
             <h3 className="product-title">{item.title}</h3>
             <p className="product-desc">{item.smallDescription}</p>
-            {item.colorsHashes && <ProductColors colors={item.colorsHashes} maxVisible={5} />}
+            {item.colorSlider && item.colorSlider.length > 0 && (
+              <ProductColors
+                colors={item.colorSlider.map((color) => color.hash)}
+                maxVisible={5}
+              />
+            )}
+
             <div className="home-product-price">
               {isAvailable ? (
                 <>

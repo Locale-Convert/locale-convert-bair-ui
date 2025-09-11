@@ -16,11 +16,32 @@
     color: #000;
     line-height: 46px;
     margin: 20px 0;
+    font-size: 40px;
+    font-weight: 700;
 }
 
 .accordion-main-title .title > div {
     font-size: 40px;
     font-weight: 700;
+}
+
+.accordion-header-row {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.accordion-left {
+    flex: 0 0 250px;
+    /* фіксована ширина блоку зліва */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* відстань між заголовком і категоріями */
+}
+
+.accordion-questions {
+    flex: 1;
 }
 
 .accordion-main-title.mobile {
@@ -54,7 +75,6 @@
     padding: 10px 15px 10px 0;
     cursor: pointer;
     border-radius: 5px;
-    margin-bottom: 8px;
     transition: color 0.2s;
     color: #00000088;
 }
@@ -95,8 +115,8 @@
     border-top: 1px solid #DAD9D9;
 }
 
-.accordion-item:last-child {
-    border-bottom: 1px solid #DAD9D9;
+.accordion-questions .accordion-item:last-of-type {
+  border-bottom: 1px solid #DAD9D9;
 }
 
 .accordion-title {
@@ -125,6 +145,39 @@
 }
 
 @media (max-width: 768px) {
+    .accordion-header-row {
+        flex-direction: column;
+        /* замість рядка */
+        gap: 0;
+    }
+
+    .accordion-left {
+        flex: unset;
+        width: 100%;
+        gap: 15px;
+        /* трохи менше відстань */
+    }
+
+    .accordion-main-title {
+        margin: 0;
+        text-align: center;
+    }
+
+    .accordion-categories {
+        flex-direction: row;
+        overflow-x: auto;
+        margin: 0;
+        scrollbar-width: none;
+    }
+
+    .accordion-categories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .accordion-questions {
+        margin-top: 15px;
+    }
+
     .accordion-wrapper {
         padding: 0 20px 20px 20px;
         margin-bottom: 40px;
@@ -140,12 +193,12 @@
         margin: 0;
     }
 
-    .accordion-main-title .title > div {
+    .accordion-main-title .title>div {
         font-size: 26px;
         font-weight: 700;
     }
 
-    .accordion-main-title > .title {
+    .accordion-main-title>.title {
         display: flex;
         align-items: center;
         justify-content: center;

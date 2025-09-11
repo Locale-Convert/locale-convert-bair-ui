@@ -57,8 +57,8 @@ const Footer = () => {
           <div className="footer-phone">
             <a href="tel:+380961093040">+38(096) 109-30-40</a>
           </div>
-          <div>ФОП Парненко Вікторія Юріївна</div>
-          <div>м. Харків</div>
+          <div className="footer-fop">ФОП Парненко Вікторія Юріївна</div>
+          <div className="footer-fop">м. Харків</div>
         </div>
 
         {/* Категорії */}

@@ -34,6 +34,8 @@ export const query = graphql`
       title
       price
       description
+      certificateUrl
+      instructionsUrl
       oldPrice
       updatedAt
       stickerBlackFriday
@@ -112,13 +114,11 @@ export const query = graphql`
             stickerNewTitle
             stickerSale
             stickerSaleTitle
-            colorsHashes {
-              hash
-            }
             id
             updatedAt
             isPriceFrom
             colorSlider {
+              hash
               colorPrice
               colorOldPrice
               coloStickerSaleTitle

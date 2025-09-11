@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import "./style.css";
 
 const breakpoints = {
-  420: { slidesPerView: 1.2, spaceBetween: 10 },
+  420: { slidesPerView: 1, spaceBetween: 15 },
   666: { slidesPerView: 2.2, spaceBetween: 15 },
   1024: { slidesPerView: 2.6, spaceBetween: 20 },
   1440: { slidesPerView: 3.5, spaceBetween: 10 },
@@ -88,6 +88,7 @@ const SliderVideo = ({ videoSlider = [] }) => {
         centeredSlides={!isMobile}
         slidesPerGroup={1}
         grabCursor={true}
+        slidesOffsetAfter={100}
         loop={false}
         speed={500} // базова швидкість анімації (ms)
         className="slider-video"

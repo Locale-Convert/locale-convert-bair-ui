@@ -45,6 +45,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 .custom-prev-video,
@@ -168,6 +170,7 @@
   /* якщо потрібно точніше прижати iframe всередині слайда */
   .video-slide-wrapper-video {
     margin-left: 0;
+    max-height: 567px;
   }
 
     .slider-video .swiper-slide {

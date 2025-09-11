@@ -122,7 +122,7 @@ const ProductPage = ({
           )}
         </div>
         <div className="order-wrapper">
-          <DownloadLinks />
+          <DownloadLinks certificateLink={data?.certificateUrl} instructionLink={data?.instructionsUrl}/>
         </div>
         {/* <div className="desc-video">
             <SliderVideoProduct

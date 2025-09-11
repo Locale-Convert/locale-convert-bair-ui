@@ -1,4 +1,3 @@
-// SaleBanner.jsx
 import React, { useState, useEffect } from "react";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
