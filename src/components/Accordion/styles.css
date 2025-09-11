@@ -176,6 +176,11 @@
 
     .accordion-questions {
         margin-top: 15px;
+        width: 100%;
+    }
+
+    .accordion-questions .accordion-item:last-of-type {
+        border-bottom: 1px solid #FFFFFF;
     }
 
     .accordion-wrapper {
