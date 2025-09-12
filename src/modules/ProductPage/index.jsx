@@ -159,7 +159,6 @@ const ProductPage = ({
           </div> */}
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
-        <SliderVideo videoSlider={mockVideoSlider} />
         <div className="order-wrapper">
           <ProductsSlider
             data={relatedProducts}

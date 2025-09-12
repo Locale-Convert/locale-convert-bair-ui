@@ -16,41 +16,36 @@ const breakpoints = {
 };
 
 const SliderVideo = ({ videoSlider = [] }) => {
-  const swiperRef = useRef(null); // тут зберемо сам інстанс Swiper
-  const [isMobile, setIsMobile] = useState(false);
+  const swiperRef = useRef(null);
+
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // детектор мобайла
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // При зміні isMobile — оновлюємо параметри інстансу (щоб centeredSlides оновився)
   useEffect(() => {
     const swiper = swiperRef.current;
     if (!swiper) return;
-    // безпечне оновлення параметрів
     swiper.params.centeredSlides = !isMobile;
     swiper.params.spaceBetween = isMobile ? 15 : 20;
-    // slidesPerView може бути керований breakpoints, залишаємо як є
-    swiper.update(); // переміряти слайди з новими параметрами
+    swiper.update();
   }, [isMobile]);
 
   const handlePrev = () => {
     const s = swiperRef.current;
-    if (!s) return;
-    // не натискати під час анімації
-    if (s.animating) return;
-    s.slidePrev(); // використовує speed з props Swiper (або можна передати s.slidePrev(500))
+    if (!s || s.animating) return;
+    s.slidePrev();
   };
 
   const handleNext = () => {
     const s = swiperRef.current;
-    if (!s) return;
-    if (s.animating) return;
+    if (!s || s.animating) return;
     s.slideNext();
   };
 
@@ -59,40 +54,34 @@ const SliderVideo = ({ videoSlider = [] }) => {
       <div className="slider-header-video">
         <h2 className="slider-title-video">Вiдео</h2>
         <div className="slider-nav-video mobile-only">
-          <button
-            className="custom-prev-video"
-            onClick={handlePrev}
-          >
+          <button className="custom-prev-video" onClick={handlePrev}>
             <img src={arrowLeft} alt="Prev" />
           </button>
-          <button
-            className="custom-next-video"
-            onClick={handleNext}
-          >
+          <button className="custom-next-video" onClick={handleNext}>
             <img src={arrowLeft} alt="Next" className="rotate-video" />
           </button>
         </div>
       </div>
 
       <Swiper
-        // зберігаємо інстанс через onSwiper — це гарантує, що реф містить саме Swiper instance
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
         }}
         modules={[Pagination]}
         pagination={{ clickable: true }}
         breakpoints={breakpoints}
-        // slidesPerView залишаємо базовим 1 — дробове значення задається в breakpoints або через isMobile нижче
         slidesPerView={isMobile ? 1.2 : 1}
         spaceBetween={isMobile ? 15 : 20}
-        centeredSlides={!isMobile}
+        centeredSlides={!isMobile} // ✅ на десктопі центр, на мобайлі ні
+        slidesOffsetBefore={isMobile ? 0 : 0} // ✅ для мобільних зсуву немає
+        slidesOffsetAfter={0} // ✅ щоб останній не обрізався
         slidesPerGroup={1}
         grabCursor={true}
-        slidesOffsetAfter={100}
-        loop={false}
-        speed={500} // базова швидкість анімації (ms)
+        loop={true}
+        initialSlide={!isMobile ? Math.floor(videoSlider.length / 2) : 0}
+        speed={500}
         className="slider-video"
-        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         observer={true}
         observeParents={true}
       >
@@ -102,7 +91,10 @@ const SliderVideo = ({ videoSlider = [] }) => {
             className={!isMobile && index === activeIndex ? "active-slide" : ""}
           >
             <div className="video-slide-wrapper-video">
-              <VideoControlWithoutPause videoUrl={item.url} isActive={index === activeIndex} />
+              <VideoControlWithoutPause
+                videoUrl={item.url}
+                isActive={index === activeIndex}
+              />
             </div>
           </SwiperSlide>
         ))}

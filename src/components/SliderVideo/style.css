@@ -163,7 +163,6 @@
   /* щоб слайд мав "peek" наступного слайда — даємо auto width + мінімальну ширину
      (регулюй value для бажаного вигляду) */
   .slider-video .swiper-slide {
-    width: calc(100% - 56px) !important; /* підганяй: 56px — це "підсумок" пробілу для peek */
     max-width: calc(100% - 56px) !important;
   }
 
