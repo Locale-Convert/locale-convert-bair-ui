@@ -8,21 +8,15 @@ import { navigate } from "gatsby";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import ColorSlider from "./ColorSlider";
-import RelatedMittensProduct from "./RelatedMittensProduct";
-import TitleBox from "../TitleBox/TitleBox";
-
 import { addToLocalStorage } from "../../hooks/localstorage";
 import { useCartStore } from "../../store/store";
 
-import PriceBox from "../PriceBox/PriceBox";
 import MainSlider from "../SliderCharacteristics/SliderNew";
 import SliderMiniature from "../SliderCharacteristics/SliderMiniature";
 
 
 import "swiper/css";
 import "swiper/css/pagination";
-import RelatedMittensAccessories from "./RelatedMittensAccessories";
 import ProductInfo from "../ProductInfo/ProductInfo";
 
 let ReactPixel = null;
@@ -185,23 +179,13 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
   return (
     <>
-
-      {/* {isMobileView ? (
-          <BlockTitle
-            item={data}
-            title={title}
-            currentColor={currentColor}
-            article={colorArticle}
-            colorTitle={colorTitle}
-          />
-        ) : null} */}
-
       <div className="characteristics-box">
         <div className="vertical-slider-wrapper">
           <SliderMiniature
             sliderImage={sliderImage}
             selectedIndex={selectedItemForMainSlider}
             changeItemSlider={changeItemSlider}
+            videoUrl={data.videoUrl[0].url}
           />
         </div>
         <div className="main-slider-wrapper">
@@ -214,18 +198,6 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
         </div>
 
         <div className="colors-box">
-          {/* <TitleBox
-              item={data}
-              colorArticle={colorArticle}
-              currentColor={currentColor}
-              title={title}
-              colorTitle={colorTitle}
-            /> */}
-          {/* <ColorSlider
-            data={filteredColorSlider}
-            changeSlider={changeSlider}
-            colorTitle={colorTitle}
-          /> */}
           <ProductInfo
               data={data}
               changeSlider={changeSlider}
@@ -235,34 +207,6 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
               currentColor={currentColor}
               price={price}
           />
-          {/* <div className={"product-basket"} id={"block-buy"}>
-              <PriceBox price={price} oldPrice={oldPrice} currentColor={currentColor}/>
-              {isAdded ? (
-                <a href="/order" className={"product-basket-button"}>
-                  Перейти до оформлення 
-                </a>
-              ) : (
-                <div className={"product-basket-button"} onClick={() => addToBasket(data, loc)}>
-                  Додати в кошик
-                </div>
-              )}
-            </div> */}
-          {/* {relatedAccessories.length !== 0 && type === 'product' && (accessoriesItemOne && accessoriesItemTwo) && !hasGloves
-            && <div className="related-accessories-box">
-              <RelatedMittensProduct
-                colorTitle={colorTitle}
-                title={titleRelatedProducts}
-                relatedAccessories={relatedAccessories}
-                addToBasket={addToBasket}
-              />
-            </div>
-          } */}
-          {/* {relatedAccessories.length !== 0 && type === 'accessories'
-            &&
-            <div className="related-accessories-box">
-              <RelatedMittensAccessories relatedAccessories={relatedAccessories} />
-            </div>
-          } */}
         </div>
 
       </div>

@@ -1,15 +1,17 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getImageHelper } from "../../hooks";
+import { PlayCircleFilledWhite } from '@mui/icons-material';
 
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import "./style.css";
 
-const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
+const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUrl }) => {
     const thumbnailSliderRef = useRef(null);
+    const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     useEffect(() => {
         if (thumbnailSliderRef.current) {
@@ -42,7 +44,7 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         vertical: true,
         verticalSwiping: true,
         waitForAnimate: true,
-        slidesToShow: 5, // завжди 5 слайдів
+        slidesToShow: videoUrl ? 4 : 5, // якщо є відео, показуємо 4
         slidesToScroll: 1,
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
@@ -50,22 +52,67 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider }) => {
     };
 
     return (
-        <Slider {...settings} ref={thumbnailSliderRef} className="vertical-slider">
-            {sliderImage.map((item, index) => (
+        <div className="slider-miniature-container">
+            {/* Відео-мініатюра перед картинками */}
+            {videoUrl && (
                 <div
-                    key={index}
-                    className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`}
-                    onClick={() => handleClick(index)}
+                    className="thumbnail-item video-thumbnail"
+                    onClick={() => setIsVideoOpen(true)}
                 >
                     <GatsbyImage
-                        image={getImageHelper(item)}
+                        image={getImageHelper(sliderImage[0])}
                         className="thumbnail-image"
-                        alt="Thumbnail"
+                        alt="Video Thumbnail"
                         objectFit="cover"
                     />
+                    <PlayCircleFilledWhite className="video-play-icon" />
                 </div>
-            ))}
-        </Slider>
+            )}
+
+            {/* Слайдер мініатюр */}
+            <Slider {...settings} ref={thumbnailSliderRef} className="vertical-slider">
+                {sliderImage.map((item, index) => (
+                    <div
+                        key={index}
+                        className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`}
+                        onClick={() => handleClick(index)}
+                    >
+                        <GatsbyImage
+                            image={getImageHelper(item)}
+                            className="thumbnail-image"
+                            alt="Thumbnail"
+                            objectFit="cover"
+                        />
+                    </div>
+                ))}
+            </Slider>
+
+            {isVideoOpen && (
+                <div className="video-modal">
+                    <div
+                        className="video-overlay"
+                        onClick={() => setIsVideoOpen(false)}
+                    />
+                    <div className="video-content">
+                        <iframe
+                            src={`${videoUrl}?autoplay=1&mute=1&controls=1`}
+                            id="myVideo"
+                            width="100%"
+                            height="100%"
+                            frameBorder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            className="main_banner_video-promo"
+                        ></iframe>
+                        <button
+                            className="close-button"
+                            onClick={() => setIsVideoOpen(false)}
+                        >
+                            ✕
+                        </button>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 };
 
