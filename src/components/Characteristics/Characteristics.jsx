@@ -1,8 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "../../styles/style.css";
 import ReactMarkdown from "react-markdown";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-
 import "./style.css";
 
 function LinkRenderer(props) {
@@ -13,19 +11,17 @@ function LinkRenderer(props) {
   );
 }
 
-const Characteristics = ({ description = "" }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [isOverflowing, setIsOverflowing] = useState(false);
+const Characteristics = ({ description = "", onHeightChange }) => {
   const contentRef = useRef(null);
-
-  const initialMaxHeight = 400; // початкова висота блоку
+  const [height, setHeight] = useState(0);
 
   useEffect(() => {
     if (!contentRef.current) return;
 
     const observer = new ResizeObserver(() => {
-      const scrollHeight = contentRef.current.scrollHeight;
-      setIsOverflowing(scrollHeight > initialMaxHeight);
+      const newHeight = contentRef.current.scrollHeight;
+      setHeight(newHeight);
+      onHeightChange?.(newHeight); // передаємо висоту у батьківський
     });
 
     observer.observe(contentRef.current);
@@ -36,30 +32,11 @@ const Characteristics = ({ description = "" }) => {
   return (
     <div className="characteristics-block description-box-wrapper">
       <h3 className="specs-title">Опис</h3>
-      <div
-        className={`characteristics-content ${expanded ? "expanded" : ""} ${
-          !expanded && isOverflowing ? "blur-bottom" : ""
-        }`}
-        ref={contentRef}
-        style={{ maxHeight: expanded ? contentRef.current?.scrollHeight : initialMaxHeight }}
-      >
+      <div className="characteristics-content" ref={contentRef}>
         <ReactMarkdown components={{ a: LinkRenderer }}>
           {description}
         </ReactMarkdown>
       </div>
-      {isOverflowing && (
-        <button
-          className="show-more-btn"
-          onClick={() => setExpanded(!expanded)}
-        >
-          <span className="show-more-text">
-            {expanded ? "Показати менше" : "Показати більше"}
-          </span>
-          <ArrowDownwardIcon
-            className={`arrow-icon ${expanded ? "rotated" : ""}`}
-          />
-        </button>
-      )}
     </div>
   );
 };

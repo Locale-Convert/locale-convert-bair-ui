@@ -4,31 +4,7 @@
 }
 
 .characteristics-content {
-  max-height: 400px; /* базова висота */
-  overflow: hidden;
   position: relative;
-  transition: max-height 0.5s ease;
-}
-
-.characteristics-content.expanded {
-  max-height: none;
-}
-
-.characteristics-content::after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 80px; /* висота градієнта */
-  background: linear-gradient(transparent, #fff);
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.characteristics-content.expanded::after {
-  opacity: 0;
 }
 
 /* Markdown стилі */
@@ -125,40 +101,6 @@
   font-size: 13px;
 }
 
-/* Show More Button */
-.show-more-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: 10px;
-  background: none;
-  border: none;
-  color: #00000080;
-  font-weight: 500;
-  cursor: pointer;
-  font-size: 14px;
-  transition: color 0.2s ease;
-  padding: 30px 0;
-}
-
-.show-more-btn:hover {
-  color: #000000a8;
-}
-
-.show-more-text {
-  text-decoration: underline;
-}
-
-.arrow-icon {
-  font-size: 16px;
-  transition: transform 0.3s ease;
-}
-
-.arrow-icon.rotated {
-  transform: rotate(180deg);
-}
-
 /* Адаптив */
 @media (max-width: 768px) {
   .characteristics-block {
@@ -168,10 +110,6 @@
   .characteristics-content > h2 {
     font-size: 20px;
     margin-bottom: 0;
-  }
-
-  .show-more-btn {
-    padding: 15px 0;
   }
 
   .specs-title {

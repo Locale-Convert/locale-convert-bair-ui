@@ -51,7 +51,6 @@
     cursor: pointer;
     font-size: 14px;
     transition: color 0.2s ease;
-    padding: 30px 0;
 }
 
 .show-more-btn:hover {

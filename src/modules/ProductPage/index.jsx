@@ -24,6 +24,7 @@ import Accordion from "../../components/Accordion/Accordion";
 import SliderVideo from "../../components/SliderVideo/SliderVideo";
 import example1 from "../../images/example1.png";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
+import DescriptionBlock from "../../components/DescriptionBlock/DescriptionBlock";
 
 const mockVideoSlider = [
   {
@@ -115,14 +116,12 @@ const ProductPage = ({
             setActiveColor={setActiveColor}
           />
         }
-        <div className="desc-characteristics">
-          <Characteristics description={description} />
-          {activeColor && activeColor.specifications?.length > 0 && (
-              <ProductSpecs specs={activeColor.specifications} />
-          )}
-        </div>
+        <DescriptionBlock
+          description={description}
+          activeColor={activeColor}
+        />
         <div className="order-wrapper">
-          <DownloadLinks certificateLink={data?.certificateUrl} instructionLink={data?.instructionsUrl}/>
+          <DownloadLinks certificateLink={data?.certificateUrl} instructionLink={data?.instructionsUrl} />
         </div>
         {/* <div className="desc-video">
             <SliderVideoProduct

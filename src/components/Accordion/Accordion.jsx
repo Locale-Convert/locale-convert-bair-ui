@@ -41,7 +41,6 @@ const Accordion = ({
     setVisibleCount(prev => prev + (isMobile ? 5 : 8));
   };
 
-  // формуємо заголовок для сторінки продукту
   const computedTitle = isProductPage ? (
     <div className="title">
       <div>{questionsForActive.length} питань</div>

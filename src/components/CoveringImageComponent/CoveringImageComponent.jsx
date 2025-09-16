@@ -25,31 +25,31 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
     };
   }, []);
 
-    if (!activeItem?.richDescription || activeItem.richDescription.length === 0) return null;
+  if (!activeItem?.richDescription || activeItem.richDescription.length === 0) return null;
 
   return (
     <>
       <h2 className="covering-block-title">Презентація</h2>
       <div className="covering-block">
         <div className="covering-banner">
-          {activeItem?.richDescription?.map((item, index) => (
-            <div key={index} className="covering-layer">
+          {activeItem?.richDescription?.[0] && (
+            <div className="covering-layer">
               <div
                 className="covering-text-layer"
                 style={{
-                  backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
+                  backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[0]?.url})`,
                   backgroundRepeat: 'no-repeat',
                   backgroundSize: 'cover',
                 }}
               />
               <GatsbyImage
-                image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
+                image={getImage(activeItem?.richDescription?.[0]?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
                 className="covering-image"
                 alt=""
                 objectFit="cover"
               />
             </div>
-          ))}
+          )}
           <div className="covering-gradient-overlay">
             <button className="show-full-btn" onClick={() => setIsFullModalOpen(true)}>
               Показати повністю
@@ -67,40 +67,22 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
           </div>
           <div className="full-modal-content">
             {activeItem?.richDescription?.map((item, index) => (
-              <>
-                <div key={index} className="full-modal-banner-layer">
-                  <div
-                    className="full-modal-text-layer"
-                    style={{
-                      backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: 'cover',
-                    }}
-                  />
-                  <GatsbyImage
-                    image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
-                    className="full-modal-covering-image"
-                    alt=""
-                    objectFit="cover"
-                  />
-                </div>
-                <div key={index} className="full-modal-banner-layer">
-                  <div
-                    className="full-modal-text-layer"
-                    style={{
-                      backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
-                      backgroundRepeat: 'no-repeat',
-                      backgroundSize: 'cover',
-                    }}
-                  />
-                  <GatsbyImage
-                    image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
-                    className="full-modal-covering-image"
-                    alt=""
-                    objectFit="cover"
-                  />
-                </div>
-              </>
+              <div key={index} className="full-modal-banner-layer">
+                <div
+                  className="full-modal-text-layer"
+                  style={{
+                    backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundSize: 'cover',
+                  }}
+                />
+                <GatsbyImage
+                  image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
+                  className="full-modal-covering-image"
+                  alt=""
+                  objectFit="cover"
+                />
+              </div>
             ))}
           </div>
         </div>

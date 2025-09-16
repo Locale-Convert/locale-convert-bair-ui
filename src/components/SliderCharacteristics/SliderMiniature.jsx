@@ -53,7 +53,6 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUr
 
     return (
         <div className="slider-miniature-container">
-            {/* Відео-мініатюра перед картинками */}
             {videoUrl && (
                 <div
                     className="thumbnail-item video-thumbnail"
@@ -69,7 +68,6 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUr
                 </div>
             )}
 
-            {/* Слайдер мініатюр */}
             <Slider {...settings} ref={thumbnailSliderRef} className="vertical-slider">
                 {sliderImage.map((item, index) => (
                     <div
@@ -101,7 +99,7 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUr
                             height="100%"
                             frameBorder="0"
                             allow="autoplay; fullscreen; picture-in-picture"
-                            className="main_banner_video-promo"
+                            className="product-video-promo"
                         ></iframe>
                         <button
                             className="close-button"

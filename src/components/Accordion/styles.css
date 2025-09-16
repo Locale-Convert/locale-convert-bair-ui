@@ -7,7 +7,6 @@
 }
 
 .accordion-wrapper.product-page {
-    flex-direction: row;
     padding-left: 160px;
     gap: 86px;
 }

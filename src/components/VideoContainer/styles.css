@@ -17,6 +17,12 @@
     height: 712px;
 }
 
+.product-video-promo {
+    display: block;
+    width: 500px;
+    height: 712px;
+}
+
 .video-wrapper video {
     height: 100%;
 }

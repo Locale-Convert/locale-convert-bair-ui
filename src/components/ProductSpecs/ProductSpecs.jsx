@@ -2,12 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import "./style.css";
 
-const ProductSpecs = ({ specs = {} }) => {
+const ProductSpecs = ({ specs = {}, compareHeight = 0 }) => {
   const [expanded, setExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
   const contentRef = useRef(null);
-
-  const initialMaxHeight = 400;
 
   const specsArray = Array.isArray(specs)
     ? specs.filter(item => item?.value != null && item?.value !== "")
@@ -19,14 +17,14 @@ const ProductSpecs = ({ specs = {} }) => {
     if (!contentRef.current) return;
 
     const observer = new ResizeObserver(() => {
-      const scrollHeight = contentRef.current.scrollHeight;
-      setIsOverflowing(scrollHeight > initialMaxHeight);
+      const specsHeight = contentRef.current.scrollHeight;
+      setIsOverflowing(specsHeight > compareHeight); // приховуємо, якщо більше опису
     });
 
     observer.observe(contentRef.current);
 
     return () => observer.disconnect();
-  }, [specsArray]);
+  }, [specsArray, compareHeight]);
 
   const renderValue = (value) => {
     if (value == null || value === "") return "";
@@ -39,7 +37,6 @@ const ProductSpecs = ({ specs = {} }) => {
     return value;
   };
 
-  // Не показуємо блок, якщо немає жодного непустого атрибута
   if (specsArray.length === 0) return null;
 
   return (
@@ -47,14 +44,10 @@ const ProductSpecs = ({ specs = {} }) => {
       <h3 className="specs-title">Характеристика</h3>
 
       <div
-        className={`specs-content ${expanded ? "expanded" : ""} ${
-          !expanded && isOverflowing ? "blur-bottom" : ""
-        }`}
+        className={`specs-content ${expanded ? "expanded" : ""}`}
         ref={contentRef}
         style={{
-          maxHeight: expanded
-            ? contentRef.current?.scrollHeight
-            : initialMaxHeight
+          maxHeight: expanded ? contentRef.current?.scrollHeight : compareHeight
         }}
       >
         {specsArray.map((item, index) => (
@@ -65,7 +58,7 @@ const ProductSpecs = ({ specs = {} }) => {
         ))}
       </div>
 
-      {isOverflowing && specsArray.length > 0 && (
+      {isOverflowing && (
         <button
           className="show-more-btn"
           onClick={() => setExpanded(!expanded)}
