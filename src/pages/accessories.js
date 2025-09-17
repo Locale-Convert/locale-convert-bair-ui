@@ -32,6 +32,7 @@ export const query = graphql`
 catalogBanner {
         desktopImage {
           localFile {
+            url
             childImageSharp {
               gatsbyImageData
             }
@@ -39,6 +40,7 @@ catalogBanner {
         }
         mobileImage {
           localFile {
+            url
             childImageSharp {
               gatsbyImageData
             }

@@ -220,6 +220,7 @@ export const query = graphql`
             mainPromo {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -227,6 +228,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -236,6 +238,7 @@ export const query = graphql`
             promoOne {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -243,6 +246,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -253,6 +257,7 @@ export const query = graphql`
             promoTwo {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -260,6 +265,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -270,6 +276,7 @@ export const query = graphql`
             promoThree {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -277,6 +284,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -287,6 +295,7 @@ export const query = graphql`
             promoFour {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -294,6 +303,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -304,6 +314,7 @@ export const query = graphql`
             promoFive {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -311,6 +322,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -321,6 +333,7 @@ export const query = graphql`
             promoSix {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -328,6 +341,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }

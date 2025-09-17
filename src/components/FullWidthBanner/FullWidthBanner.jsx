@@ -1,37 +1,25 @@
 // FullWidthBanner.jsx
-import React, { useEffect, useState } from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import React from "react";
 import "./style.css";
 
 const FullWidthBanner = ({ data, textStyle = {} }) => {
-  // Початково ми не знаємо ширину екрану
-  const [isMobile, setIsMobile] = useState(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Якщо ширина ще не визначена, нічого не рендеримо
-  if (isMobile === null) return null;
-
-  const desktopImage = getImage(data?.desktopImage?.localFile);
-  const mobileImage = getImage(data?.mobileImage?.localFile);
-  const imageToShow = isMobile ? mobileImage : desktopImage;
+  const desktopImage = data?.desktopImage?.localFile?.url;
+  const mobileImage = data?.mobileImage?.localFile?.url;
 
   return (
     <section className="fullwidth-banner">
-      {imageToShow && (
-        <GatsbyImage
-          image={imageToShow}
-          alt={data.text || "Banner"}
-          className="fullwidth-banner__image"
+      {desktopImage && (
+        <img
+          src={desktopImage}
+          alt={data?.text || "Banner Desktop"}
+          className="fullwidth-banner__image desktop-only"
+        />
+      )}
+      {mobileImage && (
+        <img
+          src={mobileImage}
+          alt={data?.text || "Banner Mobile"}
+          className="fullwidth-banner__image mobile-only"
         />
       )}
       {data?.text && (

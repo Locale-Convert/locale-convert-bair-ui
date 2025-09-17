@@ -35,6 +35,10 @@ a:active {
   right: 0;
 }
 
+.order-wrapper {
+  display: none;
+}
+
 #top {
   width: 100%;
   height: 1px;
@@ -4118,6 +4122,10 @@ body{
   .cart-total {
     right: -5px;
     bottom: 0;
+  }
+
+  .order-wrapper {
+    display: block;
   }
 }
 

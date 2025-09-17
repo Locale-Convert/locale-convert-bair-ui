@@ -156,6 +156,16 @@
     bottom: 0;
 }
 
+.modal-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000e1;
+}
+
+
 .video-content {
     position: relative;
     z-index: 10;

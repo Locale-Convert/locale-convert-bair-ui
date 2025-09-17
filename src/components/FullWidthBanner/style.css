@@ -3,16 +3,24 @@
   width: 100%;
   overflow: hidden;
   margin-top: 88px;
-  min-height: 340px; /* приблизно мобільна висота */
+  min-height: 340px;
 }
 
 .fullwidth-banner__image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-/* Текст всередині банера */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
 .fullwidth-banner__text {
   position: absolute;
   top: 50%;
@@ -22,21 +30,34 @@
   text-align: center;
   z-index: 2;
 }
-/* --- Висота банера --- */
 
-/* Десктоп: 1440px ширина → 400px висота (aspect ratio 1440:400 = 3.6) */
 @media (min-width: 769px) {
   .fullwidth-banner {
     aspect-ratio: 1440 / 400;
-    min-height: 400px; /* щоб висота не зменшувалась при aspect-ratio */
+    min-height: 400px;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none;
   }
 }
 
-/* Мобільний: 375px ширина → 340px висота (aspect ratio 375:340 ≈ 1.1) */
 @media (max-width: 768px) {
   .fullwidth-banner {
     margin-top: 60px;
     aspect-ratio: 375 / 340;
     min-height: 340px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
   }
 }

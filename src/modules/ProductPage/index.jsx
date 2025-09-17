@@ -5,13 +5,7 @@ import React,
 } from "react"
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import BlockBuy from "../../components/BlockBuy/BlockBuy";
-import Characteristics from "../../components/Characteristics/Characteristics";
-import Accessories from "../../components/Accessories/Accessories";
-import RelatedProducts from "../../components/RelatedProducts/RelatedProducts";
 import IconColorSlider from "../../components/IconColorSlider/IconColorSlider";
-import SliderVideoProduct from "../../components/SliderVideoProduct/SliderVideoProduct";
-import CommunicationButton from "../../components/CommunicationButton/CommunicationButton";
 
 import { useLocation } from "@reach/router";
 import relatedProductsHook from "./hooks";
@@ -22,7 +16,6 @@ import './style.css';
 import DownloadLinks from "../../components/DownloadLinks/DownloadLinks";
 import Accordion from "../../components/Accordion/Accordion";
 import SliderVideo from "../../components/SliderVideo/SliderVideo";
-import example1 from "../../images/example1.png";
 import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 import DescriptionBlock from "../../components/DescriptionBlock/DescriptionBlock";
 
@@ -98,7 +91,6 @@ const ProductPage = ({
 
   return (
     <>
-
       <div className={"wrapper-mobile"}>
         <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
         {!!colorSlider &&
@@ -158,6 +150,9 @@ const ProductPage = ({
           </div> */}
         {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
+        <div className="mobile-video">
+          <SliderVideo videoSlider={data.videoUrl} />
+        </div>
         <div className="order-wrapper">
           <ProductsSlider
             data={relatedProducts}
@@ -176,15 +171,7 @@ const ProductPage = ({
             showPagination={true}   // точки пагінації не показуються
             showNavigation={false}    // показуємо тільки стрілки
           />
-
-
         </div>
-        {/* <RelatedProducts data={relatedProducts} title={"Інші моделі"} colorSlider={colorSlider} /> */}
-        {/* {
-          isMobileView ? <Accessories data={relatedAccessories} title={"Пропонуємо разом з конвертом"} /> : null
-        } */}
-        {/* <BlockBuy data={data} price={price} oldPrice={oldPrice} setIsBasketView={setIsBasketView}/> */}
-        {/* <CommunicationButton /> */}
         <Accordion
           showCategories={false}
           category={category}

@@ -46,8 +46,7 @@ const HomePage = ({ data }) => {
 
   return (
     <>
-      {isMobileView ? (
-        <div className={"wrapper-mobile"}>
+        <div className={"wrapper-mobile mobile-only"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner data={mainPromo} />
 
@@ -201,8 +200,7 @@ const HomePage = ({ data }) => {
           {/* <CommunicationButton /> */}
           <Footer link={"#top"} />
         </div>
-      ) : (
-        <div className={"wrapper-mobile"}>
+        <div className={"wrapper-mobile desktop-only"}>
           <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
           <SaleBanner data={mainPromo} />
           <div className="banner-wrapper">
@@ -337,10 +335,6 @@ const HomePage = ({ data }) => {
           {/* <CommunicationButton /> */}
           <Footer link={"#top"} />
         </div>
-
-      )}
-
-
     </>
   )
 }

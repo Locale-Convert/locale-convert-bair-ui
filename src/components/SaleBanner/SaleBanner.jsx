@@ -1,35 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
+import React from "react";
 import './style.css';
 
 const SaleBanner = ({ data }) => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const desktopImage = getImage(data?.desktopImage?.localFile);
-  const mobileImage = getImage(data?.mobileImage?.localFile);
-  const imageToShow = isMobile ? mobileImage : desktopImage;
+  const desktopImage = data?.desktopImage?.localFile?.url;
+  const mobileImage = data?.mobileImage?.localFile?.url;
 
   return (
     <section className="sale-banner">
-      {imageToShow && (
-        <GatsbyImage
-          image={imageToShow}
-          alt="Sale Banner"
-          className={`sale-banner-image ${isMobile ? 'mobile-only' : 'desktop-only'}`}
-        />
-      )}
+      <div className="sale-banner-image-wrapper">
+        {desktopImage && (
+          <img
+            src={desktopImage}
+            alt="Sale Banner Desktop"
+            className="sale-banner-image desktop-only"
+          />
+        )}
+        {mobileImage && (
+          <img
+            src={mobileImage}
+            alt="Sale Banner Mobile"
+            className="sale-banner-image mobile-only"
+          />
+        )}
+      </div>
       <div className="sale-banner-content">
-        <h1 className="sale-title">{"SALE"}</h1>
-        <p className="sale-subtitle">{"20% на всі моделі"}</p>
+        <h1 className="sale-title">SALE</h1>
+        <p className="sale-subtitle">20% на всі моделі</p>
       </div>
     </section>
   );

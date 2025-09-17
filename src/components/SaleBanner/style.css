@@ -5,6 +5,12 @@
     margin-top: 88px;
 }
 
+.sale-banner-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 .sale-banner-image {
     width: 100%;
     height: 100%;
@@ -28,6 +34,7 @@
     text-align: center;
     color: #fff;
     padding: 0 20px;
+    z-index: 2;
 }
 
 .sale-title {
@@ -44,17 +51,16 @@
     letter-spacing: 0.06em;
 }
 
-@media (max-width: 600px) {
+/* Медіа-запит для мобільних пристроїв */
+@media (max-width: 768px) {
     .sale-banner {
         min-height: 480px;
         height: auto;
         margin-top: 50px;
     }
-
     .desktop-only {
         display: none;
     }
-
     .mobile-only {
         display: block;
     }

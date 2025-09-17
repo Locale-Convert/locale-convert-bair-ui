@@ -88,7 +88,7 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUr
             {isVideoOpen && (
                 <div className="video-modal">
                     <div
-                        className="video-overlay"
+                        className="modal-video-overlay"
                         onClick={() => setIsVideoOpen(false)}
                     />
                     <div className="video-content">

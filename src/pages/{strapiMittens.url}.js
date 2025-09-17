@@ -172,6 +172,7 @@ export const query = graphql`
                 mobileImage {
                   alternativeText
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -204,6 +205,7 @@ export const query = graphql`
               mainImg {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -211,6 +213,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
