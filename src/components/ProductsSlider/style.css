@@ -56,7 +56,6 @@
 .products-slider .product-card {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .product-card.unavailable {
@@ -75,7 +74,6 @@
 
 .products-slider .products-grid > div {
   display: flex;
-  height: 100%;
 }
 
 .product-card.unavailable .overlay-product-card {
@@ -338,6 +336,7 @@
     padding: 14px;
     box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.05);
     border-radius: 6px;
+    max-height: 308px;
   }
 
   .products-slider .product-title {
