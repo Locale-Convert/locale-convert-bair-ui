@@ -32,8 +32,12 @@ const VideoControlWithoutPause = ({ videoUrl, isActive = true }) => {
     }, [videoUrl]);
 
     const handlePlayClick = () => {
-        if (!isActive && window.innerWidth >= 768) return;
-        setShowVideo(true);
+        if (!isActive && window.innerWidth >= 768) {
+            // на десктопі клік на неактивне відео робить його активним
+            setShowVideo(true);
+            return;
+        }
+        if (isActive) setShowVideo(true);
     };
 
     if (showVideo) {
