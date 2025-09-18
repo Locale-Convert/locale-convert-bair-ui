@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import RichSlider from '../RichSlider/RichSlider';
 import closeIcon from '../../images/close-grey.svg';
@@ -6,26 +6,42 @@ import closeIcon from '../../images/close-grey.svg';
 import "./style.css";
 
 const CoveringImageComponent = ({ colorSlider, activeColor }) => {
-  const [isMobileView, setIsMobileView] = useState(null);
   const [isFullModalOpen, setIsFullModalOpen] = useState(false);
 
-  let activeItem = colorSlider[0];
+  // беремо активний елемент, якщо мобільні є - будемо рендерити їх через клас mobile-only
+  const activeItem = colorSlider[0];
 
-  useEffect(() => {
-    const determineScreenSize = () => {
-      setIsMobileView(window.innerWidth < 600);
-    };
-    determineScreenSize();
-    const handleWindowResize = () => {
-      setIsMobileView(window.innerWidth < 600);
-    };
-    window.addEventListener('resize', handleWindowResize);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, []);
+  if (
+    (!activeItem?.richDescription || activeItem.richDescription.length === 0) &&
+    (!activeItem?.mobileRichDescription || activeItem.mobileRichDescription.length === 0)
+  ) return null;
 
-  if (!activeItem?.richDescription || activeItem.richDescription.length === 0) return null;
+  const renderImageLayer = (item, index, isMobile = false) => (
+    <div key={index} className={isMobile ? 'mobile-only full-modal-banner-layer' : 'desktop-only full-modal-banner-layer'}>
+      <div
+        className={isMobile ? 'mobile-modal-text-layer' : 'full-modal-text-layer'}
+        style={{
+          backgroundImage: `url(${
+            isMobile
+              ? activeItem?.mobileRichDescriptionTextLayer?.[index]?.url
+              : activeItem?.richDescriptionTextLayer?.[index]?.url
+          })`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+        }}
+      />
+      <GatsbyImage
+        image={getImage(
+          isMobile
+            ? item?.localFile?.childrenImageSharp[0]?.gatsbyImageData
+            : item?.localFile?.childrenImageSharp[0]?.gatsbyImageData
+        )}
+        className={isMobile ? 'mobile-modal-covering-image' : 'full-modal-covering-image'}
+        alt=""
+        objectFit="cover"
+      />
+    </div>
+  );
 
   return (
     <>
@@ -33,7 +49,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
       <div className="covering-block">
         <div className="covering-banner">
           {activeItem?.richDescription?.[0] && (
-            <div className="covering-layer">
+            <div className="covering-layer desktop-only">
               <div
                 className="covering-text-layer"
                 style={{
@@ -50,6 +66,26 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
               />
             </div>
           )}
+
+          {activeItem?.mobileRichDescription?.[0] && (
+            <div className="covering-layer mobile-only">
+              <div
+                className="covering-text-layer"
+                style={{
+                  backgroundImage: `url(${activeItem?.mobileRichDescriptionTextLayer?.[0]?.url})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                }}
+              />
+              <GatsbyImage
+                image={getImage(activeItem?.mobileRichDescription?.[0]?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
+                className="covering-image"
+                alt=""
+                objectFit="cover"
+              />
+            </div>
+          )}
+
           <div className="covering-gradient-overlay">
             <button className="show-full-btn" onClick={() => setIsFullModalOpen(true)}>
               Показати повністю
@@ -66,24 +102,10 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
             </button>
           </div>
           <div className="full-modal-content">
-            {activeItem?.richDescription?.map((item, index) => (
-              <div key={index} className="full-modal-banner-layer">
-                <div
-                  className="full-modal-text-layer"
-                  style={{
-                    backgroundImage: `url(${activeItem?.richDescriptionTextLayer?.[index]?.url})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'cover',
-                  }}
-                />
-                <GatsbyImage
-                  image={getImage(item?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
-                  className="full-modal-covering-image"
-                  alt=""
-                  objectFit="cover"
-                />
-              </div>
-            ))}
+            {/* Desktop */}
+            {activeItem?.richDescription?.map((item, index) => renderImageLayer(item, index, false))}
+            {/* Mobile */}
+            {activeItem?.mobileRichDescription?.map((item, index) => renderImageLayer(item, index, true))}
           </div>
         </div>
       )}

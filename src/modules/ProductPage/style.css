@@ -10,6 +10,10 @@
     padding: 10px 50px 100px 50px;
 }
 
+.mobile-video {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .desc-characteristics {
     grid-template-columns: 1fr;
@@ -19,4 +23,9 @@
   .order-wrapper {
     padding: 0 10px;
   }
+
+  .mobile-video {
+    display: block;
+  }
+
 }

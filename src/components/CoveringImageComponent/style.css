@@ -1,7 +1,7 @@
 .covering-banner {
   position: relative;
   width: 100%;
-  min-height: 743px; /* мінімальна висота, щоб не було стрибка */
+  min-height: 743px;
   height: auto; 
   overflow: hidden;
   display: flex;
@@ -119,7 +119,8 @@
   overflow: hidden;
 }
 
-.full-modal-text-layer {
+.full-modal-text-layer,
+.mobile-modal-text-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -128,12 +129,21 @@
   z-index: 1;
 }
 
-.full-modal-covering-image {
+.full-modal-covering-image,
+.mobile-modal-covering-image {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 0;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
 }
 
 @media (max-width: 600px) {
@@ -160,5 +170,13 @@
 
   .covering-banner {
     min-height: 300px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
   }
 }
