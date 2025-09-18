@@ -2,12 +2,16 @@ import React, { useState, useEffect, useMemo } from "react";
 import basket from "../../images/icons/basket.svg";
 import "./style.css";
 import { useCartStore } from "../../store/store";
+import { formatNumberWithSpaces } from "../../hooks/price";
 
-const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, showPrice }) => {
+const ProductActions = ({ addToBasket, currentColor, data, isAdded, showPrice }) => {
     const [showMobileActions, setShowMobileActions] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
     const { cartItems } = useCartStore();
+
+    const displayedPrice = currentColor?.colorPrice ?? data?.price;
+    const displayedOldPrice = currentColor?.colorOldPrice ?? data?.oldPrice;
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -77,10 +81,16 @@ const ProductActions = ({ addToBasket, currentColor, isAdded, price, oldPrice, s
             )}
             {isMobile && (
                 <div className={`product-actions-mobile ${showMobileActions ? "visible" : ""}`}>
-                    {showPrice && (
+                    {showPrice && displayedPrice !== undefined && displayedPrice !== null && (
                         <div className="mobile-price-wrapper">
-                            <span className="mobile-price">{price} грн</span>
-                            {oldPrice && <span className="mobile-old-price">{oldPrice} грн</span>}
+                            <span className="mobile-price">
+                                {formatNumberWithSpaces(displayedPrice)} грн
+                            </span>
+                            {displayedOldPrice !== undefined && displayedOldPrice !== null && (
+                                <span className="mobile-old-price">
+                                    {formatNumberWithSpaces(displayedOldPrice)} грн
+                                </span>
+                            )}
                         </div>
                     )}
                     <div className="product-actions">

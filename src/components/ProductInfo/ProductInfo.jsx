@@ -80,6 +80,9 @@ const ProductInfo = ({
     return () => observer.disconnect();
   }, []);
 
+  const displayedPrice = currentColor.colorPrice ?? data.price;
+  const displayedOldPrice = currentColor.colorOldPrice ?? data.oldPrice;
+
   return (
     <div className="product-card">
       <button className="back-button" onClick={() => window.history.back()}>← Назад</button>
@@ -91,14 +94,9 @@ const ProductInfo = ({
 
       {isAvailable ? (
         <div id="product-price" ref={priceRef} className="product-price">
-          {currentColor.colorPrice || data.price ? <span className="current-price">{currentColor.colorPrice ? formatNumberWithSpaces(currentColor.colorPrice) : formatNumberWithSpaces(data.price)} грн</span> : null}
-          {(currentColor.colorOldPrice || data.oldPrice) && (
-            <span className="old-price">
-              {currentColor.colorOldPrice
-                ? formatNumberWithSpaces(currentColor.colorOldPrice)
-                : formatNumberWithSpaces(data.oldPrice)
-              } грн
-            </span>
+          <span className="current-price">{formatNumberWithSpaces(displayedPrice)} грн</span>
+          {displayedOldPrice && (
+            <span className="old-price">{formatNumberWithSpaces(displayedOldPrice)} грн</span>
           )}
         </div>
       ) : (
@@ -117,9 +115,8 @@ const ProductInfo = ({
       <ProductActions
         addToBasket={() => addToBasket({ ...data, selectedColor: currentColor }, currentColor.article)}
         currentColor={currentColor}
+        data={data}
         isAdded={isAdded}
-        price={currentColor.colorPrice}
-        oldPrice={currentColor.colorOldPrice}
         showPrice={showMobilePrice}
       />
 
