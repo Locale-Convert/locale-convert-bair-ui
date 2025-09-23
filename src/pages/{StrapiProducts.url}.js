@@ -11,6 +11,7 @@ const StrapiProductUrl = ({ data }) => {
       data={data.strapiProducts}
       relatedProducts={data.allStrapiProducts}
       also={data.allStrapiAccessories}
+      category={'Коляски'}
     />
   )
 }
@@ -33,6 +34,8 @@ export const query = graphql`
       title
       price
       description
+      certificateUrl
+      instructionsUrl
       oldPrice
       updatedAt
       stickerBlackFriday
@@ -48,11 +51,6 @@ export const query = graphql`
             }
         }
       }
-      videoSlider {
-          localFile {
-              url
-          }
-      }
         videoUrl {
             url
         }
@@ -65,6 +63,10 @@ export const query = graphql`
             color
             visible
             article
+            specifications {
+              attribute
+              value
+            }
             mainImageColor {
               localFile {
                 childImageSharp {
@@ -79,18 +81,12 @@ export const query = graphql`
                 }
               }
             }
-            richDescriptionTextLayer {
-              url
-            }
             mobileRichDescription {
               localFile {
                 childrenImageSharp {
                   gatsbyImageData
                 }
               }
-            }
-            mobileRichDescriptionTextLayer {
-              url
             }
             imageColor {
                 localFile {
@@ -122,6 +118,7 @@ export const query = graphql`
             updatedAt
             isPriceFrom
             colorSlider {
+              hash
               colorPrice
               colorOldPrice
               coloStickerSaleTitle
@@ -167,6 +164,7 @@ export const query = graphql`
                 desktopImage {
                   alternativeText
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -175,6 +173,7 @@ export const query = graphql`
                 mobileImage {
                   alternativeText
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -207,6 +206,7 @@ export const query = graphql`
               mainImg {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -214,6 +214,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }

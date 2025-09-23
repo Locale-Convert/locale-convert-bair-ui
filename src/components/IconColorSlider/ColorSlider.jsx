@@ -2,6 +2,8 @@ import React from "react";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { getImageHelper } from "../../hooks";
 
+import "./style.css";
+
 const ColorSlider = ({ data, changeSlider, colorTitle }) => {
     return (
         <div className={"icons-box"} id={"icon-slider"}>
@@ -30,7 +32,6 @@ const ColorSlider = ({ data, changeSlider, colorTitle }) => {
                                     </div>
                                 )}
                             </div>
-                            <div className={"icon-title"}>{item.color}</div>
                         </div>
                     ))}
                 </div>

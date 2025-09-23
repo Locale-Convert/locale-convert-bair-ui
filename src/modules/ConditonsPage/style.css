@@ -1,0 +1,96 @@
+.condition-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.condition-box {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  margin-top: 88px;
+}
+
+.condition-content {
+  max-width: 890px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.condition-content p {
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.condition-content h2:nth-child(1) {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.condition-content h2,
+.condition-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 35px;
+  margin-bottom: 16px;
+}
+
+.condition-content a {
+  color: #0040DD;
+  text-decoration: underline;
+}
+
+.condition-content ul li {
+  list-style-type: disc; 
+  color: #000;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  text-indent: -10px;
+}
+
+.condition-content ul li::marker {
+  color: #000;
+}
+
+.condition-content ol li {
+  list-style-type: decimal; /* цифри */
+  color: #000;
+  margin-bottom: 12px;
+  padding-left: 20px; /* більше, щоб цифра не накладалась на текст */
+  text-indent: 0; /* для нумерації text-indent не потрібен */
+}
+
+.condition-content ol li::marker {
+  color: #000; /* чорні цифри */
+}
+
+@media (max-width: 768px) {
+  .condition-box {
+    padding: 20px 16px;
+    margin-top: 60px;
+  }
+
+  .condition-content p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .condition-content h2,
+  .condition-content h3 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+  }
+
+  .condition-content ul,
+  .condition-content ol {
+    padding-left: 16px;
+  }
+
+  .condition-content a {
+    word-break: break-word;
+  }
+}
+

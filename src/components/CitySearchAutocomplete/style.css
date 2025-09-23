@@ -1,0 +1,38 @@
+.city-search-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    align-items: start; /* прижати поля до верху */
+}
+
+/* Десктоп */
+@media (min-width: 768px) {
+    .city-search-container {
+        grid-template-columns: 1fr 1fr; /* два поля по 50% */
+    }
+
+    .city-search-container .MuiAutocomplete-root {
+        width: 100%;
+    }
+}
+
+/* Мобайл */
+@media (max-width: 767px) {
+    .city-search-container .MuiAutocomplete-root {
+        width: 100%;
+    }
+}
+
+/* Вирівнювання внутрішнього input до верху */
+.city-search-container .MuiAutocomplete-root .MuiOutlinedInput-root {
+    box-sizing: border-box;
+    align-items: flex-start;
+}
+
+/* Паддінги input для кращого прижиму до верху */
+.city-search-container .MuiAutocomplete-root .MuiInputBase-input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 14px;
+    font-family: Mulish, serif;
+}

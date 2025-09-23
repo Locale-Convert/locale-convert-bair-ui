@@ -1,0 +1,195 @@
+.slider-video-wrapper {
+  padding: 0 38px 60px 38px;
+  margin-bottom: 20px;
+}
+
+.slider-header-video {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 20px 10px;
+  min-height: 75px;
+}
+
+.slider-title-video {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.slider-video .swiper-pagination {
+  bottom: 0 !important;
+  position: absolute;
+}
+/* Кнопки */
+.slider-nav-video {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider-nav-video.mobile-only {
+  display: none;
+}
+
+.slider-nav-video button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+.custom-prev-video,
+.custom-next-video {
+  width: 40px;
+  height: 40px;
+
+
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.slider-nav-video img {
+  width: 16px;
+  height: 16px;
+}
+
+.rotate-video {
+  transform: rotate(180deg);
+}
+
+/* Базові слайди */
+.slider-video .swiper-slide {
+  opacity: 0.6;
+  transform: scale(0.85);
+  z-index: 1;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  /* забезпечити, що слайд не буде стискатись */
+  flex: 0 0 auto;
+}
+
+.slider-video .swiper-slide {
+  opacity: 0.6;
+  filter: blur(2px);
+  transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+}
+
+.slider-video .swiper-slide {
+  opacity: 0.6;
+  filter: blur(2px);
+  transform: scale(0.65);
+  z-index: 1;
+  transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+  flex: 0 0 auto;
+}
+
+/* Активний слайд через Swiper клас */
+.slider-video .swiper-slide.swiper-slide-active {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(0.9);
+  z-index: 10;
+}
+
+.slider-video .active-slide {
+  opacity: 1;
+  transform: scale(0.9);
+  z-index: 10;
+}
+
+/* Пагінація */
+.swiper-pagination-bullet {
+  background-color: #d3d3d3;
+  opacity: 1;
+  width: 13px;
+  height: 13px;
+  margin: 0 6px !important;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  background: #8bc34a;
+}
+@media (max-width: 1024px) {
+  .slider-title-video {
+    text-align: left;
+    font-size: 30px;
+  }
+
+  .slider-nav-video.mobile-only {
+    display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-video-wrapper {
+    padding: 0;
+    margin-top: 10px;
+  }
+
+  .slider-header-video {
+    padding-left: 10px;
+    justify-content: space-between;
+  }
+
+  .slider-video .swiper-slide {
+    transform: scale(1);
+  }
+
+  .slider-video .swiper-pagination {
+    display: none;
+  }
+
+  /* ключове: прижати wrapper вліво, щоб перший слайд був прижатий */
+  .slider-video .swiper-wrapper {
+    justify-content: flex-start !important;
+  }
+
+  /* щоб слайд мав "peek" наступного слайда — даємо auto width + мінімальну ширину
+     (регулюй value для бажаного вигляду) */
+  .slider-video .swiper-slide {
+    max-width: calc(100% - 56px) !important;
+  }
+
+  /* якщо потрібно точніше прижати iframe всередині слайда */
+  .video-slide-wrapper-video {
+    margin-left: 0;
+    max-height: 567px;
+  }
+
+    .slider-video .swiper-slide {
+    opacity: 0.5 !important;
+    filter: blur(0) !important;
+    transform: scale(1) !important;
+    z-index: 1 !important;
+  }
+
+  /* Активний слайд нічим не відрізняється */
+  .slider-video .swiper-slide.swiper-slide-active {
+    opacity: 1 !important;
+    filter: blur(0) !important;
+    transform: scale(1) !important;
+    z-index: 1 !important;
+  }
+}
+
+/* Додатково можна стиль зробити менш різким */
+.video-slide-wrapper-video {
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  will-change: transform, opacity;
+}

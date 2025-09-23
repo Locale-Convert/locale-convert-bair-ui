@@ -1,287 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Header from "../../components/Header/Header";
-import MainBanner from "../../components/MainBanner/MainBanner";
-import MainCatalog from "../../components/MainCatalog/MainCatalog";
-import Promo from "../../components/Promo/Promo";
 import Footer from "../../components/Footer/Footer";
-import PromoTwo from "../../components/PromoTwo/PromoTwo";
-import PromoTextBottom from "../../components/PromoTextBottom/PromoTextBottom";
-import PromoWithIcon from "../../components/PromoWithIcon/PromoWithIcon";
 import Accordion from "../../components/Accordion/Accordion";
-import SliderPromoSlider from "../../components/SliderPromoSlider/SliderPromoSlider";
 import SliderInstagram from "../../components/SliderInstagram/SliderInstagram";
-import CommunicationButton from "../../components/CommunicationButton/CommunicationButton";
-import { graphql, useStaticQuery } from "gatsby";
-import AccessoriesDesktop from "../../components/AccessoriesDesktop/AccessoriesDesktop";
-import MainBannerWithText from "../../components/MainBannerWithText/MainBannerWithText";
-import PromoTh from "../../components/PromoTh/PromoTh";
-import Accessories from "../../components/Accessories/Accessories";
+import SaleBanner from "../../components/SaleBanner/SaleBanner";
+import BannerWithText from "../../components/BannerWithText/BannerWithText";
+import ProductsSlider from "../../components/ProductsSlider/ProductsSlider";
 
 
-export const query = graphql`
-    query HomePage{
-        allStrapiProducts(sort: { fields: priority, order: DESC }) {
-            nodes {
-                stickerBlackFriday
-                stickerBlackFridayTitle
-                stickerNew
-                stickerNewTitle
-                stickerSale
-                stickerSaleTitle
-                id
-                updatedAt
-                isPriceFrom
-                colorSlider {
-                    colorPrice
-                    colorOldPrice
-                    coloStickerSaleTitle
-                    isSale
-                    isSaleTitle
-                    visible
-                    color
-                    article
-                    mainImageColor {
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData
-                            }
-                        }
-                    }
-                    imageColor {
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData
-                            }
-                        }
-                    }
-                    characteristicsSlider {
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData
-                            }
-                        }
-                    }
-                }
-                title
-                price
-                oldPrice
-                url
-                mainImage {
-                    localFile {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-                mainImg {
-                    desktopImage {
-                        alternativeText
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData
-                            }
-                        }
-                    }
-                    mobileImage {
-                        alternativeText
-                        localFile {
-                            childImageSharp {
-                                gatsbyImageData
-                            }
-                        }
-                    }
-                }
-            }
-        }
+import './style.css';
+import SliderVideo from "../../components/SliderVideo/SliderVideo";
 
-        allStrapiAccessories {
-            nodes {
-                stickerBlackFriday
-                stickerBlackFridayTitle
-                stickerNew
-                stickerNewTitle
-                stickerSale
-                stickerSaleTitle
-                id
-                title
-                price
-                oldPrice
-                url
-                updatedAt
-                mainImage {
-                    localFile {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-                isPriceFrom
-                colorSlider {
-                  colorPrice
-                  colorOldPrice
-                  coloStickerSaleTitle
-                  isSale
-                  isSaleTitle
-                  color
-                  visible
-                  article
-                  mainImageColor {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                }
-                mainImg {
-                  desktopImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                  mobileImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                }
-            }
-        }
-        strapiHomePageMeta {
-            metaDescription
-            metaTitle
-        }
-        strapiHomePage {
-            videoSlider {
-                localFile {
-                    url
-                }
-            }
-            videoUrl {
-                url
-            }
-            mainPromo {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-            }
-            promoOne {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-            }
-            promoTwo {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-            }
-            promoThree {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-            }
-            promoFour {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-            }
-            promoFive {
-                desktopImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-                mobileImage {
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-            }
-        }
-    }
-`
-
-
-const HomePage = () => {
+const HomePage = ({ data }) => {
   const {
     allStrapiProducts,
-    allStrapiAccessories: {
-      nodes
-    },
-    strapiHomePage: {
-      videoUrl,
-      mainPromo,
-      promoOne,
-      promoTwo,
-      promoThree,
-      promoFour,
-      promoFive
-    }
-  } = useStaticQuery(query)
-
+    allStrapiFootmuffs,
+    allStrapiMittens,
+    allStrapiCarSeats,
+    allStrapiAccessories: { nodes },
+    allStrapiBeds,
+    strapiHomePage: { mainPromo, videoUrl, promoOne, promoTwo, promoThree, promoFour, promoFive, promoSix }
+  } = data;
 
   const [isMobileView, setIsMobileView] = useState(null);
   const [isBasketView, setIsBasketView] = useState(false);
@@ -307,46 +46,295 @@ const HomePage = () => {
 
   return (
     <>
-      {isMobileView ? (
-        <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-          <MainBanner promo={mainPromo} />
-          <MainBannerWithText />
-          <MainCatalog data={allStrapiProducts} />
-          <Promo promo={promoOne} />
-          <PromoTwo promo={promoTwo} />
-          <PromoTextBottom promo={promoFour} />
-          <PromoWithIcon promo={promoThree} />
-          <PromoTh />
-          <Accessories data={nodes} title={"Рукавички в колір конверту"} />
-          <SliderPromoSlider videoSlider={videoUrl} />
-          <SliderInstagram />
-          <Accordion />
-          <CommunicationButton />
-          <Footer link={"#top"} />
-        </div>
-      ) : (
-        <div className={"wrapper-mobile"}>
-          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
-          <MainBanner promo={mainPromo} />
-          <div className="promo-flex">
-            <Promo promo={promoOne} />
-            <PromoTwo promo={promoTwo} />
-            <PromoWithIcon promo={promoThree} />
-            <PromoTextBottom promo={promoFour} />
+        <div className={"wrapper-mobile mobile-only"}>
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <SaleBanner data={mainPromo} />
+
+          <div className="for-order-wrapper">
+            <div className="padding-top-bottom home-product-wrapper">
+              <ProductsSlider
+                data={allStrapiProducts.nodes}
+                title="Коляски"
+                sliderSettings={{
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/strollers",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
+            </div>
+            <BannerWithText data={promoOne} />
           </div>
-          <MainCatalog data={allStrapiProducts} />
-          <AccessoriesDesktop data={nodes} promo={promoFive} />
-          <SliderPromoSlider videoSlider={videoUrl} />
+
+          <div className="for-order-wrapper">
+            <div className="padding-top-bottom home-product-wrapper">
+              <ProductsSlider
+                data={allStrapiFootmuffs.nodes}
+                title="Конверти"
+                sliderSettings={{
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/footmuffs",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
+            </div>
+            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+          </div>
+
+          <div className="for-order-wrapper">
+            <div className="padding-top-bottom home-product-wrapper">
+              <ProductsSlider
+                data={allStrapiMittens.nodes}
+                title="Рукавиці"
+                sliderSettings={{
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/mittens",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
+            </div>
+            <BannerWithText data={promoThree} textStyle={{ maxWidth: '250px' }} />
+          </div>
+
+          <div className="for-order-wrapper">
+            <div className="padding-top-bottom home-product-wrapper">
+              <ProductsSlider
+                data={allStrapiCarSeats.nodes}
+                title="Автокрісла"
+                sliderSettings={{
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/car-seats",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
+            </div>
+            <BannerWithText data={promoFour} textStyle={{ maxWidth: '250px' }} />
+          </div>
+
+          <div className="for-order-wrapper">
+            <div className="padding-top-bottom home-product-wrapper">
+              <ProductsSlider
+                data={allStrapiBeds.nodes}
+                title="Ліжка"
+                sliderSettings={{
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/beds",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
+            </div>
+            <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
+          </div>
+
+          <div className="for-order-wrapper">
+            <div className="padding-top-bottom home-product-wrapper">
+              <ProductsSlider
+                data={nodes}
+                title="Аксесуари"
+                sliderSettings={{
+                  breakpoints: {
+                    320: { slidesPerView: 1.2, spaceBetween: 15 },
+                    768: { slidesPerView: 2, spaceBetween: 20 },
+                    1024: { slidesPerView: 2, spaceBetween: 20 },
+                    1440: { slidesPerView: 2, spaceBetween: 20 },
+                  },
+                  catalogLink: "/accessories",
+                  showPagination: true,
+                  showNavigation: false,
+                  mobileAsGrid: true,
+                  desktopAsGrid: false,
+                }}
+                navigationOnDesktop={false}
+              />
+            </div>
+            <BannerWithText data={promoSix} textStyle={{ maxWidth: '250px' }} />
+          </div>
+
+          <SliderVideo videoSlider={videoUrl} />
           <SliderInstagram />
           <Accordion />
-          <CommunicationButton />
+          {/* <CommunicationButton /> */}
           <Footer link={"#top"} />
         </div>
-
-      )}
-
-
+        <div className={"wrapper-mobile desktop-only"}>
+          <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
+          <SaleBanner data={mainPromo} />
+          <div className="banner-wrapper">
+            <ProductsSlider
+              data={allStrapiProducts.nodes}
+              title="Коляски"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/strollers",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            <BannerWithText data={promoOne} />
+          </div>
+          <div className="banner-wrapper">
+            <BannerWithText data={promoTwo} textStyle={{ maxWidth: '250px' }} />
+            <ProductsSlider
+              data={allStrapiFootmuffs.nodes}
+              title="Конверти"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/footmuffs",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <div className="banner-wrapper">
+            <ProductsSlider
+              data={allStrapiMittens.nodes}
+              title="Рукавиці"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/mittens",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            <BannerWithText data={promoThree} textStyle={{ maxWidth: '250px' }} />
+          </div>
+          <div className="banner-wrapper">
+            <BannerWithText data={promoFour} textStyle={{ maxWidth: '250px' }} />
+            <ProductsSlider
+              data={allStrapiCarSeats.nodes}
+              title="Автокрісла"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/car-seats",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <div className="banner-wrapper">
+            <ProductsSlider
+              data={allStrapiBeds.nodes}
+              title="Ліжка"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/beds",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+            <BannerWithText data={promoFive} textStyle={{ maxWidth: '250px' }} />
+          </div>
+          <div className="banner-wrapper">
+            <BannerWithText data={promoSix} textStyle={{ maxWidth: '250px' }} />
+            <ProductsSlider
+              data={nodes}
+              title="Аксесуари"
+              sliderSettings={{
+                breakpoints: {
+                  320: { slidesPerView: 1.2, spaceBetween: 15 },
+                  768: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 2, spaceBetween: 20 },
+                  1440: { slidesPerView: 2, spaceBetween: 20 },
+                },
+                catalogLink: "/accessories",
+                showPagination: true,
+                showNavigation: false,
+                mobileAsGrid: true,   // грід тільки на мобайлі
+                desktopAsGrid: false, // на десктопі слайдер
+              }}
+              navigationOnDesktop={false}
+            />
+          </div>
+          <SliderVideo videoSlider={videoUrl} />
+          <SliderInstagram />
+          <Accordion />
+          {/* <CommunicationButton /> */}
+          <Footer link={"#top"} />
+        </div>
     </>
   )
 }

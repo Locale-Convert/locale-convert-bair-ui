@@ -1,19 +1,32 @@
-import * as React from "react"
+import * as React from "react";
 import HomePage from "../modules/HomePage";
-import {graphql,useStaticQuery} from "gatsby";
-
+import { graphql } from "gatsby";
 import Seo from "../components/Seo/Seo";
 
 export const query = graphql`
     query IndexPage{
         allStrapiProducts(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  hash
+                }
                 id
                 title
                 price
                 oldPrice
+                smallDescription
+                productTabTitle
                 url
                 updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
                 mainImg {
                     mobileImage {
                         alternativeText
@@ -26,12 +39,19 @@ export const query = graphql`
                 }
             }
         }
-        allStrapiAccessories {
+        allStrapiBeds(sort: { fields: priority, order: DESC }) {
             nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  hash
+                }
                 id
                 title
                 price
                 oldPrice
+                smallDescription
+                productTabTitle
                 url
                 updatedAt
                 mainImage {
@@ -41,53 +61,151 @@ export const query = graphql`
                         }
                     }
                 }
-                isPriceFrom
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
+                }
+            }
+        }
+        allStrapiAccessories(sort: { fields: priority, order: DESC }) {
+            nodes {
                 colorSlider {
                   colorPrice
                   colorOldPrice
-                  coloStickerSaleTitle
-                  isSale
-                  isSaleTitle
-                  color
-                  visible
-                  article
-                  mainImageColor {
+                  hash
+                }
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                url
+                updatedAt
+                mainImage {
                     localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                        childImageSharp {
+                            gatsbyImageData
+                        }
                     }
-                  }
-                  imageColor {
-                      localFile {
-                          childImageSharp {
-                              gatsbyImageData
-                          }
-                      }
-                  }
-                  characteristicsSlider {
-                      localFile {
-                          childImageSharp {
-                              gatsbyImageData
-                          }
-                      }
-                  }
-              }
+                }
                 mainImg {
-                  desktopImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    mobileImage {
+                        alternativeText
+                        url
                     }
-                  }
-                  mobileImage {
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+                    desktopImage {
+                        alternativeText
+                        url
                     }
-                  }
+                }
+            }
+        }
+        allStrapiCarSeats(sort: { fields: priority, order: DESC }) {
+            nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  hash
+                }
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
+                }
+            }
+        }
+        allStrapiFootmuffs(sort: { fields: priority, order: DESC }) {
+            nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  hash
+                }
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
+                }
+            }
+        }
+        allStrapiMittens(sort: { fields: priority, order: DESC }) {
+            nodes {
+                colorSlider {
+                  colorPrice
+                  colorOldPrice
+                  hash
+                }
+                id
+                title
+                price
+                oldPrice
+                smallDescription
+                productTabTitle
+                url
+                updatedAt
+                mainImage {
+                    localFile {
+                        childImageSharp {
+                            gatsbyImageData
+                        }
+                    }
+                }
+                mainImg {
+                    mobileImage {
+                        alternativeText
+                        url
+                    }
+                    desktopImage {
+                        alternativeText
+                        url
+                    }
                 }
             }
         }
@@ -96,17 +214,13 @@ export const query = graphql`
             metaTitle
         }
         strapiHomePage {
-            videoSlider {
-                localFile {
-                    url
-                }
-            }
             videoUrl {
                 url
             }
             mainPromo {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -114,15 +228,36 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
                   }
                 }
+            }
+            promoOne {
+                desktopImage {
+                  localFile {
+                    url
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                mobileImage {
+                  localFile {
+                    url
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                text
             }
             promoTwo {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -130,15 +265,18 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
                   }
                 }
+                text
             }
             promoThree {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -146,15 +284,18 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
                   }
                 }
+                text
             }
             promoFour {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -162,15 +303,18 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
                   }
                 }
+                text
             }
             promoFive {
                 desktopImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -178,34 +322,45 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    url
                     childImageSharp {
                       gatsbyImageData
                     }
                   }
                 }
+                text
+            }
+            promoSix {
+                desktopImage {
+                  localFile {
+                    url
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                mobileImage {
+                  localFile {
+                    url
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                text
             }
         }
     }
 `
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const { strapiHomePageMeta } = data;
   return (
-      <HomePage />
-  )
-}
+    <>
+      <Seo title={strapiHomePageMeta.metaTitle} description={strapiHomePageMeta.metaDescription} />
+      <HomePage data={data} />
+    </>
+  );
+};
 
-export default IndexPage
-
-export const Head = () => {
-    const {
-        strapiHomePageMeta: {
-            metaDescription,
-            metaTitle
-        }
-    } = useStaticQuery(query)
-  return (
-    <Seo title={metaTitle} description={metaDescription} />
-)}
-
-
-
+export default IndexPage;

@@ -12,12 +12,17 @@ module.exports = {
         queryLimit: 1000,
         collectionTypes: [
           "products",
-          "accessories"
+          "accessories",
+          "beds",
+          "car-seats",
+          "footmuffs",
+          "mittens"
         ],
         singleTypes: [
           "home-page",
           "home-page-meta",
-          "conditions"
+          "conditions",
+          "catalog-page-meta"
         ]
       },
     },
@@ -33,7 +38,6 @@ module.exports = {
         icon: `src/images/logo-black.svg`, // This path is relative to the root of the site.
       }
     },
-    "gatsby-plugin-use-query-params",
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {

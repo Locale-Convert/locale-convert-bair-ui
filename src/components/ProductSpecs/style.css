@@ -1,0 +1,91 @@
+.product-specs {
+    padding: 0 50px 0 16px;
+}
+
+.specs-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.specs-content {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.spec-item {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    /* перша колонка фіксована, друга гнучка */
+    gap: 20px;
+    padding: 12px 0;
+    font-size: 14px;
+    align-items: start;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-name {
+    color: #625454;
+    font-weight: 500;
+}
+
+.spec-value {
+    color: #000;
+    font-weight: 600;
+    text-align: left;
+}
+
+.show-more-btn {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    background: none;
+    border: none;
+    color: #00000080;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.show-more-btn:hover {
+    color: #000000a8;
+}
+
+.show-more-text {
+    text-decoration: underline;
+}
+
+.arrow-icon {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon.rotated {
+    transform: rotate(180deg);
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .spec-item {
+        grid-template-columns: 175px 1fr;
+        gap: 8px;
+    }
+
+    .product-specs {
+        padding: 0 16px 0 16px;
+    }
+
+    .show-more-btn {
+        padding: 15px 0;
+    }
+
+    .specs-title {
+        font-size: 20px;
+    }
+}

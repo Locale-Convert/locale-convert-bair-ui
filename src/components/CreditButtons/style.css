@@ -1,0 +1,26 @@
+.credit-buttons {
+    display: flex;
+    gap: 19px;
+    margin-bottom: 20px;
+}
+
+.credit-button {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #fff;
+    max-width: 160px;
+}
+
+.credit-bank-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}

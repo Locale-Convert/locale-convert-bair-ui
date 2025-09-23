@@ -1,0 +1,48 @@
+.custom-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  padding-top: 20px;
+}
+
+.custom-checkbox {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #D7D6D6;
+  border-radius: 6px;
+  appearance: none;
+  outline: none;
+  position: relative;
+  flex-shrink: 0;
+  background-color: #fff;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.custom-checkbox:checked {
+  background-color: #fff; /* зелена точка */
+  border-color: #A0E312;
+}
+
+.custom-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 5px; /* центрування */
+  left: 5px; /* центрування */
+  width: 18px;
+  height: 18px;
+  background-color: #A0E312;
+  border-radius: 4px; /* невелике скруглення */
+}
+
+.custom-checkbox-label {
+  font-size: 14px;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .custom-checkbox-label {
+    font-size: 12px;
+  }
+}

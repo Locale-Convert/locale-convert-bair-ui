@@ -1,0 +1,33 @@
+.strollers-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.catalog-wrapper {
+    padding: 50px;
+}
+
+.catalog-title {
+    font-size: 40px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.catalog-content {
+    margin-bottom: 40px;
+}
+
+
+@media (max-width: 768px) {
+    .catalog-wrapper {
+        padding: 20px;
+    }
+
+    .catalog-title {
+        font-size: 30px;
+        font-weight: 700;
+        padding-bottom: 20px;
+    }
+
+}

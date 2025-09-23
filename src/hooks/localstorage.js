@@ -1,5 +1,5 @@
-export const addToLocalStorage = (product, article) => {    
-    const { id,title, url, price, oldPrice, colorSlider, mainImage, color = '', updatedAt } = product;
+export const addToLocalStorage = (product, article) => { 
+    const { id, title, url, price, oldPrice, colorSlider, mainImage, color = '', updatedAt } = product;
 
     if (typeof window !== 'undefined') {
         const existingProducts = JSON.parse(localStorage.getItem('selectedProducts')) || [];

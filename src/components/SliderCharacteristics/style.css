@@ -1,0 +1,269 @@
+.main-slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.main-slider-item {
+    position: relative;
+}
+
+.main-slider-item > .gatsby-image-wrapper  {
+    max-height: 586px;
+}
+
+.main-slider-item > .gatsby-image-wrapper > img {
+    max-height: 570px;
+}
+
+.slick-slide img {
+    max-height: 590px;
+}
+
+.main-slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Поточний слайд */
+.current-slide {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    background: #C1C5DA26;
+    color: #736A6A;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* Кастомні кнопки (Десктоп) */
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    cursor: pointer;
+    background-color: #ffffff;
+    border: 1px solid #DDDDDD;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.custom-prev {
+    left: 10px;
+}
+
+.custom-next {
+    right: 10px;
+}
+
+/* Іконки всередині кнопок */
+.custom-prev > svg,
+.custom-next > svg {
+    width: 24px;
+    height: 24px;
+}
+
+.custom-arrow img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    transition: transform 0.2s;
+}
+
+.custom-arrow:hover img {
+    transform: scale(1.1);
+}
+
+/* Мобільні пристрої: зменшені кнопки */
+@media (max-width: 1023px) {
+    .custom-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .custom-prev > svg,
+    .custom-next > svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .custom-arrow img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+.slider-miniature-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.thumbnail-item {
+    cursor: pointer;
+    position: relative;
+}
+
+.thumbnail-item.selected {
+    border: 2px solid #736A6A;
+    border-radius: 4px;
+}
+
+.video-thumbnail {
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.video-thumbnail .video-play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: white;
+    pointer-events: none;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* === Модальне відео === */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.modal-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000e1;
+}
+
+
+.video-content {
+    position: relative;
+    z-index: 10;
+    max-width: 90%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-content video {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    background: black;
+}
+
+.close-button {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Стрілки для вертикального слайдера */
+.vertical-arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-prev {
+    top: -30px; /* зверху */
+}
+
+.vertical-next {
+    bottom: -40px; /* знизу */
+}
+
+.vertical-arrow svg {
+    width: 25px;
+    height: 25px;
+}
+
+/* === Лейбли поверх слайдера === */
+.labels-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none; /* щоб не блокували кліки */
+    z-index: 20;
+}
+
+.labels-top {
+    position: absolute;
+    top: 21px;
+    left: 21px;
+    display: flex;
+    gap: 5px;
+}
+
+.label-sale,
+.label-new {
+    background-color: #FF453A;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 2px;
+    white-space: nowrap;
+}
+
+.label-bottom {
+    position: absolute;
+    bottom: 21px;
+    left: 21px;
+    background-color: #FF9F0ACC; /* жовтий */
+    color: #000;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 2px 6px;
+    border-radius: 2px;
+    max-width: 120px;
+}

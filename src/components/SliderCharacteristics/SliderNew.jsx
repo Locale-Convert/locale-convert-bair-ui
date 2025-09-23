@@ -3,16 +3,34 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { ArrowBackIosNewOutlined, ArrowForwardIosRounded } from '@mui/icons-material';
 import { getImageHelper } from "../../hooks";
 
-const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
+import "./style.css";
+
+const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor }) => {
     const [currentSlide, setCurrentSlide] = useState(selectedIndex);
     const [totalSlides, setTotalSlides] = useState(0);
-    const [ isAnimating, setIsAnimating ] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
+
+    const sliderRef = useRef(null);
 
     useEffect(() => {
         setTotalSlides(sliderImage.length);
     }, [sliderImage]);
+
+    // Кастомні кнопки
+    const NextArrow = ({ onClick }) => (
+        <div className="custom-arrow custom-next" onClick={onClick}>
+            <ArrowForwardIosRounded/>
+        </div>
+    );
+
+    const PrevArrow = ({ onClick }) => (
+        <div className="custom-arrow custom-prev" onClick={onClick}>
+            <ArrowBackIosNewOutlined/>
+        </div>
+    );
 
     const settings = {
         dots: false,
@@ -21,6 +39,9 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
         slidesToShow: 1,
         slidesToScroll: 1,
         adaptiveHeight: true,
+        initialSlide: selectedIndex,
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
         beforeChange: (oldIndex, newIndex) => {
             setIsAnimating(true);
             setCurrentSlide(newIndex);
@@ -29,35 +50,50 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider }) => {
             changeItemSlider(current);
             setIsAnimating(false);
         },
-        easing: "linear",
-        initialSlide: selectedIndex
+        easing: "linear"
     };
-
-    const sliderRef = useRef(null);
 
     useEffect(() => {
         if (sliderRef.current && sliderImage.length > 0) {
-            if(!isAnimating) sliderRef.current.slickGoTo(selectedIndex, true);
+            if (!isAnimating) sliderRef.current.slickGoTo(selectedIndex, true);
             setCurrentSlide(selectedIndex);
         }
     }, [selectedIndex]);
 
     return (
-        <>
+        <div className="main-slider-container">
+            <div className="labels-overlay">
+                <div className="labels-top">
+                    {currentColor?.isSale && currentColor?.coloStickerSaleTitle && (
+                        <span className="label-sale">{currentColor.coloStickerSaleTitle}</span>
+                    )}
+                    {currentColor?.isNew && (
+                        <span className="label-new">Новинка</span>
+                    )}
+                </div>
+
+                {currentColor?.isNotCompatible && (
+                    <div className="label-bottom">
+                        Не сумісно з Balios S
+                    </div>
+                )}
+            </div>
+
             <Slider {...settings} ref={sliderRef} className="mySwiper" id="thumbnail_slider">
                 {sliderImage.map((item, index) => (
-                    <div key={index}>
+                    <div key={index} className="main-slider-item">
                         <GatsbyImage
-                            image={getImageHelper(item)}
-                            className={"main-slider-image"}
-                            alt=""
-                            objectFit="cover"
+                        image={getImageHelper(item)}
+                        alt=""
+                        style={{ width: "100%" }}
+                        imgStyle={{ objectFit: "contain" }}
                         />
                     </div>
                 ))}
             </Slider>
-            <div className='current-slide'>{currentSlide + 1} / {totalSlides}</div>
-        </>
+
+            <div className="current-slide">{currentSlide + 1} / {totalSlides}</div>
+        </div>
     );
 };
 

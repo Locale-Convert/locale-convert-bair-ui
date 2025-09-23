@@ -2,6 +2,8 @@ import React, { useState } from "react"
 
 import ReactMarkdown from "react-markdown"
 
+import './style.css';
+
 import { graphql, useStaticQuery } from "gatsby";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -29,11 +31,10 @@ const ConditionsPage = () => {
       <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView}/>
       <div className="condition-box">
         <div className="condition-content">
-          <div className="condition-title">Умови</div>
           <ReactMarkdown>{text}</ReactMarkdown>
         </div>
       </div>
-      <CommunicationButton />
+      {/* <CommunicationButton /> */}
       <Footer link={"#top"}/>
     </div>
   )

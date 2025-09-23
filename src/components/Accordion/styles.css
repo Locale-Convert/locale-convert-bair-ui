@@ -1,107 +1,291 @@
+.accordion-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 45px 160px 45px 160px;
+    margin-bottom: 90px;
+    background-color: #FAFAFA;
+}
+
+.accordion-wrapper.product-page {
+    padding-left: 160px;
+    gap: 86px;
+}
+
+.accordion-main-title {
+    color: #000;
+    line-height: 46px;
+    margin: 20px 0;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.accordion-main-title .title > div {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.accordion-header-row {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.accordion-left {
+    flex: 0 0 250px;
+    /* фіксована ширина блоку зліва */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* відстань між заголовком і категоріями */
+}
+
+.accordion-questions {
+    flex: 1;
+}
+
+.accordion-main-title.mobile {
+    display: none;
+    text-align: center;
+}
+
+.accordion-main-title.desktop {
+    display: block;
+    margin-bottom: 20px;
+    max-width: 100px;
+    line-height: 40px;
+}
+
 .accordion-content {
+    display: flex;
+    gap: 40px;
     overflow: hidden;
     transition: height 300ms linear 0s;
-  }
-  
-  .accordion-border-top {
-    border-top: 2px solid #fff;
-  }
+    min-width: 70%;
+}
 
+.accordion-categories {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    margin-right: 100px;
+}
 
-
-  @media(max-width: 1920px) {
-    .accordion-border-top {
-        display: none;
-    }
-
-    .accordion-flex {
-        display: flex;
-        flex: 1 1 45%;
-    }
-
-    .accordion-item {
-        margin-right: 40px;
-    }
-  }
-
-  @media(max-width: 822px) {
-    .accordion-flex {
-        display: none;
-    }
-
-    .accordion-border-top {
-        display: block;
-    }
-    }
-
-  .content-box {
-    margin-top: 20px;
-      font-size: 16px;
-  }
-
-  .accordion-box {
-      background: #FAEAEA;
-  }
-
-  .accordion-wrapper {
-      padding: 0 23px 40px 23px;
-  }
-
-.accordion-title {
-    font-size: 16px;
+.accordion-category {
+    padding: 10px 15px 10px 0;
     cursor: pointer;
-    position: relative;
-}
-.accordion-title:before {
-    content: "";
-    width: 15px;
-    height: 2px;
-    background: #000;
-    position: absolute;
-    top: 0;
-    right: -5px;
-    bottom: 0;
-    margin: auto;
+    border-radius: 5px;
+    transition: color 0.2s;
+    color: #00000088;
 }
 
-.accordion-title:after {
-    content: "";
-    width: 2px;
-    height: 15px;
-    background: #000;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 1.5px;
-    margin: auto;
-    transition: all 0.3s ease;
-}
-
-.active:before{
-    background: #000;
-}
-
-.active:after{
-    background: #000;
-}
-
-.accordion-title.active::after{
-    display: none;
-}
-
-
-.two-storelist__item.active {
-    background: #FAEAEA;
+.accordion-category:hover {
     color: #000;
 }
 
-@media (max-width: 415px) {
+.accordion-category.active .category-text {
+    text-decoration: underline;
+    color: #000;
+    font-weight: 700;
+}
+
+.accordion-category.active .category-count {
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+}
+
+.category-text {
+    font-size: 16px;
+}
+
+.category-count {
+    font-size: 12px;
+    vertical-align: top;
+    margin-left: 2px;
+    text-decoration: none;
+}
+
+.accordion-questions {
+    margin-top: 20px;
+    flex: 1;
+}
+
+.accordion-item {
+    border-top: 1px solid #DAD9D9;
+}
+
+.accordion-questions .accordion-item:last-of-type {
+  border-bottom: 1px solid #DAD9D9;
+}
+
+.accordion-title {
+    cursor: pointer;
+    padding: 7px 0 10px 0;
+    color: #000;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+.accordion-symbol {
+    margin-left: auto;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.content-box {
+    padding: 5px 0 20px 0;
+    color: #000;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .accordion-header-row {
+        flex-direction: column;
+        /* замість рядка */
+        gap: 0;
+    }
+
+    .accordion-left {
+        flex: unset;
+        width: 100%;
+        gap: 15px;
+        /* трохи менше відстань */
+    }
+
+    .accordion-main-title {
+        margin: 0;
+        text-align: center;
+    }
+
+    .accordion-categories {
+        flex-direction: row;
+        overflow-x: auto;
+        margin: 0;
+        scrollbar-width: none;
+    }
+
+    .accordion-categories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .accordion-questions {
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    .accordion-questions .accordion-item:last-of-type {
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+    .accordion-wrapper {
+        padding: 0 20px 20px 20px;
+        margin-bottom: 40px;
+    }
+
+    .accordion-wrapper.product-page {
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+    }
+
+    .accordion-main-title {
+        margin: 0;
+    }
+
+    .accordion-main-title .title>div {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .accordion-main-title>.title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+
+    .accordion-content {
+        flex-direction: column;
+    }
+
+    .accordion-categories {
+        flex-direction: row;
+        overflow-x: auto;
+        margin-right: 0;
+        scrollbar-width: none;
+    }
+
+    .accordion-categories::-webkit-scrollbar {
+        display: none;
+    }
+
+    .accordion-category {
+        margin-right: 10px;
+        flex: 0 0 auto;
+    }
+
+    .accordion-main-title.mobile {
+        display: block;
+    }
+
+    .accordion-main-title.desktop {
+        display: none;
+    }
+
+    .accordion-item {
+        border-top: 1px solid #FFFFFF;
+        padding: 8px 0;
+    }
+
+    .accordion-item:last-child {
+        border-bottom: 1px solid #FFFFFF;
+    }
+
+    .accordion-questions {
+        margin-top: 15px;
+    }
+
     .accordion-title {
         font-size: 15px;
-        padding-right: 23px;
     }
 
     .content-box {
         font-size: 13px;
+    }
+}
+
+@media (max-width: 415px) {
+    .accordion-main-title {
+        font-size: 22px;
+    }
+
+    .category-text {
+        font-size: 14px;
+    }
+
+    .accordion-content {
+        gap: 0;
+    }
+
+    .accordion-questions {
+        margin-top: 10px;
+    }
+
+    .accordion-item {
+        padding: 6px 0;
+    }
+
+    .accordion-title {
+        font-size: 14px;
+    }
+
+    .content-box {
+        font-size: 12px;
     }
 }

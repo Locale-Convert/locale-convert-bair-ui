@@ -1,0 +1,75 @@
+.banner-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 40px;
+}
+
+.banner-wrapper>* {
+  flex: 1 1 50%;
+  max-width: calc(50% - 10px);
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.padding-top-bottom {
+  padding: 20px 0;
+}
+
+
+.for-order-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.for-order-wrapper>* {
+  flex: 1 1 50%;
+}
+
+/* Адаптив для мобільних */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .banner-wrapper {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .banner-wrapper>* {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .for-order-wrapper {
+    flex-direction: column;
+  }
+
+  .for-order-wrapper> :nth-child(1) {
+    order: 2;
+    /* ProductsSlider */
+  }
+
+  .for-order-wrapper> :nth-child(2) {
+    margin-top: 30px;
+    order: 1;
+    /* BannerWithText */
+  }
+
+  .home-product-wrapper {
+    padding: 20px;
+  }
+}

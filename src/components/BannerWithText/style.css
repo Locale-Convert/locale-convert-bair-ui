@@ -1,0 +1,60 @@
+.banner-with-text {
+    position: relative;
+    width: 100%;
+    height: 600px; /* базова висота для десктопа */
+    min-height: 500px; /* завжди залишає місце під банер */
+    max-width: 660px; /* якщо хочеш обмежити ширину */
+    overflow: hidden;
+    background-color: #000; /* фон як плейсхолдер, щоб не було пустого білого */
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Десктопна картинка */
+.desktop-only {
+    display: block;
+}
+
+/* Мобільна картинка прихована */
+.mobile-only {
+    display: none;
+}
+
+.banner-text {
+    position: absolute;
+    top: 30px; /* відступ від країв */
+    left: 30px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    max-width: 450px;
+    line-height: 50px;
+    z-index: 2; /* щоб текст завжди був поверх */
+}
+
+/* Мобільна версія */
+@media (max-width: 768px) {
+    .banner-with-text {
+        max-height: 350px;
+        min-height: 300px; /* завжди резервує місце на мобільних */
+        height: auto;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .banner-text {
+        font-size: 28px; /* адаптивно можна зменшувати */
+        top: 20px;
+        left: 20px;
+    }
+}

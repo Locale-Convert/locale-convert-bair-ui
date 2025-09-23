@@ -1,0 +1,194 @@
+.payment-method-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.payment-method-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 20px 25px 0 25px;
+}
+
+.payment-method-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 25px;
+}
+
+.payment-block {
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.payment-block.active {
+  border: 1px solid #D7D6D6;
+}
+
+.payment-subblock-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.payment-subblock-wrapper.open {
+  max-height: 500px;
+}
+
+.payment-subblock {
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.payment-subblock label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+}
+
+.icons-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.icon-block {
+  padding: 5px 5px 1px 5px;
+  border: 1px solid #D7D6D6;
+  border-radius: 7px;
+}
+
+.order-radios-horizontal > .radio-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-radios-horizontal {
+  margin-bottom: 4px;
+}
+
+.payment-block-subtext {
+  margin-left: 23px;
+  font-size: 12px;
+  color: #00000080;
+}
+
+.cash-info {
+  color: #FF3B30;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+
+.cash-info>.bold {
+  display: contents;
+  font-weight: 700;
+}
+
+.credit-info {
+  color: #000000;
+  font-size: 13px;
+}
+
+.credit-details {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.credit-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.credit-row-bank {
+  color: #000000;
+  font-weight: 500;
+}
+
+.credit-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 230px;
+  margin-top: 10px;
+}
+
+.credit-field > label {
+  color: #00000080;
+}
+
+.credit-row.small-text {
+  color: #00000080;
+  font-size: 12px;
+}
+
+.credit-conditions {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.credit-conditions .bold-text {
+  font-weight: 900;
+}
+
+.credit-input {
+  border: 1px solid #D7D6D6;
+  border-radius: 4px;
+  padding: 6px 8px;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* === Payment icons styling === */
+.payment-icons-wrapper {
+  display: flex;
+  gap: 6px;
+  border: 1px solid #D7D6D6;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-left: auto; /* прижимає до правого краю */
+  flex-shrink: 0;
+}
+
+.payment-icon {
+  width: 24px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* === Адаптивність === */
+@media (max-width: 768px) {
+  .payment-method-container {
+    padding: 0 15px;
+  }
+
+  .icons-block {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .icon-block {
+    margin-top: 4px;
+  }
+
+  .payment-block-subtext {
+    margin-left: 0;
+  }
+}

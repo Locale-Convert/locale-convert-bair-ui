@@ -1,7 +1,7 @@
-import React from "react"
-import "../../styles/style.css"
-import ReactMarkdown from "react-markdown"
-
+import React, { useRef, useEffect, useState } from "react";
+import "../../styles/style.css";
+import ReactMarkdown from "react-markdown";
+import "./style.css";
 
 function LinkRenderer(props) {
   return (
@@ -11,21 +11,34 @@ function LinkRenderer(props) {
   );
 }
 
-const Characteristics = ({desription=""}) => {
+const Characteristics = ({ description = "", onHeightChange }) => {
+  const contentRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (!contentRef.current) return;
+
+    const observer = new ResizeObserver(() => {
+      const newHeight = contentRef.current.scrollHeight;
+      setHeight(newHeight);
+      onHeightChange?.(newHeight); // передаємо висоту у батьківський
+    });
+
+    observer.observe(contentRef.current);
+
+    return () => observer.disconnect();
+  }, [description]);
+
   return (
-    <div className={"characteristics-block description-box-wrapper"}>
-      <ReactMarkdown components={{ a: LinkRenderer }}>{desription}</ReactMarkdown>
+    <div className="characteristics-block description-box-wrapper">
+      <h3 className="specs-title">Опис</h3>
+      <div className="characteristics-content" ref={contentRef}>
+        <ReactMarkdown components={{ a: LinkRenderer }}>
+          {description}
+        </ReactMarkdown>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Characteristics
-
-
-
-
-
-
-
-
-
+export default Characteristics;
