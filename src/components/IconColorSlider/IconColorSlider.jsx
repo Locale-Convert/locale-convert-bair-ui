@@ -14,7 +14,6 @@ import { useCartStore } from "../../store/store";
 import MainSlider from "../SliderCharacteristics/SliderNew";
 import SliderMiniature from "../SliderCharacteristics/SliderMiniature";
 
-
 import "swiper/css";
 import "swiper/css/pagination";
 import ProductInfo from "../ProductInfo/ProductInfo";
@@ -28,7 +27,6 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   const [colorArticle, setColorArticle] = useState("");
   const [colorTitle, setColorTitle] = useState("");
   const [currentColor, setCurrentColor] = useState("");
-
 
   const [sliderImage, setSliderImage] = useState([]);
   const [selectedItemForMainSlider, setSelectedItemForMainSlider] = useState(0);
@@ -46,10 +44,8 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
   const loc = location.hash.slice(1);
 
-
   let activeItem = filteredColorSlider.filter(item => {
     if (`${item?.article}` === loc) {
-
       return item
     }
   })
@@ -57,7 +53,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
 
   const loadReactPixel = async (article, pathname) => {
     if (ReactPixel) {
-      ReactPixel.fbq('track', 'Change color', {
+      ReactPixel.fbq('trackCustom', 'Change color', {
         item_id: article,
         page_path: pathname.href,
       });
@@ -185,7 +181,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
             sliderImage={sliderImage}
             selectedIndex={selectedItemForMainSlider}
             changeItemSlider={changeItemSlider}
-            videoUrl={data.videoUrl[0].url}
+            videoUrl={data.videoUrl?.[0]?.url}
           />
         </div>
         <div className="main-slider-wrapper">
@@ -214,5 +210,4 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
   )
 }
 
-export default IconColorSlider
-
+export default IconColorSlider;

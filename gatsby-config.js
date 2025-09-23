@@ -38,7 +38,6 @@ module.exports = {
         icon: `src/images/logo-black.svg`, // This path is relative to the root of the site.
       }
     },
-    "gatsby-plugin-use-query-params",
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
