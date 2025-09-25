@@ -6,6 +6,7 @@ import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { navigate } from "gatsby";
 
 import { isAfter } from 'date-fns';
 import { getImageHelper } from "../../hooks";
@@ -42,7 +43,7 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
     const checkForUpdates = () => {
         const updatedCartItems = cartItems.map((item) => {
             const updatedProduct = allStrapiProducts?.nodes.find(p => p.id === item.id) ||
-                                   allStrapiAccessories?.nodes.find(a => a.id === item.id);
+                allStrapiAccessories?.nodes.find(a => a.id === item.id);
             if (!updatedProduct) return item;
 
             const isProductUpdated = isAfter(new Date(updatedProduct.updatedAt), new Date(item.updatedAt));
@@ -67,7 +68,7 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
         });
 
         setCartItems(updatedCartItems);
-        if(updatedCartItems.length !== 0) localStorage.setItem('selectedProducts', JSON.stringify(updatedCartItems));
+        if (updatedCartItems.length !== 0) localStorage.setItem('selectedProducts', JSON.stringify(updatedCartItems));
 
         const total = updatedCartItems.reduce((sum, i) => sum + Number(i.price) * (i.count || 1), 0);
         localStorage.setItem('totalAmount', total);
@@ -194,7 +195,7 @@ const CartModal = ({ allStrapiProducts, allStrapiAccessories, showCartModal, clo
                     <div className="cart-total-section">
                         <div className="total-label">Разом</div>
                         <div className="total-amount">{totalAmount} грн</div>
-                        <a href="/order" className="checkout-btn">ОФОРМИТИ ЗАМОВЛЕННЯ</a>
+                        <button  className="checkout-btn" onClick={() => {navigate("/order")}}>ОФОРМИТИ ЗАМОВЛЕННЯ</button>
                     </div>
                 )}
 

@@ -1,0 +1,25 @@
+[build]
+  environment = { NODE_VERSION = "20.9.0" }
+  command = "npm run build"
+  publish = "public"
+
+[[plugins]]
+package = "@netlify/plugin-gatsby"
+
+[[headers]]
+  for = "/cozy-mitts/"
+
+  [headers.values]
+    X-Robots-Tag = "all, index, follow"
+    Cache-Control = "public, s-maxage=3600"
+    # Netlify часто использует этот заголовок для анализа трафика
+    # Явное указание может помочь его системам корректно классифицировать бота
+    Netlify-Vary = "query=ua"
+    # Можно добавить кастомный заголовок для самоидентификации
+    X-Allowed-Bots = "Googlebot"
+
+
+
+[build.lifecycle]
+  onPreBuild = "sudo apt-get update && sudo apt-get install -y libglib2.0-dev libvips-dev"
+

@@ -16,7 +16,10 @@ module.exports = {
           "beds",
           "car-seats",
           "footmuffs",
-          "mittens"
+          "mittens",
+          "characteristics",
+          "product-characteristics",
+          "values"
         ],
         singleTypes: [
           "home-page",

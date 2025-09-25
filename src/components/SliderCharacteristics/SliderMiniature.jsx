@@ -14,7 +14,13 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUr
     const [isVideoOpen, setIsVideoOpen] = useState(false);
 
     useEffect(() => {
-        if (thumbnailSliderRef.current) {
+        if (!thumbnailSliderRef.current) return;
+
+        const slider = thumbnailSliderRef.current.innerSlider;
+        const currentSlide = slider.state.currentSlide;
+        const slidesToShow = slider.props.slidesToShow;
+
+        if (selectedIndex < currentSlide || selectedIndex >= currentSlide + slidesToShow) {
             thumbnailSliderRef.current.slickGoTo(selectedIndex);
         }
     }, [selectedIndex]);

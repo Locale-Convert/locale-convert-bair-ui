@@ -60,10 +60,6 @@ const ProductPage = ({
     oldPrice,
     description,
     colorSlider,
-    // metaTitle,
-    // metaDescription,
-    // videoSlider,
-    videoUrl
   } = data;
 
   const [isMobileView, setIsMobileView] = useState(null);
@@ -115,40 +111,6 @@ const ProductPage = ({
         <div className="order-wrapper">
           <DownloadLinks certificateLink={data?.certificateUrl} instructionLink={data?.instructionsUrl} />
         </div>
-        {/* <div className="desc-video">
-            <SliderVideoProduct
-              videoSlider={videoUrl}
-              title={'Відео:'}
-              classTitle={'product-video-title'}
-              breakpoints={{
-                1440: {
-                  slidesPerView: 2,
-                },
-                1350: {
-                  slidesPerView: 2,
-                },
-                1260: {
-                  slidesPerView: 2,
-                },
-                1200: {
-                  slidesPerView: 1.5,
-                },
-                1100: {
-                  slidesPerView: 1.5,
-                },
-                1024: {
-                  slidesPerView: 2,
-                },
-                912: {
-                  slidesPerView: 1.1,
-                },
-                768: {
-                  slidesPerView: 1.7,
-                },
-              }}
-            />
-          </div> */}
-        {/* <RichDescription colorSlider={colorSlider} activeColor={activeColor}/> */}
         <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
         <div className="mobile-video">
           <SliderVideo videoSlider={data.videoUrl} />
