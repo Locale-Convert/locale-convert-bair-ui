@@ -1,0 +1,5 @@
+# Allow all crawlers
+User-agent: *
+
+# Point crawlers to your sitemap file
+Sitemap: https://konverty.bair.ua/sitemap.xml

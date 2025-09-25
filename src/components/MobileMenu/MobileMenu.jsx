@@ -70,18 +70,25 @@ const MobileMenu = ({ categories, subCategories, onClose }) => {
           </a>
 
           <ul className="mobile-submenu__list">
-            {subCategories[activeCategory]?.map((item, i) => (
-              <li key={i} className="mobile-submenu__item">
-                <a href={item.url} className="mobile-submenu__link">
-                  <div className="mobile-submenu__img-wrapper">
-                    {item?.image?.localFile?.url ? (
-                      <img src={item.image.localFile.url} alt={item.title} />
-                    ) : null}
-                  </div>
-                  {item.title}
-                </a>
-              </li>
-            ))}
+            {subCategories[activeCategory]?.map((item, i) => {
+              const altText = `${activeCategory || "Категорія"}: ${item.title || "Без назви"}`;
+
+              return (
+                <li key={i} className="mobile-submenu__item">
+                  <a href={item.url} className="mobile-submenu__link">
+                    <div className="mobile-submenu__img-wrapper">
+                      {item?.image?.localFile?.url ? (
+                        <img
+                          src={item.image.localFile.url}
+                          alt={altText}
+                        />
+                      ) : null}
+                    </div>
+                    {item.title}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}

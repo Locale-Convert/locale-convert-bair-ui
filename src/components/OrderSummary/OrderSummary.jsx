@@ -80,21 +80,31 @@ const OrderSummary = ({ cartItems, totalAmount, stepStates, formValues }) => {
             ref={contentRef}
             style={{ height: height }}
           >
-            {cartItems.map((item, index) => (
-              <div className="order-item" key={index}>
-                <div className="order-item-image">
-                  <GatsbyImage image={getImageHelper(item.mainImage)} alt={item.title} objectFit="cover" />
-                </div>
-                <div className="item-info">
-                  <div className="item-name">{item.title}</div>
-                  <div className="item-price">
-                    <span className="current-price">{item.price} грн</span>
-                    {item.oldPrice && <span className="old-price">{item.oldPrice} грн</span>}
+            {cartItems.map((item, index) => {
+              const altText = `Bair ${item.title || ""}${
+                item.color ? `, колір: ${item.color}` : ""
+              }${item.article ? ` (артикул: ${item.article})` : ""}, фото товару`;
+
+              return (
+                <div className="order-item" key={index}>
+                  <div className="order-item-image">
+                    <GatsbyImage
+                      image={getImageHelper(item.mainImage)}
+                      alt={altText}
+                      objectFit="cover"
+                    />
                   </div>
+                  <div className="item-info">
+                    <div className="item-name">{item.title}</div>
+                    <div className="item-price">
+                      <span className="current-price">{item.price} грн</span>
+                      {item.oldPrice && <span className="old-price">{item.oldPrice} грн</span>}
+                    </div>
+                  </div>
+                  <div className="item-quantity">{item.count} шт.</div>
                 </div>
-                <div className="item-quantity">{item.count} шт.</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Divider під товарами */}

@@ -163,7 +163,6 @@ export const query = graphql`
             }
             mainImg {
                 desktopImage {
-                  alternativeText
                   localFile {
                     url
                     childImageSharp {
@@ -172,7 +171,6 @@ export const query = graphql`
                   }
                 }
                 mobileImage {
-                  alternativeText
                   localFile {
                     url
                     childImageSharp {

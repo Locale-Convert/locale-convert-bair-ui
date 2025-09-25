@@ -111,7 +111,7 @@ const ProductPage = ({
         <div className="order-wrapper">
           <DownloadLinks certificateLink={data?.certificateUrl} instructionLink={data?.instructionsUrl} />
         </div>
-        <CoveringImageComponent colorSlider={colorSlider} activeColor={activeColor} />
+        <CoveringImageComponent data={data} colorSlider={colorSlider} activeColor={activeColor} />
         <div className="mobile-video">
           <SliderVideo videoSlider={data.videoUrl} />
         </div>

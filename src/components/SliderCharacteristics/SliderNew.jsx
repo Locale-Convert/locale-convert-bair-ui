@@ -8,7 +8,7 @@ import { getImageHelper } from "../../hooks";
 
 import "./style.css";
 
-const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor }) => {
+const MainSlider = ({ data, sliderImage, selectedIndex, changeItemSlider, currentColor }) => {
     const [currentSlide, setCurrentSlide] = useState(selectedIndex);
     const [totalSlides, setTotalSlides] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
@@ -19,7 +19,6 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor
         setTotalSlides(sliderImage.length);
     }, [sliderImage]);
 
-    // Кастомні кнопки
     const NextArrow = ({ onClick }) => (
         <div className="custom-arrow custom-next" onClick={onClick}>
             <ArrowForwardIosRounded/>
@@ -80,16 +79,22 @@ const MainSlider = ({ sliderImage, selectedIndex, changeItemSlider, currentColor
             </div>
 
             <Slider {...settings} ref={sliderRef} className="mySwiper" id="thumbnail_slider">
-                {sliderImage.map((item, index) => (
-                    <div key={index} className="main-slider-item">
-                        <GatsbyImage
-                        image={getImageHelper(item)}
-                        alt=""
-                        style={{ width: "100%" }}
-                        imgStyle={{ objectFit: "contain" }}
-                        />
-                    </div>
-                ))}
+                {sliderImage.map((item, index) => {
+                    const altText = `Bair ${data?.title || ""}, колір: ${currentColor?.color || ""}${
+                        currentColor?.article ? ` (артикул: ${currentColor.article})` : ""
+                    }, фото ${index + 1}`;
+
+                    return (
+                        <div key={index} className="main-slider-item">
+                            <GatsbyImage
+                                image={getImageHelper(item)}
+                                alt={altText}
+                                style={{ width: "100%" }}
+                                imgStyle={{ objectFit: "contain" }}
+                            />
+                        </div>
+                    );
+                })}
             </Slider>
 
             <div className="current-slide">{currentSlide + 1} / {totalSlides}</div>

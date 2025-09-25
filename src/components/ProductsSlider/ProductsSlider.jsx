@@ -46,9 +46,7 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     }
   }, [showNavigation, isDesktopGrid]);
 
-  // --------------------- Зміни для ціни "від" ---------------------
   const getLowestPrice = (item) => {
-    // отримуємо всі ціни з colorSlider
     const colorPrices =
       item.colorSlider?.map((c) => parseFloat(c.colorPrice)).filter((p) => !isNaN(p)) || [];
 
@@ -61,15 +59,14 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
     const showFrom = lowest < basePrice;
     return { price: lowest, showFrom };
   };
-  // ------------------------------------------------------------------
 
   const renderProductCard = (item) => {
     const imageData = getImage(item.mainImage?.localFile);
     const isAvailable = true;
 
-    // --------------------- Визначаємо фінальну ціну ---------------------
     const { price: finalPrice, showFrom: showPriceFrom } = getLowestPrice(item);
-    // ------------------------------------------------------------------
+
+    const altText = `Bair ${item.title || "товар"}, фото`;
 
     return (
       <a href={`/${item.url}`} className="product-card-link">
@@ -83,7 +80,7 @@ const ProductsSlider = ({ data, title, sliderSettings = {} }) => {
             {imageData && (
               <GatsbyImage
                 image={imageData}
-                alt={item.title}
+                alt={altText}
                 objectFit="contain"
                 style={{ width: "100%", height: "100%" }}
               />

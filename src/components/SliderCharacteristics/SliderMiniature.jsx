@@ -9,7 +9,7 @@ import { PlayCircleFilledWhite } from '@mui/icons-material';
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from '@mui/icons-material';
 import "./style.css";
 
-const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUrl }) => {
+const SliderMiniature = ({ data, sliderImage, selectedIndex, changeItemSlider, videoUrl }) => {
     const thumbnailSliderRef = useRef(null);
     const [isVideoOpen, setIsVideoOpen] = useState(false);
 
@@ -75,20 +75,26 @@ const SliderMiniature = ({ sliderImage, selectedIndex, changeItemSlider, videoUr
             )}
 
             <Slider {...settings} ref={thumbnailSliderRef} className="vertical-slider">
-                {sliderImage.map((item, index) => (
+                {sliderImage.map((item, index) => {
+                    const altText = `Bair ${data?.title || "товар"}${
+                        data?.color ? `, колір: ${data.color}` : ""
+                        }${data?.article ? ` (артикул: ${data.article})` : ""}, мініатюра ${index + 1}`;
+
+                    return (
                     <div
                         key={index}
                         className={`thumbnail-item ${index === selectedIndex ? "selected" : ""}`}
                         onClick={() => handleClick(index)}
                     >
                         <GatsbyImage
-                            image={getImageHelper(item)}
-                            className="thumbnail-image"
-                            alt="Thumbnail"
-                            objectFit="cover"
+                        image={getImageHelper(item)}
+                        className="thumbnail-image"
+                        alt={altText}
+                        objectFit="cover"
                         />
                     </div>
-                ))}
+                    );
+                })}
             </Slider>
 
             {isVideoOpen && (

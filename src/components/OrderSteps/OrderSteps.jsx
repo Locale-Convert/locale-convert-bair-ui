@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 import checkmarkSteps from "../../images/checkmarkSteps.svg";
 
-// три стани: inactive | active | completed
 const steps = ["Контакти", "Доставка", "Оплата", "Оформлення"];
 
 const OrderSteps = ({ stepStates = [] }) => {
@@ -12,7 +11,6 @@ const OrderSteps = ({ stepStates = [] }) => {
         const state = stepStates[index] || "inactive";
         const isCompleted = state === "completed";
 
-        // логіка лінії: активна тільки якщо поточний step completed
         let lineClass = "inactive-line";
         if (isCompleted) {
           lineClass = "active-line";

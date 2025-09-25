@@ -106,7 +106,7 @@ const ProductInfo = ({
       )}
 
       <div className="product-thumbnails">
-        <ColorSlider data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
+        <ColorSlider allData={data} data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
       </div>
 
       {isAvailable && <Installments price={currentColor.colorPrice ?? data.price} />}

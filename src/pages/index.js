@@ -29,11 +29,9 @@ export const query = graphql`
                 }
                 mainImg {
                     mobileImage {
-                        alternativeText
                         url
                     }
                     desktopImage {
-                        alternativeText
                         url
                     }
                 }
@@ -63,11 +61,9 @@ export const query = graphql`
                 }
                 mainImg {
                     mobileImage {
-                        alternativeText
                         url
                     }
                     desktopImage {
-                        alternativeText
                         url
                     }
                 }
@@ -97,11 +93,9 @@ export const query = graphql`
                 }
                 mainImg {
                     mobileImage {
-                        alternativeText
                         url
                     }
                     desktopImage {
-                        alternativeText
                         url
                     }
                 }
@@ -131,11 +125,9 @@ export const query = graphql`
                 }
                 mainImg {
                     mobileImage {
-                        alternativeText
                         url
                     }
                     desktopImage {
-                        alternativeText
                         url
                     }
                 }
@@ -165,11 +157,9 @@ export const query = graphql`
                 }
                 mainImg {
                     mobileImage {
-                        alternativeText
                         url
                     }
                     desktopImage {
-                        alternativeText
                         url
                     }
                 }
@@ -199,11 +189,9 @@ export const query = graphql`
                 }
                 mainImg {
                     mobileImage {
-                        alternativeText
                         url
                     }
                     desktopImage {
-                        alternativeText
                         url
                     }
                 }
