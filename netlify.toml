@@ -1,5 +1,5 @@
 [build]
-  environment = { NODE_VERSION = "20.9.0" }
+  environment = { NODE_VERSION = "18" }
   command = "npm run build"
   publish = "public"
 
