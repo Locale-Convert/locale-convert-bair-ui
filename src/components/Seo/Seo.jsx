@@ -32,7 +32,7 @@ export default function Seo({
     const metaTitle = `${title} | Конверти Bair`;
 
     // Логіка для Canonical URL
-    const path = productModel ? productModel.url : location.pathname;
+    const path = productModel ? productModel.url : (typeof window !== 'undefined' ? location.pathname : '/');
     let canonicalUrl = new URL(path, siteUrl).href;
     if (path !== '/' && !canonicalUrl.endsWith('/')) {
         canonicalUrl += '/';
