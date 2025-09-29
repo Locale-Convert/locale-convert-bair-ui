@@ -1,11 +1,19 @@
 .icon-item {
     width: 60px;
-    height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     background: #F6F6FA;
+}
+
+.icon-color-title {
+    color: #736A6A;
+    font-size: 11px;
+    line-height: 12px;
+    padding: 0 11px;
+    text-align: center;
+    padding: 5px 0;
 }
 
 .icon-image {

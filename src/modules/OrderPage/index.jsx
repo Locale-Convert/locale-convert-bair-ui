@@ -5,17 +5,15 @@ import validationSchemaOrderForm from "./schema";
 import Header from "../../components/Header/Header";
 import { useCartStore } from "../../store/store";
 import onFormSubmit, { onFormSubmitWithoutNavigate } from "../../hooks/emailJs";
-import { addToLocalStorage } from "../../hooks/localstorage";
-import wayForPay from "../../components/WayForPayComponent/WayForPayComponent";
+import WayForPayWidget from "../../components/WayForPayWidget";
 import CitySearchAutocomplete from "../../components/CitySearchAutocomplete/CitySearchAutocomplete";
 import { TextField } from "@mui/material";
 import CheckboxCallConfirmation from "../../components/CheckboxCallInformation/CheckboxCallInformation";
-import OrderSteps from "../../components/OrderSteps/OrderSteps";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import PaymentMethod from "../../components/PaymentMethod/PaymentMethod";
 import "./style.css";
+import { createWayForPayRequest } from "../../hooks/useWayForPay";
 
-// 🔹 окремий компонент-спостерігач за Formik values
 const FormikObserver = ({ onChange }) => {
   const { values } = useFormikContext();
 
@@ -27,7 +25,6 @@ const FormikObserver = ({ onChange }) => {
 };
 
 const OrderPage = ({ data }) => {
-  const { allStrapiProducts, allStrapiAccessories: { nodes } } = data;
 
   const [isSubmit, setIsSubmitting] = useState(false);
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState("Нова Пошта");
@@ -36,9 +33,21 @@ const OrderPage = ({ data }) => {
   const [error, setError] = useState(false);
   const [stepStates, setStepStates] = useState(["inactive", "inactive", "inactive", "inactive"]);
   const [formValues, setFormValues] = useState({});
+  const [paymentWidgetData, setPaymentWidgetData] = useState(null);
 
   const { cartItems, setCartItems } = useCartStore();
   const form = useRef();
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://secure.wayforpay.com/server/pay-widget.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   let totalAmount = cartItems.reduce(
     (sum, item) => sum + Number(item.price) * (item.count || 1),
@@ -67,6 +76,10 @@ const OrderPage = ({ data }) => {
       }
     } else if (selectedPaymentMethod === "Оплатити зараз") {
       setIsSubmitting(true);
+      setError(false);
+
+      onFormSubmitWithoutNavigate("service_mwsw4n4", "template_493nfyk", form.current, "Dtntig-pRWw1ON0vO");
+
       try {
         const merch = {
           name: values.name,
@@ -74,13 +87,17 @@ const OrderPage = ({ data }) => {
           email: values.email,
           phone: values.phone,
         };
-        wayForPay(filteredCartItems, merch);
-        onFormSubmitWithoutNavigate("service_mwsw4n4", "template_493nfyk", form.current, "Dtntig-pRWw1ON0vO");
-      } catch (error) {
+        const widgetData = await createWayForPayRequest(filteredCartItems, merch);
+        if (widgetData) {
+          setPaymentWidgetData(widgetData);
+        } else {
+          setError(true);
+          setIsSubmitting(false);
+        }
+      } catch (err) {
         setError(true);
-        console.error("Помилка під час створення замовлення:", error);
-      } finally {
-        setCartItems([]);
+        setIsSubmitting(false);
+        console.error("Помилка при створенні рахунку WayForPay:", err);
       }
     }
   };
@@ -114,6 +131,17 @@ const OrderPage = ({ data }) => {
 
   return (
     <div className="order-page">
+      {paymentWidgetData && (
+        <WayForPayWidget
+          paymentData={paymentWidgetData}
+          onClose={() => {
+            setPaymentWidgetData(null);
+            setIsSubmitting(false);
+            setCartItems([]);
+          }}
+        />
+      )}
+
       <Header isBasketView={isBasketView} setIsBasketView={setIsBasketView} />
       <div className="order-container">
         <div className="order-left">
@@ -140,6 +168,7 @@ const OrderPage = ({ data }) => {
               <Form ref={form} id="order-form">
                 <FormikObserver onChange={setFormValues} />
 
+                {/* контактні дані */}
                 <div className="order-block">
                   <h2 className="order-block-title">Ваші контактні дані</h2>
                   <div className="order-inputs">
@@ -147,17 +176,14 @@ const OrderPage = ({ data }) => {
                       <label htmlFor="name" className="order-input-label">Ім'я</label>
                       <Field type="text" name="name" id="name" className="order-input" />
                     </div>
-
                     <div className="order-input-wrapper">
                       <label htmlFor="surname" className="order-input-label">Прізвище</label>
                       <Field type="text" name="surname" id="surname" className="order-input" />
                     </div>
-
                     <div className="order-input-wrapper">
                       <label htmlFor="email" className="order-input-label">Email</label>
                       <Field type="email" name="email" id="email" className="order-input" />
                     </div>
-
                     <div className="order-input-wrapper">
                       <label htmlFor="phone" className="order-input-label">Контактний телефон</label>
                       <InputMask
@@ -174,6 +200,7 @@ const OrderPage = ({ data }) => {
                   </div>
                 </div>
 
+                {/* доставка */}
                 <div className="order-block">
                   <h2 className="order-block-title">Виберіть спосіб доставки</h2>
                   <div className="order-radios-horizontal">
@@ -224,12 +251,14 @@ const OrderPage = ({ data }) => {
                   </div>
                 </div>
 
+                {/* оплата */}
                 <PaymentMethod
                   selectedPaymentMethod={selectedPaymentMethod}
                   setSelectedPaymentMethod={setSelectedPaymentMethod}
                   setFieldValue={props.setFieldValue}
                 />
 
+                {/* коментар */}
                 <div className="order-block without-border">
                   <label htmlFor="comment" className="order-input-label">Коментар</label>
                   <Field
@@ -242,16 +271,26 @@ const OrderPage = ({ data }) => {
                   />
                   <CheckboxCallConfirmation />
                 </div>
+
+                {/* <button
+                  type="submit"
+                  className="btn-submit"
+                  disabled={isSubmit || cartItems.length === 0}
+                >
+                  {isSubmit ? "Почекайте..." : selectedPaymentMethod === "WayForPay" ? `Оплатити ${totalAmount} грн` : "Надіслати замовлення"}
+                </button>
+
+                {error && <div className="error-text">При створенні рахунку виникла помилка</div>} */}
               </Form>
             )}
           </Formik>
         </div>
 
-        <OrderSummary 
-            cartItems={cartItems} 
-            totalAmount={totalAmount} 
-            stepStates={stepStates}
-            formValues={formValues}
+        <OrderSummary
+          cartItems={cartItems}
+          totalAmount={totalAmount}
+          stepStates={stepStates}
+          formValues={formValues}
         />
       </div>
     </div>

@@ -267,3 +267,17 @@
     border-radius: 2px;
     max-width: 120px;
 }
+
+@media (max-width: 768px) {
+    .current-slide {
+        right: 20px;
+    }
+
+    .custom-next {
+        right: 20px;
+    }
+
+    .custom-prev {
+        left: 20px;
+    }
+}

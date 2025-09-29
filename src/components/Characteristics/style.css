@@ -104,7 +104,7 @@
 /* Адаптив */
 @media (max-width: 768px) {
   .characteristics-block {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   .characteristics-content > h2 {

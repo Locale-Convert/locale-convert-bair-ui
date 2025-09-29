@@ -2,6 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
     description:"Konverty Bair",
+    siteUrl: "https://konverty.bair.ua",
   },
   plugins: [
     {

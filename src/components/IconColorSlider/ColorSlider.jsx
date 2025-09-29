@@ -37,6 +37,7 @@ const ColorSlider = ({ allData, data, changeSlider, colorTitle }) => {
                                         </div>
                                     )}
                                 </div>
+                                <div className="icon-color-title">{item.color}</div>
                             </div>
                         );
                     })}

@@ -1,31 +1,155 @@
-.desc-characteristics {
-  display: grid;
-  grid-template-columns: 715px 1fr;
-  gap: 64px;
-  align-items: start;
-  margin-top: 50px;
+.product-card {
+    max-width: 600px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
 
-.order-wrapper {
-    padding: 10px 50px 100px 50px;
+.back-button {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 15px;
 }
 
-.mobile-video {
-  display: none;
+.product-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 430px;
+    line-height: 35px;
+}
+
+.product-article {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.product-color {
+    font-weight: 900;
+    font-size: 15px;
+    color: #000;
+}
+
+.article-number {
+    font-weight: bold;
+    color: #333;
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    min-height: 50px;
+}
+
+.price-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.current-price {
+    color: #000;
+    font-weight: 700;
+}
+
+.old-price {
+    font-size: 14px;
+    color: #AFA1A1;
+    text-decoration: line-through;
+    font-weight: normal;
+}
+
+/* Новий блок Частинами */
+.credit-box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+}
+
+.credit-label {
+    font-size: 10px;
+    color: #000;
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.credit-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.credit-icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.product-thumbnails {
+    margin-bottom: 20px;
+}
+
+/* Ховаємо/показуємо */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: block;
 }
 
 @media (max-width: 768px) {
-  .desc-characteristics {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+    .product-card {
+        padding: 0 20px;
+        margin-left: 0;
+    }
 
-  .order-wrapper {
-    padding: 0 10px;
-  }
+    .back-button {
+        display: none;
+    }
 
-  .mobile-video {
-    display: block;
-  }
+    .product-title {
+        font-size: 24px;
+        font-weight: 400;
+    }
 
+    .product-price {
+        font-size: 23px;
+        font-weight: 900;
+        margin-bottom: 0px;
+        align-items: flex-end;
+        margin-top: -15px;
+    }
+
+    .old-price {
+        font-size: 14px;
+    }
+
+    .credit-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .mobile-only {
+        display: flex;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .product-article {
+      margin-bottom: 0;
+    }
 }
