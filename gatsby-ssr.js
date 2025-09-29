@@ -1,5 +1,6 @@
 import React from "react";
 import { HelmetProvider } from "react-helmet-async";
+import merge from "deepmerge"
 
 const helmetContext = {};
 

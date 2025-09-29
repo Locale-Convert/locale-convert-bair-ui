@@ -1,6 +1,6 @@
 [build]
   environment = { NODE_VERSION = "18" }
-  command = "npm run build"
+  command = "gatsby clean && npm run build"
   publish = "public"
 
 [[plugins]]

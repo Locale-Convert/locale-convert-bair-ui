@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
     description: "Konverty Bair",
-    siteUrl: "https://konverty.bair.ua",
+    siteUrl: "https://konverty.bair.ua", // залишаємо для інших плагінів
   },
   proxy: {
     prefix: "/gtm",
@@ -13,58 +13,45 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap.xml`,
+        resolveSiteUrl: () => `https://konverty.bair.ua`,
         query: `
           {
-            allSitePage {
-              nodes {
-                path
-              }
-            }
-            allStrapiProducts {
-              nodes { url updatedAt }
-            }
-            allStrapiAccessories {
-              nodes { url updatedAt }
-            }
-            allStrapiMittens {
-              nodes { url updatedAt }
-            }
-            allStrapiFootmuffs {
-              nodes { url updatedAt }
-            }
-            allStrapiCarSeats {
-              nodes { url updatedAt }
-            }
-            allStrapiBeds {
-              nodes { url updatedAt }
-            }
+            allSitePage { nodes { path } }
+            allStrapiProducts { nodes { url updatedAt } }
+            allStrapiAccessories { nodes { url updatedAt } }
+            allStrapiMittens { nodes { url updatedAt } }
+            allStrapiFootmuffs { nodes { url updatedAt } }
+            allStrapiCarSeats { nodes { url updatedAt } }
+            allStrapiBeds { nodes { url updatedAt } }
           }
         `,
-        serialize: ({ 
-          allSitePage, 
-          allStrapiProducts, 
+        serialize: ({
+          allSitePage,
+          allStrapiProducts,
           allStrapiAccessories,
           allStrapiMittens,
           allStrapiFootmuffs,
           allStrapiCarSeats,
-          allStrapiBeds
+          allStrapiBeds,
         }) => {
-          const pages = allSitePage.nodes.map(page => ({
-            url: `https://konverty.bair.ua${page.path}`,
+          const siteUrl = "https://konverty.bair.ua";
+
+          const pages = (allSitePage?.nodes || []).map(page => ({
+            url: `${siteUrl}${page.path}`,
             changefreq: "weekly",
             priority: 0.7,
             lastmod: new Date().toISOString().split("T")[0],
           }));
 
           const strapiItems = [
-            ...allStrapiProducts.nodes,
-            ...allStrapiAccessories.nodes,
-            ...allStrapiMittens.nodes,
-            ...allStrapiFootmuffs.nodes,
-            ...allStrapiCarSeats.nodes,
-            ...allStrapiBeds.nodes,
+            ...(allStrapiProducts?.nodes || []),
+            ...(allStrapiAccessories?.nodes || []),
+            ...(allStrapiMittens?.nodes || []),
+            ...(allStrapiFootmuffs?.nodes || []),
+            ...(allStrapiCarSeats?.nodes || []),
+            ...(allStrapiBeds?.nodes || []),
           ].map(item => ({
-            url: `https://konverty.bair.ua/${item.url}/`,
+            url: `${siteUrl}/${item.url}/`,
             changefreq: "weekly",
             priority: 0.9,
             lastmod: item.updatedAt.split("T")[0],
