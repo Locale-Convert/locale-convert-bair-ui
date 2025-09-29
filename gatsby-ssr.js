@@ -1,7 +1,5 @@
 import React from "react";
 import { HelmetProvider } from "react-helmet-async";
-import _ from "lodash";
-const merge = _.merge;
 
 const helmetContext = {};
 

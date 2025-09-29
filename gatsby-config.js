@@ -74,14 +74,7 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-robots-txt",
-      options: {
-        host: "https://konverty.bair.ua",
-        sitemap: "https://konverty.bair.ua/sitemap.xml",
-        policy: [{ userAgent: "*", allow: "/" }],
-      },
-    },
+
     {
       resolve: "gatsby-source-strapi",
       options: {
