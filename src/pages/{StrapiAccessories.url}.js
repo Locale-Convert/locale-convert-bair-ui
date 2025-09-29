@@ -18,14 +18,6 @@ const StrapiAccessoriesUrl = ({ data }) => {
 
 export default StrapiAccessoriesUrl
 
-
-export const Head = ({ data }) => {
-  const metaTitle = data.strapiAccessories.metaTitle;
-  const metaDescription = data.strapiAccessories.metaDescription;
-  return (
-    <Seo title={metaTitle} description={metaDescription} />
-  )}
-
 export const query = graphql`
   query AccessoryPage($url: String!) {
     strapiAccessories(url: { eq: $url }) {
@@ -70,6 +62,7 @@ export const query = graphql`
             }
             mainImageColor {
               localFile {
+                publicURL
                 childImageSharp {
                   gatsbyImageData
                 }
@@ -77,6 +70,7 @@ export const query = graphql`
             }
             richDescription {
               localFile {
+                publicURL
                 childrenImageSharp {
                   gatsbyImageData
                 }
@@ -84,6 +78,7 @@ export const query = graphql`
             }
             mobileRichDescription {
               localFile {
+                publicURL
                 childrenImageSharp {
                   gatsbyImageData
                 }
@@ -91,6 +86,7 @@ export const query = graphql`
             }
             imageColor {
                 localFile {
+                    publicURL
                     childImageSharp {
                         gatsbyImageData
                     }
@@ -98,6 +94,7 @@ export const query = graphql`
             }
             characteristicsSlider {
                 localFile {
+                    publicURL
                     childImageSharp {
                         gatsbyImageData
                     }
@@ -130,6 +127,7 @@ export const query = graphql`
               article
               mainImageColor {
                 localFile {
+                  publicURL
                   childImageSharp {
                     gatsbyImageData
                   }
@@ -137,6 +135,7 @@ export const query = graphql`
               }
               imageColor {
                   localFile {
+                      publicURL
                       childImageSharp {
                           gatsbyImageData
                       }
@@ -144,6 +143,7 @@ export const query = graphql`
               }
               characteristicsSlider {
                   localFile {
+                      publicURL
                       childImageSharp {
                           gatsbyImageData
                       }
@@ -156,6 +156,7 @@ export const query = graphql`
             url
             mainImage {
                 localFile {
+                    publicURL
                     childImageSharp {
                         gatsbyImageData
                     }
@@ -164,6 +165,7 @@ export const query = graphql`
             mainImg {
                 desktopImage {
                   localFile {
+                    publicURL
                     url
                     childImageSharp {
                       gatsbyImageData
@@ -172,6 +174,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    publicURL
                     url
                     childImageSharp {
                       gatsbyImageData
@@ -197,6 +200,7 @@ export const query = graphql`
               updatedAt
               mainImage {
                   localFile {
+                      publicURL
                       childImageSharp {
                           gatsbyImageData
                       }
@@ -205,6 +209,7 @@ export const query = graphql`
               mainImg {
                 desktopImage {
                   localFile {
+                    publicURL
                     url
                     childImageSharp {
                       gatsbyImageData
@@ -213,6 +218,7 @@ export const query = graphql`
                 }
                 mobileImage {
                   localFile {
+                    publicURL
                     url
                     childImageSharp {
                       gatsbyImageData
@@ -232,6 +238,7 @@ export const query = graphql`
                 article
                 mainImageColor {
                   localFile {
+                    publicURL
                     childImageSharp {
                       gatsbyImageData
                     }
@@ -239,6 +246,7 @@ export const query = graphql`
                 }
                 imageColor {
                     localFile {
+                        publicURL
                         childImageSharp {
                             gatsbyImageData
                         }
@@ -246,6 +254,7 @@ export const query = graphql`
                 }
                 characteristicsSlider {
                     localFile {
+                        publicURL
                         childImageSharp {
                             gatsbyImageData
                         }
