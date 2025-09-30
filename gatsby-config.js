@@ -13,6 +13,8 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap.xml`,
+        createLinkInHead: true,
+        sitemapSize: 0,
         resolveSiteUrl: () => "https://konverty.bair.ua",
         resolvePages: (props) => {
           const { allSitePage, allStrapiProducts, allStrapiAccessories, allStrapiMittens, allStrapiFootmuffs, allStrapiCarSeats, allStrapiBeds } = props;
@@ -23,7 +25,7 @@ module.exports = {
           }));
 
           const strapiPages = [
-            ...(allStrapiProducts?.nodes || mockStrapiProducts),
+            ...(allStrapiProducts?.nodes || []),
             ...(allStrapiAccessories?.nodes || []),
             ...(allStrapiMittens?.nodes || []),
             ...(allStrapiFootmuffs?.nodes || []),
