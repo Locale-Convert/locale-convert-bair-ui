@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
     description: "Konverty Bair",
-    siteUrl: "https://konverty.bair.ua", // залишаємо для інших плагінів
+    siteUrl: "https://konverty.bair.ua",
   },
   proxy: {
     prefix: "/gtm",
@@ -13,7 +13,35 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         output: `/sitemap.xml`,
-        resolveSiteUrl: () => `https://konverty.bair.ua`,
+        resolveSiteUrl: () => "https://konverty.bair.ua",
+        resolvePages: (props) => {
+          const { allSitePage, allStrapiProducts, allStrapiAccessories, allStrapiMittens, allStrapiFootmuffs, allStrapiCarSeats, allStrapiBeds } = props;
+
+          const sitePages = (allSitePage?.nodes || []).map(page => ({
+            path: page.path,
+            lastmod: new Date().toISOString().split("T")[0],
+          }));
+
+          const strapiPages = [
+            ...(allStrapiProducts?.nodes || mockStrapiProducts),
+            ...(allStrapiAccessories?.nodes || []),
+            ...(allStrapiMittens?.nodes || []),
+            ...(allStrapiFootmuffs?.nodes || []),
+            ...(allStrapiCarSeats?.nodes || []),
+            ...(allStrapiBeds?.nodes || []),
+          ].map(item => ({
+            path: `/${item.url}/`,
+            lastmod: item.updatedAt ? item.updatedAt.split("T")[0] : new Date().toISOString().split("T")[0],
+          }));
+
+          return [...sitePages, ...strapiPages];
+        },
+        serialize: (page) => ({
+          url: page.path,
+          changefreq: "weekly",
+          priority: 0.7,
+          lastmod: page.lastmod,
+        }),
         query: `
           {
             allSitePage { nodes { path } }
@@ -25,48 +53,13 @@ module.exports = {
             allStrapiBeds { nodes { url updatedAt } }
           }
         `,
-        serialize: ({
-          allSitePage,
-          allStrapiProducts,
-          allStrapiAccessories,
-          allStrapiMittens,
-          allStrapiFootmuffs,
-          allStrapiCarSeats,
-          allStrapiBeds,
-        }) => {
-          const siteUrl = "https://konverty.bair.ua";
-
-          const pages = (allSitePage?.nodes || []).map(page => ({
-            url: `${siteUrl}${page.path}`,
-            changefreq: "weekly",
-            priority: 0.7,
-            lastmod: new Date().toISOString().split("T")[0],
-          }));
-
-          const strapiItems = [
-            ...(allStrapiProducts?.nodes || []),
-            ...(allStrapiAccessories?.nodes || []),
-            ...(allStrapiMittens?.nodes || []),
-            ...(allStrapiFootmuffs?.nodes || []),
-            ...(allStrapiCarSeats?.nodes || []),
-            ...(allStrapiBeds?.nodes || []),
-          ].map(item => ({
-            url: `${siteUrl}/${item.url}/`,
-            changefreq: "weekly",
-            priority: 0.9,
-            lastmod: item.updatedAt.split("T")[0],
-          }));
-
-          return [...pages, ...strapiItems];
-        },
       },
     },
 
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: "https://locale-convert-bair-6f893e44a0f3.herokuapp.com" || "http://localhost:1337",
-        availableLngs: ["en", "uk-UA"],
+        apiURL: "https://locale-convert-bair-6f893e44a0f3.herokuapp.com",
         queryLimit: 1000,
         collectionTypes: [
           "products",
@@ -83,7 +76,6 @@ module.exports = {
       },
     },
 
-    // Manifest
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -97,7 +89,6 @@ module.exports = {
       },
     },
 
-    // Google Tag Manager
     {
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
@@ -106,7 +97,6 @@ module.exports = {
       },
     },
 
-    // Файли та зображення
     {
       resolve: `gatsby-source-filesystem`,
       options: {
