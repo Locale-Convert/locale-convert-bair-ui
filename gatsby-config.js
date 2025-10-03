@@ -69,10 +69,7 @@ module.exports = {
           "beds",
           "car-seats",
           "footmuffs",
-          "mittens",
-          "characteristics",
-          "product-characteristics",
-          "values",
+          "mittens"
         ],
         singleTypes: ["home-page", "home-page-meta", "conditions", "catalog-page-meta"],
       },
