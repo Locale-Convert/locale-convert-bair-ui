@@ -10,7 +10,7 @@ const VideoControl = ({ isPaused, toggleVideoPlay}) => {
         <img src={play} alt="play-button" className={"play-button"} />
       ) : (
         <div className={"pause-wrapper"}>
-          <img className="image-pause" src={pause} alt="" />
+          <img className="image-pause" src={pause} alt="pause" />
         </div>
       )}
     </div>

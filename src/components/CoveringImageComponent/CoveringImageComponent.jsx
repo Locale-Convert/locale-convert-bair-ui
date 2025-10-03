@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import RichSlider from '../RichSlider/RichSlider';
 import closeIcon from '../../images/close-grey.svg';
 
 import "./style.css";
 
-const CoveringImageComponent = ({ colorSlider, activeColor }) => {
+const CoveringImageComponent = ({ data, colorSlider, activeColor, productTitle, productArticle }) => {
   const [isFullModalOpen, setIsFullModalOpen] = useState(false);
 
-  // беремо активний елемент, якщо мобільні є - будемо рендерити їх через клас mobile-only
   const activeItem = colorSlider[0];
 
   if (
@@ -16,32 +14,39 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
     (!activeItem?.mobileRichDescription || activeItem.mobileRichDescription.length === 0)
   ) return null;
 
-  const renderImageLayer = (item, index, isMobile = false) => (
-    <div key={index} className={isMobile ? 'mobile-only full-modal-banner-layer' : 'desktop-only full-modal-banner-layer'}>
-      <div
-        className={isMobile ? 'mobile-modal-text-layer' : 'full-modal-text-layer'}
-        style={{
-          backgroundImage: `url(${
+  const renderImageLayer = (item, index, isMobile = false) => {
+    const colorName = activeItem?.color || '';
+    const article = productArticle || '';
+
+    const altText = `Bair ${data.title}, колір: ${colorName} (артикул: ${article}), фото ${index + 1}`;
+
+    return (
+      <div key={index} className={isMobile ? 'mobile-only full-modal-banner-layer' : 'desktop-only full-modal-banner-layer'}>
+        <div
+          className={isMobile ? 'mobile-modal-text-layer' : 'full-modal-text-layer'}
+          style={{
+            backgroundImage: `url(${
+              isMobile
+                ? activeItem?.mobileRichDescriptionTextLayer?.[index]?.url
+                : activeItem?.richDescriptionTextLayer?.[index]?.url
+            })`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+          }}
+        />
+        <GatsbyImage
+          image={getImage(
             isMobile
-              ? activeItem?.mobileRichDescriptionTextLayer?.[index]?.url
-              : activeItem?.richDescriptionTextLayer?.[index]?.url
-          })`,
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}
-      />
-      <GatsbyImage
-        image={getImage(
-          isMobile
-            ? item?.localFile?.childrenImageSharp[0]?.gatsbyImageData
-            : item?.localFile?.childrenImageSharp[0]?.gatsbyImageData
-        )}
-        className={isMobile ? 'mobile-modal-covering-image' : 'full-modal-covering-image'}
-        alt=""
-        objectFit="cover"
-      />
-    </div>
-  );
+              ? item?.localFile?.childrenImageSharp[0]?.gatsbyImageData
+              : item?.localFile?.childrenImageSharp[0]?.gatsbyImageData
+          )}
+          className={isMobile ? 'mobile-modal-covering-image' : 'full-modal-covering-image'}
+          alt={altText}
+          objectFit="cover"
+        />
+      </div>
+    );
+  };
 
   return (
     <>
@@ -61,7 +66,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
               <GatsbyImage
                 image={getImage(activeItem?.richDescription?.[0]?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
                 className="covering-image"
-                alt=""
+                alt={`Bair ${data.title}, колір: ${activeItem.color} (артикул: ${productArticle}), фото 1`}
                 objectFit="cover"
               />
             </div>
@@ -80,7 +85,7 @@ const CoveringImageComponent = ({ colorSlider, activeColor }) => {
               <GatsbyImage
                 image={getImage(activeItem?.mobileRichDescription?.[0]?.localFile?.childrenImageSharp[0]?.gatsbyImageData)}
                 className="covering-image"
-                alt=""
+                alt={`Bair ${data.title}}, колір: ${activeItem.color} (артикул: ${productArticle}), фото 1`}
                 objectFit="cover"
               />
             </div>

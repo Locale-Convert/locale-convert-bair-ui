@@ -5,7 +5,7 @@ import showMore from '../../images/showMore.svg';
 const ShowMoreButton = ({ onClick, text = "Показати ще" }) => {
   return (
     <button className="show-more-button" onClick={onClick}>
-      <img src={showMore} alt="" className="show-more-icon" />
+      <img src={showMore} alt="showMore" className="show-more-icon" />
       <span>{text}</span>
     </button>
   );

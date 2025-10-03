@@ -87,17 +87,57 @@ const ProductInfo = ({
     <div className="product-card">
       <button className="back-button" onClick={() => window.history.back()}>← Назад</button>
 
-      <h1 className="product-title">{data.title}</h1>
-      <div className="product-article">
+      <div className="product-thumbnails mobile-only">
+        <ColorSlider allData={data} data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
+      </div>
+
+      <div className="product-article desktop-only">
+        Артикул: {currentColor.article}
+      </div>
+
+      <h1 className="product-title">
+        {data.title}{" "}
+        {currentColor?.color && (
+          <span className="product-color mobile-only">{currentColor.color}</span>
+        )}
+      </h1>
+      <div className="product-color-desktop desktop-only">{currentColor.color}</div>
+
+      <div className="product-article mobile-only">
         Артикул: {currentColor.article}
       </div>
 
       {isAvailable ? (
         <div id="product-price" ref={priceRef} className="product-price">
-          <span className="current-price">{formatNumberWithSpaces(displayedPrice)} грн</span>
-          {displayedOldPrice && (
-            <span className="old-price">{formatNumberWithSpaces(displayedOldPrice)} грн</span>
-          )}
+          <div className="price-wrapper">
+            <span className="current-price">
+              {formatNumberWithSpaces(displayedPrice)} грн
+            </span>
+            {displayedOldPrice && (
+              <span className="old-price">
+                {formatNumberWithSpaces(displayedOldPrice)} грн
+              </span>
+            )}
+          </div>
+
+          {/* Блок Частинами – тільки мобілка */}
+          <div className="credit-box mobile-only">
+            <div className="credit-label">Частинами</div>
+            <div className="credit-icons">
+              <img
+                src={monobankIcon}
+                alt="Monobank"
+                className="credit-icon"
+                onClick={() => openModal("monobank")}
+              />
+              <img
+                src={privatbankIcon}
+                alt="PrivatBank"
+                className="credit-icon"
+                onClick={() => openModal("privatbank")}
+              />
+            </div>
+          </div>
         </div>
       ) : (
         <div className="product-unavailable" style={{ color: "#EA1206" }}>
@@ -105,12 +145,16 @@ const ProductInfo = ({
         </div>
       )}
 
-      <div className="product-thumbnails">
-        <ColorSlider data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
+      <div className="product-thumbnails desktop-only">
+        <ColorSlider allData={data} data={data.colorSlider} changeSlider={changeSlider} colorTitle={colorTitle} />
       </div>
 
-      {isAvailable && <Installments price={currentColor.colorPrice ?? data.price} />}
-      {isAvailable && <CreditButtons openModal={openModal} />}
+      {isAvailable && <div className="desktop-only"><Installments price={currentColor.colorPrice ?? data.price} /></div>}
+      {isAvailable && (
+        <div className="desktop-only">
+          <CreditButtons openModal={openModal} />
+        </div>
+      )}
 
       <ProductActions
         addToBasket={() => addToBasket({ ...data, selectedColor: currentColor }, currentColor.article)}

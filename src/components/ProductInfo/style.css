@@ -27,6 +27,17 @@
     margin-bottom: 20px;
 }
 
+.product-color-desktop {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.product-color {
+    font-weight: 900;
+    font-size: 15px;
+    color: #000;
+}
+
 .article-number {
     font-weight: bold;
     color: #333;
@@ -35,19 +46,17 @@
 .product-price {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between; /* ціна зліва, іконки справа */
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 15px;
     min-height: 50px;
 }
 
-.home-product-price {
+.price-wrapper {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 32px;
-    font-weight: bold;
+    align-items: baseline;
+    gap: 8px;
 }
 
 .current-price {
@@ -62,6 +71,19 @@
     font-weight: normal;
 }
 
+.credit-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.credit-icon {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
 .product-thumbnails {
     margin-bottom: 20px;
 }
@@ -72,24 +94,27 @@
         margin-left: 0;
     }
 
-    .home-product-price {
-        gap: 3px;
-    }
-
     .back-button {
         display: none;
     }
 
     .product-title {
         font-size: 24px;
+        font-weight: 300;
     }
 
     .product-price {
         font-size: 23px;
         font-weight: 900;
+        margin-bottom: 0px;
     }
 
     .old-price {
         font-size: 14px;
+    }
+
+    .credit-icon {
+        width: 28px;
+        height: 28px;
     }
 }

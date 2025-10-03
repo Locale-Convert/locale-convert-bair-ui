@@ -27,6 +27,12 @@
   display: none;
 }
 
+.home-product-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* ==== БАЗОВІ СТАНИ ==== */
 .slider-desktop > .swiper {
   padding: 10px 10px;

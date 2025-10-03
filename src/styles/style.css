@@ -4126,6 +4126,7 @@ body{
 
   .order-wrapper {
     display: block;
+    padding: 0 20px;
   }
 }
 
@@ -4755,8 +4756,8 @@ body{
 
 
   .icon-slider {
-    grid-template-columns: repeat(auto-fit, minmax(68px, 62px));
-    gap: 3px;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 62px));
+    gap: 6px;
   }
 
   .glider-slide {

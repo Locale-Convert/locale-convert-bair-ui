@@ -178,6 +178,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
       <div className="characteristics-box">
         <div className="vertical-slider-wrapper">
           <SliderMiniature
+            data={data}
             sliderImage={sliderImage}
             selectedIndex={selectedItemForMainSlider}
             changeItemSlider={changeItemSlider}
@@ -186,6 +187,7 @@ const IconColorSlider = ({ type, data, colorSlider, title, price, oldPrice, prod
         </div>
         <div className="main-slider-wrapper">
           <MainSlider
+            data={data}
             currentColor={currentColor}
             sliderImage={sliderImage}
             selectedIndex={selectedItemForMainSlider}

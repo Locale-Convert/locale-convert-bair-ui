@@ -133,6 +133,7 @@
     color: #000;
     border-radius: 6px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 /* Cart Suggestions */

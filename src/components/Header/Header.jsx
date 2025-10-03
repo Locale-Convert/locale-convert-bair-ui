@@ -277,7 +277,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
           <img
             className="header__logo"
             src={logo_convert}
-            alt="Конверти Bair"
+            alt="Bair"
           />
         </a>
         <div className="nav-menu">
@@ -309,7 +309,7 @@ const Header = ({ isBasketView, setIsBasketView }) => {
             <div className="dropbtn open-cart-btn" onClick={() => showCartModal || setShowCartModal(true)}>
               <img
                 src={basket}
-                alt="Basket"
+                alt="Кошик"
                 style={{ filter: (showCartModal && cartItems.length > 0) ? '' : 'none' }}
               />
               {getTotalItemCount !== 0 ? <div className="cart-total">{getTotalItemCount}</div> : null}
